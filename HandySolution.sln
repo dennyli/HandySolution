@@ -61,6 +61,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{691746DD-2EE5-4678-B001-275D84AF8D10}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework.6.0", "EntityFramework.6.0", "{51D539B9-5DB1-4ED0-AE01-F260CA466843}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\EntityFramework.6.0\EntityFramework.dll = Lib\EntityFramework.6.0\EntityFramework.dll
+		Lib\EntityFramework.6.0\EntityFramework.SqlServer.dll = Lib\EntityFramework.6.0\EntityFramework.SqlServer.dll
+		Lib\EntityFramework.6.0\EntityFramework.SqlServer.xml = Lib\EntityFramework.6.0\EntityFramework.SqlServer.xml
+		Lib\EntityFramework.6.0\EntityFramework.xml = Lib\EntityFramework.6.0\EntityFramework.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +228,7 @@ Global
 		{CF04BCA6-E30A-4097-9E8B-5C12DC59762C} = {41915677-D287-4605-84E2-FB23C0E4D93F}
 		{CA05379E-B1D3-49A6-BE3C-1E5819947E3A} = {41915677-D287-4605-84E2-FB23C0E4D93F}
 		{8B7DA7CF-F977-4B42-9874-5F9500B101AE} = {FA2056B9-7284-482A-8B54-96F228DC16E3}
+		{51D539B9-5DB1-4ED0-AE01-F260CA466843} = {FA2056B9-7284-482A-8B54-96F228DC16E3}
 		{691746DD-2EE5-4678-B001-275D84AF8D10} = {BCEFE150-9072-4047-AC13-A73012DC5B81}
 		{4212F129-3432-4022-9126-21A304826C81} = {D71C97F5-A4D1-459C-89DA-5313B8AEF1EF}
 		{8C7671BF-8C23-4227-BEE6-29ABEF882CDA} = {3E62E7DA-A7CA-4536-A661-83138DF4E410}
