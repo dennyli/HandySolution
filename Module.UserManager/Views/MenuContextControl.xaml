@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Module.UserManager.Views.MenuContextControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="menuCatagoryEntry"
+                                   DataType="MenuItem"
+                                  ItemsSource="{Binding Path=Items}">
+            <StackPanel>
+                <TextBlock FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           Text="{Binding Path=Header}">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click" >
+                        <i:InvokeCommandAction Command="{Binding MenuItemCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+                </TextBlock>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <!--<DataTemplate x:Key="headerDataTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=Header, Mode=OneWay}"
+                           VerticalAlignment="Center" />
+            </StackPanel>
+        
+        HeaderTemplate="{StaticResource headerDataTemplate}"
+        </DataTemplate>-->
+    </UserControl.Resources>
+
+    <Menu ItemsSource="{Binding MenuItems}"
+              ItemTemplate="{StaticResource menuCatagoryEntry}" MenuItem.Click="Menu_Click" />
+</UserControl>

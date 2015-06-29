@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ModuleBase.Views.ToolbarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cmd="clr-namespace:Module.Common.Commands;assembly=Module.Common"
+             xmlns:common="clr-namespace:Module.Common.Tools;assembly=Module.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="64" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ToolbarButtonTemplate" DataType="{x:Type cmd:ToolbarCommand}">
+            <Button Command="{Binding Path=Command}" Background="{Binding Path=BackBrush}"
+                    Style="{DynamicResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Height="58">
+                <StackPanel Orientation="Vertical">
+                    <ContentPresenter Content="{Binding Path=Icon, Converter={x:Static common:StringToImage.Default}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <ToolBar Name="toolBar" ItemsSource="{Binding ToolbarItems }" ItemTemplate="{StaticResource ToolbarButtonTemplate}" />
+    </Grid>
+</UserControl>
