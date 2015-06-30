@@ -9,8 +9,6 @@ namespace Lighter.Service
     public interface ILogin
     {
         bool Connect(Client client);
-        bool Login();
-        bool Logout();
         void Disconnect(Client client);
     }
 }

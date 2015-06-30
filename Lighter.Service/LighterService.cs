@@ -52,17 +52,5 @@ namespace Lighter.Service
                 }
             }
         }
-
-        [OperationContract(IsOneWay = true)]
-        public bool Login()
-        {
-            throw new NotImplementedException();
-        }
-
-        [OperationContract(IsOneWay = true)]
-        public bool Logout()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
