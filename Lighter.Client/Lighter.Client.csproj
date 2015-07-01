@@ -37,6 +37,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Prism\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -123,18 +135,6 @@
     <ProjectReference Include="..\ModuleBase\Module.Base.csproj">
       <Project>{D3701425-F12B-4F1E-B783-440597D4DBE5}</Project>
       <Name>Module.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
-      <Project>{de856812-a32c-4866-801e-af396d711942}</Project>
-      <Name>Prism.Interactivity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
-      <Project>{6ed61550-8e7a-42c6-9b30-380c6f97ed55}</Project>
-      <Name>Prism.MefExtensions.Desktop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
-      <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
-      <Name>Prism.Desktop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
