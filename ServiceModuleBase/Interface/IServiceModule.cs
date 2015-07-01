@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ServiceModuleBase.Interface
 {
-    public interface IServiceModule
+    public  interface IServiceModule
     {
     }
 }
