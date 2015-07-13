@@ -6,7 +6,8 @@ using ServiceModuleBase.Interface;
 
 namespace ServiceModuleBase
 {
-    public class ServiceModuleBase : IServiceModule
+    public abstract class ServiceModuleBase : IServiceModule
     {
+        public virtual void Initialize();
     }
 }

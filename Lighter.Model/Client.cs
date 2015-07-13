@@ -8,7 +8,6 @@ namespace Lighter.Model
     public class Client
     {
         public string Name;
-        public string Passord;
         public string IP;
         public DateTime Time;
     }
