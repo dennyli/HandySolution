@@ -8,8 +8,8 @@
     <ProjectGuid>{8C7671BF-8C23-4227-BEE6-29ABEF882CDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.Service</RootNamespace>
-    <AssemblyName>Lighter.Service</AssemblyName>
+    <RootNamespace>Lighter.MainService</RootNamespace>
+    <AssemblyName>Lighter.MainService</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -55,35 +55,39 @@
     <Compile Include="Implement\LighterServiceHostBootstrapper.cs" />
     <Compile Include="Interface\ILighterService.cs" />
     <Compile Include="Interface\ILighterServiceHost.cs" />
-    <Compile Include="Interface\ILogin.cs" />
-    <Compile Include="Interface\ILoginCallBack.cs" />
+    <Compile Include="Interface\ILighterConnect.cs" />
+    <Compile Include="Interface\ILighterConnectCallBack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Implement\LighterService.cs" />
+    <Compile Include="Implement\LighterMainService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lighter.Model\Lighter.Model.csproj">
-      <Project>{4212F129-3432-4022-9126-21A304826C81}</Project>
-      <Name>Lighter.Model</Name>
+    <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceHostManager.csproj">
+      <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
+      <Name>Lighter.ServiceHostManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
+    <ProjectReference Include="..\..\..\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
       <Project>{DE856812-A32C-4866-801E-AF396D711942}</Project>
       <Name>Prism.Interactivity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
+    <ProjectReference Include="..\..\..\Prism4.1\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
       <Project>{6ED61550-8E7A-42C6-9B30-380C6F97ED55}</Project>
       <Name>Prism.MefExtensions.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
+    <ProjectReference Include="..\..\..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServiceModuleBase\ServiceModuleBase.csproj">
+    <ProjectReference Include="..\..\BaseService\Lighter.BaseService.csproj">
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
-      <Name>ServiceModuleBase</Name>
+      <Name>Lighter.BaseService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.csproj">
+    <ProjectReference Include="..\..\..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.MainModel\Lighter.MainServiceModel.csproj">
+      <Project>{4212F129-3432-4022-9126-21A304826C81}</Project>
+      <Name>Lighter.MainServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 
-namespace Lighter.Service.Interface
+namespace Lighter.MainService.Interface
 {
     public interface ILighterServiceHost
     {

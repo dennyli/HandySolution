@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.Prism.Modularity;
 
-namespace ServiceModuleBase.Interface
+namespace Lighter.BaseService.Interface
 {
-    public interface IServiceModule : IModule
+    public interface ILighterService : IModule
     {
     }
 }

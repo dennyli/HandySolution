@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lighter.Service.Interface
+namespace Lighter.MainService.Interface
 {
-    public class ILoginCallBack
+    public class ILighterConnectCallBack
     {
 
     }

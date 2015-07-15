@@ -11,11 +11,12 @@ using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
 using System.Reflection;
 using Utility;
-using ServiceModuleBase.Interface;
+using Lighter.BaseService.Interface;
 
-namespace Lighter.Service.Implement
+namespace Lighter.MainService.Implement
 {
-    private class LighterServiceHostBootstrapper : Bootstrapper
+    //public 
+        class LighterServiceHostBootstrapper : Bootstrapper
     {
         protected AggregateCatalog AggregateCatalog { get; set; }
 
@@ -80,12 +81,12 @@ namespace Lighter.Service.Implement
             return container;
         }
 
-        protected override void ConfigureAggregateCatalog()
+        protected void ConfigureAggregateCatalog()
         {
             // Add this assembly to the catalog.
             this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
 
-            IList<Assembly> svrModules = CommonUtility.LookupAssemblies(AppDomain.CurrentDomain.BaseDirectory, typeof(IServiceModule));
+            IList<Assembly> svrModules = CommonUtility.LookupAssemblies(AppDomain.CurrentDomain.BaseDirectory, typeof(ILighterService));
             if (svrModules.Count == 0)
                 throw new DllNotFoundException("Service module not found");
 
@@ -93,7 +94,7 @@ namespace Lighter.Service.Implement
                 this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(ass));
         }
 
-        protected override AggregateCatalog CreateAggregateCatalog()
+        protected AggregateCatalog CreateAggregateCatalog()
         {
             return new AggregateCatalog();
         }
@@ -101,6 +102,11 @@ namespace Lighter.Service.Implement
         public virtual void RegisterDefaultTypesIfMissing()
         {
             this.AggregateCatalog = DefaultPrismServiceRegistrar.RegisterRequiredPrismServicesIfMissing(this.AggregateCatalog);
+        }
+
+        protected override DependencyObject CreateShell()
+        {
+            throw new NotImplementedException();
         }
     }
 }

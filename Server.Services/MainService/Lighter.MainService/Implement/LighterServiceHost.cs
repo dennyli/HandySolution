@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
-using Lighter.Service.Interface;
+using Lighter.MainService.Interface;
 using Microsoft.Practices.Prism.MefExtensions;
 
-namespace Lighter.Service.Implement
+namespace Lighter.MainService.Implement
 {
-    public class LighterServiceHost : ServiceHost, ILighterServiceHost
+    //public 
+        class LighterServiceHost : ServiceHost, ILighterServiceHost
     {
         private LighterServiceHostBootstrapper _bootstrapper;
 

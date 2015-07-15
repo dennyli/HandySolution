@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel;
-using Lighter.Model;
-using Lighter.Service.Interface;
+using Lighter.MainService.Interface;
+using Lighter.MainServiceModel;
+using Lighter.ServiceHostManager;
 
-namespace Lighter.Service.Implement
+namespace Lighter.MainService.Implement
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
-    public class LighterService : ILighterService, ILogin
+    [ExportService("LighterMainService", typeof(LighterMainService))]
+    public class LighterMainService : ILighterMainService, ILighterConnect
     {
-        private Dictionary<string, ILoginCallBack> _callbacks = new Dictionary<string, ILoginCallBack>();
+        private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
         private ObservableCollection<Client> _clients = new ObservableCollection<Client>();
 
         public ObservableCollection<Client> Clients
@@ -28,7 +30,7 @@ namespace Lighter.Service.Implement
             if ((client == null) || _callbacks.ContainsKey(client.IP))
                 return false;
 
-            ILoginCallBack callback = OperationContext.Current.GetCallbackChannel<ILoginCallBack>();
+            ILighterConnectCallBack callback = OperationContext.Current.GetCallbackChannel<ILighterConnectCallBack>();
             lock (_syncObj)
             {
                 _callbacks.Add(client.IP, callback);
