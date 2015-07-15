@@ -19,6 +19,12 @@
         /// Initialises a new instance of <see cref="TcpEndpointAttribute"/>.
         /// </summary>
         public TcpEndpointAttribute() : base(DefaultPort) { }
+
+        /// <summary>
+        /// Initialises a new instance of <see cref="TcpEndpointAttribute"/> with specific port
+        /// </summary>
+        /// <param name="port">tcp port</param>
+        public TcpEndpointAttribute(int port) : base(port) { }
         #endregion
 
         #region Methods

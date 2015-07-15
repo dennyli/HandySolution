@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Lighter.MainServiceModel;
+using Lighter.MainService.Model;
 
 namespace Lighter.MainService.Interface
 {

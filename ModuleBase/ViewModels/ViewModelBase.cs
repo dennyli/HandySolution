@@ -9,7 +9,7 @@ using Module.Common.Interface;
 namespace ModuleBase.ViewModels
 {
     /// <summary>
-    /// ViewModelBase.
+    /// ViewModelBase
     /// </summary>
     //[Export]
     //[PartCreationPolicy(CreationPolicy.NonShared)]

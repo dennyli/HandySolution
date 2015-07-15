@@ -6,7 +6,7 @@ using Microsoft.Practices.Prism.Modularity;
 
 namespace Lighter.BaseService.Interface
 {
-    public interface ILighterService : IModule
+    public interface ILighterService
     {
     }
 }

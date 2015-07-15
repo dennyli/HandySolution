@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Lighter.BaseService.Interface;
+using Lighter.BaseService.Implement;
 
 namespace Lighter.BaseService
 {
-    public abstract class ServiceModuleBase : ILighterService
+    public abstract class LighterServiceBase : CoreServiceBase, ILighterService
     {
-        public abstract void Initialize();
     }
 }

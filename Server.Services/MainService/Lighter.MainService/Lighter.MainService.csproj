@@ -53,10 +53,11 @@
   <ItemGroup>
     <Compile Include="Implement\LighterServiceHost.cs" />
     <Compile Include="Implement\LighterServiceHostBootstrapper.cs" />
-    <Compile Include="Interface\ILighterService.cs" />
+    <Compile Include="Interface\ILighterMainService.cs" />
     <Compile Include="Interface\ILighterServiceHost.cs" />
     <Compile Include="Interface\ILighterConnect.cs" />
     <Compile Include="Interface\ILighterConnectCallBack.cs" />
+    <Compile Include="Model\Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implement\LighterMainService.cs" />
   </ItemGroup>
@@ -84,10 +85,6 @@
     <ProjectReference Include="..\..\..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lighter.MainModel\Lighter.MainServiceModel.csproj">
-      <Project>{4212F129-3432-4022-9126-21A304826C81}</Project>
-      <Name>Lighter.MainServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

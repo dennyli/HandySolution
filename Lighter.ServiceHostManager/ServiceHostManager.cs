@@ -18,7 +18,8 @@
     /// <summary>
     /// Defines a service manager.
     /// </summary>
-    public class ServiceHostManager : Bootstrapper
+    [Export(typeof(IServiceHostManager))]
+    public class ServiceHostManager : Bootstrapper, IServiceHostManager
     {
         #region Fields
         private CompositionContainer _container;

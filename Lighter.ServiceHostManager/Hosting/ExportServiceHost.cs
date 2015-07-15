@@ -12,7 +12,7 @@
     /// <summary>
     /// Defines a service host created from exported parts.
     /// </summary>
-    public class ExportServiceHost : ServiceHostBase
+    public class ExportServiceHost : ServiceHost
     {
         #region Fields
         private static readonly Type HostedServiceType = typeof(IHostedService);
@@ -47,6 +47,35 @@
         #endregion
 
         #region Methods
+        /// <summary>
+        /// 刷新服务的地址端口，自动关闭，关闭后自动打开
+        /// </summary>
+        /// <param name="port">地址端口</param>
+        public void UpdateAddressPort(int port)
+        {
+            CommunicationState state = this.State;
+            if (this.State == CommunicationState.Opened)
+                Close();
+
+            var endpointAttributes = GetEndpoints(Meta.ServiceType);
+            foreach (var endpointAttribute in endpointAttributes)
+                endpointAttribute.Port = port;
+
+            InitializeDescription(new UriSchemeKeyedCollection(_baseAddresses));
+
+            if (state == CommunicationState.Opened)
+                Open();
+        }
+
+        public string GetServiceName()
+        {
+            var attrs = (ExportServiceAttribute[])Meta.ServiceType.GetCustomAttributes(typeof(ExportServiceAttribute), true);
+            if ((attrs == null) || !attrs.Any())
+                return string.Empty;
+
+            return attrs[0].ContractName;
+        }
+
         /// <summary>
         /// Adds the base addresses to the service.
         /// </summary>
@@ -145,7 +174,7 @@
         {
             var attrs = (EndpointAttribute[])serviceType.GetCustomAttributes(typeof(EndpointAttribute), true);
             if (!attrs.Any())
-                attrs = new[] { new HttpEndpointAttribute() };
+                attrs = new[] { new TcpEndpointAttribute() };
 
             return attrs;
         }
