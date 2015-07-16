@@ -7,7 +7,7 @@ using System.ServiceModel;
 
 namespace Lighter.BaseService.Interface
 {
-    [ServiceContract]
+    //[ServiceContract]
     public interface ILighterService
     {
     }

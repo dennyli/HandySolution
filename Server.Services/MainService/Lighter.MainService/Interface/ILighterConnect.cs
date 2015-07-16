@@ -4,8 +4,9 @@ using System.ServiceModel;
 
 namespace Lighter.MainService.Interface
 {
-    [ServiceContract]
-    public interface ILighterConnect
+    //[ServiceContract]
+    //public 
+        interface ILighterConnect
     {
         ObservableCollection<Client> Clients { get;}
 

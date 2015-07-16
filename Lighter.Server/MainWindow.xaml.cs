@@ -26,11 +26,5 @@ namespace Lighter.Server
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            var manager = new ServiceHostManager();
-            manager.Run();
-        }
     }
 }

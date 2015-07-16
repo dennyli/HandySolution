@@ -40,6 +40,9 @@
             var address = new EndpointAddress(uri);
 
             var binding = new NetTcpBinding();
+            binding.Security.Mode = SecurityMode.None;
+            binding.PortSharingEnabled = true;
+
             return new ServiceEndpoint(description, binding, address);
         }
         #endregion

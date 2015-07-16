@@ -8,6 +8,7 @@
     using System.ServiceModel.Description;
 
     using Endpoints;
+    using System.Diagnostics;
 
     /// <summary>
     /// Defines a service host created from exported parts.
@@ -61,7 +62,7 @@
             foreach (var endpointAttribute in endpointAttributes)
                 endpointAttribute.Port = port;
 
-            InitializeDescription(new UriSchemeKeyedCollection(_baseAddresses));
+            InitializeDescription(new UriSchemeKeyedCollection(new Uri[0]));
 
             if (state == CommunicationState.Opened)
                 Open();
@@ -151,14 +152,21 @@
             {
                 if (!collection.Contains(contract))
                 {
-                    var cd = ContractDescription.GetContract(contract, serviceType);
-                    collection.Add(cd);
-
-                    foreach (var icd in cd.GetInheritedContracts())
+                    try
                     {
-                        if (!collection.Contains(icd.ContractType))
-                            collection.Add(icd);
+                        var cd = ContractDescription.GetContract(contract, serviceType);
+                        collection.Add(cd);
                     }
+                    catch (InvalidOperationException)
+                    {
+                        Debug.WriteLine("Warning: Contract " + contract + " can't found contract description in " + serviceType);
+                    }
+
+                    //foreach (var icd in cd.GetInheritedContracts())
+                    //{
+                    //    if (!collection.Contains(icd.ContractType))
+                    //        collection.Add(icd);
+                    //}
                 }
             }
 

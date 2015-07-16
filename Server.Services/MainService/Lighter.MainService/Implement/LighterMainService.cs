@@ -10,12 +10,13 @@ using Lighter.MainService.Model;
 using Lighter.ServiceManager;
 using Lighter.ServiceManager.Endpoints;
 using Lighter.ServiceManager.Hosting;
+using Microsoft.Practices.Prism.Logging;
 
 namespace Lighter.MainService.Implement
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
     [ExportService("LighterMainService", typeof(LighterMainService)), TcpEndpoint(40001)]
-    public class LighterMainService : LighterServiceBase, ILighterMainService, ILighterConnect
+    public class LighterMainService : LighterServiceBase, ILighterMainService //, ILighterConnect
     {
         private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
         private ObservableCollection<Client> _clients = new ObservableCollection<Client>();
@@ -27,17 +28,21 @@ namespace Lighter.MainService.Implement
             get { return _clients; }
             //set { _clients = value; }
         }
+
+        [Import]
+        public ILoggerFacade Logger { get; set; }
         
         [Import]
         public IServiceHostManager ServiceHostManager { get; set; }
 
 
-
-        [OperationContract(IsInitiating = true)]
+        //[OperationContract(IsInitiating = true)]
         public bool Connect(Client client)
         {
             if ((client == null) || _callbacks.ContainsKey(client.IP))
                 return false;
+
+            Logger.Log(client.Name + " connecting from " + client.IP + "... ", Category.Debug, Priority.Low);
 
             ILighterConnectCallBack callback = OperationContext.Current.GetCallbackChannel<ILighterConnectCallBack>();
             lock (_syncObj)
@@ -46,12 +51,16 @@ namespace Lighter.MainService.Implement
                 _clients.Add(client);
             }
 
+            Logger.Log(client.Name + " connected from " + client.IP + "... ", Category.Debug, Priority.Low);
+
             return true;
         }
 
-        [OperationContract(IsOneWay = true)]
+        //[OperationContract(IsOneWay = true)]
         public void Disconnect(Client client)
         {
+            Logger.Log(client.Name + " disconnecting from " + client.IP + "... ", Category.Debug, Priority.Low);
+
             if ((client != null) && _callbacks.ContainsKey(client.IP))
             {
                 lock (_syncObj)
@@ -69,9 +78,11 @@ namespace Lighter.MainService.Implement
                     }
                 }
             }
+
+            Logger.Log(client.Name + " disconnected from " + client.IP + "... ", Category.Debug, Priority.Low);
         }
 
-        [OperationContract]
+        //[OperationContract]
         public bool ServiceIsExists(string serviceName)
         {
             try
@@ -89,7 +100,7 @@ namespace Lighter.MainService.Implement
             }
         }
 
-        [OperationContract]
+        //[OperationContract]
         public Uri GetServiceAddress(string serviceName)
         {
             try

@@ -77,6 +77,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.MainService.Interfa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.MainService.Model", "Server.Services\MainService\Lighter.MainService.Model\Lighter.MainService.Model.csproj", "{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1D191F02-C157-428D-AA44-B62E48E44840}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{C3A1F1B2-3B8C-4E31-9523-CA6049B035BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportServiceHostManagerTest", "Test\Server\ExportServiceHostManagerTest\ExportServiceHostManagerTest.csproj", "{31769B78-09A7-4423-AE6F-CFD1A420DCDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportServiceHostManagerTest-Client", "Test\Server\ExportServiceHostManagerTest-Client\ExportServiceHostManagerTest-Client.csproj", "{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -247,6 +255,26 @@ Global
 		{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Debug|x86.ActiveCfg = Debug|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Debug|x86.Build.0 = Debug|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Release|Any CPU.ActiveCfg = Release|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Release|Mixed Platforms.Build.0 = Release|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Release|x86.ActiveCfg = Release|x86
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF}.Release|x86.Build.0 = Release|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Debug|x86.ActiveCfg = Debug|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Debug|x86.Build.0 = Debug|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Release|Any CPU.ActiveCfg = Release|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Release|x86.ActiveCfg = Release|x86
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -275,5 +303,8 @@ Global
 		{B2139C11-8744-4AD8-8DF9-4D6997FBBE52} = {E49C9F1F-3951-404D-924E-48A87CD38D49}
 		{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB} = {E49C9F1F-3951-404D-924E-48A87CD38D49}
 		{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78} = {C5971A45-9936-4AA9-8DED-BBC89B212199}
+		{C3A1F1B2-3B8C-4E31-9523-CA6049B035BE} = {1D191F02-C157-428D-AA44-B62E48E44840}
+		{31769B78-09A7-4423-AE6F-CFD1A420DCDF} = {C3A1F1B2-3B8C-4E31-9523-CA6049B035BE}
+		{1A2CC489-5477-4624-BF26-6AB2A46D7C9C} = {C3A1F1B2-3B8C-4E31-9523-CA6049B035BE}
 	EndGlobalSection
 EndGlobal
