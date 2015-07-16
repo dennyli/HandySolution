@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
-using Module.Common.Interface;
+using Client.Module.Common.Interface;
 
-namespace Module.Common.Commands
+namespace Client.Module.Common.Commands
 {
     [Flags]
     public enum CommandAnchor

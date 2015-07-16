@@ -11,10 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Module.UserManager.ViewModels;
+using Client.Module.UserManager.ViewModels;
 using System.ComponentModel.Composition;
 
-namespace Module.UserManager.Views
+namespace Client.Module.UserManager.Views
 {
     /// <summary>
     /// DepartmentManagerView.xaml 的交互逻辑

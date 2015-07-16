@@ -37,15 +37,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>E:\Enterprise Library\Prism\Prism_4_1_Source\Bin\Desktop\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
     </Reference>
@@ -120,35 +120,35 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Infrastructure.csproj">
+    <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Client.Infrastructure.csproj">
       <Project>{534D59E2-CBE6-413E-BD58-51C9EC814C24}</Project>
-      <Name>Lighter.Infrastructure</Name>
+      <Name>Lighter.Client.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module.Common\Module.Common.csproj">
+    <ProjectReference Include="..\Module.Common\Client.Module.Common.csproj">
       <Project>{6AA25A6B-7765-4D74-BDEE-1E9D36197E4E}</Project>
-      <Name>Module.Common</Name>
+      <Name>Client.Module.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Module.UserManager\Module.UserManager.csproj">
+    <ProjectReference Include="..\Module.UserManager\Client.Module.UserManager.csproj">
       <Project>{63EE0BE6-87C5-4015-91A3-DB20A6E27C9A}</Project>
-      <Name>Module.UserManager</Name>
+      <Name>Client.Module.UserManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModuleBase\Module.Base.csproj">
+    <ProjectReference Include="..\ModuleBase\Client.Module.Base.csproj">
       <Project>{D3701425-F12B-4F1E-B783-440597D4DBE5}</Project>
-      <Name>Module.Base</Name>
+      <Name>Client.Module.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "ModuleConfig.xaml" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)" 
+    <PostBuildEvent>xcopy /Y /I "ModuleConfig.xaml" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\" 
 
-xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)"
+xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"
 
-xcopy /Y /I "$(TargetPath).config" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)"
+xcopy /Y /I "$(TargetPath).config" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"
  
-xcopy /Y /I "Microsoft.Practices.*.dll" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)"
-xcopy /Y /I "Microsoft.Practices.*.xml" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)"
+xcopy /Y /I "Microsoft.Practices.*.dll" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"
+xcopy /Y /I "Microsoft.Practices.*.xml" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"
 
-xcopy /Y /I "System.*" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)"
+xcopy /Y /I "System.*" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

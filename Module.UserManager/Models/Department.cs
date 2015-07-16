@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Module.UserManager.Models
+namespace Client.Module.UserManager.Models
 {
     public class Department
     {

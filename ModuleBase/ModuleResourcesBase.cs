@@ -1,9 +1,9 @@
 ﻿using System;
-using Module.Common.Commands;
-using Module.Common.Interface;
+using Client.Module.Common.Commands;
+using Client.Module.Common.Interface;
 using System.Collections.ObjectModel;
 
-namespace ModuleBase
+namespace Client.ModuleBase
 {
     public abstract class ModuleResourcesBase : IModuleResources
     {

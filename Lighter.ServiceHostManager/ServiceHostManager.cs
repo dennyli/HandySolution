@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager
+﻿namespace Lighter.ServiceManager
 {
     using System;
     using System.Collections.Generic;
@@ -24,10 +24,21 @@
         #region Fields
         private CompositionContainer _container;
         private ICompositionContainerFactory _factory;
-        private AggregateCatalog _aggregateCatalog;
+        //private AggregateCatalog _aggregateCatalog;
+        private DirectoryCatalog _directoryCatalog;
         #endregion
 
         #region Constructor
+        public ServiceHostManager()
+        {
+            //this._aggregateCatalog = CreateAggregateCatalog();
+            //_factory = new DelegateCompositionContainerFactory(ep => new CompositionContainer(this._aggregateCatalog, ep));
+
+            _directoryCatalog = new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory);
+            _factory = new DelegateCompositionContainerFactory(ep => new CompositionContainer(this._directoryCatalog, ep));
+        }
+ 
+
         /// <summary>
         /// Initialises a new instance of <see cref="ServiceHostManager"/>.
         /// </summary>
@@ -92,7 +103,7 @@
             this._container.ComposeExportedValue<ILoggerFacade>(this.Logger);
             //this.Container.ComposeExportedValue<IModuleCatalog>(this.ModuleCatalog);
             this._container.ComposeExportedValue<IServiceLocator>(new MefServiceLocatorAdapter(this._container));
-            this._container.ComposeExportedValue<AggregateCatalog>(this._aggregateCatalog);
+            //this._container.ComposeExportedValue<AggregateCatalog>(this._aggregateCatalog);
             this._container.ComposeExportedValue(this);
         }
 
@@ -115,24 +126,27 @@
         protected void ConfigureAggregateCatalog()
         {
             // Add this assembly to the catalog.
-            this._aggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
+            //this._aggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ServiceHostManager).Assembly));
 
-            IList<Assembly> svrModules = CommonUtility.LookupAssemblies(AppDomain.CurrentDomain.BaseDirectory, typeof(ILighterService));
-            if (svrModules.Count == 0)
-                throw new DllNotFoundException("Service module not found");
+            //IList<Assembly> svrModules = CommonUtility.LookupAssemblies(AppDomain.CurrentDomain.BaseDirectory, typeof(ILighterService));
+            //if (svrModules.Count == 0)
+            //    throw new DllNotFoundException("Service module not found");
 
-            foreach (Assembly ass in svrModules)
-                this._aggregateCatalog.Catalogs.Add(new AssemblyCatalog(ass));
+            //foreach (Assembly ass in svrModules)
+            //    this._aggregateCatalog.Catalogs.Add(new AssemblyCatalog(ass));
         }
 
         protected AggregateCatalog CreateAggregateCatalog()
         {
-            return new AggregateCatalog();
+            AggregateCatalog catalog = new AggregateCatalog();
+
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(ServiceHostManager).Assembly));
+            return catalog;
         }
 
         public virtual void RegisterDefaultTypesIfMissing()
         {
-            this._aggregateCatalog = DefaultPrismServiceRegistrar.RegisterRequiredPrismServicesIfMissing(this._aggregateCatalog);
+            //this._aggregateCatalog = DefaultPrismServiceRegistrar.RegisterRequiredPrismServicesIfMissing(this._aggregateCatalog);
         }
 
         protected override DependencyObject CreateShell()
@@ -140,7 +154,7 @@
             throw new NotImplementedException();
         }
 
-        public override void Run(bool runWithDefaultConfiguration)
+        public override void Run(bool runWithDefaultConfiguration = true)
         {
             this.Logger = this.CreateLogger();
             if (this.Logger == null)
@@ -148,13 +162,14 @@
 
             this.Logger.Log("Logger created in service", Category.Debug, Priority.Low);
 
-            this.Logger.Log("Creating Aggregate Catalog For MEF Service", Category.Debug, Priority.Low);
-            this._aggregateCatalog = this.CreateAggregateCatalog();
+            //this.Logger.Log("Creating Aggregate Catalog For MEF Service", Category.Debug, Priority.Low);
+            //if (this._aggregateCatalog == null)
+            //    this._aggregateCatalog = this.CreateAggregateCatalog();
 
-            this.Logger.Log("Configuring Aggregate Catalog For MEF Service", Category.Debug, Priority.Low);
-            this.ConfigureAggregateCatalog();
+            //this.Logger.Log("Configuring Aggregate Catalog For MEF Service", Category.Debug, Priority.Low);
+            //this.ConfigureAggregateCatalog();
 
-            this.RegisterDefaultTypesIfMissing();
+            //this.RegisterDefaultTypesIfMissing();
 
             this.Logger.Log("Creating Mef Container", Category.Debug, Priority.Low);
             this._container = this.CreateContainer();

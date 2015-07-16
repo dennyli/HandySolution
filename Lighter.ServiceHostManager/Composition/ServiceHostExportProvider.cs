@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager.Composition
+﻿namespace Lighter.ServiceManager.Composition
 {
     using System;
     using System.Collections.Generic;

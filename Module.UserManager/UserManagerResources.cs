@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using Module.Common.Commands;
-using ModuleBase;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using Client.Module.Common.Commands;
+using Client.ModuleBase;
 
-namespace Module.UserManager
+namespace Client.Module.UserManager
 {
     public class UserManagerResources : ModuleResourcesBase
     {

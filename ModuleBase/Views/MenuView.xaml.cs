@@ -11,11 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Module.Common;
+using Client.Module.Common;
 using System.ComponentModel.Composition;
-using ModuleBase.ViewModels;
+using Client.ModuleBase.ViewModels;
 
-namespace ModuleBase.Views
+namespace Client.ModuleBase.Views
 {
     /// <summary>
     /// MenuView.xaml 的交互逻辑

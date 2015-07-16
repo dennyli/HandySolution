@@ -1,25 +1,22 @@
 using System;
-using System.ComponentModel.Composition;
-
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.ServiceLocation;
-
-using ModuleBase.Services;
-using ModuleBase.Views;
-using Module.Common.Interface;
-using Microsoft.Practices.Prism.Events;
 using System.Collections.ObjectModel;
-using Module.Common.Commands;
+using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Module.Common.Events;
-using Lighter.Infrastructure;
+using Lighter.Client.Infrastructure;
+using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.MefExtensions.Modularity;
+using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.ServiceLocation;
+using Client.Module.Common.Commands;
+using Client.Module.Common.Events;
+using Client.Module.Common.Interface;
+using Client.ModuleBase.Views;
 
-namespace ModuleBase
+namespace Client.ModuleBase
 {
-    [ModuleExport("ModuleBase.ModuleBaseInit", typeof(IModule))]
+    [ModuleExport("Client.ModuleBase.ModuleBaseInit", typeof(IModule))]
     public class ModuleBaseInit : IModule, IModuleInit
     {
         protected readonly IRegionManager _regionManager;

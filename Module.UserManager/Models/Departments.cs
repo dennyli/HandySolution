@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Module.UserManager.Models
+namespace Client.Module.UserManager.Models
 {
     public class Departments : ObservableCollection<Department>
     {

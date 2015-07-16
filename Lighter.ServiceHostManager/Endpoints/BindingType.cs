@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager.Endpoints
+﻿namespace Lighter.ServiceManager.Endpoints
 {
     /// <summary>
     /// Defines the possible Http binding types.

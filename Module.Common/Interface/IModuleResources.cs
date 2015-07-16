@@ -1,8 +1,8 @@
 ﻿using System;
-using Module.Common.Commands;
 using System.Collections.ObjectModel;
+using Client.Module.Common.Commands;
 
-namespace Module.Common.Interface
+namespace Client.Module.Common.Interface
 {
     public interface IModuleResources
     {

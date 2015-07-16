@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Module.Common.Tools
+namespace Client.Module.Common.Tools
 {
     /// <summary>
     /// Class thanks to Karl Shifflett

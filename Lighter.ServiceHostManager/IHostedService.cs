@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager
+﻿namespace Lighter.ServiceManager
 {
     /// <summary>
     /// Defines the required contract for implementing a hosted service.

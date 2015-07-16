@@ -2,17 +2,17 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
-using Lighter.Infrastructure;
+using Client.Module.Common.Commands;
+using Client.Module.Common.Events;
+using Client.Module.Common.Tools;
+using Client.ModuleBase.Views;
+using Lighter.Client.Infrastructure;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
-using Module.Common.Commands;
-using Module.Common.Events;
-using Module.Common.Tools;
-using ModuleBase.Views;
 
-namespace ModuleBase.ViewModels
+namespace Client.ModuleBase.ViewModels
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]

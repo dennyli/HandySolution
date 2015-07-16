@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Lighter.ServiceManager;
+
 namespace Lighter.Server
 {
     /// <summary>
@@ -23,6 +25,12 @@ namespace Lighter.Server
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            var manager = new ServiceHostManager();
+            manager.Run();
         }
     }
 }

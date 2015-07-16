@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Lighter.ServiceManager")]
+[assembly: AssemblyTitle("Lighter.MainService.Interface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MS")]
-[assembly: AssemblyProduct("Lighter.ServiceManager")]
+[assembly: AssemblyProduct("Lighter.MainService.Interface")]
 [assembly: AssemblyCopyright("Copyright © MS 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("62b03bc5-8f4e-4de0-bf84-1c7c26080291")]
+[assembly: Guid("9c027d74-fe07-43f7-87ca-89c068cd6a41")]
 
 // 程序集的版本信息由下面四个值组成:
 //

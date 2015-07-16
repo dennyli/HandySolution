@@ -1,6 +1,6 @@
-﻿using Module.Common.Interface;
+﻿using Client.Module.Common.Interface;
 
-namespace Module.UserManager.Interface
+namespace Client.Module.UserManager.Interface
 {
     public interface IUserManagerViewModel : IViewModel
     {

@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 
-using Module.UserManager.ViewModels;
+using Client.Module.UserManager.ViewModels;
 
-namespace Module.UserManager.Views
+namespace Client.Module.UserManager.Views
 {
     [Export("UserManagerView")]
     [PartCreationPolicy(CreationPolicy.Shared)]

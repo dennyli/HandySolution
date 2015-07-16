@@ -1,24 +1,20 @@
-using System.ComponentModel.Composition;
-
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Prism.MefExtensions.Modularity;
-using Microsoft.Practices.ServiceLocation;
-
-using ModuleBase;
-using ModuleBase.Views;
-using Module.UserManager.ViewModels;
-using Module.Common.Interface;
-using Microsoft.Practices.Prism.Events;
 using System.Collections.ObjectModel;
-using Module.Common.Commands;
-using Module.Common.Events;
+using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Client.Module.Common.Commands;
+using Client.Module.Common.Events;
+using Client.Module.Common.Interface;
+using Client.ModuleBase;
+using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.MefExtensions.Modularity;
+using Microsoft.Practices.Prism.Modularity;
+using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.ServiceLocation;
 
-namespace Module.UserManager
+namespace Client.Module.UserManager
 {
-    [ModuleExport("Module.UserManager.UserManagerModuleInit", typeof(IModule))]
+    [ModuleExport("Client.Module.UserManager.UserManagerModuleInit", typeof(IModule))]
     public class UserManagerModuleInit : ModuleBaseInit
     {
         [ImportingConstructor]

@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager.Hosting
+﻿namespace Lighter.ServiceManager.Hosting
 {
     using System;
     using System.Collections.ObjectModel;

@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager
+﻿namespace Lighter.ServiceManager
 {
     using System;
     using System.ComponentModel.Composition;

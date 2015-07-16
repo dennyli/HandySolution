@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.Composition;
+using Client.Module.UserManager.Interface;
+using Client.Module.UserManager.Models;
+using Client.ModuleBase.ViewModels;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
-using Module.Common.Interface;
-using Module.UserManager.Interface;
-using ModuleBase.ViewModels;
-using Module.UserManager.Models;
 
-namespace Module.UserManager.ViewModels
+namespace Client.Module.UserManager.ViewModels
 {
     [Export(typeof(DepartmentManagerViewModel))]
     [PartCreationPolicy(CreationPolicy.Shared)]

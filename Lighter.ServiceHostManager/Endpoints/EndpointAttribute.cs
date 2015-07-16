@@ -1,4 +1,4 @@
-﻿namespace Lighter.ServiceHostManager.Endpoints
+﻿namespace Lighter.ServiceManager.Endpoints
 {
     using System;
     using System.ServiceModel.Description;

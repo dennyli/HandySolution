@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Module.Common.Exceptions
+namespace Client.Module.Common.Exceptions
 {
     public class MenuItemConflictException : Exception
     {

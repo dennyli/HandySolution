@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Controls;
+using Client.Module.Common.Events;
+using Client.Module.Common.Exceptions;
+using Client.ModuleBase.Views;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
-using Module.Common.Events;
-using Module.Common.Exceptions;
-using ModuleBase.Views;
 
-namespace ModuleBase.ViewModels
+namespace Client.ModuleBase.ViewModels
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.ServiceModel;
-using Lighter.MainService.Interface;
-using Lighter.ServiceHostManager;
 using Lighter.BaseService;
-using Lighter.ServiceHostManager.Endpoints;
+using Lighter.MainService.Interface;
 using Lighter.MainService.Model;
-using System.ComponentModel.Composition;
-using Lighter.ServiceHostManager.Hosting;
+using Lighter.ServiceManager;
+using Lighter.ServiceManager.Endpoints;
+using Lighter.ServiceManager.Hosting;
 
 namespace Lighter.MainService.Implement
 {
@@ -71,7 +71,7 @@ namespace Lighter.MainService.Implement
             }
         }
 
-
+        [OperationContract]
         public bool ServiceIsExists(string serviceName)
         {
             try
@@ -89,6 +89,7 @@ namespace Lighter.MainService.Implement
             }
         }
 
+        [OperationContract]
         public Uri GetServiceAddress(string serviceName)
         {
             try

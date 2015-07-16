@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-namespace Module.Common.Events
+namespace Client.Module.Common.Events
 {
     public class MenuItemAddedEvent : CompositePresentationEvent<ObservableCollection<MenuItem>>
     {

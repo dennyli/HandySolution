@@ -3,11 +3,11 @@ using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 
-using ModuleBase.ViewModels;
-using Module.UserManager.Interface;
-using Module.Common.Interface;
+using Client.ModuleBase.ViewModels;
+using Client.Module.UserManager.Interface;
+using Client.Module.Common.Interface;
 
-namespace Module.UserManager.ViewModels
+namespace Client.Module.UserManager.ViewModels
 {
     /// <summary>
     /// UserManagerViewModel for UserManagerView.

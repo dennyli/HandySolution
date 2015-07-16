@@ -1,5 +1,5 @@
 ﻿using System.ServiceModel;
-using Lighter.ServiceHostManager;
+using Lighter.ServiceManager;
 using Lighter.BaseService.Interface;
 using System;
 

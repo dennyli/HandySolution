@@ -1,9 +1,9 @@
 ﻿
-using Microsoft.Practices.Prism.Events;
 using System.Collections.ObjectModel;
-using Module.Common.Commands;
+using Client.Module.Common.Commands;
+using Microsoft.Practices.Prism.Events;
 
-namespace Module.Common.Events
+namespace Client.Module.Common.Events
 {
     public class ToolbarButtonAddedEvent : CompositePresentationEvent<ObservableCollection<CommandInfo>>
     {

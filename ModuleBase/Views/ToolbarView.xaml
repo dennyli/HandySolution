@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="ModuleBase.Views.ToolbarView"
+﻿<UserControl x:Class="Client.ModuleBase.Views.ToolbarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:cmd="clr-namespace:Module.Common.Commands;assembly=Module.Common"
-             xmlns:common="clr-namespace:Module.Common.Tools;assembly=Module.Common"
+             xmlns:cmd="clr-namespace:Client.Module.Common.Commands;assembly=Client.Module.Common"
+             xmlns:common="clr-namespace:Client.Module.Common.Tools;assembly=Client.Module.Common"
              mc:Ignorable="d" 
              d:DesignHeight="64" d:DesignWidth="300">
     <UserControl.Resources>

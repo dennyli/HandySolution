@@ -1,7 +1,7 @@
-using Module.Common.Interface;
 using System;
+using Client.Module.Common.Interface;
 
-namespace ModuleBase.Services
+namespace Client.ModuleBase.Services
 {
     /// <summary>
     /// Dummy data service class. Provides a dummy data model.

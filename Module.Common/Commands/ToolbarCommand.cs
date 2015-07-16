@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.ComponentModel;
 
-namespace Module.Common.Commands
+namespace Client.Module.Common.Commands
 {
     public class ToolbarCommand : INotifyPropertyChanged
     {

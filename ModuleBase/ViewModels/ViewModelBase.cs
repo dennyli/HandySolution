@@ -1,12 +1,10 @@
-using System.ComponentModel.Composition;
 
-using Microsoft.Practices.Prism.ViewModel;
+using Client.Module.Common.Interface;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
+using Microsoft.Practices.Prism.ViewModel;
 
-using Module.Common.Interface;
-
-namespace ModuleBase.ViewModels
+namespace Client.ModuleBase.ViewModels
 {
     /// <summary>
     /// ViewModelBase

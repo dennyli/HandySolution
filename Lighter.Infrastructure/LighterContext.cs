@@ -5,9 +5,9 @@ using System.Text;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using Module.Common.Commands;
+using Client.Module.Common.Commands;
 
-namespace Lighter.Infrastructure
+namespace Lighter.Client.Infrastructure
 {
     public class LighterContext //: INotifyPropertyChanged
     {

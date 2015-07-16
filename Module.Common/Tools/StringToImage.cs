@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Data;
 using System.Windows.Controls;
 
-namespace Module.Common.Tools
+namespace Client.Module.Common.Tools
 {
     public class StringToImage : IValueConverter
     {

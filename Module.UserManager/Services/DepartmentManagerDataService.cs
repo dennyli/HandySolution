@@ -1,11 +1,10 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using Module.Common.Interface;
-using Module.UserManager.Models;
-using ModuleBase.Services;
-using Module.UserManager.Interface;
+using Client.Module.UserManager.Interface;
+using Client.Module.UserManager.Models;
+using Client.ModuleBase.Services;
 
-namespace Module.UserManager.Services
+namespace Client.Module.UserManager.Services
 {
     [Export(typeof(IDepartmentManagerDataService))]
     public class DepartmentManagerDataService : DataServiceBase, IDepartmentManagerDataService

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Lighter.ServiceHostManager.Hosting;
+using Lighter.ServiceManager.Hosting;
 
-namespace Lighter.ServiceHostManager
+namespace Lighter.ServiceManager
 {
     /// <summary>
     /// Defines the required contract for implementing a Service Host Manager.
