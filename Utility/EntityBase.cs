@@ -32,7 +32,7 @@ namespace Utility
         protected EntityBase()
         {
             IsDeleted = false;
-            AddDate = DateTime.Now;
+            LastDate = DateTime.Now;
         }
 
         #endregion
@@ -51,7 +51,7 @@ namespace Utility
         ///     获取或设置 添加时间
         /// </summary>
         [DataType(DataType.DateTime)]
-        public DateTime AddDate { get; set; }
+        public DateTime LastDate { get; set; }
 
         #endregion
     }

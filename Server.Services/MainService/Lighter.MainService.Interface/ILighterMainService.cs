@@ -18,7 +18,7 @@ namespace Lighter.MainService.Interface
         [OperationContract]
         bool Connect(Client client);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void Disconnect(Client client);
     }
 }

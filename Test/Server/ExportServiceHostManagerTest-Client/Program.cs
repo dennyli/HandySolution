@@ -5,6 +5,9 @@ using System.Net;
 using System.ServiceModel;
 using Lighter.MainService.Interface;
 using Lighter.MainService.Model;
+using Lighter.LoginService.Interface;
+using Lighter.LoginService.Model;
+using Utility;
 
 namespace ExportServiceHostManagerTest_Client
 {
@@ -37,11 +40,12 @@ namespace ExportServiceHostManagerTest_Client
                 client.IP = ip;
                 client.Time = DateTime.Now;
 
-                Console.WriteLine("Connecting...");
+                Console.WriteLine("Connecting to main service...");
                 mainService.Connect(client);
 
-                string[] testsvrs = new string[] { "testService", "LighterMainService" };
+                //string[] testsvrs = new string[] { "testService", "LighterMainService" };
 
+                string[] testsvrs = new string[] { "LighterLoginService" };
                 foreach (string svr in testsvrs)
                 {
                     Console.Write("Finding " + svr + " ... ");
@@ -60,6 +64,34 @@ namespace ExportServiceHostManagerTest_Client
                         }
                         else
                             Console.WriteLine("\tCan't find " + svr + " address!");
+
+                        #region Test Login
+                        Console.WriteLine("Connecting to login service...");
+                        EndpointAddress addressLogin = new EndpointAddress(uris[0]);
+                        NetTcpBinding bindingLogin = new NetTcpBinding();
+                        bindingLogin.Security.Mode = SecurityMode.None;
+
+                        ChannelFactory<ILighterLoginService> factoryLogin = new ChannelFactory<ILighterLoginService>(bindingLogin, addressLogin);
+                        ILighterLoginService serviceLogin = factoryLogin.CreateChannel();
+
+                        Console.WriteLine("Loginning ...");
+                        LoginInfo info = new LoginInfo("admin", "123456", ip);
+                        OperationResult or = serviceLogin.Login(info);
+                        Console.WriteLine(or.ResultType.ToDescription());
+
+                        if (or.ResultType == OperationResultType.Success)
+                        {
+                            Console.WriteLine("Login Success, Get All Accounts ...");
+                            string allAccount = serviceLogin.GetAllAccounts();
+                            Console.WriteLine(allAccount);
+
+                            Console.WriteLine("Logouting ...");
+                            serviceLogin.Logout(info);
+                        }
+                        else
+                            Console.WriteLine("Login Failure!");
+
+                        #endregion Test Login
                     }
                     else
                         Console.WriteLine("\tCan't find service " + svr +"!");

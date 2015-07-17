@@ -16,7 +16,7 @@ namespace Lighter.MainService.Implement
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
     [ExportService("LighterMainService", typeof(LighterMainService)), TcpEndpoint(40001)]
-    public class LighterMainService : LighterServiceBase, ILighterMainService //, ILighterConnect
+    public class LighterMainService : LighterServiceBase, ILighterMainService
     {
         private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
         private ObservableCollection<Client> _clients = new ObservableCollection<Client>();

@@ -57,6 +57,14 @@
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\LoginService\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
+      <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>
+      <Name>Lighter.LoginService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\LoginService\Lighter.LoginService.Model\Lighter.LoginService.Model.csproj">
+      <Project>{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}</Project>
+      <Name>Lighter.LoginService.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
       <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>
       <Name>Lighter.MainService.Interface</Name>
@@ -64,6 +72,10 @@
     <ProjectReference Include="..\..\..\Server.Services\MainService\Lighter.MainService.Model\Lighter.MainService.Model.csproj">
       <Project>{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}</Project>
       <Name>Lighter.MainService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Utility\Utility.csproj">
+      <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -35,7 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +93,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +119,22 @@
     <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.csproj">
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Data\Lighter.LoginService.Data.csproj">
+      <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
+      <Name>Lighter.LoginService.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
+      <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>
+      <Name>Lighter.LoginService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Model\Lighter.LoginService.Model.csproj">
+      <Project>{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}</Project>
+      <Name>Lighter.LoginService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService\Lighter.LoginService.csproj">
+      <Project>{ED970871-8D95-41DD-B3AA-7E92A44813E7}</Project>
+      <Name>Lighter.LoginService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\MainService\Lighter.MainService\Lighter.MainService.csproj">
       <Project>{8C7671BF-8C23-4227-BEE6-29ABEF882CDA}</Project>
