@@ -16,6 +16,9 @@ namespace Lighter.ServiceManager
         /// Gets the set of service hosts.
         /// </summary>
         IEnumerable<ExportServiceHost> Services { get; }
+
+        void LookupServices();
+
         #endregion
     }
 }

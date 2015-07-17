@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Lighter.ServiceManager;
+using Microsoft.Practices.ServiceLocation;
 
 namespace ExportServiceHostManagerTest
 {
@@ -10,8 +8,18 @@ namespace ExportServiceHostManagerTest
     {
         static void Main(string[] args)
         {
-            ServiceHostManager manager = new ServiceHostManager();
-            manager.Run();
+            //ServiceHostManager manager = new ServiceHostManager();
+            //manager.Run();
+
+            ServiceHostBootstrapper bootstrapper = new ServiceHostBootstrapper();
+            bootstrapper.Run();
+
+            //ServiceHostManager manager = bootstrapper._container.GetExportedValue<IServiceHostManager>() as ServiceHostManager;
+
+            IServiceLocator serviceLocator = bootstrapper._container.GetExportedValue<IServiceLocator>();
+            ServiceHostManager manager = serviceLocator.GetInstance<IServiceHostManager>() as ServiceHostManager;
+            manager._container = bootstrapper._container;
+            manager.LookupServices();
 
             //int basePort = 4000;
 

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Net;
 using System.ServiceModel;
 using Lighter.MainService.Interface;
-using System.Diagnostics;
 using Lighter.MainService.Model;
 
 namespace ExportServiceHostManagerTest_Client
@@ -42,25 +40,35 @@ namespace ExportServiceHostManagerTest_Client
                 Console.WriteLine("Connecting...");
                 mainService.Connect(client);
 
-                Console.Write("Finding testService ... ");
-                bool bExist = mainService.ServiceIsExists("testService");
-                Console.WriteLine(bExist);
+                string[] testsvrs = new string[] { "testService", "LighterMainService" };
 
-                Console.Write("Finding LighterMainService ... ");
-                bExist = mainService.ServiceIsExists("LighterMainService");
-                Console.WriteLine(bExist);
-
-                if (bExist)
+                foreach (string svr in testsvrs)
                 {
-                    Console.Write("Getting LighterMainService address ... ");
-                    Uri uri = mainService.GetServiceAddress("LighterMainService");
-                    Console.WriteLine(uri.ToString());
+                    Console.Write("Finding " + svr + " ... ");
+                    bool bExist = mainService.ServiceIsExists(svr);
+                    Console.WriteLine(bExist);
+
+                    if (bExist)
+                    {
+                        Console.WriteLine("\t" + svr + " has found, Getting " + svr + " address ... ");
+                        Uri[] uris = mainService.GetServiceAddress(svr);
+                        if (uris.Count<Uri>() > 0)
+                        {
+                            Console.WriteLine("\t" + svr + " address list:");
+                            foreach (Uri uri in uris)
+                                Console.WriteLine("\t\t" + uri.ToString());
+                        }
+                        else
+                            Console.WriteLine("\tCan't find " + svr + " address!");
+                    }
+                    else
+                        Console.WriteLine("\tCan't find service " + svr +"!");
                 }
 
                 Console.WriteLine("Disconnecting...");
                 mainService.Disconnect(client);
 
-                Console.ReadKey();
+                //Console.ReadKey();
             }
             catch (Exception ex)
             {

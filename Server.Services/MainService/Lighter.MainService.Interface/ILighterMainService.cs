@@ -13,7 +13,7 @@ namespace Lighter.MainService.Interface
         bool ServiceIsExists(string serviceName);
 
         [OperationContract]
-        Uri GetServiceAddress(string serviceName);
+        Uri[] GetServiceAddress(string serviceName);
 
         [OperationContract]
         bool Connect(Client client);

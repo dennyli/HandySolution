@@ -35,7 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\Prism\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +61,22 @@
     <ProjectReference Include="..\..\..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\BaseService\Lighter.BaseService.csproj">
+      <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
+      <Name>Lighter.BaseService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
+      <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>
+      <Name>Lighter.MainService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\MainService\Lighter.MainService.Model\Lighter.MainService.Model.csproj">
+      <Project>{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}</Project>
+      <Name>Lighter.MainService.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\MainService\Lighter.MainService\Lighter.MainService.csproj">
+      <Project>{8C7671BF-8C23-4227-BEE6-29ABEF882CDA}</Project>
+      <Name>Lighter.MainService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

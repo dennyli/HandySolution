@@ -63,6 +63,7 @@
     <Compile Include="IHostedService.cs" />
     <Compile Include="IHostedServiceMetadata.cs" />
     <Compile Include="IServiceHostManager.cs" />
+    <Compile Include="ServiceHostBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceHostManager.cs" />
   </ItemGroup>

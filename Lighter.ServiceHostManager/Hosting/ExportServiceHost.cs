@@ -70,11 +70,27 @@
 
         public string GetServiceName()
         {
-            var attrs = (ExportServiceAttribute[])Meta.ServiceType.GetCustomAttributes(typeof(ExportServiceAttribute), true);
-            if ((attrs == null) || !attrs.Any())
-                return string.Empty;
+            //var attrs = (ExportServiceAttribute[])Meta.ServiceType.GetCustomAttributes(typeof(ExportServiceAttribute), true);
+            //if ((attrs == null) || !attrs.Any())
+            //    return string.Empty;
 
-            return attrs[0].ContractName;
+            //return attrs[0].ContractName;
+
+            return Meta.Name;
+        }
+
+        public Uri[] GetAddresses()
+        {
+            if (Description.Endpoints.Any())
+            {
+                List<Uri> uris = new List<Uri>();
+                foreach (var address in Description.Endpoints)
+                    uris.Add(address.Address.Uri);
+
+                return uris.ToArray<Uri>();
+            }
+            else
+                return null;
         }
 
         /// <summary>

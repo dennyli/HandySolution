@@ -29,8 +29,7 @@ namespace Lighter.MainService.Implement
             //set { _clients = value; }
         }
 
-        [Import]
-        public ILoggerFacade Logger { get; set; }
+        
         
         [Import]
         public IServiceHostManager ServiceHostManager { get; set; }
@@ -101,15 +100,12 @@ namespace Lighter.MainService.Implement
         }
 
         //[OperationContract]
-        public Uri GetServiceAddress(string serviceName)
+        public Uri[] GetServiceAddress(string serviceName)
         {
             try
             {
                 ExportServiceHost host = ServiceHostManager.Services.First<ExportServiceHost>(h => h.GetServiceName() == serviceName);
-                if (host.BaseAddresses.Any())
-                    return host.BaseAddresses[0];
-
-                return null;
+                return host.GetAddresses();
             }
             catch (ArgumentNullException)
             {
