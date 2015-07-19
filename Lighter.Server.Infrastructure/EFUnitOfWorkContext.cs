@@ -26,6 +26,7 @@ namespace Lighter.Server.Infrastructure
     ///     数据单元操作类
     /// </summary>
     [Export(typeof(IUnitOfWork))]
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class EFUnitOfWorkContext : UnitOfWorkContextBase
     {
         /// <summary>
@@ -42,7 +43,7 @@ namespace Lighter.Server.Infrastructure
             }
         }
 
-        [Import("EF", typeof (DbContext))]
+        [Import("EF", typeof(DbContext), RequiredCreationPolicy = CreationPolicy.NonShared)]
         private Lazy<EFDbContext> EFDbContext { get; set; }
 
         //[Import("EFCaching", typeof(DbContext))]

@@ -26,17 +26,29 @@ namespace Lighter.LoginService.Data
 
             Account account = Accounts.SingleOrDefault<Account>(a => a.Name == userName);
             if (account == null)
-                return new OperationResult(OperationResultType.QueryNull, "指定账号的用户不存在。");
+                return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");
 
             if (userPwd != account.Password)
-                return new OperationResult(OperationResultType.Error, "登录密码不正确。");
+                return new OperationResult(OperationResultType.ParamError, "登录密码不正确。");
 
+            account.IsLogin = true;
+            AccountRepository.Update(account);
+            
             return new OperationResult(OperationResultType.Success, "登录成功。", account.Modules);
         }
 
-        public void Logout(string userName)
+        public OperationResult Logout(string userName)
         {
-            throw new NotImplementedException();
+            PublicHelper.CheckArgument(userName, "User Name");
+
+            Account account = Accounts.SingleOrDefault<Account>(a => a.Name == userName);
+            if (account == null)
+                return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");
+
+            account.IsLogin = false;
+            AccountRepository.Update(account);
+
+            return new OperationResult(OperationResultType.Success, "退出成功。"); 
         }
     }
 }

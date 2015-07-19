@@ -16,6 +16,6 @@ namespace Lighter.LoginService.Data
 
         OperationResult Login(string userName, string userPwd);
 
-        void Logout(string userName);
+        OperationResult Logout(string userName);
     }
 }

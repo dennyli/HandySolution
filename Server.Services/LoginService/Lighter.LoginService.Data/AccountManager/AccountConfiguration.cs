@@ -15,7 +15,14 @@ namespace Lighter.LoginService.Data.AccountManager
 
         public void RegistTo(ConfigurationRegistrar configurations)
         {
-            //configurations.Add(this);
+            try
+            {
+                configurations.Add(this);
+            }
+            catch(InvalidOperationException)
+            {
+
+            }
         }
     }
 }

@@ -51,8 +51,13 @@ namespace Utility
         ///     获取或设置 添加时间
         /// </summary>
         [DataType(DataType.DateTime)]
-        public DateTime LastDate { get; set; }
+        public Nullable<DateTime> LastDate { get; set; }
 
         #endregion
+
+        public override string ToString()
+        {
+            return Id.ToString() + ";" + LastDate.ToString() + ";" + IsDeleted.ToString();
+        }
     }
 }

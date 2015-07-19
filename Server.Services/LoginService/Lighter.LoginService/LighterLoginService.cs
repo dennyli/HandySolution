@@ -21,9 +21,9 @@ namespace Lighter.LoginService
             return base.Login(info.Account, info.Password);
         }
 
-        public void Logout(LoginInfo info)
+        public OperationResult Logout(LoginInfo info)
         {
-            base.Logout(info.Account);
+            return base.Logout(info.Account);
         }
 
         public string GetAllAccounts()

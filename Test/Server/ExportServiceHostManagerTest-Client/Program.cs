@@ -75,13 +75,11 @@ namespace ExportServiceHostManagerTest_Client
                         ILighterLoginService serviceLogin = factoryLogin.CreateChannel();
 
                         Console.WriteLine("Loginning ...");
-                        LoginInfo info = new LoginInfo("admin", "123456", ip);
+                        LoginInfo info = new LoginInfo("A1", "123", ip);
                         OperationResult or = serviceLogin.Login(info);
-                        Console.WriteLine(or.ResultType.ToDescription());
-
                         if (or.ResultType == OperationResultType.Success)
                         {
-                            Console.WriteLine("Login Success, Get All Accounts ...");
+                            Console.WriteLine("Login Success, " + or.Message + " \n\tGet All Accounts ...");
                             string allAccount = serviceLogin.GetAllAccounts();
                             Console.WriteLine(allAccount);
 
@@ -89,7 +87,10 @@ namespace ExportServiceHostManagerTest_Client
                             serviceLogin.Logout(info);
                         }
                         else
+                        {
+                            Console.Write(or.ResultType.ToDescription() + " " + or.Message);
                             Console.WriteLine("Login Failure!");
+                        }
 
                         #endregion Test Login
                     }

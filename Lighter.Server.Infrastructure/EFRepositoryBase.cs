@@ -34,7 +34,7 @@ namespace Lighter.Server.Infrastructure
         /// <summary>
         ///     获取 仓储上下文的实例
         /// </summary>
-        [Import]
+        [Import(RequiredCreationPolicy = CreationPolicy.NonShared)]
         public IUnitOfWork UnitOfWork { get; set; }
 
         /// <summary>

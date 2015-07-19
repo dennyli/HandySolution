@@ -12,8 +12,8 @@ namespace Lighter.LoginService.Interface
         [OperationContract]
         OperationResult Login(LoginInfo info);
 
-        [OperationContract(IsOneWay=true)]
-        void Logout(LoginInfo info);
+        [OperationContract]
+        OperationResult Logout(LoginInfo info);
 
         [OperationContract]
         string GetAllAccounts();

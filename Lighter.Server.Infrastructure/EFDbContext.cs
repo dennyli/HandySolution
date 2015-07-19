@@ -27,6 +27,7 @@ namespace Lighter.Server.Infrastructure
     ///     EF数据访问上下文
     /// </summary>
     [Export("EF", typeof(DbContext))]
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class EFDbContext : DbContext
     {
         public EFDbContext()
