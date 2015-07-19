@@ -1,9 +1,11 @@
 ﻿namespace Lighter.ServiceManager
 {
+    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
     using Hosting;
+    using System;
 
     /// <summary>
     /// Defines a service manager.
@@ -60,7 +62,14 @@
         /// </summary>
         public void LookupServices()
         {
-            Services = _container.GetExportedValues<ExportServiceHost>();
+            try
+            {
+                Services = _container.GetExportedValues<ExportServiceHost>().OrderBy(s => s.Meta.Order);
+            }
+            catch(ArgumentNullException)
+            {
+                Services = null;
+            }
         }
         #endregion
 

@@ -21,11 +21,12 @@ namespace ExportServiceHostManagerTest
             manager._container = bootstrapper._container;
             manager.LookupServices();
 
-            //int basePort = 4000;
+            int basePort = 50000;
 
             foreach (var service in manager.Services)
             {
-                //service.UpdateAddressPort(basePort);
+                if (!service.UpdateAddressPort(basePort))
+                    Console.WriteLine("Hosting Service: " + service.Meta.Name + " UpdateAddressPort " + basePort.ToString() + " failure.");
 
                 foreach (var address in service.Description.Endpoints)
                 {
@@ -33,6 +34,8 @@ namespace ExportServiceHostManagerTest
                 }
 
                 service.Open();
+
+                basePort++;
             }
 
             Console.ReadKey();

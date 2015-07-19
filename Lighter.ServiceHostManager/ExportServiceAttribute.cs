@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="name">The name of the service.</param>
         /// <param name="serviceType">The service type.</param>
-        public ExportServiceAttribute(string name, Type serviceType)
+        public ExportServiceAttribute(string name, Type serviceType, /*Type interfaceType,*/ int order = 1)
             : base(typeof(IHostedService))
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -24,8 +24,13 @@
             if (serviceType == null)
                 throw new ArgumentNullException("serviceType");
 
+            if (order < 0)
+                throw new ArgumentException("Order is must great than zero.", "order");
+
             Name = name;
             ServiceType = serviceType;
+            //InterfaceType = interfaceType;
+            Order = order;
         }
         #endregion
 
@@ -39,6 +44,16 @@
         /// Gets the service type.
         /// </summary>
         public Type ServiceType { get; private set; }
+
+        ///// <summary>
+        ///// Gets the interface type.
+        ///// </summary>
+        //public Type InterfaceType { get; private set; }
+
+        /// <summary>
+        /// Export order
+        /// </summary>
+        public int Order { get; private set; }
         #endregion
     }
 }

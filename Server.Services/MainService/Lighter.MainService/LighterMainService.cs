@@ -15,7 +15,7 @@ using Microsoft.Practices.Prism.Logging;
 namespace Lighter.MainService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
-    [ExportService("LighterMainService", typeof(LighterMainService)), TcpEndpoint(40001)]
+    [ExportService("LighterMainService", typeof(LighterMainService), /* typeof(ILighterMainService),*/ 0), TcpEndpoint(40001)]
     public class LighterMainService : LighterServiceBase, ILighterMainService
     {
         private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
@@ -116,5 +116,6 @@ namespace Lighter.MainService
                 return null;
             }
         }
+
     }
 }

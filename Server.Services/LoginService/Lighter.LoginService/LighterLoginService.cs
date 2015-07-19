@@ -13,7 +13,7 @@ using System.Text;
 namespace Lighter.LoginService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
-    [ExportService("LighterLoginService", typeof(LighterLoginService)), TcpEndpoint(40002)]
+    [ExportService("LighterLoginService", typeof(LighterLoginService), /*typeof(ILighterLoginService),*/ 1), TcpEndpoint(40002)]
     public class LighterLoginService : LighterLoginDataService, ILighterLoginService
     {
         public OperationResult Login(LoginInfo info)

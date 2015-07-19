@@ -17,6 +17,16 @@
         /// Gets the service type.
         /// </summary>
         Type ServiceType { get; }
+
+        ///// <summary>
+        ///// Gets the interface type.
+        ///// </summary>
+        //Type InterfaceType { get; }
+
+        /// <summary>
+        /// Export order
+        /// </summary>
+        int Order { get; }
         #endregion
     }
 }

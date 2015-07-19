@@ -52,20 +52,35 @@
         /// 刷新服务的地址端口，自动关闭，关闭后自动打开
         /// </summary>
         /// <param name="port">地址端口</param>
-        public void UpdateAddressPort(int port)
+        public bool UpdateAddressPort(int port)
         {
+            bool bResult = true;
+
             CommunicationState state = this.State;
             if (this.State == CommunicationState.Opened)
                 Close();
 
-            var endpointAttributes = GetEndpoints(Meta.ServiceType);
-            foreach (var endpointAttribute in endpointAttributes)
-                endpointAttribute.Port = port;
-
-            InitializeDescription(new UriSchemeKeyedCollection(new Uri[0]));
+            try
+            {
+                IEnumerable<ContractDescription> cds = GetContracts(Meta.ServiceType);
+                ServiceEndpoint se = this.Description.Endpoints.First<ServiceEndpoint>(e => cds.Count(cd => cd.ContractType == e.Contract.ContractType) > 0);
+                var builder = new UriBuilder("net.tcp", "localhost", port, Meta.Name);
+                EndpointAddress addrNew = new EndpointAddress(builder.Uri);
+                se.Address = addrNew;
+            }
+            catch(ArgumentNullException)
+            {
+                bResult = false;
+            }
+            catch(InvalidOperationException)
+            {
+                bResult = false;
+            }
 
             if (state == CommunicationState.Opened)
                 Open();
+
+            return bResult;
         }
 
         public string GetServiceName()

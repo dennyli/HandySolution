@@ -50,7 +50,7 @@
     <Compile Include="Endpoints\BindingType.cs" />
     <Compile Include="Endpoints\EndpointAttribute.cs" />
     <Compile Include="Endpoints\HttpEndpointAttribute.cs" />
-    <Compile Include="Endpoints\TcpEndpoint.cs" />
+    <Compile Include="Endpoints\TcpEndpointAttribute.cs" />
     <Compile Include="ExportServiceAttribute.cs" />
     <Compile Include="Hosting\ExportInstanceProvider.cs" />
     <Compile Include="Hosting\ExportServiceBehavior.cs" />
