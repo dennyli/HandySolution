@@ -63,7 +63,7 @@ namespace Lighter.ServiceManager
             this.Logger.Log("Registering Framework Exception Types", Category.Debug, Priority.Low);
             this.RegisterFrameworkExceptionTypes();
 
-            this.Logger.Log(" LighterServiceHostBootstrapper Sequence Completed", Category.Debug, Priority.Low);
+            this.Logger.Log("ServiceHostBootstrapper Sequence Completed", Category.Debug, Priority.Low);
         }
 
         protected override void ConfigureServiceLocator()

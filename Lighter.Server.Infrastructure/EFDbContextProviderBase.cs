@@ -26,18 +26,20 @@ namespace Lighter.Server.Infrastructure
             // Build the SqlConnection connection string.
             string providerString = sqlBuilder.ToString();
 
-            // Initialize the EntityConnectionStringBuilder.
-            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
+            //// Initialize the EntityConnectionStringBuilder.
+            //EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
 
-            //Set the provider name.
-            entityBuilder.Provider = _providerName;
+            ////Set the provider name.
+            //entityBuilder.Provider = _providerName;
 
-            // Set the provider-specific connection string.
-            entityBuilder.ProviderConnectionString = providerString;
-            //entityBuilder.Name = "innerCnnStringProvider";
+            //// Set the provider-specific connection string.
+            //entityBuilder.ProviderConnectionString = providerString;
+            ////entityBuilder.Name = "innerCnnStringProvider";
 
-            string cnnString = entityBuilder.ToString();
-            return cnnString;
+            //string cnnString = entityBuilder.ToString();
+            //return cnnString;
+
+            return providerString;
         }
 
         public void SetConnectionParameter(string providerName, string serverName, string dbName)

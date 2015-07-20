@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -40,6 +41,7 @@ namespace Utility
         #region 属性
 
         [Key]
+        [Column(Order=1)]
         public TKey Id { get; set; }
 
         /// <summary>

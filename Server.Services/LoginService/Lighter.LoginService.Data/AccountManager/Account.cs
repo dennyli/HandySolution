@@ -10,16 +10,15 @@ namespace Lighter.LoginService.Data.AccountManager
 {
     public class Account : EntityBase<Int32>
     {
-        [Required]
+        [Key]
+        [Column(Order = 2)]
+        public string Code { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Modules { get; set; }
 
         public string ShortName { get; set; }
 
-        [Key]
-        [Required]
-        public string Code { get; set; }
         public string gwcode { get; set; }
         public string DepartCode { get; set; }
         public string loadflag { get; set; }

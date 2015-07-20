@@ -5,7 +5,7 @@ using System.Text;
 using Lighter.Server.Infrastructure;
 using System.ComponentModel.Composition;
 
-namespace EFDbContextProvider
+namespace Lighter.EFDbContextProvider
 {
     [Export(typeof(IEFDbContextProvider))]
     public class MsSqlEFDbContextProvider : EFDbContextProviderBase

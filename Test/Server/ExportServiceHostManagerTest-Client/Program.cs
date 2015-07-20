@@ -28,7 +28,7 @@ namespace ExportServiceHostManagerTest_Client
                 string ip = GetHostIP().ToString();
 
                 //EndpointAddress address = new EndpointAddress(new Uri("net.tcp://" + ip + ":40001/LighterMainService"));
-                EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:40000/LighterMainService"));
+                EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:50000/LighterMainService"));
                 NetTcpBinding binding = new NetTcpBinding();
                 binding.Security.Mode = SecurityMode.None;
 
@@ -100,6 +100,7 @@ namespace ExportServiceHostManagerTest_Client
 
                 Console.WriteLine("Disconnecting...");
                 mainService.Disconnect(client);
+                Console.WriteLine("Disconnected.");
             }
             catch (EndpointNotFoundException ex)
             {
