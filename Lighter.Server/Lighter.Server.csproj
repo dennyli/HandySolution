@@ -104,6 +104,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj">
+      <Project>{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}</Project>
+      <Name>Lighter.MsSqlEFDbContextProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>

@@ -28,7 +28,7 @@ namespace ExportServiceHostManagerTest_Client
                 string ip = GetHostIP().ToString();
 
                 //EndpointAddress address = new EndpointAddress(new Uri("net.tcp://" + ip + ":40001/LighterMainService"));
-                EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:40001/LighterMainService"));
+                EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:40000/LighterMainService"));
                 NetTcpBinding binding = new NetTcpBinding();
                 binding.Security.Mode = SecurityMode.None;
 
@@ -95,18 +95,22 @@ namespace ExportServiceHostManagerTest_Client
                         #endregion Test Login
                     }
                     else
-                        Console.WriteLine("\tCan't find service " + svr +"!");
+                        Console.WriteLine("\tCan't find service " + svr + "!");
                 }
 
                 Console.WriteLine("Disconnecting...");
                 mainService.Disconnect(client);
-
-                //Console.ReadKey();
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Console.WriteLine("Error: 无法连接到服务！\n" + ex.Message);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
+
+            Console.ReadKey();
         }
     }
 }

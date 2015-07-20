@@ -7,22 +7,10 @@ using Lighter.Server.Infrastructure;
 namespace Lighter.LoginService.Data.AccountManager
 {
     [Export(typeof(IEntityMapper))]
-    public class AccountConfiguration : EntityTypeConfiguration<Account>, IEntityMapper
+    public class AccountConfiguration : EntityConfiguration<Account, Int32>
     {
         public AccountConfiguration()
         {
-        }
-
-        public void RegistTo(ConfigurationRegistrar configurations)
-        {
-            try
-            {
-                configurations.Add(this);
-            }
-            catch(InvalidOperationException)
-            {
-
-            }
         }
     }
 }

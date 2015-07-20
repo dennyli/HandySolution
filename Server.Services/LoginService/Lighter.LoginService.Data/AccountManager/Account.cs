@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using Utility;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lighter.LoginService.Data.AccountManager
 {
-    [Table("Account")]
     public class Account : EntityBase<Int32>
     {
+        [Required]
         public string Name { get; set; }
         public string Password { get; set; }
         public string Modules { get; set; }
 
         public string ShortName { get; set; }
+
+        [Key]
+        [Required]
         public string Code { get; set; }
         public string gwcode { get; set; }
         public string DepartCode { get; set; }

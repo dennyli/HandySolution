@@ -30,14 +30,20 @@ namespace Lighter.Server.Infrastructure
     //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class EFDbContext : DbContext
     {
-        public EFDbContext()
-            : base("default") { }
+        //public EFDbContext()
+        //    : base("default") { }
 
-        public EFDbContext(string nameOrConnectionString)
-            : base(nameOrConnectionString) { }
+        //public EFDbContext(string nameOrConnectionString)
+        //    : base(nameOrConnectionString) { }
 
-        public EFDbContext(DbConnection existingConnection)
-            : base(existingConnection, true) { }
+        //public EFDbContext(DbConnection existingConnection)
+        //    : base(existingConnection, true) { }
+
+        [ImportingConstructor]
+        public EFDbContext(IEFDbContextProvider provider)
+            : base(provider.GetConnectionString())
+        {
+        }
 
         [ImportMany(typeof(IEntityMapper))]
         public IEnumerable<IEntityMapper> EntityMappers { get; set; }
