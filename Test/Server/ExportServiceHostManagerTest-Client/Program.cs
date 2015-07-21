@@ -8,6 +8,7 @@ using Lighter.MainService.Model;
 using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
 using Utility;
+using System.ServiceModel.Channels;
 
 namespace ExportServiceHostManagerTest_Client
 {
@@ -31,9 +32,18 @@ namespace ExportServiceHostManagerTest_Client
                 EndpointAddress address = new EndpointAddress(new Uri("net.tcp://localhost:50000/LighterMainService"));
                 NetTcpBinding binding = new NetTcpBinding();
                 binding.Security.Mode = SecurityMode.None;
+                binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.None;
 
                 ChannelFactory<ILighterMainService> mainScrFactory = new ChannelFactory<ILighterMainService>(binding, address);
                 ILighterMainService mainService = mainScrFactory.CreateChannel();
+
+                //using (new OperationContextScope(mainService as IContextChannel))
+                //{
+
+                //MessageHeader Client1InstanceContextHeader = MessageHeader.CreateHeader("", "", "");
+                //OperationContext.Current.OutgoingMessageHeaders.Add(Client1InstanceContextHeader);
+                // }
+               
 
                 Client client = new Client();
                 client.Name = "test";

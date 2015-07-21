@@ -69,6 +69,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="ModuleDefination.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="OperationResultType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

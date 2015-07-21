@@ -41,6 +41,7 @@
 
             var binding = new NetTcpBinding();
             binding.Security.Mode = SecurityMode.None;
+            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.None;
             binding.PortSharingEnabled = true;
 
             return new ServiceEndpoint(description, binding, address);

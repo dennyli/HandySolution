@@ -35,7 +35,7 @@ namespace ExportServiceHostManagerTest
 
                 service.Open();
 
-                basePort++;
+                //basePort++;
             }
 
             Console.ReadKey();

@@ -36,5 +36,10 @@ namespace Lighter.LoginService
 
             return sb.ToString();
         }
+
+        public override string GetServiceId()
+        {
+            return "Login";
+        }
     }
 }
