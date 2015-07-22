@@ -49,10 +49,6 @@
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LoginService\Lighter.LoginService.Data\Lighter.Data.csproj">
-      <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
-      <Name>Lighter.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.ModuleServiceBase\Lighter.Server.ModuleServiceBase.csproj">
       <Project>{1539D82F-D447-4671-AEDD-B3F76A4FE118}</Project>
       <Name>Lighter.Server.ModuleServiceBase</Name>

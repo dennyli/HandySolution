@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.Data\Lighter.Data.csproj">
+      <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
+      <Name>Lighter.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
@@ -56,10 +60,6 @@
     <ProjectReference Include="..\..\BaseService\Lighter.BaseService.csproj">
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lighter.LoginService.Data\Lighter.Data.csproj">
-      <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
-      <Name>Lighter.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.LoginService.Model\Lighter.LoginService.Model.csproj">
       <Project>{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}</Project>

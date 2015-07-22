@@ -71,8 +71,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.LoginService.Interf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.LoginService.Model", "Server.Services\LoginService\Lighter.LoginService.Model\Lighter.LoginService.Model.csproj", "{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Data", "Server.Services\LoginService\Lighter.LoginService.Data\Lighter.Data.csproj", "{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Practices.ServiceLocation", "Prism4.1\Microsoft.Practices.ServiceLocation\Microsoft.Practices.ServiceLocation.csproj", "{FAF6D6B2-1EC9-4A1B-83BB-48F772E948CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.MsSqlEFDbContextProvider", "Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj", "{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}"
@@ -92,6 +90,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManager", "UserManager", "{7CA71734-A224-48DE-9099-8D3043284972}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.UserManagerService.Interface", "Server.Services\ModuleService\Lighter.Server.UserManagerService.Interface\Lighter.Server.UserManagerService.Interface.csproj", "{B993CDAD-46C4-4F55-BF31-8776370B8A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Data", "Lighter.Data\Lighter.Data.csproj", "{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -313,16 +313,6 @@ Global
 		{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5AA1607E-3502-4DD0-9A68-D438AE1B2E8B}.Release|x86.ActiveCfg = Release|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|x86.ActiveCfg = Release|Any CPU
 		{FAF6D6B2-1EC9-4A1B-83BB-48F772E948CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FAF6D6B2-1EC9-4A1B-83BB-48F772E948CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF6D6B2-1EC9-4A1B-83BB-48F772E948CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -391,6 +381,16 @@ Global
 		{B993CDAD-46C4-4F55-BF31-8776370B8A01}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B993CDAD-46C4-4F55-BF31-8776370B8A01}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B993CDAD-46C4-4F55-BF31-8776370B8A01}.Release|x86.ActiveCfg = Release|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
