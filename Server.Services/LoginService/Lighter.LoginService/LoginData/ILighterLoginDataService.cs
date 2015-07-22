@@ -5,9 +5,9 @@ using System.Text;
 using Lighter.BaseService.Interface;
 using Utility;
 
-using Lighter.LoginService.Data.AccountManager;
+using Lighter.Data.Account;
 
-namespace Lighter.LoginService.Data
+namespace Lighter.LoginService.LoginData
 {
     public interface ILighterLoginDataService : ILighterService
     {

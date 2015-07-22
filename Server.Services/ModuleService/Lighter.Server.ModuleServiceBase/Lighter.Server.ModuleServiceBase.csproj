@@ -58,9 +58,9 @@
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LoginService\Lighter.LoginService.Data\Lighter.LoginService.Data.csproj">
+    <ProjectReference Include="..\..\LoginService\Lighter.LoginService.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
-      <Name>Lighter.LoginService.Data</Name>
+      <Name>Lighter.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

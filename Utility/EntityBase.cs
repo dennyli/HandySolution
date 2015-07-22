@@ -41,7 +41,6 @@ namespace Utility
         #region 属性
 
         [Key]
-        [Column(Order=1)]
         public TKey Id { get; set; }
 
         /// <summary>
@@ -59,7 +58,9 @@ namespace Utility
 
         public override string ToString()
         {
-            return Id.ToString() + ";" + LastDate.ToString() + ";" + IsDeleted.ToString();
+            return "Id:" + Id.ToString() 
+                + ";LastDate:" + LastDate.ToString() 
+                + ";IsDeleted:" + IsDeleted.ToString();
         }
     }
 }

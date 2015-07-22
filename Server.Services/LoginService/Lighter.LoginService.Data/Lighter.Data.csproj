@@ -8,8 +8,8 @@
     <ProjectGuid>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.LoginService.Data</RootNamespace>
-    <AssemblyName>Lighter.LoginService.Data</AssemblyName>
+    <RootNamespace>Lighter.Data</RootNamespace>
+    <AssemblyName>Lighter.Data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,12 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountManager\Account.cs" />
-    <Compile Include="AccountManager\AccountConfiguration.cs" />
-    <Compile Include="AccountManager\AccountRepository.cs" />
-    <Compile Include="AccountManager\IAccountRepository.cs" />
-    <Compile Include="ILighterLoginDataService.cs" />
-    <Compile Include="LighterLoginDataService.cs" />
+    <Compile Include="Account\Account.cs" />
+    <Compile Include="Account\AccountConfiguration.cs" />
+    <Compile Include="Account\AccountRepository.cs" />
+    <Compile Include="Account\IAccountRepository.cs" />
+    <Compile Include="Department\DepartmentConfiguration.cs" />
+    <Compile Include="Department\DepartmentRepository.cs" />
+    <Compile Include="Department\IDepartmentRepository.cs" />
+    <Compile Include="Job\JobConfiguration.cs" />
+    <Compile Include="Job\JobRepository.cs" />
+    <Compile Include="Job\IJobRepository.cs" />
+    <Compile Include="Job\Job.cs" />
+    <Compile Include="Department\Department.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

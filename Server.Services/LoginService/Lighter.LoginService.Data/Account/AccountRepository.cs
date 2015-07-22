@@ -5,10 +5,10 @@ using System.Text;
 using Lighter.Server.Infrastructure;
 using System.ComponentModel.Composition;
 
-namespace Lighter.LoginService.Data.AccountManager
+namespace Lighter.Data.Account
 {
     [Export(typeof(IAccountRepository))]
-    public class AccountRepository : EFRepositoryBase<Account, Int32>,  IAccountRepository
+    public class AccountRepository : EFRepositoryBase<Account, string>,  IAccountRepository
     {
     }
 }

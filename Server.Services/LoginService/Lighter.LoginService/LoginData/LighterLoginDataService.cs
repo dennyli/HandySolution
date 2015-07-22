@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using Lighter.BaseService;
 using Utility;
-using Lighter.LoginService.Data.AccountManager;
+using Lighter.Data.Account;
 using System.ComponentModel.Composition;
 
-namespace Lighter.LoginService.Data
+namespace Lighter.LoginService.LoginData
 {
     public class LighterLoginDataService : LighterServiceBase, ILighterLoginDataService
     {
@@ -34,7 +34,7 @@ namespace Lighter.LoginService.Data
             account.IsLogin = true;
             AccountRepository.Update(account);
             
-            return new OperationResult(OperationResultType.Success, "登录成功。", account.Modules);
+            return new OperationResult(OperationResultType.Success, "登录成功。", account.Authority);
         }
 
         public OperationResult Logout(string userName)

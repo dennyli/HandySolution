@@ -1,14 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.ServiceModel;
-using Lighter.LoginService.Data;
+﻿using System.ServiceModel;
 using Lighter.LoginService.Interface;
+using Lighter.LoginService.LoginData;
 using Lighter.LoginService.Model;
 using Lighter.ServiceManager;
 using Lighter.ServiceManager.Endpoints;
 using Utility;
-using Lighter.LoginService.Data.AccountManager;
-using System.Text;
 
 namespace Lighter.LoginService
 {
@@ -36,10 +32,5 @@ namespace Lighter.LoginService
 
         //    return sb.ToString();
         //}
-
-        public override string GetServiceId()
-        {
-            return "Login";
-        }
     }
 }

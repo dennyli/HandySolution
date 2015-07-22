@@ -115,10 +115,5 @@ namespace Lighter.MainService
             }
         }
 
-        public override string GetServiceId()
-        {
-            return "Main";
-        }
-
     }
 }

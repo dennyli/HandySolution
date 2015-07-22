@@ -44,9 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LighterLoginService.cs" />
+    <Compile Include="LoginData\ILighterLoginDataService.cs" />
+    <Compile Include="LoginData\LighterLoginDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
+      <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
+      <Name>Lighter.Server.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
@@ -75,9 +81,9 @@
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lighter.LoginService.Data\Lighter.LoginService.Data.csproj">
+    <ProjectReference Include="..\Lighter.LoginService.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
-      <Name>Lighter.LoginService.Data</Name>
+      <Name>Lighter.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
       <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>

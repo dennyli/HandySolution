@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.LoginService.Data.AccountManager
+namespace Lighter.Data.Account
 {
-    public interface IAccountRepository : IRepository<Account, Int32>
+    public interface IAccountRepository : IRepository<Account, string>
     {
     }
 }

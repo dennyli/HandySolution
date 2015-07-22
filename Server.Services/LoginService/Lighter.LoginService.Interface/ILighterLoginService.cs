@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 using System.Net.Security;
-using Lighter.LoginService.Data;
+using Lighter.Data;
 using Lighter.LoginService.Model;
 using Lighter.ServiceManager;
 using Utility;
