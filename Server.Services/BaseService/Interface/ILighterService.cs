@@ -8,5 +8,6 @@ namespace Lighter.BaseService.Interface
     {
         string GetServiceId();
         IEnumerable<ModuleDefination> GetModules();
+        OperationResult CheckSession();
     }
 }

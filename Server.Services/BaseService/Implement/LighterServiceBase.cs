@@ -7,6 +7,8 @@ using Lighter.BaseService.Implement;
 using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Logging;
 using Utility;
+using System.ServiceModel;
+using Lighter.Server.Common;
 
 namespace Lighter.BaseService
 {
@@ -26,5 +28,19 @@ namespace Lighter.BaseService
         /// </summary>
         /// <returns>功能模块定义列表</returns>
         public virtual IEnumerable<ModuleDefination> GetModules() { return null; }
+
+        public virtual OperationResult CheckSession()
+        {
+            SessionState state = OperationContext.Current.InstanceContext.Extensions.Find<SessionState>();
+            if (state == null)
+                return new OperationResult(OperationResultType.IllegalOperation);
+
+            SessionState stateChecked = null;
+            LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
+            if (!manager.TryGetValue(state.Account, out stateChecked))
+                return new OperationResult(OperationResultType.IllegalOperation);
+
+            return new OperationResult(OperationResultType.Success);
+        }
     }
 }

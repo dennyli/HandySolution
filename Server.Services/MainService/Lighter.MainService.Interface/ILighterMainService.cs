@@ -6,19 +6,19 @@ using System;
 
 namespace Lighter.MainService.Interface
 {
-    [ServiceContract(CallbackContract=typeof(ILighterConnectCallBack), SessionMode=SessionMode.Required)]
+    [ServiceContract(CallbackContract = typeof(ILighterConnectCallBack), SessionMode = SessionMode.Required, Namespace = "http://www.codestar.com/")]
     public interface ILighterMainService : ILighterService, IHostedService
     {
-        [OperationContract]
+        [OperationContract(IsInitiating=false, IsTerminating=false)]
         bool ServiceIsExists(string serviceName);
 
-        [OperationContract]
+        [OperationContract(IsInitiating = false, IsTerminating = false)]
         Uri[] GetServiceAddress(string serviceName);
 
-        [OperationContract]
+        [OperationContract(IsInitiating=true, IsTerminating=false)]
         bool Connect(Client client);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract(IsInitiating = false, IsTerminating = true, IsOneWay = true)]
         void Disconnect(Client client);
     }
 }

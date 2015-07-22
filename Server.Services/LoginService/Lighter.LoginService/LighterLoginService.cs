@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Lighter.LoginService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
     [ExportService("LighterLoginService", typeof(LighterLoginService), /*typeof(ILighterLoginService),*/ 1), TcpEndpoint(40002)]
     public class LighterLoginService : LighterLoginDataService, ILighterLoginService
     {
@@ -26,16 +26,16 @@ namespace Lighter.LoginService
             return base.Logout(info.Account);
         }
 
-        public string GetAllAccounts()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (Account a in Accounts)
-            {
-                sb.AppendLine(a.ToString());
-            }
+        //public string GetAllAccounts()
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (Account a in Accounts)
+        //    {
+        //        sb.AppendLine(a.ToString());
+        //    }
 
-            return sb.ToString();
-        }
+        //    return sb.ToString();
+        //}
 
         public override string GetServiceId()
         {

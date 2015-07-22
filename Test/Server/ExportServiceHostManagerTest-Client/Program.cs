@@ -89,9 +89,9 @@ namespace ExportServiceHostManagerTest_Client
                         OperationResult or = serviceLogin.Login(info);
                         if (or.ResultType == OperationResultType.Success)
                         {
-                            Console.WriteLine("Login Success, " + or.Message + " \n\tGet All Accounts ...");
-                            string allAccount = serviceLogin.GetAllAccounts();
-                            Console.WriteLine(allAccount);
+                            //Console.WriteLine("Login Success, " + or.Message + " \n\tGet All Accounts ...");
+                            //string allAccount = serviceLogin.GetAllAccounts();
+                            //Console.WriteLine(allAccount);
 
                             Console.WriteLine("Logouting ...");
                             serviceLogin.Logout(info);

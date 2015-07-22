@@ -14,7 +14,7 @@ using Microsoft.Practices.Prism.Logging;
 
 namespace Lighter.MainService
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
     [ExportService("LighterMainService", typeof(LighterMainService), /* typeof(ILighterMainService),*/ 0), TcpEndpoint(40001)]
     public class LighterMainService : LighterServiceBase, ILighterMainService
     {
@@ -28,8 +28,6 @@ namespace Lighter.MainService
             get { return _clients; }
             //set { _clients = value; }
         }
-
-        
         
         [Import]
         public IServiceHostManager ServiceHostManager { get; set; }
