@@ -83,13 +83,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.Common", "Li
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DALModel", "DALModel", "{7B2293B5-CE2C-4018-999E-E3FA3FAB7456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.ModuleServiceBase", "Server.Services\ModuleService\Lighter.Server.ModuleServiceBase\Lighter.Server.ModuleServiceBase.csproj", "{1539D82F-D447-4671-AEDD-B3F76A4FE118}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.ModuleServiceBase", "Server.Services\ModuleService\Lighter.Server.ModuleServiceBase\Lighter.ModuleServiceBase.csproj", "{1539D82F-D447-4671-AEDD-B3F76A4FE118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.UserManagerService", "Server.Services\ModuleService\Lighter.Server.UserManagerService\Lighter.Server.UserManagerService.csproj", "{FA2CD47A-E367-4B06-A7CD-DD5363A84AEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.UserManagerService", "Server.Services\ModuleService\Lighter.Server.UserManagerService\Lighter.UserManagerService.csproj", "{FA2CD47A-E367-4B06-A7CD-DD5363A84AEA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManager", "UserManager", "{7CA71734-A224-48DE-9099-8D3043284972}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Server.UserManagerService.Interface", "Server.Services\ModuleService\Lighter.Server.UserManagerService.Interface\Lighter.Server.UserManagerService.Interface.csproj", "{B993CDAD-46C4-4F55-BF31-8776370B8A01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.UserManagerService.Interface", "Server.Services\ModuleService\Lighter.Server.UserManagerService.Interface\Lighter.UserManagerService.Interface.csproj", "{B993CDAD-46C4-4F55-BF31-8776370B8A01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Data", "Lighter.Data\Lighter.Data.csproj", "{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}"
 EndProject

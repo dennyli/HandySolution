@@ -7,7 +7,7 @@ using Lighter.Server.Infrastructure;
 namespace Lighter.Data
 {
     [Export(typeof(IEntityMapper))]
-    public class DepartmentConfiguration : EntityConfiguration<Department, string>
+    public class DepartmentConfiguration : LighterEntityConfiguration<Department, string>
     {
         public DepartmentConfiguration()
         {

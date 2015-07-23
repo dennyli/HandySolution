@@ -55,7 +55,7 @@
     <Compile Include="EFDbContextProviderBase.cs" />
     <Compile Include="EFRepositoryBase.cs" />
     <Compile Include="EFUnitOfWorkContext.cs" />
-    <Compile Include="EntityConfiguration.cs" />
+    <Compile Include="LighterEntityConfiguration.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="IEFDbContextProvider.cs" />
     <Compile Include="IEntityMapper.cs" />

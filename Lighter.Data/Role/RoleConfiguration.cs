@@ -7,7 +7,7 @@ using Lighter.Server.Infrastructure;
 namespace Lighter.Data
 {
     [Export(typeof(IEntityMapper))]
-    public class RoleConfiguration : EntityConfiguration<Role, string>
+    public class RoleConfiguration : LighterEntityConfiguration<Role, string>
     {
         public RoleConfiguration()
         {

@@ -35,6 +35,9 @@ namespace Microsoft.Practices.ServiceLocation
             currentProvider = newProvider;
         }
 
+        /// <summary>
+        /// IsLocationProviderSet
+        /// </summary>
         public static bool IsLocationProviderSet
         {
             get

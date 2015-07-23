@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Microsoft.Practices.Prism;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Windows;
+using Lighter.ServiceManager.Composition;
+using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Logging;
 using Microsoft.Practices.Prism.MefExtensions;
 using Microsoft.Practices.ServiceLocation;
-using System.Reflection;
-using Utility;
-using Lighter.BaseService.Interface;
-using Lighter.ServiceManager.Composition;
 
 namespace Lighter.ServiceManager
 {

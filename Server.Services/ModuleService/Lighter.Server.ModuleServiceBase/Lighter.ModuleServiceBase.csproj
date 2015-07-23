@@ -8,8 +8,8 @@
     <ProjectGuid>{1539D82F-D447-4671-AEDD-B3F76A4FE118}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.Server.ModuleServiceBase</RootNamespace>
-    <AssemblyName>Lighter.Server.ModuleServiceBase</AssemblyName>
+    <RootNamespace>Lighter.ModuleServiceBase</RootNamespace>
+    <AssemblyName>Lighter.ModuleServiceBase</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

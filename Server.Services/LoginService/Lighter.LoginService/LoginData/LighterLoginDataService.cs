@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
 using Lighter.BaseService;
-using Utility;
 using Lighter.Data;
-using System.ComponentModel.Composition;
+using Lighter.Data.Repositories;
+using Utility;
 
 namespace Lighter.LoginService.LoginData
 {

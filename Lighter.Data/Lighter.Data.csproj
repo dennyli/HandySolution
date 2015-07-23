@@ -33,10 +33,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -51,17 +52,32 @@
   <ItemGroup>
     <Compile Include="Account\Account.cs" />
     <Compile Include="Account\AccountConfiguration.cs" />
-    <Compile Include="Account\AccountRepository.cs" />
-    <Compile Include="Account\IAccountRepository.cs" />
-    <Compile Include="Department\DepartmentConfiguration.cs" />
-    <Compile Include="Department\DepartmentRepository.cs" />
-    <Compile Include="Department\IDepartmentRepository.cs" />
-    <Compile Include="Role\RoleConfiguration.cs" />
-    <Compile Include="Role\RoleRepository.cs" />
-    <Compile Include="Role\IRoleRepository.cs" />
+    <Compile Include="Account\AccountConfiguration.generated.cs" />
+    <Compile Include="Account\AccountRepository.generated.cs" />
+    <Compile Include="Account\IAccountRepository.generated.cs" />
+    <Compile Include="Department\DepartmentConfiguration.generated.cs" />
+    <Compile Include="Department\DepartmentRepository.generated.cs" />
+    <Compile Include="Department\IDepartmentRepository.generated.cs" />
+    <Compile Include="Module\IModuleRepository.generated.cs" />
+    <Compile Include="Module\Module.cs" />
+    <Compile Include="Module\ModuleConfiguration.generated.cs" />
+    <Compile Include="Module\ModuleRepository.generated.cs" />
+    <Compile Include="Role\IRoleRepository.generated.cs" />
+    <Compile Include="Role\RoleConfiguration.generated.cs" />
     <Compile Include="Role\Role.cs" />
     <Compile Include="Department\Department.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role\RoleRepository.generated.cs" />
+    <Compile Include="T4\EntityCodeScript.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityCodeScript.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4\T4Toolbox.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4Toolbox.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
@@ -92,6 +108,26 @@
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="T4\EntityCodeScript.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityCodeScript.cs</LastGenOutput>
+    </None>
+    <None Include="T4\EntityCodeScript.tt.log">
+      <DependentUpon>EntityCodeScript.tt</DependentUpon>
+    </None>
+    <None Include="T4\Include\EntityConfigurationTemplate.ttinclude" />
+    <None Include="T4\Include\EntityRepositoryTemplate.ttinclude" />
+    <None Include="T4\Include\IEntityRepositoryTemplate.ttinclude" />
+    <None Include="T4\T4Toolbox.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4Toolbox.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

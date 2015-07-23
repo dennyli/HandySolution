@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Lighter.BaseService.Interface;
-using Lighter.BaseService.Implement;
+using Lighter.BaseService;
 using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Logging;
 using Utility;

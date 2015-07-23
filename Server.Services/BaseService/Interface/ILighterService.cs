@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using Utility;
-namespace Lighter.BaseService.Interface
+namespace Lighter.BaseService
 {
     //[ServiceContract]
     public interface ILighterService

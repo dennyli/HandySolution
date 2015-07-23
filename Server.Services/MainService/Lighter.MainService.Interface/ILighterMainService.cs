@@ -1,8 +1,8 @@
-﻿using System.ServiceModel;
-using Lighter.ServiceManager;
+﻿using System;
+using System.ServiceModel;
+using Lighter.BaseService;
 using Lighter.MainService.Model;
-using Lighter.BaseService.Interface;
-using System;
+using Lighter.ServiceManager;
 
 namespace Lighter.MainService.Interface
 {

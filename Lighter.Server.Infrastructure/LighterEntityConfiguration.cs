@@ -8,9 +8,9 @@ using Utility;
 
 namespace Lighter.Server.Infrastructure
 {
-    public class EntityConfiguration<TEntity, TKey> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : EntityBase<TKey>
+    public class LighterEntityConfiguration<TEntity, TKey> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : EntityBase<TKey>
     {
-        public EntityConfiguration()
+        public LighterEntityConfiguration()
         {
             this.Map(m => m.ToTable(typeof(TEntity).Name));
         }
@@ -26,5 +26,7 @@ namespace Lighter.Server.Infrastructure
 
             }
         }
+
+        public virtual void LighterEntityConfigurationAppend() { }
     }
 }

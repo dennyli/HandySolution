@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.Composition;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.BaseService.Implement
+namespace Lighter.BaseService
 {
     /// <summary>
     /// 核心业务实现基类
