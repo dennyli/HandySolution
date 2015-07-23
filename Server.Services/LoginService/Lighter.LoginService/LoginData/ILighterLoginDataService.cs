@@ -5,7 +5,7 @@ using System.Text;
 using Lighter.BaseService.Interface;
 using Utility;
 
-using Lighter.Data.Account;
+using Lighter.Data;
 
 namespace Lighter.LoginService.LoginData
 {

@@ -10,28 +10,34 @@ using System.Collections.ObjectModel;
 
 namespace Lighter.Data
 {
-    [Description("部门信息")]
-    public class Department : EntityBase<string>
+    [Description("角色信息")]
+    public class Role : EntityBase<string>
     {
-        public Department()
+        public Role()
         {
             Accounts = new ObservableCollection<Account>();
         }
 
         /// <summary>
-        /// 部门名称
+        /// 角色名称
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 部门描述
+        /// 角色权限
+        /// </summary>
+        public string Authority { get; set; }
+
+        /// <summary>
+        /// 角色描述
         /// </summary>
         public string Description { get; set; }
 
-        //public virtual ICollection<Role> Accounts { get; set; }
+        //public string DepartCode { get; set; }
+        //public virtual Department Department { get; set; }
 
         /// <summary>
-        /// 此部门的账户列表
+        /// 拥有此角色的账户列表
         /// </summary>
         public virtual ICollection<Account> Accounts { get; set; }
 
@@ -41,6 +47,7 @@ namespace Lighter.Data
             sb.Append(base.ToString());
             sb.Append(";Name:" + Name);
             sb.Append(";Description:" + Description);
+            //sb.Append(";DepartCode:" + Department.Id);
 
             return sb.ToString();
         }

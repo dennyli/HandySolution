@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Lighter.BaseService.Interface;
-using Lighter.Data.Account;
+using Lighter.Data;
 using Utility;
 
 namespace Lighter.Server.ModuleServiceBase

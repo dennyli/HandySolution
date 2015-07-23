@@ -56,10 +56,10 @@
     <Compile Include="Department\DepartmentConfiguration.cs" />
     <Compile Include="Department\DepartmentRepository.cs" />
     <Compile Include="Department\IDepartmentRepository.cs" />
-    <Compile Include="Job\JobConfiguration.cs" />
-    <Compile Include="Job\JobRepository.cs" />
-    <Compile Include="Job\IJobRepository.cs" />
-    <Compile Include="Job\Job.cs" />
+    <Compile Include="Role\RoleConfiguration.cs" />
+    <Compile Include="Role\RoleRepository.cs" />
+    <Compile Include="Role\IRoleRepository.cs" />
+    <Compile Include="Role\Role.cs" />
     <Compile Include="Department\Department.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

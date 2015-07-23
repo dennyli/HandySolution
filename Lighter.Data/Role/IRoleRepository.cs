@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.Data.Job
+namespace Lighter.Data
 {
-    public interface IJobRepository : IRepository<Job, string>
+    public interface IRoleRepository : IRepository<Role, string>
     {
     }
 }

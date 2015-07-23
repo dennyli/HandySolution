@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.Data.Account
+namespace Lighter.Data
 {
     public interface IAccountRepository : IRepository<Account, string>
     {

@@ -5,7 +5,7 @@ using System.Text;
 using Lighter.Server.Infrastructure;
 using System.ComponentModel.Composition;
 
-namespace Lighter.Data.Account
+namespace Lighter.Data
 {
     [Export(typeof(IAccountRepository))]
     public class AccountRepository : EFRepositoryBase<Account, string>,  IAccountRepository

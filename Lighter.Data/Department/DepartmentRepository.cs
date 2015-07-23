@@ -5,7 +5,7 @@ using System.Text;
 using Lighter.Server.Infrastructure;
 using System.ComponentModel.Composition;
 
-namespace Lighter.Data.Department
+namespace Lighter.Data
 {
     [Export(typeof(IDepartmentRepository))]
     public class DepartmentRepository : EFRepositoryBase<Department, string>,  IDepartmentRepository

@@ -5,10 +5,10 @@ using System.Text;
 using Lighter.Server.Infrastructure;
 using System.ComponentModel.Composition;
 
-namespace Lighter.Data.Job
+namespace Lighter.Data
 {
-    [Export(typeof(IJobRepository))]
-    public class JobRepository : EFRepositoryBase<Job, string>, IJobRepository
+    [Export(typeof(IRoleRepository))]
+    public class RoleRepository : EFRepositoryBase<Role, string>, IRoleRepository
     {
     }
 }

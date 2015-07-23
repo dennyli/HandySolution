@@ -4,12 +4,12 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.Data.Job
+namespace Lighter.Data
 {
     [Export(typeof(IEntityMapper))]
-    public class JobConfiguration : EntityConfiguration<Job, string>
+    public class RoleConfiguration : EntityConfiguration<Role, string>
     {
-        public JobConfiguration()
+        public RoleConfiguration()
         {
         }
     }

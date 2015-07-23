@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Lighter.BaseService;
 using System.ComponentModel.Composition;
-using Lighter.Data.Account;
+using Lighter.Data;
 using Utility;
 
 namespace Lighter.Server.ModuleServiceBase
