@@ -31,9 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,11 +51,17 @@
   <ItemGroup>
     <Compile Include="LighterUserManagerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManagerData\IUserManagerDataService.cs" />
+    <Compile Include="UserManagerData\UserManagerDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Lighter.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
+      <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
+      <Name>Lighter.Server.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
@@ -77,6 +90,10 @@
     <ProjectReference Include="..\Lighter.Server.UserManagerService.Interface\Lighter.UserManagerService.Interface.csproj">
       <Project>{B993CDAD-46C4-4F55-BF31-8776370B8A01}</Project>
       <Name>Lighter.UserManagerService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.UserManagerService.Model\Lighter.UserManagerService.Model.csproj">
+      <Project>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</Project>
+      <Name>Lighter.UserManagerService.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

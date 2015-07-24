@@ -7,6 +7,7 @@ using Utility;
 
 namespace Lighter.LoginService.LoginData
 {
+    [Export(typeof(ILighterLoginDataService))]
     public class LighterLoginDataService : LighterServiceBase, ILighterLoginDataService
     {
         [Import]
@@ -17,7 +18,7 @@ namespace Lighter.LoginService.LoginData
             get { return AccountRepository.Entities; }
         }
 
-        public OperationResult Login(string userName, string userPwd)
+        protected OperationResult Login(string userName, string userPwd)
         {
             PublicHelper.CheckArgument(userName, "User Name");
             PublicHelper.CheckArgument(userPwd, "User Password");
@@ -35,7 +36,7 @@ namespace Lighter.LoginService.LoginData
             return new OperationResult(OperationResultType.Success, "登录成功。", account.Authority);
         }
 
-        public OperationResult Logout(string userName)
+        protected OperationResult Logout(string userName)
         {
             PublicHelper.CheckArgument(userName, "User Name");
 

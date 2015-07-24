@@ -93,6 +93,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.UserManagerService.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.Data", "Lighter.Data\Lighter.Data.csproj", "{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lighter.UserManagerService.Model", "Server.Services\ModuleService\Lighter.UserManagerService.Model\Lighter.UserManagerService.Model.csproj", "{FC03D1FC-01B8-47BF-BB7B-66168880B415}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -391,6 +393,16 @@ Global
 		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}.Release|x86.ActiveCfg = Release|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -435,5 +447,6 @@ Global
 		{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0} = {7B2293B5-CE2C-4018-999E-E3FA3FAB7456}
 		{FA2CD47A-E367-4B06-A7CD-DD5363A84AEA} = {7CA71734-A224-48DE-9099-8D3043284972}
 		{B993CDAD-46C4-4F55-BF31-8776370B8A01} = {7CA71734-A224-48DE-9099-8D3043284972}
+		{FC03D1FC-01B8-47BF-BB7B-66168880B415} = {7CA71734-A224-48DE-9099-8D3043284972}
 	EndGlobalSection
 EndGlobal

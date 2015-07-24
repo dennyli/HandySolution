@@ -2,14 +2,16 @@
 using System.Linq;
 using Lighter.BaseService;
 using Lighter.Data;
+using System.ServiceModel;
+using Lighter.ModuleServiceBase.Data;
 
 namespace Lighter.ModuleServiceBase
 {
     public interface ILighterModuleService : ILighterService
     {
-        IQueryable<Account> Accounts { get; }
-
+        [OperationContract]
         string GetServiceId();
-        IEnumerable<Module> GetModules();
+        [OperationContract]
+        IEnumerable<ModuleDTO> GetModules();
     }
 }

@@ -14,6 +14,7 @@ namespace Lighter.Data
         /// 模块名称
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// 模块类别
         /// </summary>
