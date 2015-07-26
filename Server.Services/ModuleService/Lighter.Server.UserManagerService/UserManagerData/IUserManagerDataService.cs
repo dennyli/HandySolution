@@ -8,11 +8,7 @@ using System.Runtime.Serialization;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
-    [KnownType(typeof(AccountDTO))]
-    [KnownType(typeof(DepartmentDTO))]
-    [KnownType(typeof(RoleDTO))]
-    [KnownType(typeof(ModuleDTO))]
-    interface IUserManagerDataService : IModuleDataServiceBase
+    public interface IUserManagerDataService : IModuleDataServiceBase
     {
         #region Generic
         DTOEntityBase<string> GetDTOEntity(string key, Type type);

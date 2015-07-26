@@ -1,15 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
+using System.Runtime.Serialization;
+using Lighter.Data;
+using Lighter.Data.Repositories;
+using Lighter.ModuleServiceBase.Data;
 using Lighter.UserManagerService.Model;
 using Utility;
-using Lighter.ModuleServiceBase.Data;
-using Lighter.Data.Repositories;
-using System.Linq;
-using Lighter.Data;
-using System.Collections.Generic;
-using System.ServiceModel;
-using System.Runtime.Serialization;
-using AutoMapper;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
@@ -44,6 +42,7 @@ namespace Lighter.UserManagerService.UserManagerData
             get { return DepartmentRepository.Entities; }
         }
 
+        #region Explict Declare
         //public List<AccountDTO> GetAccounts()
         //{
         //    throw new NotImplementedException();
@@ -168,6 +167,7 @@ namespace Lighter.UserManagerService.UserManagerData
         //{
         //    throw new NotImplementedException();
         //}
+        #endregion
 
         DTOEntityBase<string> IUserManagerDataService.GetDTOEntity(string key, Type type)
         {

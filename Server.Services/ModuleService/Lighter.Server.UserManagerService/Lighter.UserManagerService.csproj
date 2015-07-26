@@ -92,7 +92,7 @@
       <Name>Lighter.UserManagerService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.UserManagerService.Model\Lighter.UserManagerService.Model.csproj">
-      <Project>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</Project>
+      <Project>{fc03d1fc-01b8-47bf-bb7b-66168880b415}</Project>
       <Name>Lighter.UserManagerService.Model</Name>
     </ProjectReference>
   </ItemGroup>

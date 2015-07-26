@@ -18,7 +18,7 @@ namespace Lighter.LoginService.LoginData
             get { return AccountRepository.Entities; }
         }
 
-        protected OperationResult Login(string userName, string userPwd)
+        public OperationResult Login(string userName, string userPwd)
         {
             PublicHelper.CheckArgument(userName, "User Name");
             PublicHelper.CheckArgument(userPwd, "User Password");
@@ -36,7 +36,7 @@ namespace Lighter.LoginService.LoginData
             return new OperationResult(OperationResultType.Success, "登录成功。", account.Authority);
         }
 
-        protected OperationResult Logout(string userName)
+        public OperationResult Logout(string userName)
         {
             PublicHelper.CheckArgument(userName, "User Name");
 
