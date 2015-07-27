@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</ProjectGuid>
+    <ProjectGuid>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.UserManagerService.Model</RootNamespace>
-    <AssemblyName>Lighter.UserManagerService.Model</AssemblyName>
+    <RootNamespace>Lighter.ServiceManager.Interface</RootNamespace>
+    <AssemblyName>Lighter.ServiceManager.Interface</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,24 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDTO.cs" />
-    <Compile Include="DepartmentDTO.cs" />
+    <Compile Include="IHostedService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleDTO.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Lighter.Data\Lighter.Data.csproj">
-      <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
-      <Name>Lighter.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
-      <Project>{3D9CDCE1-69CB-460B-A4E1-4C024BCB2A20}</Project>
-      <Name>Lighter.ModuleServiceBase.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lighter.Server.ModuleServiceBase\Lighter.ModuleServiceBase.csproj">
-      <Project>{1539D82F-D447-4671-AEDD-B3F76A4FE118}</Project>
-      <Name>Lighter.ModuleServiceBase</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

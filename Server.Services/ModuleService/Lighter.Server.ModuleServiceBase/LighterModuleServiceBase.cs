@@ -7,8 +7,9 @@ using System.ComponentModel.Composition;
 using Lighter.Data;
 using Utility;
 using Lighter.Data.Repositories;
-using Lighter.ModuleServiceBase.Data;
 using AutoMapper;
+using Lighter.ModuleServiceBase.Interface;
+using Lighter.ModuleServiceBase.Model;
 
 namespace Lighter.ModuleServiceBase
 {
@@ -23,7 +24,7 @@ namespace Lighter.ModuleServiceBase
         /// 服务对客户端提供的功能模块定义, 功能模块和用户角色和权限相关
         /// </summary>
         /// <returns>功能模块定义列表</returns>
-        public abstract IEnumerable<ModuleDTO> GetModules();
+        public abstract List<ModuleDTO> GetModules();
 
         private bool bInitialized = false;
 

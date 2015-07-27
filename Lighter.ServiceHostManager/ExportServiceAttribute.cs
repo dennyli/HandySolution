@@ -15,7 +15,7 @@
         /// </summary>
         /// <param name="name">The name of the service.</param>
         /// <param name="serviceType">The service type.</param>
-        public ExportServiceAttribute(string name, Type serviceType, /*Type interfaceType,*/ int order = 1)
+        public ExportServiceAttribute(string name, Type serviceType, Type contactType, int order = 1)
             : base(typeof(IHostedService))
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -29,7 +29,7 @@
 
             Name = name;
             ServiceType = serviceType;
-            //InterfaceType = interfaceType;
+            ContactType = contactType;
             Order = order;
         }
         #endregion
@@ -48,7 +48,7 @@
         ///// <summary>
         ///// Gets the interface type.
         ///// </summary>
-        //public Type InterfaceType { get; private set; }
+        public Type ContactType { get; private set; }
 
         /// <summary>
         /// Export order

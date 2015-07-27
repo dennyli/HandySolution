@@ -50,11 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\IConfigurationExtension.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="EFDbContext.cs" />
     <Compile Include="EFDbContextProviderBase.cs" />
     <Compile Include="EFRepositoryBase.cs" />
     <Compile Include="EFUnitOfWorkContext.cs" />
+    <Compile Include="Initialize\DatabaseInitializer.cs" />
     <Compile Include="LighterEntityConfiguration.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="IEFDbContextProvider.cs" />

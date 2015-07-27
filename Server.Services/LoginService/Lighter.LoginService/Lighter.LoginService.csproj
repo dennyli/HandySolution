@@ -61,6 +61,10 @@
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Prism4.1\Microsoft.Practices.ServiceLocation\Microsoft.Practices.ServiceLocation.csproj">
       <Project>{faf6d6b2-1ec9-4a1b-83bb-48f772e948cf}</Project>
       <Name>Microsoft.Practices.ServiceLocation</Name>

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
-using Lighter.ModuleServiceBase.Data;
+using Lighter.ModuleServiceBase.Model;
 
 namespace Lighter.UserManagerService.Model
 {

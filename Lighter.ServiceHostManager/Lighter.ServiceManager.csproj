@@ -56,7 +56,6 @@
     <Compile Include="Hosting\ExportServiceBehavior.cs" />
     <Compile Include="Hosting\ExportServiceHost.cs" />
     <Compile Include="Hosting\ExportServiceHostFactory.cs" />
-    <Compile Include="IHostedService.cs" />
     <Compile Include="IHostedServiceMetadata.cs" />
     <Compile Include="IServiceHostManager.cs" />
     <Compile Include="ServiceHostBootstrapper.cs" />
@@ -64,6 +63,10 @@
     <Compile Include="ServiceHostManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Prism4.1\Microsoft.Practices.ServiceLocation\Microsoft.Practices.ServiceLocation.csproj">
       <Project>{faf6d6b2-1ec9-4a1b-83bb-48f772e948cf}</Project>
       <Name>Microsoft.Practices.ServiceLocation</Name>

@@ -1,10 +1,11 @@
 ﻿using Lighter.UserManagerService.Model;
 using Utility;
-using Lighter.ModuleServiceBase.Data;
 using Lighter.ModuleServiceBase;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Lighter.ModuleServiceBase.Data;
+using Lighter.ModuleServiceBase.Model;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
@@ -24,6 +25,7 @@ namespace Lighter.UserManagerService.UserManagerData
         OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord);
         #endregion 
 
+        #region  Explict Declare
         //#region Account
         //List<AccountDTO> GetAccounts();
         //List<AccountDTO> GetAccountsByDepartment(string departmentCode);
@@ -66,6 +68,7 @@ namespace Lighter.UserManagerService.UserManagerData
         //OperationResult DeleteDepartment(string departmentCode, bool bRemoveRecord);
         //OperationResult DeleteDepartments(List<string> departmentCodes, bool bRemoveRecord);
         //#endregion
+        #endregion  Explict Declare
 
     }
 }

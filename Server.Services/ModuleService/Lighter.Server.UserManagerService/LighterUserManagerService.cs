@@ -1,22 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ServiceModel;
+using AutoMapper;
+using Lighter.Data;
 using Lighter.ModuleServiceBase;
+using Lighter.ModuleServiceBase.Model;
+using Lighter.ModuleServiceBase.Interface;
 using Lighter.ServiceManager;
 using Lighter.ServiceManager.Endpoints;
 using Lighter.UserManagerService.Interface;
 using Lighter.UserManagerService.Model;
 using Lighter.UserManagerService.UserManagerData;
-using System.Collections.ObjectModel;
 using Utility;
-using Lighter.ModuleServiceBase.Data;
-using AutoMapper;
-using Lighter.Data;
 
 namespace Lighter.UserManagerService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
-    [ExportService("LighterUserManagerService", typeof(LighterUserManagerService), /*typeof(ILighterLoginService),*/ 1), TcpEndpoint(40002)]
+    [ExportService("LighterUserManagerService", typeof(LighterUserManagerService), typeof(ILighterUserManagerService), 1), TcpEndpoint(40002)]
+    [ServiceKnownType(typeof(AccountDTO))]
+    [ServiceKnownType(typeof(DepartmentDTO))]
+    [ServiceKnownType(typeof(RoleDTO))]
+    [ServiceKnownType(typeof(ModuleDTO))]
     public class LighterUserManagerService : LighterModuleServiceBase, ILighterUserManagerService
     {
         [Import]
@@ -27,16 +32,11 @@ namespace Lighter.UserManagerService
             return "UserManager";
         }
 
-        public override IEnumerable<ModuleDTO> GetModules()
+        public override List<ModuleDTO> GetModules()
         {
-            return new List<ModuleDTO>()
-            {
-                new ModuleDTO() { Id = "U01", Name="用户管理", Catalog="账户管理" },
-                new ModuleDTO() { Id = "U02", Name="部门管理", Catalog="账户管理" },
-                new ModuleDTO() { Id = "U03", Name="岗位管理", Catalog="账户管理" },
-                new ModuleDTO() { Id = "U04", Name="权限管理", Catalog="账户管理" },
-                new ModuleDTO() { Id = "U05", Name="模块管理", Catalog="账户管理" }
-            };
+            //return GetDTOEntities(typeof(ModuleDTO)) as List<ModuleDTO>;
+
+            return null;
         }
 
         public override void Initialize()
@@ -66,6 +66,7 @@ namespace Lighter.UserManagerService
             IsInitialized = true;
         }
 
+        #region  Explict Declare
         //public Collection<AccountDTO> GetAccounts()
         //{
         //    return _dataService.GetAccounts();
@@ -190,5 +191,47 @@ namespace Lighter.UserManagerService
         //{
         //    return _dataService.DeleteDepartments();
         //}
+        #endregion  Explict Declare
+
+        #region Generic
+        public DTOEntityBase<string> GetDTOEntity(string key, Type type)
+        {
+            return _dataService.GetDTOEntity(key, type);
+        }
+
+        public List<DTOEntityBase<string>> GetDTOEntities(Type type)
+        {
+            return _dataService.GetDTOEntities(type);
+        }
+
+        public OperationResult AddEntity(DTOEntityBase<string> entity)
+        {
+            return _dataService.AddEntity(entity);
+        }
+        public OperationResult AddEntities(List<DTOEntityBase<string>> entities)
+        {
+            return _dataService.AddEntities(entities);
+        }
+
+        public OperationResult UpdateEntity(DTOEntityBase<string> entity)
+        {
+            return _dataService.UpdateEntity(entity);
+        }
+
+        public OperationResult UpdateEntities(List<DTOEntityBase<string>> entities)
+        {
+            return _dataService.UpdateEntities(entities);
+        }
+
+        public OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord)
+        {
+            return _dataService.DeleteEntity(entity, bRemoveRecord);
+        }
+
+        public OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord)
+        {
+            return _dataService.DeleteEntities(entities, bRemoveRecord);
+        }
+        #endregion 
     }
 }

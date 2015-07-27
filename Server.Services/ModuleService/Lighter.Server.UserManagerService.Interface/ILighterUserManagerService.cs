@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Lighter.ModuleServiceBase;
 using System.ServiceModel;
+using Lighter.ModuleServiceBase.Interface;
+using Lighter.ModuleServiceBase.Model;
 using Lighter.UserManagerService.Model;
-using System.Collections.ObjectModel;
 using Utility;
-using Lighter.ModuleServiceBase.Data;
 
 namespace Lighter.UserManagerService.Interface
 {
@@ -18,6 +15,7 @@ namespace Lighter.UserManagerService.Interface
     [ServiceKnownType(typeof(ModuleDTO))]
     public interface ILighterUserManagerService : ILighterModuleService
     {
+        #region  Explict Declare
         //#region Account
         //Collection<AccountDTO> GetAccounts();
         //Collection<AccountDTO> GetAccountsByDepartment(string departmentCode);
@@ -60,5 +58,32 @@ namespace Lighter.UserManagerService.Interface
         //OperationResult DeleteDepartment(string departmentCode, bool bRemoveRecord);
         //OperationResult DeleteDepartments(Collection<string> departmentCodes, bool bRemoveRecord);
         //#endregion
+        #endregion  Explict Declare
+
+        #region Generic
+        [OperationContract]
+        DTOEntityBase<string> GetDTOEntity(string key, Type type);
+
+        [OperationContract]
+        List<DTOEntityBase<string>> GetDTOEntities(Type type);
+
+        [OperationContract]
+        OperationResult AddEntity(DTOEntityBase<string> entity);
+
+        [OperationContract]
+        OperationResult AddEntities(List<DTOEntityBase<string>> entities);
+
+        [OperationContract]
+        OperationResult UpdateEntity(DTOEntityBase<string> entity);
+
+        [OperationContract]
+        OperationResult UpdateEntities(List<DTOEntityBase<string>> entities);
+
+        [OperationContract]
+        OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord);
+
+        [OperationContract]
+        OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord);
+        #endregion 
     }
 }

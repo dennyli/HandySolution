@@ -10,7 +10,7 @@ using System.ComponentModel.Composition;
 namespace Lighter.LoginService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
-    [ExportService("LighterLoginService", typeof(LighterLoginService), /*typeof(ILighterLoginService),*/ 1), TcpEndpoint(40002)]
+    [ExportService("LighterLoginService", typeof(LighterLoginService), typeof(ILighterLoginService), 1), TcpEndpoint(40002)]
     public class LighterLoginService : ILighterLoginService
     {
         [Import]

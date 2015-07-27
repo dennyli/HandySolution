@@ -2,6 +2,7 @@
 {
     using System;
     using System.ServiceModel.Description;
+    using Utility;
 
     /// <summary>
     /// Describes an endpoint for a service.
@@ -53,7 +54,9 @@
         /// <returns>An instance of <see cref="Uri"/>.</returns>
         protected virtual Uri CreateUri(string scheme, IHostedServiceMetadata meta)
         {
-            var builder = new UriBuilder(scheme, "localhost", Port, Path ?? meta.Name);
+            //string IP4v = "localhost";
+            string IP4v = CommonUtility.GetHostIP4vDotFormat();
+            var builder = new UriBuilder(scheme, IP4v, Port, Path ?? meta.Name);
             return builder.Uri;
         }
 

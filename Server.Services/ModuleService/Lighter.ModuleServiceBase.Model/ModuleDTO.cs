@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace Lighter.ModuleServiceBase.Data
+namespace Lighter.ModuleServiceBase.Model
 {
     [Description("模块信息")]
     [DataContract]

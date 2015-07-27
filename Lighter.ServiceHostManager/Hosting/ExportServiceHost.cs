@@ -9,6 +9,7 @@
 
     using Endpoints;
     using System.Diagnostics;
+    using Utility;
 
     /// <summary>
     /// Defines a service host created from exported parts.
@@ -64,7 +65,8 @@
             {
                 IEnumerable<ContractDescription> cds = GetContracts(Meta.ServiceType);
                 ServiceEndpoint se = this.Description.Endpoints.First<ServiceEndpoint>(e => cds.Count(cd => cd.ContractType == e.Contract.ContractType) > 0);
-                var builder = new UriBuilder("net.tcp", "localhost", port, Meta.Name);
+                string IP4v = CommonUtility.GetHostIP4vDotFormat();
+                var builder = new UriBuilder("net.tcp", IP4v, port, Meta.Name);
                 EndpointAddress addrNew = new EndpointAddress(builder.Uri);
                 se.Address = addrNew;
             }
@@ -141,7 +143,9 @@
             foreach (var cd in implementedContracts.Values)
             {
                 foreach (var endpoint in GetServiceEndpoints(endpointAttributes, Meta, cd))
+                {
                     sd.Endpoints.Add(endpoint);
+                }
             }
 
             var serviceBehaviour = EnsureServiceBehavior(sd);
@@ -179,25 +183,46 @@
         private static IEnumerable<ContractDescription> GetContracts(Type serviceType)
         {
             var collection = new ReflectedContractCollection();
-            foreach (var contract in serviceType.GetInterfaces().Where(t => t != HostedServiceType))
+            //Type[] types = serviceType.GetInterfaces();
+            //foreach (var contract in types.Where(t => t != HostedServiceType))
+            //{
+            //    if (!collection.Contains(contract))
+            //    {
+            //        try
+            //        {
+            //            var cd = ContractDescription.GetContract(contract, serviceType);
+            //            collection.Add(cd);
+            //        }
+            //        catch (InvalidOperationException)
+            //        {
+            //            Debug.WriteLine("Warning: Contract " + contract + " can't found contract description in " + serviceType);
+            //        }
+
+            //        //foreach (var icd in cd.GetInheritedContracts())
+            //        //{
+            //        //    if (!collection.Contains(icd.ContractType))
+            //        //        collection.Add(icd);
+            //        //}
+            //    }
+            //}
+
+            var attrs = (ExportServiceAttribute[])serviceType.GetCustomAttributes(typeof(ExportServiceAttribute), true);
+            if (!attrs.Any())
+                throw new InvalidOperationException("ExportServiceAttribute must be defined!");
+
+            foreach (var contract in attrs)
             {
-                if (!collection.Contains(contract))
+                if (!collection.Contains(contract.ContactType))
                 {
                     try
                     {
-                        var cd = ContractDescription.GetContract(contract, serviceType);
+                        var cd = ContractDescription.GetContract(contract.ContactType, serviceType);
                         collection.Add(cd);
                     }
                     catch (InvalidOperationException)
                     {
                         Debug.WriteLine("Warning: Contract " + contract + " can't found contract description in " + serviceType);
                     }
-
-                    //foreach (var icd in cd.GetInheritedContracts())
-                    //{
-                    //    if (!collection.Contains(icd.ContractType))
-                    //        collection.Add(icd);
-                    //}
                 }
             }
 

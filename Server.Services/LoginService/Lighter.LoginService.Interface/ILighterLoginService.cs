@@ -4,6 +4,7 @@ using Lighter.Data;
 using Lighter.LoginService.Model;
 using Lighter.ServiceManager;
 using Utility;
+using Lighter.BaseService;
 
 namespace Lighter.LoginService.Interface
 {

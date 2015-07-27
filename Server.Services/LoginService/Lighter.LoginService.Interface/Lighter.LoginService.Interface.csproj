@@ -53,6 +53,10 @@
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>

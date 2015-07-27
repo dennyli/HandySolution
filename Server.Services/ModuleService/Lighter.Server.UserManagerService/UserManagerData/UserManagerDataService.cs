@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using Lighter.Data;
 using Lighter.Data.Repositories;
 using Lighter.ModuleServiceBase.Data;
+using Lighter.ModuleServiceBase.Model;
 using Lighter.UserManagerService.Model;
 using Utility;
 
@@ -169,6 +170,7 @@ namespace Lighter.UserManagerService.UserManagerData
         //}
         #endregion
 
+        #region Generic
         DTOEntityBase<string> IUserManagerDataService.GetDTOEntity(string key, Type type)
         {
             return null;
@@ -213,5 +215,6 @@ namespace Lighter.UserManagerService.UserManagerData
         {
             throw new NotImplementedException();
         }
+        #endregion Generic
     }
 }

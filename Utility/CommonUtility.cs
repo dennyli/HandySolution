@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
+using System.Net;
 
 namespace Utility
 {
@@ -24,6 +25,31 @@ namespace Utility
             sb.Insert(0, "添加记录遇到错误: \n");
 
             return sb.ToString();
+        }
+
+        public static string GetHostIP4vDotFormat()
+        {
+            IPAddress address = GetHostIP();
+            Byte[] bytes = address.GetAddressBytes();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (Byte b in bytes)
+            {
+                if (sb.Length > 0)
+                    sb.Append(".");
+
+                sb.Append(b);
+            }
+
+            return sb.ToString();
+        }
+
+        public static IPAddress GetHostIP()
+        {
+            IPHostEntry ipe = Dns.GetHostEntry(Dns.GetHostName());
+            IPAddress ip = ipe.AddressList[0];
+
+            return ip;
         }
 
         private static bool DllIsNetBased(string dllName)

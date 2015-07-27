@@ -1,6 +1,7 @@
 ﻿using System;
 using Lighter.ServiceManager;
 using Microsoft.Practices.ServiceLocation;
+using Lighter.Server.Infrastructure.Initialize;
 
 namespace ExportServiceHostManagerTest
 {
@@ -13,6 +14,8 @@ namespace ExportServiceHostManagerTest
 
             ServiceHostBootstrapper bootstrapper = new ServiceHostBootstrapper();
             bootstrapper.Run();
+
+            DatabaseInitializer.Initialize();
 
             //ServiceHostManager manager = bootstrapper._container.GetExportedValue<IServiceHostManager>() as ServiceHostManager;
 

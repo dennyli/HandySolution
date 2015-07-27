@@ -52,10 +52,7 @@
   <ItemGroup>
     <Compile Include="Data\IModuleDataServiceBase.cs" />
     <Compile Include="Data\ModuleDataServiceBase.cs" />
-    <Compile Include="Data\DTOEntityBase.cs" />
     <Compile Include="LighterModuleServiceBase.cs" />
-    <Compile Include="ILighterModuleService.cs" />
-    <Compile Include="Data\ModuleDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +64,14 @@
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
+      <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
+      <Name>Lighter.ServiceManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
@@ -74,6 +79,14 @@
     <ProjectReference Include="..\..\BaseService\Lighter.BaseService.csproj">
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.ModuleServiceBase.Interface\Lighter.ModuleServiceBase.Interface.csproj">
+      <Project>{D154F4B5-F4AD-430A-8DC7-3FDDE4EC536F}</Project>
+      <Name>Lighter.ModuleServiceBase.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
+      <Project>{3D9CDCE1-69CB-460B-A4E1-4C024BCB2A20}</Project>
+      <Name>Lighter.ModuleServiceBase.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
