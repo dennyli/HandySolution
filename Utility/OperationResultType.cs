@@ -31,6 +31,12 @@ namespace Utility
         Success,
 
         /// <summary>
+        ///     用户重复登陆
+        /// </summary>
+        [Description("用户重复登陆，非法操作")]
+        IsLogined,
+
+        /// <summary>
         ///     操作取消或操作没引发任何变化
         /// </summary>
         [Description("操作没有引发任何变化，提交取消。")]

@@ -33,7 +33,19 @@
         <Label Content="服务列表" Grid.Row="5" Name="lblServices" VerticalContentAlignment="Bottom" Grid.Column="1" Margin="4,0,0,0" Grid.ColumnSpan="5" />
         <Label Content="已登录用户列表" Grid.Row="9" Name="lblAccounts" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="0,0,2,0" Grid.ColumnSpan="5" />
         <Label Content="{Binding Path=LastMessage}" Grid.Row="13" Name="lblMessages" VerticalContentAlignment="Bottom" Grid.ColumnSpan="3" Margin="4,0,11,0" Grid.Column="1" />
-        <ListBox Grid.Column="1" Grid.Row="11" Name="lstAccounts" Margin="4,0,2,0" Grid.ColumnSpan="5" />
+        <ListBox Grid.Column="1" Grid.Row="11" Name="lstAccounts" Margin="4,0,2,0" Grid.ColumnSpan="5" 
+                 ItemsSource="{Binding Path=Users}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Path=Name}" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding Path=IP}" />
+                        <TextBlock Text=")" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <ListBox Grid.Row="7" Name="lstServices" Grid.Column="1" Margin="4,0,2,0" Grid.ColumnSpan="5" ItemsSource="{Binding Path=Services}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

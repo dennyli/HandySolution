@@ -18,7 +18,7 @@ namespace Lighter.LoginService
 
         public OperationResult Login(LoginInfo info)
         {
-            return _dataService.Login(info.Account, info.Password);
+            return _dataService.Login(info);
         }
 
         public OperationResult Logout(LoginInfo info)

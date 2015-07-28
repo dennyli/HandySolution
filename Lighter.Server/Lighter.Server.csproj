@@ -114,10 +114,6 @@
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj">
-      <Project>{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}</Project>
-      <Name>Lighter.MsSqlEFDbContextProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Common\Lighter.Server.Common.csproj">
       <Project>{F217FB06-ECFC-499A-B34C-1E288BDD1E0F}</Project>
       <Name>Lighter.Server.Common</Name>
@@ -125,6 +121,10 @@
     <ProjectReference Include="..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.ServerEvents\Lighter.ServerEvents.csproj">
+      <Project>{2851ab75-6cc0-4037-90c2-af8f2034fb02}</Project>
+      <Name>Lighter.ServerEvents</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>

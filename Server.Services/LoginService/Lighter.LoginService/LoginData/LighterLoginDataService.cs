@@ -3,6 +3,9 @@ using System.Linq;
 using Lighter.BaseService;
 using Lighter.Data;
 using Lighter.Data.Repositories;
+using Lighter.LoginService.Model;
+using Lighter.ServerEvents;
+using Microsoft.Practices.Prism.Events;
 using Utility;
 
 namespace Lighter.LoginService.LoginData
@@ -11,27 +14,35 @@ namespace Lighter.LoginService.LoginData
     public class LighterLoginDataService : LighterServiceBase, ILighterLoginDataService
     {
         [Import]
-        protected IAccountRepository AccountRepository { get; set; }
+        protected IEventAggregator _eventAggregator { get; set; }
+
+        [Import]
+        protected IAccountRepository _accountRepository { get; set; }
 
         public IQueryable<Account> Accounts
         {
-            get { return AccountRepository.Entities; }
+            get { return _accountRepository.Entities; }
         }
 
-        public OperationResult Login(string userName, string userPwd)
+        public OperationResult Login(LoginInfo info)
         {
-            PublicHelper.CheckArgument(userName, "User Name");
-            PublicHelper.CheckArgument(userPwd, "User Password");
+            PublicHelper.CheckArgument(info.Account, "User Name");
+            PublicHelper.CheckArgument(info.Password, "User Password");
 
-            Account account = Accounts.SingleOrDefault<Account>(a => a.Name == userName);
+            Account account = Accounts.SingleOrDefault<Account>(a => a.Name == info.Account);
             if (account == null)
                 return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");
 
-            if (userPwd != account.Password)
+            if (info.Password != account.Password)
                 return new OperationResult(OperationResultType.ParamError, "登录密码不正确。");
 
+            if (account.IsLogin)
+                return new OperationResult(OperationResultType.IsLogined, "用户重复登陆。");
+
             account.IsLogin = true;
-            AccountRepository.Update(account);
+            _accountRepository.Update(account);
+
+            _eventAggregator.GetEvent<AccountLoginEvent>().Publish(new UserInfo(info.Account, info.IpAddress));
             
             return new OperationResult(OperationResultType.Success, "登录成功。", account.Authority);
         }
@@ -44,8 +55,13 @@ namespace Lighter.LoginService.LoginData
             if (account == null)
                 return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");
 
+            if (!account.IsLogin)
+                return new OperationResult(OperationResultType.IllegalOperation, "非法操作。");
+
             account.IsLogin = false;
-            AccountRepository.Update(account);
+            _accountRepository.Update(account);
+
+            _eventAggregator.GetEvent<AccountLogoutEvent>().Publish(userName);
 
             return new OperationResult(OperationResultType.Success, "退出成功。"); 
         }

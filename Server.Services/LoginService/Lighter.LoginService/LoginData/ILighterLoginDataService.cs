@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Lighter.BaseService;
 using Lighter.Data;
+using Lighter.LoginService.Model;
 using Utility;
 
 namespace Lighter.LoginService.LoginData
@@ -10,7 +11,7 @@ namespace Lighter.LoginService.LoginData
         IQueryable<Account> Accounts { get; }
 
 
-        OperationResult Login(string userName, string userPwd);
+        OperationResult Login(LoginInfo info);
 
         OperationResult Logout(string userName);
     }

@@ -10,6 +10,8 @@ using System.Net;
 using System.Collections.ObjectModel;
 using Lighter.ServiceManager.Hosting;
 using Microsoft.Practices.Prism.ViewModel;
+using Lighter.ServerEvents;
+using Microsoft.Practices.Prism.Events;
 
 namespace Lighter.Server.ViewModel
 {
@@ -21,6 +23,8 @@ namespace Lighter.Server.ViewModel
             Title = defaultTitle;
             ServerPort = 50000;
             Services = new ObservableCollection<ServiceInfo>();
+            Users = new ObservableCollection<UserInfo>();
+
             HistoryMessages = new ObservableCollection<string>();
 
             LoadIniFile();
@@ -98,8 +102,30 @@ namespace Lighter.Server.ViewModel
 
                 LastMessage = "服务已提供";
                 RaisePropertyChanged("LastMessage");
+
+                IEventAggregator _eventAggregator = _manager._container.GetExportedValue<IEventAggregator>();
+                _eventAggregator.GetEvent<AccountLoginEvent>().Subscribe(AccountLogined);
+                _eventAggregator.GetEvent<AccountLogoutEvent>().Subscribe(AccountLogouted);
             }
             catch (Exception e)
+            {
+                LastMessage = ExceptionMessage.GetExceptionMessage(e);
+                RaisePropertyChanged("LastMessage");
+            }
+        }
+
+        private void AccountLogined(UserInfo user)
+        {
+            Users.Add(user);
+        }
+
+        private void AccountLogouted(string userName)
+        {
+            try
+            {
+                Users.Remove(Users.Single(u => u.Name == userName));
+            }
+            catch(Exception e)
             {
                 LastMessage = ExceptionMessage.GetExceptionMessage(e);
                 RaisePropertyChanged("LastMessage");
@@ -173,6 +199,8 @@ namespace Lighter.Server.ViewModel
         /// 服务列表
         /// </summary>
         public ObservableCollection<ServiceInfo> Services { get; private set; }
+
+        public ObservableCollection<UserInfo> Users { get; private set; }
 
         /// <summary>
         /// Service Host Startup & Manager

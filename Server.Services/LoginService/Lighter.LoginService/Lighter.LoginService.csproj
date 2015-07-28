@@ -57,6 +57,10 @@
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Lighter.ServerEvents\Lighter.ServerEvents.csproj">
+      <Project>{2851ab75-6cc0-4037-90c2-af8f2034fb02}</Project>
+      <Name>Lighter.ServerEvents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
