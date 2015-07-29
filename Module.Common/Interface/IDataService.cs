@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using Lighter.BaseService.Interface;
 
 namespace Client.Module.Common.Interface
 {
@@ -10,6 +11,6 @@ namespace Client.Module.Common.Interface
     /// </summary>
     public interface IDataService
     {
-        Object GetModel();
+        ILighterService GetServerService(Type moduleInitType);
     }
 }

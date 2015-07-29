@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 
 using Microsoft.Practices.Prism.Events;
@@ -6,6 +7,8 @@ using Microsoft.Practices.Prism.Regions;
 using Client.ModuleBase.ViewModels;
 using Client.Module.UserManager.Interface;
 using Client.Module.Common.Interface;
+using Lighter.UserManagerService.Model;
+using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.ViewModels
 {
@@ -20,6 +23,7 @@ namespace Client.Module.UserManager.ViewModels
         public UserManagerViewModel(IUserManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
+            AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
         }
 
         #region INavigationAware Members
@@ -35,6 +39,14 @@ namespace Client.Module.UserManager.ViewModels
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
         }
+        #endregion
+
+        #region Fields
+        public Accounts AccountsModel { get; private set; }
+
+        //public ObservableCollection<AccountDTO> Accounts;
+        //public ObservableCollection<DepartmentDTO> Departments;
+        //public ObservableCollection<RoleDTO> Roles;
         #endregion
 
     }

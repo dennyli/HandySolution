@@ -9,5 +9,7 @@ namespace Client.Module.Common.Interface
         string GetModuleName();
 
         ObservableCollection<CommandInfo> GetCommandInfos(Type owner);
+
+        string GetServiceName();
     }
 }

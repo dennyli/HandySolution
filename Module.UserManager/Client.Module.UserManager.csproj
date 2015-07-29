@@ -70,8 +70,9 @@
     <Compile Include="Interface\IDepartmentManagerViewModel.cs" />
     <Compile Include="Interface\IUserManagerDataService.cs" />
     <Compile Include="Interface\IUserManagerViewModel.cs" />
-    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Services\DepartmentManagerDataService.cs" />
     <Compile Include="UserManagerModuleInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -156,6 +157,10 @@
     <ProjectReference Include="..\Server.Services\ModuleService\Lighter.ModuleServiceBase.Interface\Lighter.ModuleServiceBase.Interface.csproj">
       <Project>{D154F4B5-F4AD-430A-8DC7-3FDDE4EC536F}</Project>
       <Name>Lighter.ModuleServiceBase.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\ModuleService\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
+      <Project>{3D9CDCE1-69CB-460B-A4E1-4C024BCB2A20}</Project>
+      <Name>Lighter.ModuleServiceBase.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\ModuleService\Lighter.Server.UserManagerService.Interface\Lighter.UserManagerService.Interface.csproj">
       <Project>{B993CDAD-46C4-4F55-BF31-8776370B8A01}</Project>

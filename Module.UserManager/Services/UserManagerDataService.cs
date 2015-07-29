@@ -3,6 +3,15 @@ using System.ComponentModel.Composition;
 using Client.Module.Common.Interface;
 using Client.ModuleBase.Services;
 using Client.Module.UserManager.Interface;
+using Lighter.Client.Infrastructure.Interface;
+using Lighter.UserManagerService.Model;
+using System.Collections.ObjectModel;
+using Lighter.UserManagerService.Interface;
+using Lighter.ModuleServiceBase.Model;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Microsoft.Practices.ServiceLocation;
+using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.Services
 {
@@ -15,14 +24,34 @@ namespace Client.Module.UserManager.Services
     {
         
         [ImportingConstructor]
-        public UserManagerDataService()
+        public UserManagerDataService(IServiceLocator serviceLocator, ILighterContext lighterContext)
+            : base(serviceLocator, lighterContext)
         {
             
         }
 
-        public override Object GetModel()
+        public Accounts GetAccounts()
         {
-            return null;
+            ILighterUserManagerService service = GetServerService(typeof(UserManagerModuleInit)) as ILighterUserManagerService;
+            Debug.Assert(service != null);
+
+            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
+
+            Accounts accounts = new Accounts();
+            foreach (DTOEntityBase<string> dto in dtos)
+                accounts.Add(dto as AccountDTO);
+
+            return accounts;
         }
+
+        //public ObservableCollection<DepartmentDTO> GetDepartments()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public ObservableCollection<RoleDTO> GetRoles()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

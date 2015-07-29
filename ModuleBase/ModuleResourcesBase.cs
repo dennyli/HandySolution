@@ -16,5 +16,11 @@ namespace Client.ModuleBase
         public abstract ObservableCollection<CommandInfo> GetCommandInfos(Type owner);
 
         #endregion
+
+
+        public virtual string GetServiceName()
+        {
+            return null;
+        }
     }
 }

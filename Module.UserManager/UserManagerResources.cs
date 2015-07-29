@@ -13,6 +13,11 @@ namespace Client.Module.UserManager
             return "UserManage";
         }
 
+        public override string GetServiceName()
+        {
+            return "LighterUserManagerService";
+        }
+
         public override ObservableCollection<CommandInfo> GetCommandInfos(Type owner)
         {
             ObservableCollection<CommandInfo> cmds = new ObservableCollection<CommandInfo>();

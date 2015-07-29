@@ -15,11 +15,11 @@ namespace Client.Module.UserManager.ViewModels
         public DepartmentManagerViewModel(IDepartmentManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            DepartmentsModel = _dataService.GetModel() as Departments;
+            DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
         }
 
 
-        public Departments DepartmentsModel { get; set; }
+        public Departments DepartmentsModel { get; private set; }
 
         #region INavigationAware Members
         public override bool IsNavigationTarget(NavigationContext navigationContext)

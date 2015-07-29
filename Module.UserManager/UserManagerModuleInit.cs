@@ -41,20 +41,22 @@ namespace Client.Module.UserManager
 
         protected override ILighterService CreateService()
         {
-            ILighterUserManagerService service = _lighterContext.FindService("UserManagerService") as ILighterUserManagerService;
+            IModuleResources resources = GetModuleResources();
+            string serviceName = resources.GetServiceName();
+
+            ILighterUserManagerService service = _lighterContext.FindService(serviceName) as ILighterUserManagerService;
             if (service == null)
             {
                 ILighterMainService mainService = GetMainService();
 
-                string serviceName = "LighterUserManagerService";
                 bool bExist = mainService.ServiceIsExists(serviceName);
                 if (!bExist)
-                    throw new InvalidOperationException("服务端未发现UserManager服务，无法创建UserManager服务!");
+                    throw new InvalidOperationException("服务端未发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
 
                 Uri[] uris = mainService.GetServiceAddress(serviceName);
                 service = ServiceFactory<ILighterUserManagerService>.CreateService(uris[0]);
 
-                _lighterContext.AddService("UserManagerService", service);
+                _lighterContext.AddService(serviceName, service);
             }
 
             return service as ILighterService;
