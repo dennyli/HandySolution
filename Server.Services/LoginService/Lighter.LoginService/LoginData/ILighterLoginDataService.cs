@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Lighter.BaseService;
+using Lighter.BaseService.Interface;
 using Lighter.Data;
 using Lighter.LoginService.Model;
 using Utility;

@@ -40,9 +40,15 @@
             var address = new EndpointAddress(uri);
 
             var binding = new NetTcpBinding();
+            binding.PortSharingEnabled = true;
+
+#if WindowsSecurityMode
+            binding.Security.Mode = SecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+#else
             binding.Security.Mode = SecurityMode.None;
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.None;
-            binding.PortSharingEnabled = true;
+#endif
 
             return new ServiceEndpoint(description, binding, address);
         }

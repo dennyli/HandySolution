@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Lighter.Server.Tools;
-using Lighter.ServiceManager;
-using Lighter.Server.Infrastructure.Initialize;
-using Microsoft.Practices.ServiceLocation;
-using System.Net;
 using System.Collections.ObjectModel;
-using Lighter.ServiceManager.Hosting;
-using Microsoft.Practices.Prism.ViewModel;
+using System.Linq;
+using System.Net;
+using System.Text;
+using Lighter.Server.Infrastructure.Initialize;
 using Lighter.ServerEvents;
+using Lighter.ServiceManager;
+using Lighter.ServiceManager.Hosting;
 using Microsoft.Practices.Prism.Events;
+using Microsoft.Practices.Prism.ViewModel;
+using Microsoft.Practices.ServiceLocation;
+using Utility;
 
 namespace Lighter.Server.ViewModel
 {

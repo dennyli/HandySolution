@@ -87,6 +87,14 @@ namespace Utility
 
         #endregion
 
+        #region 方法
+        public static string GetExceptionMessage(Exception e)
+        {
+            ExceptionMessage em = new ExceptionMessage(e);
+            return em.ErrorDetails;
+        }
+        #endregion
+
         #endregion
     }
 }

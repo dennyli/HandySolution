@@ -13,24 +13,34 @@ using Client.Module.Common.Commands;
 using Client.Module.Common.Events;
 using Client.Module.Common.Interface;
 using Client.ModuleBase.Views;
+using Lighter.MainService.Interface;
+using System.ServiceModel;
+using Lighter.BaseService.Interface;
+using Lighter.Client.Infrastructure.Interface;
 
 namespace Client.ModuleBase
 {
     [ModuleExport("Client.ModuleBase.ModuleBaseInit", typeof(IModule))]
     public class ModuleBaseInit : IModule, IModuleInit
     {
+        #region Fields
         protected readonly IRegionManager _regionManager;
         protected readonly IServiceLocator _serviceLocator;
         protected readonly IEventAggregator _eventAggregator;
 
         protected IModuleResources _resources;
 
+        protected readonly ILighterContext _lighterContext;
+        #endregion
+
+
         [ImportingConstructor]
-        public ModuleBaseInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator)
+        public ModuleBaseInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterContext lighterContext)
         {
             _regionManager = regionManager;
             _serviceLocator = serviceLocator;
             _eventAggregator = eventAggregator;
+            _lighterContext = lighterContext;
 
             _resources = null;
         }
@@ -45,6 +55,7 @@ namespace Client.ModuleBase
 
         #endregion
 
+        #region MenuItem & Toolbar Command
         protected void MenuItemAndToolbarCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -53,6 +64,27 @@ namespace Client.ModuleBase
         protected void MenuItemAndToolbarCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             _eventAggregator.GetEvent<RoutedUICommandSelectedEvent>().Publish(e.Command);
+        }
+        #endregion MenuItem & Toolbar Command
+
+        #region MenuItem & Toolbar Initialize
+        protected virtual void MenuItemAndToolbarInitialize(Type type, string topMenuHeader, string topMenuName)
+        {
+            IModuleResources resources = GetModuleResources();
+            ObservableCollection<CommandInfo> commandInfos = resources.GetCommandInfos(type);
+            foreach (CommandInfo info in commandInfos)
+            {
+                CommandBinding cmdBinding = CreateCommandBindingFroUICommand(info.Command);
+                if (cmdBinding != null)
+                    info.CommandBinding = cmdBinding;
+            }
+
+            AddCommandInfosIntoGlobalCommands(commandInfos);
+
+            _eventAggregator.GetEvent<ToolbarButtonAddedEvent>().Publish(commandInfos);
+
+            ObservableCollection<MenuItem> menuItems = GetMenuItemsWithTopMenuItem(commandInfos, topMenuHeader, topMenuName);
+            _eventAggregator.GetEvent<MenuItemAddedEvent>().Publish(menuItems);
         }
 
         public virtual IModuleResources GetModuleResources()
@@ -111,7 +143,30 @@ namespace Client.ModuleBase
 
         public virtual void AddCommandInfosIntoGlobalCommands(ObservableCollection<CommandInfo> commandInfos)
         {
-            LighterContext.GetInstance().AddComandInfos(commandInfos);
+            _lighterContext.AddComandInfos(commandInfos);
         }
+
+        #endregion MenuItem & Toolbar Initialize
+
+        #region Server Endpoints
+        protected virtual ILighterMainService GetMainService()
+        {
+            if (_lighterContext != null)
+            {
+                ILighterService service = _lighterContext.FindService("MainService");
+                if (service == null)
+                {
+                    _lighterContext.CreateMainService();
+                    service = _lighterContext.FindService("MainService");
+                }
+                
+                return service as ILighterMainService;
+            }
+
+            return null;
+        }
+
+        protected virtual ILighterService CreateService() { return null; }
+        #endregion
     }
 }

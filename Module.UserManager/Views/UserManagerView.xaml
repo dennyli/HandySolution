@@ -7,7 +7,7 @@
     mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="500">
 
     <Grid>
-        
+        <Label Content="User Manager" />
     </Grid>
 
 </UserControl>

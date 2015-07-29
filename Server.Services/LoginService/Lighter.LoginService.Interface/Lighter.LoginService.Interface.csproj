@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
@@ -72,7 +76,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
+xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

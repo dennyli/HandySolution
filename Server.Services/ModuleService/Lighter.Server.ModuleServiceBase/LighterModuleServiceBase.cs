@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Lighter.BaseService;
-using System.ComponentModel.Composition;
-using Lighter.Data;
-using Utility;
-using Lighter.Data.Repositories;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 using AutoMapper;
+using Lighter.BaseService;
+using Lighter.Data;
 using Lighter.ModuleServiceBase.Interface;
 using Lighter.ModuleServiceBase.Model;
+using Lighter.Server.Common;
+using Utility;
 
 namespace Lighter.ModuleServiceBase
 {
@@ -52,6 +49,20 @@ namespace Lighter.ModuleServiceBase
 
             if (null == Mapper.FindTypeMapFor<ModuleDTO, Module>())
                 Mapper.CreateMap<ModuleDTO, Module>();
+        }
+
+        public virtual OperationResult CheckSession()
+        {
+            SessionState state = OperationContext.Current.InstanceContext.Extensions.Find<SessionState>();
+            if (state == null)
+                return new OperationResult(OperationResultType.IllegalOperation);
+
+            SessionState stateChecked = null;
+            LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
+            if (!manager.TryGetValue(state.Account, out stateChecked))
+                return new OperationResult(OperationResultType.IllegalOperation);
+
+            return new OperationResult(OperationResultType.Success);
         }
     }
 }

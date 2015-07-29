@@ -9,6 +9,7 @@ using Lighter.ModuleServiceBase.Data;
 using Lighter.ModuleServiceBase.Model;
 using Lighter.UserManagerService.Model;
 using Utility;
+using AutoMapper;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
@@ -180,10 +181,18 @@ namespace Lighter.UserManagerService.UserManagerData
         {
             if (type == typeof(AccountDTO))
             {
-                List<Account> accounts = Accounts.ToList<Account>();
+                return Convert2DTO<Account, AccountDTO>(Accounts);
             }
-
-            return null;
+            else if (type == typeof(RoleDTO))
+            {
+                return Convert2DTO<Role, RoleDTO>(Roles);
+            }
+            else if (type == typeof(DepartmentDTO))
+            {
+                return Convert2DTO<Department, DepartmentDTO>(Departments);
+            }
+            else
+                return null;
         }
 
         OperationResult IUserManagerDataService.AddEntity(DTOEntityBase<string> entity)

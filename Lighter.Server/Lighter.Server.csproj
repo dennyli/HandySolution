@@ -64,8 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Tools\ExceptionMessage.cs" />
-    <Compile Include="Tools\OperatorFile.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ServiceInfo.cs" />
     <Page Include="MainWindow.xaml">
@@ -202,6 +200,9 @@
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

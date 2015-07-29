@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</ProjectGuid>
+    <ProjectGuid>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.ServiceManager.Interface</RootNamespace>
-    <AssemblyName>Lighter.ServiceManager.Interface</AssemblyName>
+    <RootNamespace>Lighter.BaseService.Interface</RootNamespace>
+    <AssemblyName>Lighter.BaseService.Interface</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IHostedService.cs" />
+    <Compile Include="ILighterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

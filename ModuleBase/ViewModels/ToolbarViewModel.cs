@@ -11,6 +11,7 @@ using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
+using Lighter.Client.Infrastructure.Interface;
 
 namespace Client.ModuleBase.ViewModels
 {
@@ -22,16 +23,17 @@ namespace Client.ModuleBase.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IServiceLocator _serviceLocator;
 
-        private readonly LighterContext _context;
+        private readonly ILighterContext _lighterContext;
 
         [ImportingConstructor]
-        public ToolbarViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IServiceLocator serviceLocator)
+        public ToolbarViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IServiceLocator serviceLocator, ILighterContext lighterContext)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _serviceLocator = serviceLocator;
 
-            _context = LighterContext.GetInstance();
+            _lighterContext = lighterContext;
+
             ToolbarItems = new ObservableCollection<ToolbarCommand>();
 
             _eventAggregator.GetEvent<RoutedUICommandSelectedEvent>().Subscribe(RoutedUICommandSelected);
@@ -69,12 +71,12 @@ namespace Client.ModuleBase.ViewModels
             _lastRoutedUICommand = command;
             RoutedUICommand routedUICommand = command as RoutedUICommand;
 
-            var cmds = _context.AllCommandInfos.Where<CommandInfo>(t => t.Name == routedUICommand.Name);
-            if (cmds.Count() != 1)
+            CommandInfo info = _lighterContext.FindCommandInfoByName(routedUICommand.Name);
+            if (info == null)
                 return;
 
             // Open New View
-            _regionManager.RequestNavigate(RegionNames.MainRegion, QueryStringBuilder.Construct(cmds.First<CommandInfo>().ViewKey, null));
+            _regionManager.RequestNavigate(RegionNames.MainRegion, QueryStringBuilder.Construct(info.ViewKey, null));
 
             // Reset All Toolbar Button Background
             foreach (ToolbarCommand cmd in ToolbarItems)

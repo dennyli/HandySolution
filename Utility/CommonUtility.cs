@@ -52,6 +52,11 @@ namespace Utility
             return ip;
         }
 
+        public static string GetHostName()
+        {
+            return Dns.GetHostName();
+        }
+
         private static bool DllIsNetBased(string dllName)
         {
             try

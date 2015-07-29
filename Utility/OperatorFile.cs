@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Lighter.Server.Tools
+namespace Utility
 {
     public class OperatorFile
     {
         [DllImport("kernel32")] //引入“shell32.dll”API文件
         private static extern int GetPrivateProfileString(string section, string key, string def, 
             StringBuilder retVal, int size, string filePath);
+        [DllImport("kernel32")] //引入“shell32.dll”API文件
+        private static extern bool WritePrivateProfileString(string section, string key, string value, string filePath);
 
         /// <summary>
         /// 从INI文件中读取指定节点的内容
@@ -25,6 +27,11 @@ namespace Lighter.Server.Tools
             StringBuilder temp = new StringBuilder(1024);
             GetPrivateProfileString(section, key, def, temp, 1024, filePath);
             return temp.ToString();
+        }
+
+        public static bool WriteIniFileString(string section, string key, string def, string filePath)
+        {
+            return WritePrivateProfileString(section, key, def, filePath);
         }
     }
 }

@@ -38,6 +38,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -98,9 +99,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Client.Infrastructure.csproj">
       <Project>{534D59E2-CBE6-413E-BD58-51C9EC814C24}</Project>
       <Name>Lighter.Client.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Module.Common\Client.Module.Common.csproj">
       <Project>{6AA25A6B-7765-4D74-BDEE-1E9D36197E4E}</Project>
@@ -121,6 +130,10 @@
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
+      <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>
+      <Name>Lighter.MainService.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

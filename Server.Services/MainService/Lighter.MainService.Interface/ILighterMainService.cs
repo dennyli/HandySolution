@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
-using Lighter.BaseService;
+using Lighter.BaseService.Interface;
 using Lighter.MainService.Model;
 using Lighter.ServiceManager;
 

@@ -51,6 +51,10 @@
     <Compile Include="LighterMainService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>

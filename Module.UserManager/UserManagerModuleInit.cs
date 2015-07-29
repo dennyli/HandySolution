@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
@@ -11,6 +12,12 @@ using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.ServiceLocation;
+using Lighter.MainService.Interface;
+using Lighter.UserManagerService.Interface;
+using Lighter.BaseService.Interface;
+using System.ServiceModel;
+using Lighter.Client.Infrastructure.Interface;
+using Lighter.Client.Infrastructure.Implement;
 
 namespace Client.Module.UserManager
 {
@@ -18,8 +25,8 @@ namespace Client.Module.UserManager
     public class UserManagerModuleInit : ModuleBaseInit
     {
         [ImportingConstructor]
-        public UserManagerModuleInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator )
-            : base(regionManager, eventAggregator, serviceLocator)
+        public UserManagerModuleInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterContext lighterContext)
+            : base(regionManager, eventAggregator, serviceLocator, lighterContext)
         {
         }
 
@@ -27,21 +34,30 @@ namespace Client.Module.UserManager
 
         public override void Initialize()
         {
-            IModuleResources resources = GetModuleResources();
-            ObservableCollection<CommandInfo> commandInfos = resources.GetCommandInfos(typeof(UserManagerModuleInit));
-            foreach (CommandInfo info in commandInfos)
+            MenuItemAndToolbarInitialize(typeof(UserManagerModuleInit), CommandDefinitions.CU_TOPMENU_TEXT, CommandDefinitions.CU_TOPMENU_TEXT);
+
+            CreateService();
+        }
+
+        protected override ILighterService CreateService()
+        {
+            ILighterUserManagerService service = _lighterContext.FindService("UserManagerService") as ILighterUserManagerService;
+            if (service == null)
             {
-                CommandBinding cmdBinding = CreateCommandBindingFroUICommand(info.Command);
-                if (cmdBinding != null)
-                    info.CommandBinding = cmdBinding;
+                ILighterMainService mainService = GetMainService();
+
+                string serviceName = "LighterUserManagerService";
+                bool bExist = mainService.ServiceIsExists(serviceName);
+                if (!bExist)
+                    throw new InvalidOperationException("服务端未发现UserManager服务，无法创建UserManager服务!");
+
+                Uri[] uris = mainService.GetServiceAddress(serviceName);
+                service = ServiceFactory<ILighterUserManagerService>.CreateService(uris[0]);
+
+                _lighterContext.AddService("UserManagerService", service);
             }
 
-            AddCommandInfosIntoGlobalCommands(commandInfos);
-
-            _eventAggregator.GetEvent<ToolbarButtonAddedEvent>().Publish(commandInfos);
-
-            ObservableCollection<MenuItem> menuItems = GetMenuItemsWithTopMenuItem(commandInfos, CommandDefinitions.CU_TOPMENU_TEXT, CommandDefinitions.CU_TOPMENU_TEXT);
-            _eventAggregator.GetEvent<MenuItemAddedEvent>().Publish(menuItems);
+            return service as ILighterService;
         }
 
         public override IModuleResources CreateModuleResources()

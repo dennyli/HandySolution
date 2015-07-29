@@ -34,7 +34,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,13 +46,34 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LighterContext.cs" />
+    <Compile Include="Implement\ServiceFactory.cs" />
+    <Compile Include="Interface\ICommandContext.cs" />
+    <Compile Include="Interface\IServiceContext.cs" />
+    <Compile Include="Interface\IConfig.cs" />
+    <Compile Include="Implement\LighterContext.cs" />
+    <Compile Include="Interface\ILighterContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module.Common\Client.Module.Common.csproj">
       <Project>{6AA25A6B-7765-4D74-BDEE-1E9D36197E4E}</Project>
       <Name>Client.Module.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
+      <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>
+      <Name>Lighter.MainService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

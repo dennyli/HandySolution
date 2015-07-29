@@ -5,46 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-    <UserControl.Resources>
-        <SolidColorBrush x:Key="PrimaryBrush" Color="#FF4169AA" />
-        <SolidColorBrush x:Key="PrimaryFont" Color="White" />
-    </UserControl.Resources>
     <Grid>
-        <DataGrid AutoGenerateColumns="true" Height="392" HorizontalAlignment="Left" Margin="33,33,0,0" Name="dgDepartment" VerticalAlignment="Top" Width="402" LoadingRow="dgDepartment_LoadingRow" ItemsSource="{Binding DepartmentsModel}">
-            <DataGrid.RowHeaderStyle>
-                <Style TargetType="DataGridRowHeader">
-                    <Setter Property="Width" Value="15"/>
-                    <Setter Property="Background">
-                        <Setter.Value>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="White" Offset="0"/>
-                                <!--这里用到了两种颜色  也可以多层  这样就可以产生一种渐变的效果或立体感-->
-                                <GradientStop Color="SkyBlue" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DataGrid.RowHeaderStyle>
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
-                    <Setter Property="Foreground" Value="{StaticResource PrimaryFont}" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="LightBlue" />
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <!--当鼠标经过时 改变颜色-->
-                            <Setter Property="Background" Value="SkyBlue"/>
-                            <Setter Property="Foreground" Value="White"/>
-                        </Trigger>
-                        
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.RowStyle>
-        </DataGrid>
+        <Label Content="Department Manager" />
     </Grid>
 </UserControl>

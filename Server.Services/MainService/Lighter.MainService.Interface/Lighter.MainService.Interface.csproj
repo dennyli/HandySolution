@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
@@ -66,10 +70,6 @@
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseService\Lighter.BaseService.csproj">
-      <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
-      <Name>Lighter.BaseService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lighter.MainService.Model\Lighter.MainService.Model.csproj">
       <Project>{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}</Project>
       <Name>Lighter.MainService.Model</Name>
@@ -77,7 +77,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
+xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
