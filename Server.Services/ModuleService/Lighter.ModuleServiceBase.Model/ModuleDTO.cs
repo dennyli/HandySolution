@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 
 namespace Lighter.ModuleServiceBase.Model
 {
     [Description("模块信息")]
     [DataContract]
+    [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class ModuleDTO : DTOEntityBase<string>
     {
         public ModuleDTO()

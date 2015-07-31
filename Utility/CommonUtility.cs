@@ -13,16 +13,23 @@ namespace Utility
         public static string GetErrorMessageFromException(Exception ex)
         {
             StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             Exception inner_e = ex;
             while (inner_e != null)
             {
                 if (sb.Length > 0)
                     sb.Insert(0, "\n");
-                sb.Insert(0, inner_e.Message);
+
+                sb2.Remove(0, sb2.Length);
+                sb2.Append(inner_e.GetType().FullName);
+                sb2.Append("\n");
+                sb2.Append(inner_e.Message);
+
+                sb.Insert(0, sb2.ToString());
 
                 inner_e = inner_e.InnerException;
             }
-            sb.Insert(0, "添加记录遇到错误: \n");
+            sb.Insert(0, "遇到错误: \n");
 
             return sb.ToString();
         }

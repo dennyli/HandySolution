@@ -10,6 +10,7 @@ using Lighter.ModuleServiceBase.Model;
 using Lighter.UserManagerService.Model;
 using Utility;
 using AutoMapper;
+using Lighter.UserManagerService.Defination;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
@@ -45,10 +46,16 @@ namespace Lighter.UserManagerService.UserManagerData
         }
 
         #region Explict Declare
-        //public List<AccountDTO> GetAccounts()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public List<AccountDTO> GetAccounts()
+        {
+            List<DTOEntityBase<string>> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
+
+            List<AccountDTO> accountDTOs = new List<AccountDTO>();
+            foreach (DTOEntityBase<string> dto in dtos)
+                accountDTOs.Add(dto as AccountDTO);
+
+            return accountDTOs;
+        }
 
         //public List<AccountDTO> GetAccountsByDepartment(string departmentCode)
         //{
@@ -171,6 +178,18 @@ namespace Lighter.UserManagerService.UserManagerData
         //}
         #endregion
 
+        List<ModuleDTO> IUserManagerDataService.GetSupportedModules()
+        {
+            IQueryable<Module> modules = Modules.Where<Module>(m => m.Catalog == UserManagerDefination.ServiceId);
+            List<DTOEntityBase<string>> dtos = Convert2DTO<Module, ModuleDTO>(modules);
+
+            List<ModuleDTO> moduleDTOs = new List<ModuleDTO>();
+            foreach (DTOEntityBase<string> dto in dtos)
+                moduleDTOs.Add(dto as ModuleDTO);
+
+            return moduleDTOs;
+        }
+
         #region Generic
         DTOEntityBase<string> IUserManagerDataService.GetDTOEntity(string key, Type type)
         {
@@ -190,6 +209,10 @@ namespace Lighter.UserManagerService.UserManagerData
             else if (type == typeof(DepartmentDTO))
             {
                 return Convert2DTO<Department, DepartmentDTO>(Departments);
+            }
+            else if (type == typeof(ModuleDTO))
+            {
+                return Convert2DTO<Module, ModuleDTO>(Modules);
             }
             else
                 return null;

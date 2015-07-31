@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid>
-        <Label Content="Department Manager" />
+        <Label Content="{Binding Title}" />
     </Grid>
 </UserControl>

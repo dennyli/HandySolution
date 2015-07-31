@@ -43,6 +43,7 @@ namespace Lighter.Server.Infrastructure
         public EFDbContext(IEFDbContextProvider provider)
             : base(provider.GetConnectionString())
         {
+
         }
 
         [ImportMany(typeof(IEntityMapper))]
@@ -61,6 +62,8 @@ namespace Lighter.Server.Infrastructure
             {
                 mapper.RegistTo(modelBuilder.Configurations);
             }
+
+            //this.Database.Initialize(true);
         }
     }
 }

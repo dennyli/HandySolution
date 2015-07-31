@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
-using Client.Module.UserManager.Interface;
+using Client.Module.UserManager.Interface.Services;
+using Client.Module.UserManager.Interface.ViewModels;
 using Client.Module.UserManager.Models;
 using Client.ModuleBase.ViewModels;
 using Microsoft.Practices.Prism.Events;
@@ -19,7 +20,7 @@ namespace Client.Module.UserManager.ViewModels
         }
 
 
-        public Departments DepartmentsModel { get; private set; }
+        
 
         #region INavigationAware Members
         public override bool IsNavigationTarget(NavigationContext navigationContext)
@@ -33,6 +34,14 @@ namespace Client.Module.UserManager.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
+        }
+        #endregion
+
+        #region Fields
+        public Departments DepartmentsModel { get; private set; }
+        public string Title
+        {
+            get { return CommandDefinitions.CT_DEPART_MANAGE; }
         }
         #endregion
     }

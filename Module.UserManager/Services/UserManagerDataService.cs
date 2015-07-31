@@ -1,17 +1,17 @@
-using System;
-using System.ComponentModel.Composition;
-using Client.Module.Common.Interface;
-using Client.ModuleBase.Services;
-using Client.Module.UserManager.Interface;
-using Lighter.Client.Infrastructure.Interface;
-using Lighter.UserManagerService.Model;
-using System.Collections.ObjectModel;
-using Lighter.UserManagerService.Interface;
-using Lighter.ModuleServiceBase.Model;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
-using Microsoft.Practices.ServiceLocation;
+using Client.Module.UserManager.Interface.Services;
 using Client.Module.UserManager.Models;
+using Client.ModuleBase.Services;
+using Lighter.Client.Infrastructure.Interface;
+using Lighter.ModuleServiceBase.Model;
+using Lighter.UserManagerService.Interface;
+using Lighter.UserManagerService.Model;
+using Microsoft.Practices.ServiceLocation;
+using System;
+using Utility;
+using System.ServiceModel;
 
 namespace Client.Module.UserManager.Services
 {
@@ -35,23 +35,30 @@ namespace Client.Module.UserManager.Services
             ILighterUserManagerService service = GetServerService(typeof(UserManagerModuleInit)) as ILighterUserManagerService;
             Debug.Assert(service != null);
 
-            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
+            try
+            {
+                //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
+                Accounts accounts = new Accounts();
+                //foreach (DTOEntityBase<string> dto in dtos)
+                //    accounts.Add(dto as AccountDTO);
 
-            Accounts accounts = new Accounts();
-            foreach (DTOEntityBase<string> dto in dtos)
-                accounts.Add(dto as AccountDTO);
+                List<AccountDTO> dtos = service.GetAccounts();
+                foreach (AccountDTO dto in dtos)
+                    accounts.Add(dto);
 
-            return accounts;
+                return accounts;
+            }
+            catch (ProtocolException ex)
+            {
+                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
+                // Todo
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
+            }
+
+            return null;
         }
-
-        //public ObservableCollection<DepartmentDTO> GetDepartments()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public ObservableCollection<RoleDTO> GetRoles()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

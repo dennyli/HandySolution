@@ -2,11 +2,13 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Model;
+using System.ServiceModel;
 
 namespace Lighter.UserManagerService.Model
 {
     [Description("角色信息")]
     [DataContract]
+    [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class RoleDTO : DTOEntityBase<string>
     {
         public RoleDTO()

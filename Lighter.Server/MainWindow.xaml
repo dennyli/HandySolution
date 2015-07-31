@@ -4,13 +4,13 @@
         Title="{Binding Path=Title}" Height="500" Width="500" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="188*" />
             <ColumnDefinition Width="6" />
             <ColumnDefinition Width="169*" />
             <ColumnDefinition Width="6" />
             <ColumnDefinition Width="91*" />
-            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -32,9 +32,13 @@
         <Label Grid.Row="1" Name="lblTitle" FontSize="30" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF1313FC" Content="{Binding Path=Title}" Grid.ColumnSpan="5" Grid.Column="1" Margin="4,0,2,0" />
         <Label Content="服务列表" Grid.Row="5" Name="lblServices" VerticalContentAlignment="Bottom" Grid.Column="1" Margin="4,0,0,0" Grid.ColumnSpan="5" />
         <Label Content="已登录用户列表" Grid.Row="9" Name="lblAccounts" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="0,0,2,0" Grid.ColumnSpan="5" />
-        <Label Content="{Binding Path=LastMessage}" Grid.Row="13" Name="lblMessages" VerticalContentAlignment="Bottom" Grid.ColumnSpan="3" Margin="4,0,11,0" Grid.Column="1" />
+        <StackPanel Orientation="Horizontal" Margin="4,0" Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="5">
+            <Label Content="{Binding Path=LastMessage}" Name="lblMessages" Margin="0,0,4,0" Width="372" />
+            <Button Content="历史消息..." Name="btnHistoryMessages" Height="28" Command="{Binding OpenHistoryMessageCommand}"  />
+        </StackPanel>
+        
         <ListBox Grid.Column="1" Grid.Row="11" Name="lstAccounts" Margin="4,0,2,0" Grid.ColumnSpan="5" 
-                 ItemsSource="{Binding Path=Users}" >
+                 ItemsSource="{Binding Path=Users}" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -46,7 +50,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Row="7" Name="lstServices" Grid.Column="1" Margin="4,0,2,0" Grid.ColumnSpan="5" ItemsSource="{Binding Path=Services}">
+        <ListBox Grid.Row="7" Name="lstServices" Grid.Column="1" Margin="4,0,2,0" Grid.ColumnSpan="5" ItemsSource="{Binding Path=Services}" ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -58,7 +62,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="历史消息..." Grid.Column="3" Grid.Row="13" Name="btnHistoryMessages" Height="28" VerticalAlignment="Bottom" Margin="175,0,2,0" Grid.ColumnSpan="3" />
+        
         <Label Content="{Binding Path=ServerIP}" Grid.Column="3" Grid.Row="3" Name="lblServerIP" VerticalContentAlignment="Center" Margin="61,0,0,0" />
         <Label Content="IP地址:" Grid.Column="3" Grid.Row="3" Name="lblIP" VerticalContentAlignment="Center" Margin="0,0,114,0" />
         <Label Content="{Binding Path=ServerName}" Grid.Column="1" Grid.Row="3" Margin="74,0,0,0" Name="lblServerName" VerticalContentAlignment="Center" />

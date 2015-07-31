@@ -65,5 +65,10 @@ namespace Lighter.LoginService.LoginData
 
             return new OperationResult(OperationResultType.Success, "退出成功。"); 
         }
+
+        public override void Initialize()
+        {
+            
+        }
     }
 }

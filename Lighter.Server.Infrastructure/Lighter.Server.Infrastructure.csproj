@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EFDbContextFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\IConfigurationExtension.cs" />
     <Compile Include="DataHelper.cs" />

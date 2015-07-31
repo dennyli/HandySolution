@@ -36,5 +36,10 @@ namespace Lighter.LoginService
 
         //    return sb.ToString();
         //}
+
+        public void Initialize()
+        {
+            
+        }
     }
 }

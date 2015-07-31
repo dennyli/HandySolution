@@ -17,6 +17,7 @@ using Lighter.MainService.Interface;
 using System.ServiceModel;
 using Lighter.BaseService.Interface;
 using Lighter.Client.Infrastructure.Interface;
+using Lighter.Client.Infrastructure.Implement;
 
 namespace Client.ModuleBase
 {
@@ -128,7 +129,7 @@ namespace Client.ModuleBase
 
         public virtual IModuleResources CreateModuleResources()
         {
-            throw new NotImplementedException("CreateModuleResources must be implemented in subclass of ModuleBaseInit");
+            return new ModuleResources();
         }
 
         public virtual CommandBinding CreateCommandBindingFroUICommand(ICommand command)
@@ -153,11 +154,12 @@ namespace Client.ModuleBase
         {
             if (_lighterContext != null)
             {
-                ILighterService service = _lighterContext.FindService("MainService");
+                //IModuleResources resources = GetModuleResources();
+                ILighterService service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
                 if (service == null)
                 {
                     _lighterContext.CreateMainService();
-                    service = _lighterContext.FindService("MainService");
+                    service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
                 }
                 
                 return service as ILighterMainService;

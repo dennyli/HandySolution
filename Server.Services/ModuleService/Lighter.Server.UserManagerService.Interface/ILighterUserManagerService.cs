@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime;
 using System.Collections.Generic;
 using System.ServiceModel;
 using Lighter.ModuleServiceBase.Interface;
@@ -17,7 +18,8 @@ namespace Lighter.UserManagerService.Interface
     {
         #region  Explict Declare
         //#region Account
-        //Collection<AccountDTO> GetAccounts();
+        [OperationContract]
+        List<AccountDTO> GetAccounts();
         //Collection<AccountDTO> GetAccountsByDepartment(string departmentCode);
         //Collection<AccountDTO> GetAccountsByRole(string roleCode);
 

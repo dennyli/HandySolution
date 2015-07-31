@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:res="clr-namespace:Client.ModuleBase;assembly=Client.Module.Base"
-        Title="门板管理系统" WindowStartupLocation="CenterScreen"  Height="700" Width="1200">
+        Title="{Binding Path=Title}" WindowStartupLocation="CenterScreen"  Height="700" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />

@@ -7,9 +7,12 @@ using System.ServiceModel;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
-    public class ServiceFactory<T>
+    public class ServiceFactory
     {
-        public static T CreateService(Uri uri)
+        public static string MAIN_SERVICE_NAME = "LighterMainService";
+        public static string LOGIN_SERVICE_NAME = "LighterLoginService";
+
+        public static T CreateService<T>(Uri uri)
         {
             EndpointAddress address = new EndpointAddress(uri);
             NetTcpBinding binding = new NetTcpBinding();
@@ -22,6 +25,12 @@ namespace Lighter.Client.Infrastructure.Implement
 #endif
             ChannelFactory<T> factory = new ChannelFactory<T>(binding, address);
             T service = factory.CreateChannel();
+
+#if DEBUG
+            // Timeout: 10 mins
+            IContextChannel channel = service as IClientChannel;
+            channel.OperationTimeout = new TimeSpan(0, 10, 0);
+#endif
 
             return service;
         }

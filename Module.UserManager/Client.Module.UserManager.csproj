@@ -57,6 +57,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RoleManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserManagerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,14 +70,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandDefinitions.cs" />
-    <Compile Include="Interface\IDepartmentManagerDataService.cs" />
-    <Compile Include="Interface\IDepartmentManagerViewModel.cs" />
-    <Compile Include="Interface\IUserManagerDataService.cs" />
-    <Compile Include="Interface\IUserManagerViewModel.cs" />
+    <Compile Include="Interface\Services\IDepartmentManagerDataService.cs" />
+    <Compile Include="Interface\Services\IRoleManagerDataService.cs" />
+    <Compile Include="Interface\ViewModels\IDepartmentManagerViewModel.cs" />
+    <Compile Include="Interface\Services\IUserManagerDataService.cs" />
+    <Compile Include="Interface\ViewModels\IRoleManagerViewModel.cs" />
+    <Compile Include="Interface\ViewModels\IUserManagerViewModel.cs" />
     <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Services\DepartmentManagerDataService.cs" />
+    <Compile Include="Services\RoleManagerDataService.cs" />
     <Compile Include="UserManagerModuleInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -91,11 +98,15 @@
     <Compile Include="Services\UserManagerDataService.cs" />
     <Compile Include="UserManagerResources.cs" />
     <Compile Include="ViewModels\DepartmentManagerViewModel.cs" />
+    <Compile Include="ViewModels\RoleManagerViewModel.cs" />
     <Compile Include="ViewModels\UserManagerViewModel.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\DepartmentManagerView.xaml.cs">
       <DependentUpon>DepartmentManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoleManagerView.xaml.cs">
+      <DependentUpon>RoleManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserManagerView.xaml.cs">
       <DependentUpon>UserManagerView.xaml</DependentUpon>
@@ -170,8 +181,14 @@
       <Project>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</Project>
       <Name>Lighter.UserManagerService.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\role.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\user.png" />
     <Resource Include="Images\users.png" />

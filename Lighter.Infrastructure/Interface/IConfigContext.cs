@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Lighter.Client.Infrastructure.Interface
 {
-    public interface IConfig
+    public interface IConfigContext
     {
+        string GetClientName();
+
         string GetServerName();
         string GetServerIp();
         string GetServerPort();

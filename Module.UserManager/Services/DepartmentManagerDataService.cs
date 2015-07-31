@@ -1,16 +1,14 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using Client.Module.UserManager.Interface;
+using System.Diagnostics;
+using Client.Module.UserManager.Interface.Services;
 using Client.Module.UserManager.Models;
 using Client.ModuleBase.Services;
-using Microsoft.Practices.ServiceLocation;
 using Lighter.Client.Infrastructure.Interface;
-using System.Collections.ObjectModel;
-using Lighter.UserManagerService.Model;
-using Lighter.UserManagerService.Interface;
-using System.Diagnostics;
-using System.Collections.Generic;
 using Lighter.ModuleServiceBase.Model;
+using Lighter.UserManagerService.Interface;
+using Lighter.UserManagerService.Model;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Client.Module.UserManager.Services
 {

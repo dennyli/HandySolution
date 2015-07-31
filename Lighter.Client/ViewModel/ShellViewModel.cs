@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Commands;
+using Lighter.Client.Infrastructure.Interface;
 
 namespace Lighter.Client
 {
@@ -12,6 +13,10 @@ namespace Lighter.Client
             // Initialize this ViewModel's commands.
             ExitCommand = new DelegateCommand<object>(AppExit, CanAppExit);
         }
+
+        [Import]
+        public ILighterContext _lighterContext { get; set; }
+        public string Title { get { return _lighterContext.GetClientName(); } }
 
         #region ExitCommand
         public DelegateCommand<object> ExitCommand { get; private set; }
@@ -26,8 +31,7 @@ namespace Lighter.Client
             return true;
         }
         #endregion
-
-        
+             
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Model;
+using System.ServiceModel;
 
 namespace Lighter.UserManagerService.Model
 {
     [Description("账户信息")]
     [DataContract]
+    [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class AccountDTO : DTOEntityBase<string>
     {
         public AccountDTO()

@@ -13,6 +13,7 @@ using Lighter.UserManagerService.Interface;
 using Lighter.UserManagerService.Model;
 using Lighter.UserManagerService.UserManagerData;
 using Utility;
+using Lighter.UserManagerService.Defination;
 
 namespace Lighter.UserManagerService
 {
@@ -22,6 +23,7 @@ namespace Lighter.UserManagerService
     [ServiceKnownType(typeof(DepartmentDTO))]
     [ServiceKnownType(typeof(RoleDTO))]
     [ServiceKnownType(typeof(ModuleDTO))]
+    [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class LighterUserManagerService : LighterModuleServiceBase, ILighterUserManagerService
     {
         [Import]
@@ -29,14 +31,12 @@ namespace Lighter.UserManagerService
 
         public override string GetServiceId()
         {
-            return "UserManager";
+            return UserManagerDefination.ServiceId;
         }
 
-        public override List<ModuleDTO> GetModules()
+        public override List<ModuleDTO> GetSupportedModules()
         {
-            //return GetDTOEntities(typeof(ModuleDTO)) as List<ModuleDTO>;
-
-            return null;
+            return _dataService.GetSupportedModules();
         }
 
         public override void Initialize()
@@ -55,22 +55,25 @@ namespace Lighter.UserManagerService
                 baseMap.IncludeDerivedTypes(typeof(RoleDTO), typeof(Role));
 
             if (null == Mapper.FindTypeMapFor<AccountDTO, Account>())
-                Mapper.CreateMap<AccountDTO, Account>();
+                Mapper.CreateMap<AccountDTO, Account>()
+                    .ForAllMembers(opt => opt.NullSubstitute(""));
 
             if (null == Mapper.FindTypeMapFor<DepartmentDTO, Department>())
-                Mapper.CreateMap<DepartmentDTO, Department>();
+                Mapper.CreateMap<DepartmentDTO, Department>()
+                    .ForAllMembers(opt => opt.NullSubstitute(""));
 
             if (null == Mapper.FindTypeMapFor<RoleDTO, Role>())
-                Mapper.CreateMap<RoleDTO, Role>();
+                Mapper.CreateMap<RoleDTO, Role>()
+                    .ForAllMembers(opt => opt.NullSubstitute(""));
 
             IsInitialized = true;
         }
 
         #region  Explict Declare
-        //public Collection<AccountDTO> GetAccounts()
-        //{
-        //    return _dataService.GetAccounts();
-        //}
+        public List<AccountDTO> GetAccounts()
+        {
+            return _dataService.GetAccounts();
+        }
 
         //public Collection<AccountDTO> GetAccountsByDepartment(string departmentCode)
         //{
@@ -201,7 +204,14 @@ namespace Lighter.UserManagerService
 
         public List<DTOEntityBase<string>> GetDTOEntities(Type type)
         {
-            return _dataService.GetDTOEntities(type);
+            try
+            {
+                return _dataService.GetDTOEntities(type);
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<Exception>(ex);
+            }
         }
 
         public OperationResult AddEntity(DTOEntityBase<string> entity)

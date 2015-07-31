@@ -12,9 +12,11 @@ using Lighter.BaseService.Interface;
 
 namespace Lighter.BaseService
 {
-    public abstract class LighterServiceBase : CoreServiceBase, ILighterService
+    public abstract class LighterServiceBase : /*CoreServiceBase,*/ ILighterService
     {
         [Import]
         public ILoggerFacade Logger { get; set; }
+
+        public abstract void Initialize();
     }
 }

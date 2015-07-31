@@ -11,6 +11,8 @@ namespace Lighter.UserManagerService.UserManagerData
 {
     public interface IUserManagerDataService : IModuleDataServiceBase
     {
+        List<ModuleDTO> GetSupportedModules();
+
         #region Generic
         DTOEntityBase<string> GetDTOEntity(string key, Type type);
         List<DTOEntityBase<string>> GetDTOEntities(Type type);
@@ -27,7 +29,7 @@ namespace Lighter.UserManagerService.UserManagerData
 
         #region  Explict Declare
         //#region Account
-        //List<AccountDTO> GetAccounts();
+        List<AccountDTO> GetAccounts();
         //List<AccountDTO> GetAccountsByDepartment(string departmentCode);
         //List<AccountDTO> GetAccountsByRole(string roleCode);
 

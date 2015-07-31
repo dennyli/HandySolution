@@ -21,7 +21,7 @@ namespace Lighter.ModuleServiceBase
         /// 服务对客户端提供的功能模块定义, 功能模块和用户角色和权限相关
         /// </summary>
         /// <returns>功能模块定义列表</returns>
-        public abstract List<ModuleDTO> GetModules();
+        public abstract List<ModuleDTO> GetSupportedModules();
 
         private bool bInitialized = false;
 
@@ -48,7 +48,8 @@ namespace Lighter.ModuleServiceBase
                 baseMap.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
 
             if (null == Mapper.FindTypeMapFor<ModuleDTO, Module>())
-                Mapper.CreateMap<ModuleDTO, Module>();
+                Mapper.CreateMap<ModuleDTO, Module>()
+                    .ForAllMembers(opt => opt.NullSubstitute(""));
         }
 
         public virtual OperationResult CheckSession()

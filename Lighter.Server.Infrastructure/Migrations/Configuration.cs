@@ -15,7 +15,7 @@ namespace Lighter.Server.Infrastructure.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        [ImportMany]
+        [ImportMany(typeof(IConfigurationExtension), RequiredCreationPolicy=CreationPolicy.Shared)]
         public ICollection<IConfigurationExtension> ConfigurationExtensions;
 
         protected override void Seed(EFDbContext context)

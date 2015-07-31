@@ -12,7 +12,7 @@ namespace Lighter.EFDbContextProvider
     {
         public MsSqlEFDbContextProvider()
         {
-            SetConnectionParameter("System.Data.SqlClient", "XSLCL", "xsmbscgl");
+            SetConnectionParameter("System.Data.SqlClient", "XSLCL", "LighterDB");
         }
 
     }

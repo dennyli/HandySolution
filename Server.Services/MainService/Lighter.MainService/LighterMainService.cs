@@ -18,7 +18,7 @@ namespace Lighter.MainService
     [ExportService("LighterMainService", typeof(LighterMainService),  typeof(ILighterMainService), 0), TcpEndpoint(40001)]
     public class LighterMainService : LighterServiceBase, ILighterMainService
     {
-        private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
+        //private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
         private ObservableCollection<Client> _clients = new ObservableCollection<Client>();
         private object _syncObj = new object();
 
@@ -36,15 +36,16 @@ namespace Lighter.MainService
         //[OperationContract(IsInitiating = true)]
         public bool Connect(Client client)
         {
-            if ((client == null) || _callbacks.ContainsKey(client.IP))
+            //if ((client == null) || _callbacks.ContainsKey(client.IP))
+            if (client == null)
                 return false;
 
             Logger.Log(client.Name + " connecting from " + client.IP + "... ", Category.Debug, Priority.Low);
 
-            ILighterConnectCallBack callback = OperationContext.Current.GetCallbackChannel<ILighterConnectCallBack>();
+            //ILighterConnectCallBack callback = OperationContext.Current.GetCallbackChannel<ILighterConnectCallBack>();
             lock (_syncObj)
             {
-                _callbacks.Add(client.IP, callback);
+                //_callbacks.Add(client.IP, callback);
                 _clients.Add(client);
             }
 
@@ -58,7 +59,8 @@ namespace Lighter.MainService
         {
             Logger.Log(client.Name + " disconnecting from " + client.IP + "... ", Category.Debug, Priority.Low);
 
-            if ((client != null) && _callbacks.ContainsKey(client.IP))
+            //if ((client != null) && _callbacks.ContainsKey(client.IP))
+            if (client != null)
             {
                 lock (_syncObj)
                 {
@@ -67,7 +69,7 @@ namespace Lighter.MainService
                         Client exists = _clients.Single<Client>(c => c.IP == client.IP);
                         _clients.Remove(exists);
 
-                        _callbacks.Remove(exists.IP);
+                        //_callbacks.Remove(exists.IP);
                     }
                     catch (InvalidOperationException)
                     {
@@ -115,5 +117,10 @@ namespace Lighter.MainService
             }
         }
 
+
+        public override void Initialize()
+        {
+            
+        }
     }
 }

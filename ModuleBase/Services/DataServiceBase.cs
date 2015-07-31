@@ -3,6 +3,9 @@ using Client.Module.Common.Interface;
 using Lighter.Client.Infrastructure.Interface;
 using Microsoft.Practices.ServiceLocation;
 using Lighter.BaseService.Interface;
+using System.Diagnostics;
+using Microsoft.Practices.Prism.Modularity;
+using System.Collections.Generic;
 
 namespace Client.ModuleBase.Services
 {
@@ -25,10 +28,33 @@ namespace Client.ModuleBase.Services
 
         public virtual ILighterService GetServerService(Type moduleInitType)
         {
-            IModuleInit moduleInit = _serviceLocator.GetInstance(moduleInitType) as IModuleInit;
-            IModuleResources resource = moduleInit.GetModuleResources();
+            try
+            {
+                //IModuleInit moduleInit = _serviceLocator.GetInstance(moduleInitType, moduleInitType.FullName) as IModuleInit;
+                
+                IEnumerable<IModule> ms = _serviceLocator.GetAllInstances<IModule>();
+                IModuleInit moduleInit = null;
+                foreach (IModule m in ms)
+                {
+                    if (m.GetType() == moduleInitType)
+                    {
+                        moduleInit = m as IModuleInit;
+                        break;
+                    }
+                }
+                if (moduleInit == null)
+                    return null;
 
-            return _lighterContext.FindService(resource.GetServiceName());
+                IModuleResources resource = moduleInit.GetModuleResources();
+
+                return _lighterContext.FindService(resource.GetServiceName());
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return null;
         }
     }
 }

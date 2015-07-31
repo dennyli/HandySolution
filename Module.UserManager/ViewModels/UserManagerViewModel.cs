@@ -1,14 +1,10 @@
-using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-
+using Client.Module.UserManager.Interface.Services;
+using Client.Module.UserManager.Interface.ViewModels;
+using Client.Module.UserManager.Models;
+using Client.ModuleBase.ViewModels;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
-
-using Client.ModuleBase.ViewModels;
-using Client.Module.UserManager.Interface;
-using Client.Module.Common.Interface;
-using Lighter.UserManagerService.Model;
-using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.ViewModels
 {
@@ -44,9 +40,11 @@ namespace Client.Module.UserManager.ViewModels
         #region Fields
         public Accounts AccountsModel { get; private set; }
 
-        //public ObservableCollection<AccountDTO> Accounts;
-        //public ObservableCollection<DepartmentDTO> Departments;
-        //public ObservableCollection<RoleDTO> Roles;
+        public string Title
+        {
+            get { return CommandDefinitions.CT_USER_MANAGE; }
+        }
+
         #endregion
 
     }

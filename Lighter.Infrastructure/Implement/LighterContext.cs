@@ -12,11 +12,15 @@ using Lighter.MainService.Interface;
 using Utility;
 using Lighter.Client.Infrastructure.Interface;
 using System.ComponentModel.Composition;
+using Lighter.Client.Infrastructure.Accounts;
+using Lighter.UserManagerService.Model;
+using Lighter.LoginService.Interface;
+using Lighter.LoginService.Model;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
     [Export(typeof(ILighterContext))]
-    public class LighterContext : ILighterContext
+    public class LighterContext : ILighterContext, IDisposable
     {
         private LighterContext()
         {
@@ -96,16 +100,24 @@ namespace Lighter.Client.Infrastructure.Implement
             if (!Int32.TryParse(GetServerPort(), out serverPort))
                 serverPort = 40000;
 
-            var builder = new UriBuilder("net.tcp", serverIp, serverPort, "LighterMainService");
-            ILighterMainService mainService = ServiceFactory<ILighterMainService>.CreateService(builder.Uri);
+            var builder = new UriBuilder("net.tcp", serverIp, serverPort, ServiceFactory.MAIN_SERVICE_NAME);
+            ILighterMainService mainService = ServiceFactory.CreateService<ILighterMainService>(builder.Uri);
 
-            AddService("MainService", mainService);
+            Lighter.MainService.Model.Client client = CreateNewClient();
+            mainService.Connect(client);
+
+            AddService(ServiceFactory.MAIN_SERVICE_NAME, mainService);
         }
 
         #endregion
 
-        #region IConfig Ini File
+        #region IConfigContext Ini File
         private string iniName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "client.ini");
+
+        public string GetClientName()
+        {
+            return OperatorFile.GetIniFileString("client", "name", "订单管理系统(客户端)", iniName);
+        }
 
         public string GetServerName()
         {
@@ -136,6 +148,69 @@ namespace Lighter.Client.Infrastructure.Implement
         {
             return OperatorFile.WriteIniFileString("server", "port", port.ToString(), iniName);
         }
+        #endregion
+
+        #region IAccountContext
+        private Account _account = null;
+        public void SetCurrentAccount(AccountDTO accountDto)
+        {
+            if (accountDto == null)
+                _account = null;
+            else
+                _account = new Account(accountDto);
+        }
+
+        public bool CheckHasCommandAuthority(string commandId)
+        {
+            return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);
+        }
+        #endregion
+
+        #region IDisposable
+        public void Dispose()
+        {
+            // Logout
+            AccountLogout();
+
+            // Disconnect main service
+            DisconnectServer();
+
+            // Close all service
+            CloseAllService();
+        }
+
+        private void CloseAllService()
+        {
+            
+        }
+
+        private void DisconnectServer()
+        {
+            Lighter.MainService.Model.Client client = CreateNewClient();
+
+            ILighterMainService mainService = FindService(ServiceFactory.MAIN_SERVICE_NAME) as ILighterMainService;
+            mainService.Disconnect(client);
+        }
+
+        private Lighter.MainService.Model.Client CreateNewClient()
+        {
+            Lighter.MainService.Model.Client client = new MainService.Model.Client();
+            client.Name = "Client";
+            client.IP = CommonUtility.GetHostIP4vDotFormat();
+            client.Time = DateTime.Now;
+
+            return client;
+        }
+
+        private bool AccountLogout()
+        {
+            ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+
+            LoginInfo info = new LoginInfo(_account.Id, "", CommonUtility.GetHostIP4vDotFormat());
+            OperationResult result = loginService.Logout(info);
+            return result.ResultType == OperationResultType.Success;
+        }
+
         #endregion
     }
 }

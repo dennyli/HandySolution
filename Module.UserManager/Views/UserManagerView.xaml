@@ -7,7 +7,20 @@
     mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="500">
 
     <Grid>
-        <Label Content="User Manager" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="480*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="22" />
+            <RowDefinition Height="3" />
+            <RowDefinition Height="450*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Label Content="{Binding Title}" Grid.Row="1" Grid.Column="1" Margin="2,2" />
+        <DataGrid AutoGenerateColumns="False" Margin="2,2" Name="gridAccounts" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding AccountsModel}" />
     </Grid>
 
 </UserControl>

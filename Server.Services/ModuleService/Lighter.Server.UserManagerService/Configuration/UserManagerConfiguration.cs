@@ -6,6 +6,7 @@ using System.Data.Entity.Migrations;
 using Lighter.Data;
 using Lighter.Server.Infrastructure;
 using Lighter.Server.Infrastructure.Migrations;
+using Lighter.UserManagerService.Defination;
 
 namespace Lighter.UserManagerService.Configuration
 {
@@ -17,11 +18,11 @@ namespace Lighter.UserManagerService.Configuration
             // Module
             List<Module> modules = new List<Module>()
             {
-                new Module() { Id = "U01", Name="用户管理", Catalog="账户管理", IsDeleted=false, LastDate=DateTime.Now },
-                new Module() { Id = "U02", Name="部门管理", Catalog="账户管理", IsDeleted=false, LastDate=DateTime.Now },
-                new Module() { Id = "U03", Name="岗位管理", Catalog="账户管理", IsDeleted=false, LastDate=DateTime.Now },
-                new Module() { Id = "U04", Name="权限管理", Catalog="账户管理", IsDeleted=false, LastDate=DateTime.Now },
-                new Module() { Id = "U05", Name="模块管理", Catalog="账户管理", IsDeleted=false, LastDate=DateTime.Now }
+                new Module() { Id = "MU01", Name="用户管理", Catalog=UserManagerDefination.ServiceId, IsDeleted=false, LastDate=DateTime.Now },
+                new Module() { Id = "MU02", Name="部门管理", Catalog=UserManagerDefination.ServiceId, IsDeleted=false, LastDate=DateTime.Now },
+                new Module() { Id = "MU03", Name="岗位管理", Catalog=UserManagerDefination.ServiceId, IsDeleted=false, LastDate=DateTime.Now },
+                new Module() { Id = "MU04", Name="权限管理", Catalog=UserManagerDefination.ServiceId, IsDeleted=false, LastDate=DateTime.Now },
+                new Module() { Id = "MU05", Name="模块管理", Catalog=UserManagerDefination.ServiceId, IsDeleted=false, LastDate=DateTime.Now }
             };
             DbSet<Module> moduleSet = context.Set<Module>();
             moduleSet.AddOrUpdate<Module>(m => new { m.Id }, modules.ToArray());
@@ -29,11 +30,11 @@ namespace Lighter.UserManagerService.Configuration
             // Role
             List<Role> roles = new List<Role>()
             {
-                new Role() { Id = "R01", Name="角色01", Authority="U01U02U03", Description="用户管理角色", IsDeleted=false, LastDate=DateTime.Now },
-                new Role() { Id = "R02", Name="角色02", Authority="U01U03U04", Description="", IsDeleted=false, LastDate=DateTime.Now },
-                new Role() { Id = "R03", Name="角色03", Authority="U01U02", Description="", IsDeleted=false, LastDate=DateTime.Now },
-                new Role() { Id = "R04", Name="角色04", Authority="U01U02U03U04", Description="", IsDeleted=false, LastDate=DateTime.Now },
-                new Role() { Id = "R05", Name="角色05", Authority="U01U02U03U04U05", Description="", IsDeleted=false, LastDate=DateTime.Now }
+                new Role() { Id = "R01", Name="角色01", Authority="MU01MU02MU03", Description="用户管理角色", IsDeleted=false, LastDate=DateTime.Now },
+                new Role() { Id = "R02", Name="角色02", Authority="MU01MU03MU04", Description="", IsDeleted=false, LastDate=DateTime.Now },
+                new Role() { Id = "R03", Name="角色03", Authority="MU01MU02", Description="", IsDeleted=false, LastDate=DateTime.Now },
+                new Role() { Id = "R04", Name="角色04", Authority="MU01MU02MU03MU04", Description="", IsDeleted=false, LastDate=DateTime.Now },
+                new Role() { Id = "R05", Name="角色05", Authority="MU01MU02MU03MU04MU05", Description="", IsDeleted=false, LastDate=DateTime.Now }
             };
             DbSet<Role> roleSet = context.Set<Role>();
             roleSet.AddOrUpdate<Role>(r => new { r.Id }, roles.ToArray());

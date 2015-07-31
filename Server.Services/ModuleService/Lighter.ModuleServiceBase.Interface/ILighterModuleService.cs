@@ -13,6 +13,6 @@ namespace Lighter.ModuleServiceBase.Interface
         [OperationContract]
         string GetServiceId();
         [OperationContract]
-        List<ModuleDTO> GetModules();
+        List<ModuleDTO> GetSupportedModules();
     }
 }

@@ -5,10 +5,10 @@ using System.Text;
 using Client.Module.Common.Interface;
 using Client.Module.UserManager.Models;
 
-namespace Client.Module.UserManager.Interface
+namespace Client.Module.UserManager.Interface.Services
 {
-    public interface IDepartmentManagerDataService : IDataService
+    public interface IRoleManagerDataService : IDataService
     {
-        Departments GetDepartments();
+        Roles GetRoles();
     }
 }

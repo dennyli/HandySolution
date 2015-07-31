@@ -6,7 +6,7 @@ using Lighter.ServiceManager;
 
 namespace Lighter.MainService.Interface
 {
-    [ServiceContract(CallbackContract = typeof(ILighterConnectCallBack), SessionMode = SessionMode.Required, Namespace = "http://www.codestar.com/")]
+    [ServiceContract(/*CallbackContract = typeof(ILighterConnectCallBack),*/ SessionMode = SessionMode.Required, Namespace = "http://www.codestar.com/")]
     public interface ILighterMainService : ILighterService, IHostedService
     {
         [OperationContract(IsInitiating=false, IsTerminating=false)]

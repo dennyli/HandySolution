@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Lighter.Server.Infrastructure;
 
-namespace Lighter.Data
+namespace Lighter.Data.Configurations
 {
     public partial class AccountConfiguration : LighterEntityConfiguration<Account, string>
     {

@@ -11,6 +11,7 @@ using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 using Utility;
+using Microsoft.Practices.Prism.Commands;
 
 namespace Lighter.Server.ViewModel
 {
@@ -29,6 +30,8 @@ namespace Lighter.Server.ViewModel
             LoadIniFile();
             FindServerInfo();
             StartupServices();
+
+            OpenHistoryMessageCommand = new DelegateCommand(new Action(this.OpenHistoryMessageWindow));
         }
 
         public void ShutdownServices()
@@ -68,7 +71,7 @@ namespace Lighter.Server.ViewModel
                 _bootstrapper = new ServiceHostBootstrapper();
                 _bootstrapper.Run();
 
-                DatabaseInitializer.Initialize();
+                //DatabaseInitializer.Initialize();
 
                 IServiceLocator serviceLocator = _bootstrapper._container.GetExportedValue<IServiceLocator>();
                 _manager = serviceLocator.GetInstance<IServiceHostManager>() as ServiceHostManager;
@@ -211,6 +214,13 @@ namespace Lighter.Server.ViewModel
         /// </summary>
         private string defaultTitle = "订单管理系统 (服务端)";
 
+        public DelegateCommand OpenHistoryMessageCommand { get; private set; }
+        private void OpenHistoryMessageWindow()
+        {
+            HistoryMessageWindow hmWnd = new HistoryMessageWindow(this);
+            hmWnd.ShowDialog();
+        }
+
         protected override void RaisePropertyChanged(string propertyName)
         {
             base.RaisePropertyChanged(propertyName);
@@ -218,5 +228,6 @@ namespace Lighter.Server.ViewModel
             if (propertyName == "LastMessage")
                 HistoryMessages.Add(LastMessage);
         }
+
     }
 }

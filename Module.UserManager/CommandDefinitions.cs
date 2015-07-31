@@ -20,5 +20,11 @@ namespace Client.Module.UserManager
         public const string CT_DEPART_MANAGE = "部门管理";
         public const string CI_DEPART_MANAGE = "/Module.UserManager;component/Images/users.png";
         public const string CV_DEPART_MANAGE = "DepartmentManagerView";
+
+        // 角色管理
+        public const string CN_ROLE_MANAGE = "RoleManageCommand";
+        public const string CT_ROLE_MANAGE = "角色管理";
+        public const string CI_ROLE_MANAGE = "/Module.UserManager;component/Images/role.png";
+        public const string CV_ROLE_MANAGE = "RoleManagerView";
     }
 }

@@ -64,8 +64,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HistoryMessageWindow.xaml.cs">
+      <DependentUpon>HistoryMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\HistoryMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ServiceInfo.cs" />
+    <Page Include="HistoryMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -111,6 +119,10 @@
     <ProjectReference Include="..\Lighter.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj">
+      <Project>{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}</Project>
+      <Name>Lighter.MsSqlEFDbContextProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Common\Lighter.Server.Common.csproj">
       <Project>{F217FB06-ECFC-499A-B34C-1E288BDD1E0F}</Project>
@@ -201,9 +213,7 @@
       <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
