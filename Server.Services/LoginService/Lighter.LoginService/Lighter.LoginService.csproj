@@ -49,10 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
-      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
-      <Name>Lighter.BaseService.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.Data\Lighter.Data.csproj">
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
@@ -93,7 +89,11 @@
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseService\Lighter.BaseService.csproj">
+    <ProjectReference Include="..\..\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseService\Lighter.BaseService\Lighter.BaseService.csproj">
       <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
       <Name>Lighter.BaseService</Name>
     </ProjectReference>

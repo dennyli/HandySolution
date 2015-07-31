@@ -38,7 +38,7 @@ namespace Lighter.ModuleServiceBase
         /// 服务初始化，服务端调用，不开放给客户端
         /// 子类重载此接口后，必须首先调用Base.Initialize, 方便初始化内部对象信息，否者可能导致不正确
         /// </summary>
-        public virtual void Initialize()
+        public override void Initialize()
         {
             TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
             if (baseMap == null)

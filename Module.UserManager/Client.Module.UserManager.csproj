@@ -125,10 +125,6 @@
     <None Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
-      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
-      <Name>Lighter.BaseService.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Client.Infrastructure.csproj">
       <Project>{534d59e2-cbe6-413e-bd58-51c9ec814c24}</Project>
       <Name>Lighter.Client.Infrastructure</Name>
@@ -160,6 +156,10 @@
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
       <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>

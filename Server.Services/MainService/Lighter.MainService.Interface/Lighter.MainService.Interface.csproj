@@ -46,10 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
-      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
-      <Name>Lighter.BaseService.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceHostManager\Lighter.ServiceManager.csproj">
       <Project>{63C2168C-61F6-40ED-9933-CB0AF8297A3C}</Project>
       <Name>Lighter.ServiceManager</Name>
@@ -69,6 +65,10 @@
     <ProjectReference Include="..\..\..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.MainService.Model\Lighter.MainService.Model.csproj">
       <Project>{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}</Project>

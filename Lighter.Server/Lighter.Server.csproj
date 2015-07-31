@@ -156,10 +156,6 @@
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.csproj">
-      <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
-      <Name>Lighter.BaseService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
       <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>
       <Name>Lighter.LoginService.Interface</Name>

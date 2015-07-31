@@ -83,10 +83,6 @@
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.csproj">
-      <Project>{C2CB4A86-B77F-4D92-BB2B-DF7D90322E78}</Project>
-      <Name>Lighter.BaseService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>

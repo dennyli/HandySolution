@@ -58,10 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
-      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
-      <Name>Lighter.BaseService.Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
       <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
       <Name>Lighter.ServiceManager.Interface</Name>
@@ -69,6 +65,10 @@
     <ProjectReference Include="..\Module.Common\Client.Module.Common.csproj">
       <Project>{6AA25A6B-7765-4D74-BDEE-1E9D36197E4E}</Project>
       <Name>Client.Module.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
       <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>
