@@ -12,6 +12,8 @@ using Microsoft.Practices.Prism.ViewModel;
 using Microsoft.Practices.ServiceLocation;
 using Utility;
 using Microsoft.Practices.Prism.Commands;
+using System.ServiceModel;
+using Lighter.BaseService.Interface;
 
 namespace Lighter.Server.ViewModel
 {
@@ -93,7 +95,15 @@ namespace Lighter.Server.ViewModel
                     {
                         host.Open();
 
-                        LastMessage = "Hosting Service: " + host.Meta.Name + " at " + address.Address.Uri;
+                        LastMessage = "正在初始化服务 " + host.Meta.Name + " ... ";
+                        RaisePropertyChanged("LastMessage");
+
+                        OperationContext operationContext = OperationContext.Current;
+                        InstanceContext instanceContext = operationContext.InstanceContext;
+                        ILighterService service = instanceContext.GetServiceInstance() as ILighterService;
+                        service.Initialize();
+
+                        LastMessage = "服务已启动: " + host.Meta.Name + " at " + address.Address.Uri;
                         RaisePropertyChanged("LastMessage");
 
                         ServiceInfo info = new ServiceInfo(host.Meta.Name, address.Address.Uri);

@@ -120,9 +120,9 @@
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj">
-      <Project>{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}</Project>
-      <Name>Lighter.MsSqlEFDbContextProvider</Name>
+    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.Home_MsSqlEFDbContextProvider\Lighter.Home_MsSqlEFDbContextProvider.csproj">
+      <Project>{17fee353-dea7-47d5-af8e-80e57806d65e}</Project>
+      <Name>Lighter.Home_MsSqlEFDbContextProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Common\Lighter.Server.Common.csproj">
       <Project>{F217FB06-ECFC-499A-B34C-1E288BDD1E0F}</Project>
@@ -155,6 +155,10 @@
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
+      <Project>{1edc39f5-2612-4ad2-a7a6-2828b621e523}</Project>
+      <Name>Lighter.BaseService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\LoginService\Lighter.LoginService.Interface\Lighter.LoginService.Interface.csproj">
       <Project>{45C383AC-64A2-46FB-9055-B0B31422A0EA}</Project>

@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>
     </ProjectReference>
