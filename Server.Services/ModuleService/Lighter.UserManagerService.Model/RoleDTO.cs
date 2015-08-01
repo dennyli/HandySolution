@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Model;
 using System.ServiceModel;
+using System.Text;
 
 namespace Lighter.UserManagerService.Model
 {
@@ -39,5 +40,24 @@ namespace Lighter.UserManagerService.Model
         /// </summary>
         [DataMember]
         public virtual Collection<AccountDTO> Accounts { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append(";Name: " + Name);
+            sb.Append(";Authority: " + Authority ?? "<null>");
+            sb.Append(";Description: " + Description ?? "<null>");
+            if (Accounts == null)
+                sb.Append(";Accounts: <null>");
+            else
+            {
+                sb.Append(";Accounts: " + Accounts.Count.ToString() + " account");
+                foreach (AccountDTO dto in Accounts)
+                    sb.Append("\n\t" + dto.ToString());
+            }
+
+            return sb.ToString();
+        }
     }
 }

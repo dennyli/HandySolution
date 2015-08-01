@@ -16,10 +16,10 @@ namespace Client.ModuleBase.Services
     //[Export(typeof(IDataService))] // Export the DataService concrete type. By default, this will be a singleton (shared).
     public abstract class DataServiceBase : IDataService
     {
-        protected readonly ILighterContext _lighterContext;
+        protected readonly ILighterClientContext _lighterContext;
         protected readonly IServiceLocator _serviceLocator;
 
-        public DataServiceBase(IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public DataServiceBase(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
         {
             _lighterContext = lighterContext;
             _serviceLocator = serviceLocator;

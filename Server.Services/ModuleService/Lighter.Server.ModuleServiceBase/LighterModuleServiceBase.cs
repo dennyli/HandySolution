@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.ServiceModel;
 using AutoMapper;
 using Lighter.BaseService;
@@ -12,6 +13,9 @@ namespace Lighter.ModuleServiceBase
 {
     public abstract class LighterModuleServiceBase : LighterServiceBase, ILighterModuleService
     {
+        [Import]
+        protected ILighterServerContext _lighterServerContext { get; set; }
+
         /// <summary>
         /// 服务的唯一标识
         /// </summary>
@@ -52,18 +56,18 @@ namespace Lighter.ModuleServiceBase
                     .ForAllMembers(opt => opt.NullSubstitute(""));
         }
 
-        public virtual OperationResult CheckSession()
-        {
-            SessionState state = OperationContext.Current.InstanceContext.Extensions.Find<SessionState>();
-            if (state == null)
-                return new OperationResult(OperationResultType.IllegalOperation);
+        //public virtual OperationResult CheckSession()
+        //{
+        //    SessionState state = OperationContext.Current.InstanceContext.Extensions.Find<SessionState>();
+        //    if (state == null)
+        //        return new OperationResult(OperationResultType.IllegalOperation);
 
-            SessionState stateChecked = null;
-            LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
-            if (!manager.TryGetValue(state.Account, out stateChecked))
-                return new OperationResult(OperationResultType.IllegalOperation);
+        //    SessionState stateChecked = null;
+        //    LighterSessionStateManager manager = LighterSessionContext.GetInstance().SessionManager;
+        //    if (!manager.TryGetValue(state.Account, out stateChecked))
+        //        return new OperationResult(OperationResultType.IllegalOperation);
 
-            return new OperationResult(OperationResultType.Success);
-        }
+        //    return new OperationResult(OperationResultType.Success);
+        //}
     }
 }

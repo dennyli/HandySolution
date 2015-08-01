@@ -24,7 +24,7 @@ namespace Client.Module.UserManager.Services
     {
         
         [ImportingConstructor]
-        public UserManagerDataService(IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public UserManagerDataService(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
             : base(serviceLocator, lighterContext)
         {
             

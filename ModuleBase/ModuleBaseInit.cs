@@ -31,12 +31,12 @@ namespace Client.ModuleBase
 
         protected IModuleResources _resources;
 
-        protected readonly ILighterContext _lighterContext;
+        protected readonly ILighterClientContext _lighterContext;
         #endregion
 
 
         [ImportingConstructor]
-        public ModuleBaseInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public ModuleBaseInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterClientContext lighterContext)
         {
             _regionManager = regionManager;
             _serviceLocator = serviceLocator;

@@ -15,7 +15,7 @@ namespace Lighter.Client
         }
 
         [Import]
-        public ILighterContext _lighterContext { get; set; }
+        public ILighterClientContext _lighterContext { get; set; }
         public string Title { get { return _lighterContext.GetClientName(); } }
 
         #region ExitCommand

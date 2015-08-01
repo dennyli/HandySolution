@@ -30,5 +30,15 @@ namespace Lighter.ModuleServiceBase.Model
         /// </summary>
         [DataMember]
         public string Catalog { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.ToString());
+            sb.Append(";Name: " + Name);
+            sb.Append(";Catalog: " + Catalog ?? "<null>");
+
+            return sb.ToString();
+        }
     }
 }

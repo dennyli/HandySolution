@@ -2,6 +2,9 @@
 using Lighter.ServiceManager;
 using Microsoft.Practices.ServiceLocation;
 using Lighter.Server.Infrastructure.Initialize;
+using System.Diagnostics;
+using System.ServiceModel;
+using Lighter.BaseService.Interface;
 
 namespace ExportServiceHostManagerTest
 {
@@ -26,17 +29,27 @@ namespace ExportServiceHostManagerTest
 
             int basePort = 50000;
 
-            foreach (var service in manager.Services)
+            foreach (var host in manager.Services)
             {
-                if (!service.UpdateAddressPort(basePort))
-                    Console.WriteLine("Hosting Service: " + service.Meta.Name + " UpdateAddressPort " + basePort.ToString() + " failure.");
+                if (!host.UpdateAddressPort(basePort))
+                    Console.WriteLine("Hosting Service: " + host.Meta.Name + " UpdateAddressPort " + basePort.ToString() + " failure.");
 
-                foreach (var address in service.Description.Endpoints)
-                {
-                    Console.WriteLine("Hosting Service: " + service.Meta.Name + " at " + address.Address.Uri);
-                }
+                //foreach (var address in service.Description.Endpoints)
+                //{
+                //    Console.WriteLine("Hosting Service: " + service.Meta.Name + " at " + address.Address.Uri);
+                //}
 
-                service.Open();
+                Debug.Assert(host.Description.Endpoints.Count == 1);
+
+                host.Open();
+
+                OperationContext operationContext = OperationContext.Current;
+                InstanceContext instanceContext = operationContext.InstanceContext;
+                ILighterService service = instanceContext.GetServiceInstance() as ILighterService;
+                service.Initialize();
+
+                var address = host.Description.Endpoints[0];
+                Console.WriteLine("Hosting Service: " + host.Meta.Name + " at " + address.Address.Uri);
 
                 //basePort++;
             }

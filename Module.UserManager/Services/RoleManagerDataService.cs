@@ -19,7 +19,7 @@ namespace Client.Module.UserManager.Services
     public class RoleManagerDataService : DataServiceBase, IRoleManagerDataService
     {
         [ImportingConstructor]
-        public RoleManagerDataService(IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public RoleManagerDataService(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
             : base(serviceLocator, lighterContext)
         {
             

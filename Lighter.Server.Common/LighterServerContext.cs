@@ -1,27 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using Lighter.ServerEvents;
+using Microsoft.Practices.Prism.ViewModel;
 
 namespace Lighter.Server.Common
 {
-    public class LighterServerContext
+    [Export(typeof(ILighterServerContext))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
+    public class LighterServerContext : NotificationObject, ILighterServerContext
     {
-        private static LighterServerContext _instance = null;
-        public static LighterServerContext GetInstance()
-        {
-            if (_instance == null)
-                _instance = new LighterServerContext();
+        #region ILighterServerContext 成员
 
-            return _instance;
+        private ObservableCollection<UserInfo> _loginedAccounts = new ObservableCollection<UserInfo>();
+
+        public ObservableCollection<UserInfo> LoginedAccounts
+        {
+            get { return _loginedAccounts; }
         }
 
-        public LighterServerContext()
+        public void AddAccount(UserInfo info)
         {
-            SessionManager = new LighterSessionStateManager();
+            if (FindUserInfo(info.Name) != null)
+                return;
+
+            _loginedAccounts.Add(info);
+            RaisePropertyChanged("LoginedAccounts");
         }
 
-        public LighterSessionStateManager SessionManager;
+        public void RemoveAccount(UserInfo info)
+        {
+            if (FindUserInfo(info.Name) == null)
+                return;
+
+            _loginedAccounts.Remove(info);
+            RaisePropertyChanged("LoginedAccounts");
+        }
+
+        public void RemoveAccount(string userName)
+        {
+            UserInfo info = FindUserInfo(userName);
+            if (info == null)
+                return;
+
+            _loginedAccounts.Remove(info);
+            RaisePropertyChanged("LoginedAccounts");
+        }
+
+        public bool IsAccountLogined(string userName)
+        {
+            return FindUserInfo(userName) != null;
+        }
+
+        private UserInfo FindUserInfo(string userName)
+        {
+            try
+            {
+                return _loginedAccounts.First<UserInfo>(u => u.Name == userName);
+            }
+            catch (InvalidOperationException ex)
+            { }
+            catch (ArgumentNullException ex)
+            { }
+
+            return null;
+        }
+
+        #endregion
 
     }
 }

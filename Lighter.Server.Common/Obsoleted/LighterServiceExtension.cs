@@ -36,7 +36,7 @@ namespace Lighter.Server.Common
             bool isNew = false;
             lock (this.ThisLock)
             {
-                LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
+                LighterSessionStateManager manager = LighterSessionContext.GetInstance().SessionManager;
                 if (!manager.TryGetValue(clientId, out state))
                 {
                     state = new SessionState(clientId, null);
@@ -79,7 +79,7 @@ namespace Lighter.Server.Common
                     {
                         lock (this.ThisLock)
                         {
-                            LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
+                            LighterSessionStateManager manager = LighterSessionContext.GetInstance().SessionManager;
                             manager.TryGetValue(clientId, out state);
                         }
                     }
@@ -96,7 +96,7 @@ namespace Lighter.Server.Common
             {
                 lock (this.ThisLock)
                 {
-                    LighterSessionStateManager manager = LighterServerContext.GetInstance().SessionManager;
+                    LighterSessionStateManager manager = LighterSessionContext.GetInstance().SessionManager;
                     manager.Remove(state.Account);
                 }
             };

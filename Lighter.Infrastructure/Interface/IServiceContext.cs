@@ -11,7 +11,11 @@ namespace Lighter.Client.Infrastructure.Interface
         #region Services
         
         void AddService(string key, ILighterService service);
+
         ILighterService FindService(string key);
+
+        void RemoveService(string key);
+
         void CreateMainService();
 
         #endregion // Services

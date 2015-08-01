@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lighter.Client.Infrastructure.Interface
 {
-    public interface ILighterContext : IServiceContext, ICommandContext, IConfigContext, IAccountContext
+    public interface ILighterClientContext : IServiceContext, ICommandContext, IConfigContext, IAccountContext
     {
     }
 }

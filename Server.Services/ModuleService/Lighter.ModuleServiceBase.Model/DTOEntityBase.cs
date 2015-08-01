@@ -26,5 +26,14 @@ namespace Lighter.ModuleServiceBase.Model
         /// DTO 对象的类型， 简化接口
         /// </summary>
         public Type DTOType { get; private set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Id: " + Id.ToString());
+            sb.Append(";Type: " + DTOType.ToString());
+
+            return sb.ToString();
+        }
     }
 }

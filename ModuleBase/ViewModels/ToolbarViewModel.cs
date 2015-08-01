@@ -23,10 +23,10 @@ namespace Client.ModuleBase.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IServiceLocator _serviceLocator;
 
-        private readonly ILighterContext _lighterContext;
+        private readonly ILighterClientContext _lighterContext;
 
         [ImportingConstructor]
-        public ToolbarViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public ToolbarViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IServiceLocator serviceLocator, ILighterClientContext lighterContext)
         {
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;

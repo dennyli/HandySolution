@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define UserTest
+
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -9,6 +11,9 @@ using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
 using Utility;
 using System.ServiceModel.Channels;
+using Lighter.UserManagerService.Interface;
+using Lighter.UserManagerService.Model;
+using System.Collections.Generic;
 
 namespace ExportServiceHostManagerTest_Client
 {
@@ -53,13 +58,15 @@ namespace ExportServiceHostManagerTest_Client
                 Console.WriteLine("Connecting to main service...");
                 mainService.Connect(client);
 
-                //string[] testsvrs = new string[] { "testService", "LighterMainService" };
+                bool bExist;
+                string svr;
 
+#if LoginTest
                 string[] testsvrs = new string[] { "LighterLoginService" };
                 foreach (string svr in testsvrs)
                 {
                     Console.Write("Finding " + svr + " ... ");
-                    bool bExist = mainService.ServiceIsExists(svr);
+                    bExist = mainService.ServiceIsExists(svr);
                     Console.WriteLine(bExist);
 
                     if (bExist)
@@ -102,15 +109,57 @@ namespace ExportServiceHostManagerTest_Client
                             Console.WriteLine("Login Failure!");
                         }
 
+                        (serviceLogin as IChannel).Close();
+
                         #endregion Test Login
                     }
                     else
                         Console.WriteLine("\tCan't find service " + svr + "!");
                 }
+#endif
+
+#if UserTest
+                svr = "LighterUserManagerService";
+                Console.Write("Finding " + svr + " ... ");
+                bExist = mainService.ServiceIsExists(svr);
+                Console.WriteLine(bExist);
+
+                if (bExist)
+                {
+                    Console.WriteLine("\t" + svr + " has found, Getting " + svr + " address ... ");
+                    Uri[] uris = mainService.GetServiceAddress(svr);
+                    if (uris.Count<Uri>() > 0)
+                    {
+                        Console.WriteLine("\t" + svr + " address list:");
+                        foreach (Uri uri in uris)
+                            Console.WriteLine("\t\t" + uri.ToString());
+                    }
+                    else
+                        Console.WriteLine("\tCan't find " + svr + " address!");
+
+                    #region Test User Manager
+                    Console.WriteLine("Connecting to login service...");
+                    EndpointAddress addressUM = new EndpointAddress(uris[0]);
+                    NetTcpBinding bindingUM = new NetTcpBinding();
+                    bindingUM.Security.Mode = SecurityMode.None;
+
+                    ChannelFactory<ILighterUserManagerService> factoryUserManager = new ChannelFactory<ILighterUserManagerService>(bindingUM, addressUM);
+                    ILighterUserManagerService serviceUM = factoryUserManager.CreateChannel();
+
+                    List<AccountDTO> accounts = serviceUM.GetAccounts();
+                    foreach (AccountDTO dto in accounts)
+                        Console.WriteLine(dto.ToString());
+
+                    (serviceUM as IChannel).Close();
+                    #endregion
+                }
+#endif
 
                 Console.WriteLine("Disconnecting...");
                 mainService.Disconnect(client);
                 Console.WriteLine("Disconnected.");
+
+                (mainService as IChannel).Close();
             }
             catch (EndpointNotFoundException ex)
             {

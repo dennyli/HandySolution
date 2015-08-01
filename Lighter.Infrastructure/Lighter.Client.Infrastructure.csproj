@@ -53,8 +53,8 @@
     <Compile Include="Interface\ICommandContext.cs" />
     <Compile Include="Interface\IServiceContext.cs" />
     <Compile Include="Interface\IConfigContext.cs" />
-    <Compile Include="Implement\LighterContext.cs" />
-    <Compile Include="Interface\ILighterContext.cs" />
+    <Compile Include="Implement\LighterClientContext.cs" />
+    <Compile Include="Interface\ILighterClientContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

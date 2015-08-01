@@ -16,13 +16,14 @@ using Lighter.Client.Infrastructure.Accounts;
 using Lighter.UserManagerService.Model;
 using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
+using System.ServiceModel.Channels;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
-    [Export(typeof(ILighterContext))]
-    public class LighterContext : ILighterContext, IDisposable
+    [Export(typeof(ILighterClientContext))]
+    public class LighterClientContext : ILighterClientContext, IDisposable
     {
-        private LighterContext()
+        private LighterClientContext()
         {
         }
 
@@ -76,6 +77,7 @@ namespace Lighter.Client.Infrastructure.Implement
 
         #region IServiceContext Services
         private Dictionary<string, ILighterService> _services = new Dictionary<string, ILighterService>();
+        private Lighter.MainService.Model.Client _currentClient = null;
 
         public void AddService(string key, ILighterService service)
         {
@@ -93,6 +95,30 @@ namespace Lighter.Client.Infrastructure.Implement
             return _services[key];
         }
 
+        public void RemoveService(string key)
+        {
+            if (_services.ContainsKey(key))
+                _services.Remove(key);
+        }
+
+        private Lighter.MainService.Model.Client CreateNewClient()
+        {
+            Lighter.MainService.Model.Client client = new MainService.Model.Client();
+            client.Name = "Client";
+            client.IP = CommonUtility.GetHostIP4vDotFormat();
+            client.Time = DateTime.Now;
+
+            return client;
+        }
+
+        public Lighter.MainService.Model.Client GetCurrentClient()
+        {
+            if (_currentClient == null)
+                _currentClient = CreateNewClient();
+
+            return _currentClient;
+        }
+
         public void CreateMainService()
         {
             string serverIp = GetServerIp();
@@ -103,12 +129,29 @@ namespace Lighter.Client.Infrastructure.Implement
             var builder = new UriBuilder("net.tcp", serverIp, serverPort, ServiceFactory.MAIN_SERVICE_NAME);
             ILighterMainService mainService = ServiceFactory.CreateService<ILighterMainService>(builder.Uri);
 
-            Lighter.MainService.Model.Client client = CreateNewClient();
+            Lighter.MainService.Model.Client client = GetCurrentClient();
             mainService.Connect(client);
 
             AddService(ServiceFactory.MAIN_SERVICE_NAME, mainService);
         }
 
+        private void CloseAllService()
+        {
+            foreach(ILighterService service in _services.Values)
+            {
+                ((IChannel)service).Close();
+            }
+
+            _services.Clear();
+        }
+
+        private void DisconnectServer()
+        {
+            Lighter.MainService.Model.Client client = GetCurrentClient();
+
+            ILighterMainService mainService = FindService(ServiceFactory.MAIN_SERVICE_NAME) as ILighterMainService;
+            mainService.Disconnect(client);
+        }
         #endregion
 
         #region IConfigContext Ini File
@@ -164,6 +207,18 @@ namespace Lighter.Client.Infrastructure.Implement
         {
             return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);
         }
+
+        public bool AccountLogout()
+        {
+            if (_account == null)
+                return true;
+
+            ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+
+            LoginInfo info = new LoginInfo(_account.Id, "", CommonUtility.GetHostIP4vDotFormat());
+            OperationResult result = loginService.Logout(info);
+            return result.ResultType == OperationResultType.Success;
+        }
         #endregion
 
         #region IDisposable
@@ -179,37 +234,6 @@ namespace Lighter.Client.Infrastructure.Implement
             CloseAllService();
         }
 
-        private void CloseAllService()
-        {
-            
-        }
-
-        private void DisconnectServer()
-        {
-            Lighter.MainService.Model.Client client = CreateNewClient();
-
-            ILighterMainService mainService = FindService(ServiceFactory.MAIN_SERVICE_NAME) as ILighterMainService;
-            mainService.Disconnect(client);
-        }
-
-        private Lighter.MainService.Model.Client CreateNewClient()
-        {
-            Lighter.MainService.Model.Client client = new MainService.Model.Client();
-            client.Name = "Client";
-            client.IP = CommonUtility.GetHostIP4vDotFormat();
-            client.Time = DateTime.Now;
-
-            return client;
-        }
-
-        private bool AccountLogout()
-        {
-            ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-
-            LoginInfo info = new LoginInfo(_account.Id, "", CommonUtility.GetHostIP4vDotFormat());
-            OperationResult result = loginService.Logout(info);
-            return result.ResultType == OperationResultType.Success;
-        }
 
         #endregion
     }

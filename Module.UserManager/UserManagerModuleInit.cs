@@ -25,7 +25,7 @@ namespace Client.Module.UserManager
     public class UserManagerModuleInit : ModuleBaseInit
     {
         [ImportingConstructor]
-        public UserManagerModuleInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public UserManagerModuleInit(IRegionManager regionManager, IEventAggregator eventAggregator, IServiceLocator serviceLocator, ILighterClientContext lighterContext)
             : base(regionManager, eventAggregator, serviceLocator, lighterContext)
         {
         }
@@ -56,7 +56,7 @@ namespace Client.Module.UserManager
                 Uri[] uris = mainService.GetServiceAddress(serviceName);
                 service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0]);
 
-                _lighterContext.AddService(serviceName, service);
+                _lighterContext.AddService(serviceName, service as ILighterService);
             }
 
             return service as ILighterService;

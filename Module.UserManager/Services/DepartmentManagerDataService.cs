@@ -16,7 +16,7 @@ namespace Client.Module.UserManager.Services
     public class DepartmentManagerDataService : DataServiceBase, IDepartmentManagerDataService
     {
         [ImportingConstructor]
-        public DepartmentManagerDataService(IServiceLocator serviceLocator, ILighterContext lighterContext)
+        public DepartmentManagerDataService(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
             : base(serviceLocator, lighterContext)
         {
             

@@ -14,6 +14,8 @@ using Utility;
 using Microsoft.Practices.Prism.Commands;
 using System.ServiceModel;
 using Lighter.BaseService.Interface;
+using System.Diagnostics;
+using Lighter.Server.Common;
 
 namespace Lighter.Server.ViewModel
 {
@@ -25,7 +27,7 @@ namespace Lighter.Server.ViewModel
             Title = defaultTitle;
             ServerPort = 50000;
             Services = new ObservableCollection<ServiceInfo>();
-            Users = new ObservableCollection<UserInfo>();
+            //Users = new ObservableCollection<UserInfo>();
 
             HistoryMessages = new ObservableCollection<string>();
 
@@ -51,7 +53,7 @@ namespace Lighter.Server.ViewModel
                     {
                         Services.Remove(Services.Single(s => s.Name == host.Meta.Name));
                     }
-                    catch (InvalidOperationException e)
+                    catch (InvalidOperationException ex)
                     {
                     }
                 }
@@ -83,6 +85,9 @@ namespace Lighter.Server.ViewModel
                 LastMessage = "找到服务" + _manager.Services.Count<ExportServiceHost>().ToString() + "个";
                 RaisePropertyChanged("LastMessage");
 
+                _lighterServerContext = _bootstrapper._container.GetExportedValue<ILighterServerContext>();
+                Users = _lighterServerContext.LoginedAccounts;
+
                 foreach (ExportServiceHost host in _manager.Services)
                 {
                     if (!host.UpdateAddressPort(ServerPort))
@@ -91,20 +96,25 @@ namespace Lighter.Server.ViewModel
                         RaisePropertyChanged("LastMessage");
                     }
 
-                    foreach (var address in host.Description.Endpoints)
-                    {
-                        host.Open();
+                    Debug.Assert(host.Description.Endpoints.Count == 1);
+                    var address = host.Description.Endpoints[0];
 
+                    host.Open();
+                    host.Opened += delegate
+                    {
+                        LastMessage = "服务已启动: " + host.Meta.Name + " at " + address.Address.Uri;
+                        RaisePropertyChanged("LastMessage");
+                    };
+
+                    //foreach (var address in host.Description.Endpoints)
+                    {
                         LastMessage = "正在初始化服务 " + host.Meta.Name + " ... ";
                         RaisePropertyChanged("LastMessage");
 
-                        OperationContext operationContext = OperationContext.Current;
-                        InstanceContext instanceContext = operationContext.InstanceContext;
-                        ILighterService service = instanceContext.GetServiceInstance() as ILighterService;
-                        service.Initialize();
-
-                        LastMessage = "服务已启动: " + host.Meta.Name + " at " + address.Address.Uri;
-                        RaisePropertyChanged("LastMessage");
+                        //OperationContext operationContext = OperationContext.Current;
+                        //InstanceContext instanceContext = operationContext.InstanceContext;
+                        //ILighterService service = instanceContext.GetServiceInstance() as ILighterService;
+                        //service.Initialize();
 
                         ServiceInfo info = new ServiceInfo(host.Meta.Name, address.Address.Uri);
                         Services.Add(info);
@@ -128,20 +138,24 @@ namespace Lighter.Server.ViewModel
 
         private void AccountLogined(UserInfo user)
         {
-            Users.Add(user);
+            //Users.Add(user);
+
+            _lighterServerContext.AddAccount(user);
         }
 
         private void AccountLogouted(string userName)
         {
-            try
-            {
-                Users.Remove(Users.Single(u => u.Name == userName));
-            }
-            catch(Exception e)
-            {
-                LastMessage = ExceptionMessage.GetExceptionMessage(e);
-                RaisePropertyChanged("LastMessage");
-            }
+            //try
+            //{
+            //    Users.Remove(Users.Single(u => u.Name == userName));
+            //}
+            //catch(Exception e)
+            //{
+            //    LastMessage = ExceptionMessage.GetExceptionMessage(e);
+            //    RaisePropertyChanged("LastMessage");
+            //}
+
+            _lighterServerContext.RemoveAccount(userName);
         }
 
         private void FindServerInfo()
@@ -180,7 +194,7 @@ namespace Lighter.Server.ViewModel
             {
                 Title = OperatorFile.GetIniFileString("server", "name", defaultTitle, iniName);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 Title = defaultTitle;
             }
@@ -219,6 +233,8 @@ namespace Lighter.Server.ViewModel
         /// </summary>
         private ServiceHostBootstrapper _bootstrapper = null;
         private ServiceHostManager _manager = null;
+        private ILighterServerContext _lighterServerContext = null;
+
         /// <summary>
         /// 系统默认的标题
         /// </summary>

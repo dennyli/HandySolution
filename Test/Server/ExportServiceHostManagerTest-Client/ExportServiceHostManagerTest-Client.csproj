@@ -77,6 +77,22 @@
       <Project>{B7AFADD1-D9F8-4C10-B789-4DF50FBE93FB}</Project>
       <Name>Lighter.MainService.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\ModuleService\Lighter.ModuleServiceBase.Interface\Lighter.ModuleServiceBase.Interface.csproj">
+      <Project>{d154f4b5-f4ad-430a-8dc7-3fdde4ec536f}</Project>
+      <Name>Lighter.ModuleServiceBase.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\ModuleService\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
+      <Project>{3d9cdce1-69cb-460b-a4e1-4c024bcb2a20}</Project>
+      <Name>Lighter.ModuleServiceBase.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\ModuleService\Lighter.Server.UserManagerService.Interface\Lighter.UserManagerService.Interface.csproj">
+      <Project>{b993cdad-46c4-4f55-bf31-8776370b8a01}</Project>
+      <Name>Lighter.UserManagerService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Server.Services\ModuleService\Lighter.UserManagerService.Model\Lighter.UserManagerService.Model.csproj">
+      <Project>{fc03d1fc-01b8-47bf-bb7b-66168880b415}</Project>
+      <Name>Lighter.UserManagerService.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>
