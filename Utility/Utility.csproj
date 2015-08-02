@@ -57,12 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessException.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="ClientHeader.cs" />
     <Compile Include="CombHelper.cs" />
     <Compile Include="CommonUtility.cs" />
-    <Compile Include="ComponentException.cs" />
-    <Compile Include="DataAccessException.cs" />
+    <Compile Include="Exceptions\ComponentException.cs" />
+    <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="ExceptionMessage.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />

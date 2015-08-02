@@ -13,7 +13,7 @@ using System;
 using System.Runtime.Serialization;
 
 
-namespace Utility
+namespace Utility.Exceptions
 {
     /// <summary>
     ///     数据访问层异常类，用于封装数据访问层引发的异常，以供 业务逻辑层 抓取

@@ -12,6 +12,7 @@ using Microsoft.Practices.ServiceLocation;
 using System;
 using Utility;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace Client.Module.UserManager.Services
 {
@@ -37,16 +38,22 @@ namespace Client.Module.UserManager.Services
 
             try
             {
-                //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
-                Accounts accounts = new Accounts();
-                //foreach (DTOEntityBase<string> dto in dtos)
-                //    accounts.Add(dto as AccountDTO);
+                using (OperationContextScope scope = new OperationContextScope(service as IContextChannel))
+                {
+                    MessageHeader header = MessageHeader.CreateHeader("userName", "http://www.codestar.com", _lighterContext.GetCurrentAccountName());
+                    OperationContext.Current.OutgoingMessageHeaders.Add(header);
 
-                List<AccountDTO> dtos = service.GetAccounts();
-                foreach (AccountDTO dto in dtos)
-                    accounts.Add(dto);
+                    //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
+                    Accounts accounts = new Accounts();
+                    //foreach (DTOEntityBase<string> dto in dtos)
+                    //    accounts.Add(dto as AccountDTO);
 
-                return accounts;
+                    List<AccountDTO> dtos = service.GetAccounts();
+                    foreach (AccountDTO dto in dtos)
+                        accounts.Add(dto);
+
+                    return accounts;
+                }
             }
             catch (ProtocolException ex)
             {

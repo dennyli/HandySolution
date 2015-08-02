@@ -203,6 +203,16 @@ namespace Lighter.Client.Infrastructure.Implement
                 _account = new Account(accountDto);
         }
 
+        public Account GetCurrentAccount()
+        {
+            return _account;
+        }
+
+        public string GetCurrentAccountName()
+        {
+            return _account == null ? "" : _account.Name;
+        }
+
         public bool CheckHasCommandAuthority(string commandId)
         {
             return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);

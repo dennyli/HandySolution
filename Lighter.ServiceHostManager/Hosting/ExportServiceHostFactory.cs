@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.Composition.Hosting;
+    using Lighter.ServiceManager.TokenValidation;
 
     /// <summary>
     /// Creates instances of <see cref="ExportServiceHost"/>.
@@ -21,6 +22,8 @@
 
             var host = new ExportServiceHost(meta, new Uri[0]);
             host.Description.Behaviors.Add(new ExportServiceBehavior(container, meta.Name));
+            if (meta.TokenValidationMode == TokenValidationMode.Check)
+                host.Description.Behaviors.Add(new TokenValidationServiceBehavior(container));
 
             return host;
         }

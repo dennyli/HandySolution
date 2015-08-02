@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.Composition;
+using Lighter.ServiceManager.TokenValidation;
 
     /// <summary>
     /// Allows the export of a hosted service.
@@ -15,7 +16,7 @@
         /// </summary>
         /// <param name="name">The name of the service.</param>
         /// <param name="serviceType">The service type.</param>
-        public ExportServiceAttribute(string name, Type serviceType, Type contactType, int order = 1)
+        public ExportServiceAttribute(string name, Type serviceType, Type contactType, int order = 1, TokenValidationMode mode = TokenValidationMode.Check)
             : base(typeof(IHostedService))
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -31,6 +32,7 @@
             ServiceType = serviceType;
             ContactType = contactType;
             Order = order;
+            TokenValidationMode = mode;
         }
         #endregion
 
@@ -54,6 +56,8 @@
         /// Export order
         /// </summary>
         public int Order { get; private set; }
+
+        public TokenValidationMode TokenValidationMode { get; private set; }
         #endregion
     }
 }

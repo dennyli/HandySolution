@@ -1,6 +1,7 @@
 ﻿namespace Lighter.ServiceManager
 {
     using System;
+    using Lighter.ServiceManager.TokenValidation;
 
     /// <summary>
     /// Defines the required contract for implementing hosted service metadata.
@@ -18,15 +19,17 @@
         /// </summary>
         Type ServiceType { get; }
 
-        ///// <summary>
-        ///// Gets the interface type.
-        ///// </summary>
-        //Type InterfaceType { get; }
+        /// <summary>
+        /// Gets the Contact type.
+        /// </summary>
+        Type ContactType { get; }
 
         /// <summary>
         /// Export order
         /// </summary>
         int Order { get; }
+
+        TokenValidationMode TokenValidationMode { get; }
         #endregion
     }
 }

@@ -10,12 +10,13 @@ using Lighter.MainService.Model;
 using Lighter.ServiceManager;
 using Lighter.ServiceManager.Endpoints;
 using Lighter.ServiceManager.Hosting;
+using Lighter.ServiceManager.TokenValidation;
 using Microsoft.Practices.Prism.Logging;
 
 namespace Lighter.MainService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
-    [ExportService("LighterMainService", typeof(LighterMainService),  typeof(ILighterMainService), 0), TcpEndpoint(40001)]
+    [ExportService("LighterMainService", typeof(LighterMainService),  typeof(ILighterMainService), 0, TokenValidationMode.Uncheck), TcpEndpoint(40001)]
     public class LighterMainService : LighterServiceBase, ILighterMainService
     {
         //private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();

@@ -13,7 +13,7 @@ using System;
 using System.Runtime.Serialization;
 
 
-namespace Utility
+namespace Utility.Exceptions
 {
     /// <summary>
     ///     组件异常类

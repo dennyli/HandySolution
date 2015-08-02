@@ -18,6 +18,7 @@ using System.Linq.Expressions;
 using System.Text;
 
 using Utility;
+using Utility.Exceptions;
 
 
 namespace Lighter.Server.Infrastructure
