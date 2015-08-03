@@ -28,17 +28,17 @@ namespace Lighter.ServiceManager.TokenValidation
 
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
-            int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("userName", "http://www.codestar.com");
+            int index = OperationContext.Current.IncomingMessageHeaders.FindHeader("userId", "http://www.codestar.com");
             if (index < 0)
-                throw new InvalidOperationException("操作非法");
+                throw new FaultException("操作非法");
 
-            string username = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index).ToString();
-            if (string.IsNullOrWhiteSpace(username))
-                throw new InvalidOperationException("操作非法");
+            string userId = OperationContext.Current.IncomingMessageHeaders.GetHeader<string>(index).ToString();
+            if (string.IsNullOrWhiteSpace(userId))
+                throw new FaultException("操作非法");
 
             ILighterServerContext serverContext = _container.GetExportedValue<ILighterServerContext>();
-            if (!serverContext.IsAccountLogined(username))
-                throw new InvalidOperationException("操作非法");
+            if (!serverContext.IsAccountLogined(userId))
+                throw new FaultException("操作非法");
 
             return null;
         }

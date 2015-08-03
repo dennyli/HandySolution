@@ -56,6 +56,8 @@
     <Compile Include="Implement\LighterClientContext.cs" />
     <Compile Include="Interface\ILighterClientContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenValidation\TokenValiadtionClientMessageInspector.cs" />
+    <Compile Include="TokenValidation\TokenValidationBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">

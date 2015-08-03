@@ -13,6 +13,6 @@ namespace Lighter.LoginService.LoginData
 
         OperationResult Login(LoginInfo info);
 
-        OperationResult Logout(string userName);
+        OperationResult Logout(string userId);
     }
 }

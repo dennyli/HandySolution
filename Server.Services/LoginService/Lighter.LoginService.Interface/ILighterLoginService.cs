@@ -13,7 +13,7 @@ namespace Lighter.LoginService.Interface
         OperationResult Login(LoginInfo info);
 
         [OperationContract(IsInitiating = false, IsTerminating = true)]
-        OperationResult Logout(LoginInfo info);
+        OperationResult Logout(string userId);
 
         //[OperationContract(IsInitiating = false, IsTerminating = false)]
         //string GetAllAccounts();

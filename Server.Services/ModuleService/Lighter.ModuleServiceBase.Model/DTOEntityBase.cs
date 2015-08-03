@@ -10,9 +10,8 @@ namespace Lighter.ModuleServiceBase.Model
     [DataContract]
     public abstract class DTOEntityBase<TKey>
     {
-        public DTOEntityBase(Type DTOType)
+        public DTOEntityBase()
         {
-            this.DTOType = DTOType;
         }
 
         /// <summary>
@@ -22,16 +21,11 @@ namespace Lighter.ModuleServiceBase.Model
         [DataMember]
         public TKey Id { get; set; }
 
-        /// <summary>
-        /// DTO 对象的类型， 简化接口
-        /// </summary>
-        public Type DTOType { get; private set; }
-
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Id: " + Id.ToString());
-            sb.Append(";Type: " + DTOType.ToString());
+            sb.Append("\nType: " + this.GetType().ToString());
 
             return sb.ToString();
         }

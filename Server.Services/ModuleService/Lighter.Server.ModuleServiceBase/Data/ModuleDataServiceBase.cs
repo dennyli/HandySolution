@@ -31,7 +31,7 @@ namespace Lighter.ModuleServiceBase.Data
                 List<SourceT> accounts = sources.ToList<SourceT>();
                 foreach (SourceT acc in sources)
                 {
-                    DestinationT dto = Mapper.Map(acc, typeof(SourceT), typeof(DestinationT)) as DestinationT;
+                    DestinationT dto = Mapper.DynamicMap<SourceT, DestinationT>(acc);
                     dtos.Add(dto as DTOEntityBase<string>);
                 }
 

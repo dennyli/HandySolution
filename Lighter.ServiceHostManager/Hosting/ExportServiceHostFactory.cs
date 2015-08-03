@@ -1,4 +1,6 @@
-﻿namespace Lighter.ServiceManager.Hosting
+﻿#define CHECK_ACCOUNT_LOGIN
+
+namespace Lighter.ServiceManager.Hosting
 {
     using System;
     using System.ComponentModel.Composition.Hosting;
@@ -22,7 +24,7 @@
 
             var host = new ExportServiceHost(meta, new Uri[0]);
             host.Description.Behaviors.Add(new ExportServiceBehavior(container, meta.Name));
-#if !DEBUG
+#if CHECK_ACCOUNT_LOGIN
             if (meta.TokenValidationMode == TokenValidationMode.Check)
                 host.Description.Behaviors.Add(new TokenValidationServiceBehavior(container));
 #endif

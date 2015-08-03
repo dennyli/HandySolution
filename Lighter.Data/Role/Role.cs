@@ -38,9 +38,6 @@ namespace Lighter.Data
         [DataMember]
         public string Description { get; set; }
 
-        //public string DepartCode { get; set; }
-        //public virtual Department Department { get; set; }
-
         /// <summary>
         /// 拥有此角色的账户列表
         /// </summary>
@@ -51,9 +48,8 @@ namespace Lighter.Data
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name:" + Name);
-            sb.Append(";Description:" + Description);
-            //sb.Append(";DepartCode:" + Department.Id);
+            sb.Append("\nName:" + Name);
+            sb.Append("\nDescription:" + Description);
 
             return sb.ToString();
         }

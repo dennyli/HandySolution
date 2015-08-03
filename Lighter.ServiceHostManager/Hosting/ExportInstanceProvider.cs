@@ -6,6 +6,7 @@
     using System.ServiceModel;
     using System.ServiceModel.Channels;
     using System.ServiceModel.Dispatcher;
+    using Lighter.BaseService.Interface;
 
     /// <summary>
     /// Providers instance creation through a composition container.
@@ -52,11 +53,16 @@
         /// <returns>The service object.</returns>
         public object GetInstance(InstanceContext context, Message message)
         {
-            return _container
+            object instance = _container
                 .GetExports<IHostedService, IHostedServiceMetadata>()
                 .Where(l => l.Metadata.Name.Equals(_name, StringComparison.OrdinalIgnoreCase))
                 .Select(l => l.Value)
                 .FirstOrDefault();
+
+            ILighterService service = instance as ILighterService;
+            service.Initialize();
+
+            return instance;
         }
 
         /// <summary>

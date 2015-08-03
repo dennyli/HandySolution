@@ -55,7 +55,7 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <TextBlock Text="{Binding Path=Name}" />
-                        <TextBlock Text=" (" />
+                        <TextBlock Text="  (" />
                         <TextBlock Text="{Binding Path=Uri}" />
                         <TextBlock Text=")" />
                     </StackPanel>

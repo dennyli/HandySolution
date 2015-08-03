@@ -18,7 +18,7 @@ using Lighter.UserManagerService.Defination;
 namespace Lighter.UserManagerService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
-    [ExportService("LighterUserManagerService", typeof(LighterUserManagerService), typeof(ILighterUserManagerService), 1), TcpEndpoint(40002)]
+    [ExportService("LighterUserManagerService", "用户管理服务", typeof(LighterUserManagerService), typeof(ILighterUserManagerService), 1), TcpEndpoint(40002)]
     [ServiceKnownType(typeof(AccountDTO))]
     [ServiceKnownType(typeof(DepartmentDTO))]
     [ServiceKnownType(typeof(RoleDTO))]
@@ -43,28 +43,31 @@ namespace Lighter.UserManagerService
         {
             base.Initialize();
 
-            TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            if (baseMap == null)
-                Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
+            //TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
+            //if (baseMap == null)
+            //{
+            //    IMappingExpression<DTOEntityBase<string>, EntityBase<string>> pp = Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
+            //    baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
+            //}
                 
-            if (!baseMap.TypeHasBeenIncluded(typeof(AccountDTO), typeof(Account)))
-                baseMap.IncludeDerivedTypes(typeof(AccountDTO), typeof(Account));
-            if (!baseMap.TypeHasBeenIncluded(typeof(DepartmentDTO), typeof(Department)))
-                baseMap.IncludeDerivedTypes(typeof(DepartmentDTO), typeof(Department));
-            if (!baseMap.TypeHasBeenIncluded(typeof(RoleDTO), typeof(Role)))
-                baseMap.IncludeDerivedTypes(typeof(RoleDTO), typeof(Role));
+            //if (!baseMap.TypeHasBeenIncluded(typeof(AccountDTO), typeof(Account)))
+            //    baseMap.IncludeDerivedTypes(typeof(AccountDTO), typeof(Account));
+            //if (!baseMap.TypeHasBeenIncluded(typeof(DepartmentDTO), typeof(Department)))
+            //    baseMap.IncludeDerivedTypes(typeof(DepartmentDTO), typeof(Department));
+            //if (!baseMap.TypeHasBeenIncluded(typeof(RoleDTO), typeof(Role)))
+            //    baseMap.IncludeDerivedTypes(typeof(RoleDTO), typeof(Role));
 
-            if (null == Mapper.FindTypeMapFor<AccountDTO, Account>())
-                Mapper.CreateMap<AccountDTO, Account>()
-                    .ForAllMembers(opt => opt.NullSubstitute(""));
+            //if (null == Mapper.FindTypeMapFor<AccountDTO, Account>())
+            //    Mapper.CreateMap<AccountDTO, Account>()
+            //        .ForAllMembers(opt => opt.NullSubstitute(""));
 
-            if (null == Mapper.FindTypeMapFor<DepartmentDTO, Department>())
-                Mapper.CreateMap<DepartmentDTO, Department>()
-                    .ForAllMembers(opt => opt.NullSubstitute(""));
+            //if (null == Mapper.FindTypeMapFor<DepartmentDTO, Department>())
+            //    Mapper.CreateMap<DepartmentDTO, Department>()
+            //        .ForAllMembers(opt => opt.NullSubstitute(""));
 
-            if (null == Mapper.FindTypeMapFor<RoleDTO, Role>())
-                Mapper.CreateMap<RoleDTO, Role>()
-                    .ForAllMembers(opt => opt.NullSubstitute(""));
+            //if (null == Mapper.FindTypeMapFor<RoleDTO, Role>())
+            //    Mapper.CreateMap<RoleDTO, Role>()
+            //        .ForAllMembers(opt => opt.NullSubstitute(""));
 
             IsInitialized = true;
         }

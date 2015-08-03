@@ -44,16 +44,19 @@ namespace Lighter.ModuleServiceBase
         /// </summary>
         public override void Initialize()
         {
-            TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            if (baseMap == null)
-                Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
+            //TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
+            //if (baseMap == null)
+            //{
+            //    IMappingExpression<DTOEntityBase<string>, EntityBase<string>> pp = Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
+            //    baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
+            //}
 
-            if (!baseMap.TypeHasBeenIncluded(typeof(ModuleDTO), typeof(Module)))
-                baseMap.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
+            //if (!baseMap.TypeHasBeenIncluded(typeof(ModuleDTO), typeof(Module)))
+            //    baseMap.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
 
-            if (null == Mapper.FindTypeMapFor<ModuleDTO, Module>())
-                Mapper.CreateMap<ModuleDTO, Module>()
-                    .ForAllMembers(opt => opt.NullSubstitute(""));
+            //if (null == Mapper.FindTypeMapFor<ModuleDTO, Module>())
+            //    Mapper.CreateMap<ModuleDTO, Module>()
+            //        .ForAllMembers(opt => opt.NullSubstitute(""));
         }
 
         //public virtual OperationResult CheckSession()

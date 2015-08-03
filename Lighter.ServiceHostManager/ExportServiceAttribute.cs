@@ -16,7 +16,8 @@ using Lighter.ServiceManager.TokenValidation;
         /// </summary>
         /// <param name="name">The name of the service.</param>
         /// <param name="serviceType">The service type.</param>
-        public ExportServiceAttribute(string name, Type serviceType, Type contactType, int order = 1, TokenValidationMode mode = TokenValidationMode.Check)
+        public ExportServiceAttribute(string name, string description, Type serviceType, 
+            Type contactType, int order = 1, TokenValidationMode mode = TokenValidationMode.Check)
             : base(typeof(IHostedService))
         {
             if (string.IsNullOrWhiteSpace(name))
@@ -29,6 +30,7 @@ using Lighter.ServiceManager.TokenValidation;
                 throw new ArgumentException("Order is must great than zero.", "order");
 
             Name = name;
+            Description = description;
             ServiceType = serviceType;
             ContactType = contactType;
             Order = order;
@@ -41,6 +43,11 @@ using Lighter.ServiceManager.TokenValidation;
         /// Gets the name of the service.
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Get the description of the service.
+        /// </summary>
+        public string Description { get; private set; }
 
         /// <summary>
         /// Gets the service type.

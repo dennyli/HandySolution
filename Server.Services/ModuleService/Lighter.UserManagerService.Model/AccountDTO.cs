@@ -12,7 +12,6 @@ namespace Lighter.UserManagerService.Model
     public class AccountDTO : DTOEntityBase<string>
     {
         public AccountDTO()
-            : base(typeof(AccountDTO))
         {
 
         }
@@ -57,12 +56,12 @@ namespace Lighter.UserManagerService.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name: " + Name);
-            sb.Append(";Password: " + Password ?? "<null>");
-            sb.Append(";Authority: " + Authority ?? "<null>");
-            sb.Append(";ShortName: " + ShortName ?? "<null>");
-            sb.Append(";Role: " + Role == null ? "<null>" : Role.ToString());
-            sb.Append(";Department: " + Department == null ? "<null>" : Department.ToString());
+            sb.Append("\nName: " + Name);
+            sb.Append("\nPassword: " + Password ?? "<null>");
+            sb.Append("\nAuthority: " + (Authority == null ? "<null>" : Authority));
+            sb.Append("\nShortName: " + ShortName ?? "<null>");
+            sb.Append("\nRole: " + (Role == null ? "<null>" : Role.ToString()));
+            sb.Append("\nDepartment: " + (Department == null ? "<null>" : Department.ToString()));
 
             return sb.ToString();
         }

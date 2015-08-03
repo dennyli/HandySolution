@@ -33,16 +33,16 @@ namespace Lighter.Server.Common
 
         public void RemoveAccount(UserInfo info)
         {
-            if (FindUserInfo(info.Name) == null)
+            if (FindUserInfo(info.Id) == null)
                 return;
 
             _loginedAccounts.Remove(info);
             RaisePropertyChanged("LoginedAccounts");
         }
 
-        public void RemoveAccount(string userName)
+        public void RemoveAccount(string userId)
         {
-            UserInfo info = FindUserInfo(userName);
+            UserInfo info = FindUserInfo(userId);
             if (info == null)
                 return;
 
@@ -50,16 +50,16 @@ namespace Lighter.Server.Common
             RaisePropertyChanged("LoginedAccounts");
         }
 
-        public bool IsAccountLogined(string userName)
+        public bool IsAccountLogined(string userId)
         {
-            return FindUserInfo(userName) != null;
+            return FindUserInfo(userId) != null;
         }
 
-        private UserInfo FindUserInfo(string userName)
+        private UserInfo FindUserInfo(string userId)
         {
             try
             {
-                return _loginedAccounts.First<UserInfo>(u => u.Name == userName);
+                return _loginedAccounts.First<UserInfo>(u => u.Id == userId);
             }
             catch (InvalidOperationException ex)
             { }

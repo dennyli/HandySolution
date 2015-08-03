@@ -116,7 +116,7 @@ namespace Lighter.Server.ViewModel
                         //ILighterService service = instanceContext.GetServiceInstance() as ILighterService;
                         //service.Initialize();
 
-                        ServiceInfo info = new ServiceInfo(host.Meta.Name, address.Address.Uri);
+                        ServiceInfo info = new ServiceInfo(host.Meta.Description, address.Address.Uri);
                         Services.Add(info);
                         RaisePropertyChanged("Services");
                     }
@@ -143,7 +143,7 @@ namespace Lighter.Server.ViewModel
             _lighterServerContext.AddAccount(user);
         }
 
-        private void AccountLogouted(string userName)
+        private void AccountLogouted(string userId)
         {
             //try
             //{
@@ -155,7 +155,7 @@ namespace Lighter.Server.ViewModel
             //    RaisePropertyChanged("LastMessage");
             //}
 
-            _lighterServerContext.RemoveAccount(userName);
+            _lighterServerContext.RemoveAccount(userId);
         }
 
         private void FindServerInfo()

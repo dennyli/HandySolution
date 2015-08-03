@@ -15,6 +15,11 @@
         string Name { get; }
 
         /// <summary>
+        /// Get the description of the service.
+        /// </summary>
+        string Description { get; }
+
+        /// <summary>
         /// Gets the service type.
         /// </summary>
         Type ServiceType { get; }

@@ -13,7 +13,6 @@ namespace Lighter.UserManagerService.Model
     public class DepartmentDTO : DTOEntityBase<string>
     {
         public DepartmentDTO()
-            : base(typeof(DepartmentDTO))
         {
             Accounts = new ObservableCollection<AccountDTO>();
         }
@@ -40,15 +39,15 @@ namespace Lighter.UserManagerService.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name: " + Name);
-            sb.Append(";Description: " + Description ?? "<null>");
+            sb.Append("\nName: " + Name);
+            sb.Append("\nDescription: " + Description ?? "<null>");
             if (Accounts ==null)
-                sb.Append(";Accounts: <null>");
+                sb.Append("\nAccounts: <null>");
             else
             {
-                sb.Append(";Accounts: " + Accounts.Count.ToString() + " account");
+                sb.Append("\nAccounts: " + Accounts.Count.ToString() + " account");
                 foreach(AccountDTO dto in Accounts)
-                    sb.Append("\n\t" + dto.ToString());
+                    sb.Append("\n\n\t" + dto.ToString());
             }
 
             return sb.ToString();

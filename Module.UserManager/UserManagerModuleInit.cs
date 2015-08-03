@@ -54,7 +54,7 @@ namespace Client.Module.UserManager
                     throw new InvalidOperationException("服务端未发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
 
                 Uri[] uris = mainService.GetServiceAddress(serviceName);
-                service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0]);
+                service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0], _lighterContext);
 
                 _lighterContext.AddService(serviceName, service as ILighterService);
             }

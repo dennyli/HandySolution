@@ -224,9 +224,7 @@ namespace Lighter.Client.Infrastructure.Implement
                 return true;
 
             ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-
-            LoginInfo info = new LoginInfo(_account.Id, "", CommonUtility.GetHostIP4vDotFormat());
-            OperationResult result = loginService.Logout(info);
+            OperationResult result = loginService.Logout(_account.Id);
             return result.ResultType == OperationResultType.Success;
         }
         #endregion

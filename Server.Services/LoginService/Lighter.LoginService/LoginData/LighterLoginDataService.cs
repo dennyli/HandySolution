@@ -42,16 +42,17 @@ namespace Lighter.LoginService.LoginData
             account.IsLogin = true;
             _accountRepository.Update(account);
 
-            _eventAggregator.GetEvent<AccountLoginEvent>().Publish(new UserInfo(info.Account, info.IpAddress));
-            
-            return new OperationResult(OperationResultType.Success, "登录成功。", account.Authority);
+            UserInfo ui = new UserInfo(account.Id, info.Account, info.IpAddress, account.Authority);
+            _eventAggregator.GetEvent<AccountLoginEvent>().Publish(ui);
+
+            return new OperationResult(OperationResultType.Success, "登录成功。", ui.ToString());
         }
 
-        public OperationResult Logout(string userName)
+        public OperationResult Logout(string userId)
         {
-            PublicHelper.CheckArgument(userName, "User Name");
+            PublicHelper.CheckArgument(userId, "User Id");
 
-            Account account = Accounts.SingleOrDefault<Account>(a => a.Name == userName);
+            Account account = Accounts.SingleOrDefault<Account>(a => a.Id == userId);
             if (account == null)
                 return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");
 
@@ -61,7 +62,7 @@ namespace Lighter.LoginService.LoginData
             account.IsLogin = false;
             _accountRepository.Update(account);
 
-            _eventAggregator.GetEvent<AccountLogoutEvent>().Publish(userName);
+            _eventAggregator.GetEvent<AccountLogoutEvent>().Publish(userId);
 
             return new OperationResult(OperationResultType.Success, "退出成功。"); 
         }

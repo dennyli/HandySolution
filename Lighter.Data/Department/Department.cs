@@ -44,8 +44,8 @@ namespace Lighter.Data
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name:" + Name);
-            sb.Append(";Description:" + Description);
+            sb.Append("\nName:" + Name);
+            sb.Append("\nDescription:" + Description);
 
             return sb.ToString();
         }

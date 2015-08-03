@@ -74,12 +74,12 @@ namespace Lighter.Data
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name:" + Name);
-            sb.Append(";Password:" + Password);
-            sb.Append(";Authority:" + Authority == null ? "" : Authority);
-            sb.Append(";RoleId:" + Role == null ? "" : Role.Id);
-            sb.Append(";DepartId:" + Department == null ? "" : Department.Id);
-            sb.Append(";IsLogin:" + IsLogin.ToString());
+            sb.Append("\nName:" + Name);
+            sb.Append("\nPassword:" + Password);
+            sb.Append("\nAuthority:" + (Authority == null ? "" : Authority));
+            sb.Append("\nRoleId:" + (Role == null ? "" : Role.Id));
+            sb.Append("\nDepartId:" + (Department == null ? "" : Department.Id));
+            sb.Append("\nIsLogin:" + IsLogin.ToString());
 
             return sb.ToString();
         }

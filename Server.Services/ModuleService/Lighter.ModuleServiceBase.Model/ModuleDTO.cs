@@ -14,7 +14,6 @@ namespace Lighter.ModuleServiceBase.Model
     public class ModuleDTO : DTOEntityBase<string>
     {
         public ModuleDTO()
-            : base(typeof(ModuleDTO))
         {
 
         }
@@ -35,8 +34,8 @@ namespace Lighter.ModuleServiceBase.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.Append(";Name: " + Name);
-            sb.Append(";Catalog: " + Catalog ?? "<null>");
+            sb.Append("\nName: " + Name);
+            sb.Append("\nCatalog: " + Catalog ?? "<null>");
 
             return sb.ToString();
         }

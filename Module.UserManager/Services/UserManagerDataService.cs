@@ -38,10 +38,10 @@ namespace Client.Module.UserManager.Services
 
             try
             {
-                using (OperationContextScope scope = new OperationContextScope(service as IContextChannel))
-                {
-                    MessageHeader header = MessageHeader.CreateHeader("userName", "http://www.codestar.com", _lighterContext.GetCurrentAccountName());
-                    OperationContext.Current.OutgoingMessageHeaders.Add(header);
+                //using (OperationContextScope scope = new OperationContextScope(service as IContextChannel))
+                //{
+                //    MessageHeader header = MessageHeader.CreateHeader("userName", "http://www.codestar.com", _lighterContext.GetCurrentAccountName());
+                //    OperationContext.Current.OutgoingMessageHeaders.Add(header);
 
                     //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
                     Accounts accounts = new Accounts();
@@ -53,7 +53,7 @@ namespace Client.Module.UserManager.Services
                         accounts.Add(dto);
 
                     return accounts;
-                }
+                //}
             }
             catch (ProtocolException ex)
             {

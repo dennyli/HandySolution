@@ -62,9 +62,9 @@ namespace Utility
 
         public override string ToString()
         {
-            return "Id:" + Id.ToString() 
-                + ";LastDate:" + LastDate.ToString() 
-                + ";IsDeleted:" + IsDeleted.ToString();
+            return "Id:" + Id.ToString()
+                + "\nLastDate:" + LastDate.ToString()
+                + "\nIsDeleted:" + IsDeleted.ToString();
         }
     }
 }

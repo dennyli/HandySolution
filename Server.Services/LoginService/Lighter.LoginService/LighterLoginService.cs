@@ -11,7 +11,7 @@ using Lighter.ServiceManager.TokenValidation;
 namespace Lighter.LoginService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
-    [ExportService("LighterLoginService", typeof(LighterLoginService), typeof(ILighterLoginService), 1, TokenValidationMode.Uncheck), TcpEndpoint(40002)]
+    [ExportService("LighterLoginService", "账户登录服务", typeof(LighterLoginService), typeof(ILighterLoginService), 1, TokenValidationMode.Uncheck), TcpEndpoint(40002)]
     public class LighterLoginService : ILighterLoginService
     {
         [Import]
@@ -22,9 +22,9 @@ namespace Lighter.LoginService
             return _dataService.Login(info);
         }
 
-        public OperationResult Logout(LoginInfo info)
+        public OperationResult Logout(string userId)
         {
-            return _dataService.Logout(info.Account);
+            return _dataService.Logout(userId);
         }
 
         //public string GetAllAccounts()

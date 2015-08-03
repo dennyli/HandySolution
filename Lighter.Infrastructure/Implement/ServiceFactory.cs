@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Lighter.BaseService.Interface;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
+using Lighter.Client.Infrastructure.TokenValidation;
+using Lighter.Client.Infrastructure.Interface;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
@@ -12,7 +15,7 @@ namespace Lighter.Client.Infrastructure.Implement
         public static string MAIN_SERVICE_NAME = "LighterMainService";
         public static string LOGIN_SERVICE_NAME = "LighterLoginService";
 
-        public static T CreateService<T>(Uri uri)
+        public static T CreateService<T>(Uri uri, ILighterClientContext lighterContext = null)
         {
             EndpointAddress address = new EndpointAddress(uri);
             NetTcpBinding binding = new NetTcpBinding();
@@ -24,8 +27,11 @@ namespace Lighter.Client.Infrastructure.Implement
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.None;
 #endif
             ChannelFactory<T> factory = new ChannelFactory<T>(binding, address);
-            T service = factory.CreateChannel();
+            if (lighterContext != null)
+                factory.Endpoint.Behaviors.Add(new TokenValidationBehavior(lighterContext.GetCurrentAccount()));
 
+            T service = factory.CreateChannel();
+            
 #if DEBUG
             // Timeout: 10 mins
             IContextChannel channel = service as IClientChannel;
