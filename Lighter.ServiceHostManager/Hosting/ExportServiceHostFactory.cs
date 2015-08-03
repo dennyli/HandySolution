@@ -1,9 +1,12 @@
-﻿#define CHECK_ACCOUNT_LOGIN
+﻿#define USE_CHECK_ACCOUNT_LOGIN
+#define USE_ERROR_HANDLER
 
 namespace Lighter.ServiceManager.Hosting
 {
     using System;
     using System.ComponentModel.Composition.Hosting;
+    using System.ServiceModel.Description;
+    using Lighter.ServiceManager.ErrorHandler;
     using Lighter.ServiceManager.TokenValidation;
 
     /// <summary>
@@ -24,9 +27,13 @@ namespace Lighter.ServiceManager.Hosting
 
             var host = new ExportServiceHost(meta, new Uri[0]);
             host.Description.Behaviors.Add(new ExportServiceBehavior(container, meta.Name));
-#if CHECK_ACCOUNT_LOGIN
+#if USE_CHECK_ACCOUNT_LOGIN
             if (meta.TokenValidationMode == TokenValidationMode.Check)
                 host.Description.Behaviors.Add(new TokenValidationServiceBehavior(container));
+#endif
+#if USE_ERROR_HANDLER
+            foreach (ServiceEndpoint se in host.Description.Endpoints)
+                se.Behaviors.Add(new EndpointErrorHandlerBehavior(container));
 #endif
 
             return host;

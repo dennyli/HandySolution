@@ -12,11 +12,17 @@ using Lighter.BaseService.Interface;
 
 namespace Lighter.BaseService
 {
-    public abstract class LighterServiceBase : /*CoreServiceBase,*/ ILighterService
+    public abstract class LighterServiceBase : /*CoreServiceBase,*/ ILighterService, IDisposable
     {
         [Import]
         public ILoggerFacade Logger { get; set; }
 
         public abstract void Initialize();
+
+        #region IDisposable 成员
+
+        public abstract void Dispose();
+
+        #endregion
     }
 }

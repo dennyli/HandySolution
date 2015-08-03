@@ -49,5 +49,9 @@ namespace Lighter.ModuleServiceBase.Data
         {
             
         }
+
+        public override void Dispose()
+        {
+        }
     }
 }

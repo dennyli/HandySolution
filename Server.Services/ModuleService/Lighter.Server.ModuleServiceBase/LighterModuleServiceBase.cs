@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ServiceModel;
 using AutoMapper;
@@ -72,5 +73,13 @@ namespace Lighter.ModuleServiceBase
 
         //    return new OperationResult(OperationResultType.Success);
         //}
+
+        #region IDisposable 成员
+
+        public override void Dispose()
+        {
+        }
+
+        #endregion
     }
 }

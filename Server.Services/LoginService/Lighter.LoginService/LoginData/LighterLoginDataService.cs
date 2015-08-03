@@ -71,5 +71,9 @@ namespace Lighter.LoginService.LoginData
         {
             
         }
+
+        public override void Dispose()
+        {
+        }
     }
 }

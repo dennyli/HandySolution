@@ -2,29 +2,28 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ServiceModel;
-using AutoMapper;
-using Lighter.Data;
 using Lighter.ModuleServiceBase;
 using Lighter.ModuleServiceBase.Model;
-using Lighter.ModuleServiceBase.Interface;
 using Lighter.ServiceManager;
 using Lighter.ServiceManager.Endpoints;
+using Lighter.UserManagerService.Defination;
 using Lighter.UserManagerService.Interface;
 using Lighter.UserManagerService.Model;
 using Lighter.UserManagerService.UserManagerData;
 using Utility;
-using Lighter.UserManagerService.Defination;
 
 namespace Lighter.UserManagerService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
     [ExportService("LighterUserManagerService", "用户管理服务", typeof(LighterUserManagerService), typeof(ILighterUserManagerService), 1), TcpEndpoint(40002)]
+    //[ServiceErrorHandlerBehavior(typeof(ServiceErrorHandler))]
+
     [ServiceKnownType(typeof(AccountDTO))]
     [ServiceKnownType(typeof(DepartmentDTO))]
     [ServiceKnownType(typeof(RoleDTO))]
     [ServiceKnownType(typeof(ModuleDTO))]
     [ServiceKnownType(typeof(DTOEntityBase<string>))]
-    public class LighterUserManagerService : LighterModuleServiceBase, ILighterUserManagerService
+    public class LighterUserManagerService : LighterModuleServiceBase, ILighterUserManagerService, IDisposable
     {
         [Import]
         protected IUserManagerDataService _dataService;
@@ -246,5 +245,14 @@ namespace Lighter.UserManagerService
             return _dataService.DeleteEntities(entities, bRemoveRecord);
         }
         #endregion 
+    
+        #region IDisposable 成员
+
+        public override void Dispose()
+        {
+            base.Dispose();
+        }
+
+        #endregion
     }
 }

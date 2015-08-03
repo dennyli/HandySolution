@@ -10,6 +10,7 @@
     using Endpoints;
     using System.Diagnostics;
     using Utility;
+    using Lighter.ServiceManager.ErrorHandler;
 
     /// <summary>
     /// Defines a service host created from exported parts.

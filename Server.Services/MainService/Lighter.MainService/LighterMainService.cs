@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -17,7 +16,8 @@ namespace Lighter.MainService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple, UseSynchronizationContext = false, Namespace = "http://www.codestar.com/")]
     [ExportService("LighterMainService", "系统主服务", typeof(LighterMainService),  typeof(ILighterMainService), 0, TokenValidationMode.Uncheck), TcpEndpoint(40001)]
-    public class LighterMainService : LighterServiceBase, ILighterMainService
+    //[ServiceErrorHandlerBehavior(typeof(ServiceErrorHandler))]
+    public class LighterMainService : LighterServiceBase, ILighterMainService, IDisposable
     {
         //private Dictionary<string, ILighterConnectCallBack> _callbacks = new Dictionary<string, ILighterConnectCallBack>();
         private ObservableCollection<Client> _clients = new ObservableCollection<Client>();
@@ -123,5 +123,14 @@ namespace Lighter.MainService
         {
             
         }
+
+        #region IDisposable 成员
+
+        public override void Dispose()
+        {
+
+        }
+
+        #endregion
     }
 }
