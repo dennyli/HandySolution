@@ -22,8 +22,10 @@
 
             var host = new ExportServiceHost(meta, new Uri[0]);
             host.Description.Behaviors.Add(new ExportServiceBehavior(container, meta.Name));
+#if !DEBUG
             if (meta.TokenValidationMode == TokenValidationMode.Check)
                 host.Description.Behaviors.Add(new TokenValidationServiceBehavior(container));
+#endif
 
             return host;
         }
