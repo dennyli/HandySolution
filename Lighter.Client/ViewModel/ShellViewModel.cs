@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Commands;
 using Lighter.Client.Infrastructure.Interface;
 
-namespace Lighter.Client
+namespace Lighter.Client.ViewModel
 {
     [Export]
     public class ShellViewModel : INotifyPropertyChanged

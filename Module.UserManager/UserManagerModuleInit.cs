@@ -36,7 +36,7 @@ namespace Client.Module.UserManager
         {
             MenuItemAndToolbarInitialize(typeof(UserManagerModuleInit), CommandDefinitions.CU_TOPMENU_TEXT, CommandDefinitions.CU_TOPMENU_TEXT);
 
-            //CreateService();
+            CreateService();
         }
 
         protected override ILighterService CreateService()

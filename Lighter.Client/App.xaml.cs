@@ -15,17 +15,22 @@ namespace Lighter.Client
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var bootstrapper = new Bootstrapper();
+            base.OnStartup(e);
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            var bootstrapper = new LighterBootstrapper();
             bootstrapper.Run();
 
-            LoginWindow login = new LoginWindow();
-            if (login.ShowDialog() == true)
+            LoginWindow loginWindow = new LoginWindow();
+            bootstrapper.ComposeExternelParts(new object[] { loginWindow });
+            if (loginWindow.ShowDialog() == true)
             {
-                //base.OnStartup(e);
+                this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-                //var bootstrapper = new Bootstrapper();
-                //bootstrapper.Run();
+                bootstrapper.RunShell();
             }
+            else
+                Shutdown();
         }
     }
 }

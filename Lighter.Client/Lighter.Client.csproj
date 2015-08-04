@@ -81,6 +81,7 @@
     <Compile Include="Controls\WaitingControl.xaml.cs">
       <DependentUpon>WaitingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\LoginInfoConverter.cs" />
     <Compile Include="Events\ILoginCallback.cs" />
     <Compile Include="Events\LoginCallback.cs" />
     <Compile Include="Events\LoginCallbackEvent.cs" />
@@ -91,7 +92,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="LighterBootstrapper.cs" />
     <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>

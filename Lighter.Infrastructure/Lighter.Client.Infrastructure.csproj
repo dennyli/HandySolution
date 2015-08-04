@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Accounts\Account.cs" />
     <Compile Include="Accounts\IAcount.cs" />
+    <Compile Include="Implement\ConfigInfo.cs" />
     <Compile Include="Implement\ServiceFactory.cs" />
     <Compile Include="Interface\IAccountContext.cs" />
     <Compile Include="Interface\ICommandContext.cs" />

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Practices.Prism.MefExtensions;
-using Microsoft.Practices.Prism.Modularity;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Linq;
 using System.Windows;
 using System.Xaml;
+using Lighter.Client.View;
+using Microsoft.Practices.Prism.MefExtensions;
+using Microsoft.Practices.Prism.Modularity;
 
 namespace Lighter.Client
 {
-    public class Bootstrapper : MefBootstrapper
+    public class LighterBootstrapper : MefBootstrapper
     {
         protected override DependencyObject CreateShell()
         {
@@ -19,15 +20,18 @@ namespace Lighter.Client
 
         protected override void InitializeShell()
         {
-            base.InitializeShell();
 
             App.Current.MainWindow = (Window)this.Shell;
             //App.Current.MainWindow.Show();
+
+            base.InitializeShell();
         }
 
         protected override void InitializeModules()
         {
-            base.InitializeModules();
+            IEnumerable<Lazy<object, object>> exports = this.Container.GetExports(typeof(IModuleManager), null, null);
+            if ((exports != null) && (exports.Count() > 0))
+                base.InitializeModules();
         }
 
         protected override IModuleCatalog CreateModuleCatalog()
@@ -43,13 +47,27 @@ namespace Lighter.Client
             base.ConfigureAggregateCatalog();
 
             // Add this assembly to the catalog.
-            this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(Bootstrapper).Assembly));
+            //this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(LighterBootstrapper).Assembly));
 
             // Modules are located in the shell's directory. Both module projects have
             // a post-build step that copies the module assemblies into this directory.
-            DirectoryCatalog catalog = new DirectoryCatalog(@".");
+            DirectoryCatalog catalogDLL = new DirectoryCatalog(@".\", "*.dll");
+            DirectoryCatalog catalogExe = new DirectoryCatalog(@".\", "*.exe");
 
-            this.AggregateCatalog.Catalogs.Add(catalog);
+            this.AggregateCatalog.Catalogs.Add(catalogDLL);
+            this.AggregateCatalog.Catalogs.Add(catalogExe);
+        }
+
+        public void ComposeExternelParts(object[] parts)
+        {
+            this.Container.ComposeParts(parts);
+        }
+
+        public void RunShell()
+        {
+            this.InitializeModules();
+
+            App.Current.MainWindow.Show();
         }
     }
 }

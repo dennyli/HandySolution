@@ -117,12 +117,12 @@ namespace Microsoft.Practices.Prism.MefExtensions
                 this.InitializeShell();
             }
 
-            IEnumerable<Lazy<object, object>> exports = this.Container.GetExports(typeof(IModuleManager), null, null);
-            if ((exports != null) && (exports.Count() > 0))
-            {
-                this.Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
-                this.InitializeModules();
-            }
+            //IEnumerable<Lazy<object, object>> exports = this.Container.GetExports(typeof(IModuleManager), null, null);
+            //if ((exports != null) && (exports.Count() > 0))
+            //{
+            //    this.Logger.Log(Resources.InitializingModules, Category.Debug, Priority.Low);
+            //    this.InitializeModules();
+            //}
 
             this.Logger.Log(Resources.BootstrapperSequenceCompleted, Category.Debug, Priority.Low);
         }
@@ -223,13 +223,13 @@ namespace Microsoft.Practices.Prism.MefExtensions
             this.Container.ComposeParts(this.Shell);
         }
 
-        /// <summary>
-        /// Initializes the modules. May be overwritten in a derived class to use a custom Modules Catalog
-        /// </summary>
-        protected override void InitializeModules()
-        {
-            IModuleManager manager = this.Container.GetExportedValue<IModuleManager>();
-            manager.Run();
-        }
+        ///// <summary>
+        ///// Initializes the modules. May be overwritten in a derived class to use a custom Modules Catalog
+        ///// </summary>
+        //protected override void InitializeModules()
+        //{
+        //    IModuleManager manager = this.Container.GetExportedValue<IModuleManager>();
+        //    manager.Run();
+        //}
     }
 }

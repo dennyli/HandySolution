@@ -22,6 +22,7 @@ namespace Lighter.Client.View
     /// <summary>
     /// LoginWindow.xaml 的交互逻辑
     /// </summary>
+    [Export]
     public partial class LoginWindow : Window
     {
         public LoginWindow()
@@ -60,18 +61,18 @@ namespace Lighter.Client.View
             {
                 case LoginOperationKinds.Login:
                     if (args.OpResult.ResultType == OperationResultType.Success)
-                        ViewModel.LoginMessage = "登录成功";
+                        ViewModel.SetLoginMessage("登录成功");
                     else
-                        ViewModel.LoginMessage = "登录失败";
+                        ViewModel.SetLoginMessage("登录失败");
                     break;
                 case LoginOperationKinds.Logout:
                     if (args.OpResult.ResultType == OperationResultType.Success)
-                        ViewModel.LoginMessage = "退出成功";
+                        ViewModel.SetLoginMessage("退出成功");
                     else
-                        ViewModel.LoginMessage = "退出失败";
+                        ViewModel.SetLoginMessage("退出失败");
                     break;
                 default:
-                    ViewModel.LoginMessage = "位置信息";
+                    ViewModel.SetLoginMessage("未知信息");
                     break;
             }
         }
@@ -100,9 +101,18 @@ namespace Lighter.Client.View
             panelPort.Visibility = cbServerParam.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
 
             if (panelPort.Visibility == Visibility.Collapsed)
+            {
                 this.Height = 330;
+
+                ViewModel.SetWaitingVisibility(Visibility.Collapsed);
+            }
             else
+            { 
                 this.Height = 355;
+
+
+                ViewModel.SetWaitingVisibility(Visibility.Visible);
+            }
         }
 
         private void tips_close_MouseEnter(object sender, MouseEventArgs e)

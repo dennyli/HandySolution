@@ -12,5 +12,9 @@ namespace Lighter.Client.Infrastructure.Interface
         string GetServerName();
         string GetServerIp();
         string GetServerPort();
+
+        void WriteServerName(string name);
+        void WriteServerIp(string ip);
+        void WriteServerPort(string port); 
     }
 }

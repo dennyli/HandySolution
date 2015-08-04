@@ -132,7 +132,7 @@ namespace Lighter.Client.Infrastructure.Implement
             string serverIp = GetServerIp();
             int serverPort = -1;
             if (!Int32.TryParse(GetServerPort(), out serverPort))
-                serverPort = 40000;
+                serverPort = 50000;
 
             var builder = new UriBuilder("net.tcp", serverIp, serverPort, ServiceFactory.MAIN_SERVICE_NAME);
             ILighterMainService mainService = ServiceFactory.CreateService<ILighterMainService>(builder.Uri);
@@ -184,41 +184,69 @@ namespace Lighter.Client.Infrastructure.Implement
         #endregion
 
         #region IConfigContext Ini File
-        private string iniName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "client.ini");
+        private static string iniName = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "client.ini");
+        private ConfigInfo _configInfo = null;
+
+        private void LoadConfig()
+        {
+            _configInfo = new ConfigInfo();
+            _configInfo.LoadFromFile(iniName);
+        }
 
         public string GetClientName()
         {
-            return OperatorFile.GetIniFileString("client", "name", "订单管理系统(客户端)", iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            return _configInfo.ClientName;
         }
 
         public string GetServerName()
         {
-            return OperatorFile.GetIniFileString("server", "name", CommonUtility.GetHostName(), iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            return _configInfo.ServerName;
         }
 
         public string GetServerIp()
         {
-            return OperatorFile.GetIniFileString("server", "ip", CommonUtility.GetHostIP4vDotFormat(), iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            return _configInfo.ServerIp;
         }
 
         public string GetServerPort()
         {
-            return OperatorFile.GetIniFileString("server", "port", "50000", iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            return _configInfo.ServerPort;
         }
 
-        public bool WriteServerName(string name)
+        public void WriteServerName(string name)
         {
-            return OperatorFile.WriteIniFileString("server", "name", name, iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            _configInfo.ServerName = name;
         }
 
-        public bool WriteServerIp(string ip)
+        public void WriteServerIp(string ip)
         {
-            return OperatorFile.WriteIniFileString("server", "ip", ip, iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            _configInfo.ServerIp = ip;
         }
 
-        public bool WriteServerIp(int port)
+        public void WriteServerPort(string port)
         {
-            return OperatorFile.WriteIniFileString("server", "port", port.ToString(), iniName);
+            if (_configInfo == null)
+                LoadConfig();
+
+            _configInfo.ServerPort = port;
         }
         #endregion
 
@@ -260,6 +288,9 @@ namespace Lighter.Client.Infrastructure.Implement
         #region IDisposable
         public void Dispose()
         {
+            if (_configInfo == null)
+                _configInfo.SaveToFile(iniName);
+
             // Logout
             //AccountLogout();
 

@@ -1,8 +1,14 @@
 ﻿<Window x:Class="Lighter.Client.View.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:self="clr-namespace:Lighter.Client.Controls" 
+        xmlns:ctls="clr-namespace:Lighter.Client.Controls" 
+        xmlns:cvts="clr-namespace:Lighter.Client.Converters"
         Title="{Binding Path=Title}" Height="330" Width="400" Background="#00000000" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="1">
+    
+    <Window.Resources>
+        <cvts:LoginInfoConverter x:Key="LoginInfoConverter" />
+    </Window.Resources>
+    
     <Grid Background="#a1C6C6C6" Opacity="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="270*" />
@@ -35,8 +41,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
-
                 </Grid>
 
                 <Grid HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" Background="#FFededed">
@@ -56,7 +60,7 @@
                         <Label.Background>
                             <ImageBrush ImageSource="/Lighter.Client;component/Images/account_background.gif"></ImageBrush>
                         </Label.Background>
-                        <TextBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Text="" >
+                        <TextBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Text="" Name="txtAccount" >
 
                             <!--textbox的样式-->
 
@@ -68,7 +72,7 @@
                         <Label.Background>
                             <ImageBrush ImageSource="/Lighter.Client;component/Images/pwd_background.gif"></ImageBrush>
                         </Label.Background>
-                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" >
+                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword">
 
                             <!--textbox的样式-->
 
@@ -91,7 +95,7 @@
                         <CheckBox Name="cbServerParam" Content="服务器参数" Margin="10,8,33,7" FontFamily="Times New Roman"  FontSize="13" Grid.Column="1" Width="134" Click="cbServerParam_Click" />
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Name="panelIP" Visibility="Collapsed" Margin="10,0,0,0">
                             <Label Content="IP:" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" Height="25" />
-                            <TextBox Padding="5 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" FontFamily="Times New Roman" FontSize="16" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="1" Text="" Name="txtServerIP" Width="140" Height="25">
+                            <TextBox Padding="5 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" FontFamily="Times New Roman" FontSize="16" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="1" Text="{Binding Path=ServerIp}" Name="txtServerIP" Width="140" Height="25">
 
                                 <!--textbox的样式-->
 
@@ -100,7 +104,7 @@
                         </StackPanel>
                         <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal" Name="panelPort"  Visibility="Collapsed">
                             <Label Content="Port:" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" Height="25" />
-                            <TextBox Padding="5 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" FontFamily="Times New Roman" FontSize="16" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="1" Text="" Name="txtServerPort" Width="90" Height="25">
+                            <TextBox Padding="5 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" FontFamily="Times New Roman" FontSize="16" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="1" Name="txtServerPort" Width="90" Height="25" Text="{Binding Path=ServerPort}">
 
                                 <!--textbox的样式-->
 
@@ -109,7 +113,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <Button Cursor="Hand" Name="btn_login" Opacity="1" Grid.Row="6" Foreground="#FF7C7C03"  Height="50" Width="336" Margin="10,5,8,5" >
+                    <Button Cursor="Hand" Name="btn_login" Opacity="1" Grid.Row="6" Foreground="#FF7C7C03"  Height="50" Width="336" Margin="10,5,8,5" Command="{Binding Path=LoginCommand}" >
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border ClipToBounds="True"  CornerRadius="5">
@@ -121,11 +125,19 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.CommandParameter>
+                            <MultiBinding Converter="{StaticResource ResourceKey=LoginInfoConverter}">
+                                <MultiBinding.Bindings>
+                                    <Binding ElementName="txtAccount" Path="Text" Mode="OneWayToSource" />
+                                    <Binding ElementName="txtPassword" Path="Text" Mode="OneWayToSource" />
+                                </MultiBinding.Bindings>
+                            </MultiBinding>
+                        </Button.CommandParameter>
                     </Button>
 
                     <StackPanel Orientation="Horizontal"  Grid.Row="8" Margin="15,0,10,0" Width="330">
-                        <Label Content="登录中 ...." FontFamily="Times New Roman" FontSize="12" Width="300" />
-                        <self:WaitingControl x:Name="ctrlWaiting"  Height="25" Width="25" Visibility="{Binding Path=Waiting, Mode=OneWay}" />
+                        <Label Content="{Binding Path=LoginMessage, Mode=OneWay}" FontFamily="Times New Roman" FontSize="12" Width="300" />
+                        <ctls:WaitingControl x:Name="ctrlWaiting"  Height="25" Width="25" Visibility="{Binding Path=WaitingVisibility, Mode=OneWay}" />
                     </StackPanel>
                     
                 </Grid>

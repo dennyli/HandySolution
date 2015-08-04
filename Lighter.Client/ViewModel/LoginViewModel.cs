@@ -28,7 +28,8 @@ namespace Lighter.Client.ViewModel
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
 
-            SetWaiting(Visibility.Collapsed);
+            SetWaitingVisibility(Visibility.Collapsed);
+            SetLoginMessage("输入用户名和密码");
         }
 
         [Import]
@@ -38,6 +39,10 @@ namespace Lighter.Client.ViewModel
         public ILoginCallback _loginCallback { get; set; }
 
         public string Title { get { return "订单系统登陆界面"; } }
+
+        public string ServerIp { get { return _lighterContext.GetServerIp(); } set { _lighterContext.WriteServerIp(value); } }
+
+        public string ServerPort { get { return _lighterContext.GetServerPort(); } set { _lighterContext.WriteServerPort(value); } }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,17 +58,26 @@ namespace Lighter.Client.ViewModel
 
         #region Login command
         public DelegateCommand<object> LoginCommand { get; private set; }
-        public string LoginMessage { get; set; }
-        public Visibility Waiting { get; private set; }
 
-        public void SetWaiting(Visibility visibility)
+        public string LoginMessage { get; private set; }
+        public void SetLoginMessage(string message)
         {
-            Waiting = visibility;
+            LoginMessage = message;
+            NotifyPropertyChanged("LoginMessage");
+        }
+
+        public Visibility WaitingVisibility { get; private set; }
+
+        public void SetWaitingVisibility(Visibility visibility)
+        {
+            WaitingVisibility = visibility;
+
+            NotifyPropertyChanged("WaitingVisibility");
         }
 
         private void DoLogin(object commandArg)
         {
-            SetWaiting(Visibility.Visible);
+            SetWaitingVisibility(Visibility.Visible);
 
             LoginInfo info = commandArg as LoginInfo;
 
@@ -99,7 +113,7 @@ namespace Lighter.Client.ViewModel
 
             _lighterContext.SetCurrentAccount(dto);
 
-            SetWaiting(Visibility.Collapsed);
+            SetWaitingVisibility(Visibility.Collapsed);
         }
         #endregion
     }
