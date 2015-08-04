@@ -12,13 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel.Composition;
+using Lighter.Client.Events;
 
 namespace Lighter.Client
 {
     /// <summary>
     /// ShellView.xaml 的交互逻辑
     /// </summary>
-    [Export]
+    //[Export]
     public partial class ShellView : Window
     {
         public ShellView()

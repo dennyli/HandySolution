@@ -6,7 +6,7 @@ using Lighter.Client.Infrastructure.Interface;
 namespace Lighter.Client
 {
     [Export]
-    public class ShellViewModel: INotifyPropertyChanged
+    public class ShellViewModel : INotifyPropertyChanged
     {
         public ShellViewModel()
         {
@@ -31,7 +31,7 @@ namespace Lighter.Client
             return true;
         }
         #endregion
-             
+
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

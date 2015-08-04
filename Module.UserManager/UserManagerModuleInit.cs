@@ -36,7 +36,7 @@ namespace Client.Module.UserManager
         {
             MenuItemAndToolbarInitialize(typeof(UserManagerModuleInit), CommandDefinitions.CU_TOPMENU_TEXT, CommandDefinitions.CU_TOPMENU_TEXT);
 
-            CreateService();
+            //CreateService();
         }
 
         protected override ILighterService CreateService()
@@ -45,19 +45,22 @@ namespace Client.Module.UserManager
             string serviceName = resources.GetServiceName();
 
             ILighterUserManagerService service = _lighterContext.FindService(serviceName) as ILighterUserManagerService;
+            //if (service == null)
+            //{
+            //    ILighterMainService mainService = GetMainService();
+
+            //    bool bExist = mainService.ServiceIsExists(serviceName);
+            //    if (!bExist)
+            //        throw new InvalidOperationException("服务端未发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
+
+            //    Uri[] uris = mainService.GetServiceAddress(serviceName);
+            //    service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0], _lighterContext.GetCurrentAccount());
+
+            //    _lighterContext.AddService(serviceName, service as ILighterService);
+            //}
+
             if (service == null)
-            {
-                ILighterMainService mainService = GetMainService();
-
-                bool bExist = mainService.ServiceIsExists(serviceName);
-                if (!bExist)
-                    throw new InvalidOperationException("服务端未发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
-
-                Uri[] uris = mainService.GetServiceAddress(serviceName);
-                service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0], _lighterContext);
-
-                _lighterContext.AddService(serviceName, service as ILighterService);
-            }
+                service = _lighterContext.CreateServiceByMainService<ILighterUserManagerService>(serviceName);
 
             return service as ILighterService;
         }

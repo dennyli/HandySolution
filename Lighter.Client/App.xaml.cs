@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using Lighter.Client.View;
 
 namespace Lighter.Client
 {
@@ -14,10 +15,17 @@ namespace Lighter.Client
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             var bootstrapper = new Bootstrapper();
             bootstrapper.Run();
+
+            LoginWindow login = new LoginWindow();
+            if (login.ShowDialog() == true)
+            {
+                //base.OnStartup(e);
+
+                //var bootstrapper = new Bootstrapper();
+                //bootstrapper.Run();
+            }
         }
     }
 }

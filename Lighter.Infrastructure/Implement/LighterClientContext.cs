@@ -119,7 +119,15 @@ namespace Lighter.Client.Infrastructure.Implement
             return _currentClient;
         }
 
-        public void CreateMainService()
+        public ILighterMainService GetMainService()
+        {
+            if (!_services.ContainsKey(ServiceFactory.MAIN_SERVICE_NAME))
+                CreateMainService();
+
+            return _services[ServiceFactory.MAIN_SERVICE_NAME] as ILighterMainService;
+        }
+
+        private void CreateMainService()
         {
             string serverIp = GetServerIp();
             int serverPort = -1;
@@ -133,6 +141,27 @@ namespace Lighter.Client.Infrastructure.Implement
             mainService.Connect(client);
 
             AddService(ServiceFactory.MAIN_SERVICE_NAME, mainService);
+        }
+
+        public T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null, bool bTokenValidation = true)
+        {
+            T service = (T)FindService(serviceName);
+            if (service != null)
+                return service;
+
+            ILighterMainService mainService = GetMainService();
+            bool bExist = mainService.ServiceIsExists(serviceName);
+            if (!bExist)
+            {
+                throw new InvalidOperationException("服务端没有发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
+            }
+
+            Uri[] uris = mainService.GetServiceAddress(serviceName);
+            service = ServiceFactory.CreateService<T>(uris[0], contextCallback, bTokenValidation ? GetCurrentAccount() : null);
+
+            AddService(serviceName, service as ILighterService);
+
+            return service;
         }
 
         private void CloseAllService()
@@ -218,22 +247,21 @@ namespace Lighter.Client.Infrastructure.Implement
             return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);
         }
 
-        public bool AccountLogout()
-        {
-            if (_account == null)
-                return true;
-
-            ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-            OperationResult result = loginService.Logout(_account.Id);
-            return result.ResultType == OperationResultType.Success;
-        }
+        //public void AccountLogout()
+        //{
+        //    if (_account != null)
+        //    {
+        //        ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+        //        loginService.Logout(_account.Id);
+        //    }
+        //}
         #endregion
 
         #region IDisposable
         public void Dispose()
         {
             // Logout
-            AccountLogout();
+            //AccountLogout();
 
             // Disconnect main service
             DisconnectServer();

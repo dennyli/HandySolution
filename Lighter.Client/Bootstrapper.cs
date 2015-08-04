@@ -22,7 +22,7 @@ namespace Lighter.Client
             base.InitializeShell();
 
             App.Current.MainWindow = (Window)this.Shell;
-            App.Current.MainWindow.Show();
+            //App.Current.MainWindow.Show();
         }
 
         protected override void InitializeModules()

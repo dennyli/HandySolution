@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using Lighter.Client.Infrastructure.TokenValidation;
 using Lighter.Client.Infrastructure.Interface;
+using Lighter.Client.Infrastructure.Accounts;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
@@ -15,7 +16,7 @@ namespace Lighter.Client.Infrastructure.Implement
         public static string MAIN_SERVICE_NAME = "LighterMainService";
         public static string LOGIN_SERVICE_NAME = "LighterLoginService";
 
-        public static T CreateService<T>(Uri uri, ILighterClientContext lighterContext = null)
+        public static T CreateService<T>(Uri uri, InstanceContext contextCallback = null, Account accountToken = null)
         {
             EndpointAddress address = new EndpointAddress(uri);
             NetTcpBinding binding = new NetTcpBinding();
@@ -26,9 +27,13 @@ namespace Lighter.Client.Infrastructure.Implement
             binding.Security.Mode = SecurityMode.None;
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.None;
 #endif
-            ChannelFactory<T> factory = new ChannelFactory<T>(binding, address);
-            if (lighterContext != null)
-                factory.Endpoint.Behaviors.Add(new TokenValidationBehavior(lighterContext.GetCurrentAccount()));
+            ChannelFactory<T> factory = null;
+            if (contextCallback == null)
+                factory = new ChannelFactory<T>(binding, address);
+            else
+                factory = new DuplexChannelFactory<T>(contextCallback, binding, address);
+            if (accountToken != null)
+                factory.Endpoint.Behaviors.Add(new TokenValidationBehavior(accountToken));
 
             T service = factory.CreateChannel();
             

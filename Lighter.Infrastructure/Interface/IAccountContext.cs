@@ -13,6 +13,6 @@ namespace Lighter.Client.Infrastructure.Interface
 
         bool CheckHasCommandAuthority(string commandId);
 
-        bool AccountLogout();
+        //void AccountLogout();
     }
 }

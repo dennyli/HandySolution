@@ -19,14 +19,25 @@ namespace Lighter.LoginService
         [Import]
         protected ILighterLoginDataService _dataService;
 
-        public OperationResult Login(LoginInfo info)
+        public ILighterLoginCallback LoginCallback
         {
-            return _dataService.Login(info);
+            get
+            {
+                return OperationContext.Current.GetCallbackChannel<ILighterLoginCallback>();
+
+            }
         }
 
-        public OperationResult Logout(string userId)
+        public void Login(LoginInfo info)
         {
-            return _dataService.Logout(userId);
+            OperationResult or = _dataService.Login(info);
+            LoginCallback.LoginResult(or);
+        }
+
+        public void Logout(string userId)
+        {
+            OperationResult or = _dataService.Logout(userId);
+            LoginCallback.LogoutResult(or);
         }
 
         //public string GetAllAccounts()

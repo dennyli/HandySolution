@@ -92,19 +92,19 @@ namespace ExportServiceHostManagerTest_Client
 
                     Console.WriteLine("Loginning ...");
                     LoginInfo info = new LoginInfo("Acc001", "123456", ip);
-                    OperationResult or = serviceLogin.Login(info);
-                    if (or.ResultType == OperationResultType.Success)
-                    {
-                        string[] infos = or.LogMessage.Split(new char[] { '|' });
+                    serviceLogin.Login(info);
+                    //if (or.ResultType == OperationResultType.Success)
+                    //{
+                    //    string[] infos = or.LogMessage.Split(new char[] { '|' });
 
-                        Console.WriteLine("Logouting ...");
-                        serviceLogin.Logout(infos[0]);
-                    }
-                    else
-                    {
-                        Console.Write(or.ResultType.ToDescription() + " " + or.Message);
-                        Console.WriteLine("Login Failure!");
-                    }
+                    //    Console.WriteLine("Logouting ...");
+                    //    serviceLogin.Logout(infos[0]);
+                    //}
+                    //else
+                    //{
+                    //    Console.Write(or.ResultType.ToDescription() + " " + or.Message);
+                    //    Console.WriteLine("Login Failure!");
+                    //}
 
                     (serviceLogin as IChannel).Close();
 
