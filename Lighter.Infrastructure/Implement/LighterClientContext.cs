@@ -252,12 +252,12 @@ namespace Lighter.Client.Infrastructure.Implement
 
         #region IAccountContext
         private Account _account = null;
-        public void SetCurrentAccount(AccountDTO accountDto)
+        public void SetCurrentAccount(Account account)
         {
-            if (accountDto == null)
+            if (account == null)
                 _account = null;
             else
-                _account = new Account(accountDto);
+                _account = account;
         }
 
         public Account GetCurrentAccount()
@@ -275,14 +275,28 @@ namespace Lighter.Client.Infrastructure.Implement
             return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);
         }
 
-        //public void AccountLogout()
-        //{
-        //    if (_account != null)
-        //    {
-        //        ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-        //        loginService.Logout(_account.Id);
-        //    }
-        //}
+        public void AccountLogin(LoginInfo info, InstanceContext contextCallback)
+        {
+            if (contextCallback == null)
+                throw new ArgumentNullException("contextCallback");
+
+            ILighterLoginService service = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+            if (service == null)
+            {
+                service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
+            }
+
+            service.Login(info);
+        }
+
+        public void AccountLogout()
+        {
+            if (_account != null)
+            {
+                ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+                loginService.Logout(_account.Id);
+            }
+        }
         #endregion
 
         #region IDisposable
@@ -292,7 +306,7 @@ namespace Lighter.Client.Infrastructure.Implement
                 _configInfo.SaveToFile(iniName);
 
             // Logout
-            //AccountLogout();
+            AccountLogout();
 
             // Disconnect main service
             DisconnectServer();

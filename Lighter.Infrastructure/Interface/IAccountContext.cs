@@ -1,11 +1,12 @@
-﻿using Lighter.Client.Infrastructure.Accounts;
-using Lighter.UserManagerService.Model;
+﻿using System.ServiceModel;
+using Lighter.Client.Infrastructure.Accounts;
+using Lighter.LoginService.Model;
 
 namespace Lighter.Client.Infrastructure.Interface
 {
     public interface IAccountContext
     {
-        void SetCurrentAccount(AccountDTO accountDto);
+        void SetCurrentAccount(Account account);
 
         Account GetCurrentAccount();
 
@@ -13,6 +14,8 @@ namespace Lighter.Client.Infrastructure.Interface
 
         bool CheckHasCommandAuthority(string commandId);
 
-        //void AccountLogout();
+        void AccountLogout();
+
+        void AccountLogin(LoginInfo info, InstanceContext contextCallback);
     }
 }

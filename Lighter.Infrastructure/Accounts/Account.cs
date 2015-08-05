@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Lighter.UserManagerService.Model;
-
+﻿
 namespace Lighter.Client.Infrastructure.Accounts
 {
     public class Account : IAcount
     {
-        public Account(AccountDTO dto)
+        public Account(string id, string name, string authority)
         {
-            Id = dto.Id;
-            Name = dto.Name;
-            Authority = dto.Authority;
-            ShortName = dto.ShortName;
+            Id = id;
+            Name = name;
+            Authority = authority;
+            //ShortName = dto.ShortName;
         }
 
         #region Fields
@@ -35,7 +30,7 @@ namespace Lighter.Client.Infrastructure.Accounts
         /// <summary>
         /// 账户名称缩写
         /// </summary>
-        public string ShortName { get; set; }
+        //public string ShortName { get; set; }
 
         #endregion
 

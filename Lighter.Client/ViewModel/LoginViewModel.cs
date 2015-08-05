@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.Composition;
-using Lighter.Client.Infrastructure.Implement;
+using System.ServiceModel;
+using System.Windows;
+using Lighter.Client.Events;
+using Lighter.Client.Infrastructure.Accounts;
 using Lighter.Client.Infrastructure.Interface;
-using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
 using Microsoft.Practices.Prism.Commands;
-using Lighter.MainService.Interface;
-using Utility;
 using Microsoft.Practices.Prism.Events;
-using Lighter.Client.Events;
-using System.ServiceModel;
-using Lighter.UserManagerService.Model;
-using System.Windows;
+using Utility;
 
 namespace Lighter.Client.ViewModel
 {
@@ -84,14 +81,8 @@ namespace Lighter.Client.ViewModel
             LoginInfo info = commandArg as LoginInfo;
             info.Password = Password;
 
-            ILighterLoginService service = _lighterContext.FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-            if (service == null)
-            {
-                InstanceContext contextCallback = new InstanceContext(_loginCallback);
-                service = _lighterContext.CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
-            }
 
-            service.Login(info);
+            _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
         }
         #endregion
 
@@ -101,20 +92,17 @@ namespace Lighter.Client.ViewModel
             if (args.OpResult.ResultType != OperationResultType.Success)
                 return;
 
-            AccountDTO dto = null;
+            Account account = null;
             //if (args.Kind == LoginOperationKinds.Logout)
             //    _lighterContext.SetCurrentAccount(null);
             //else 
             if (args.Kind == LoginOperationKinds.Login)
             {
                 string[] infos = args.OpResult.LogMessage.Split(new char[] { '|' });
-                dto = new AccountDTO();
-                dto.Id = infos[0];
-                dto.Name = infos[1];
-                dto.Authority = infos[2];
+                account = new Account(infos[0], infos[1], infos[2]);
             }
 
-            _lighterContext.SetCurrentAccount(dto);
+            _lighterContext.SetCurrentAccount(account);
 
             SetWaitingVisibility(Visibility.Collapsed);
         }
