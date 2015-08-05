@@ -105,7 +105,7 @@ namespace Lighter.Client.Infrastructure.Implement
         {
             Lighter.MainService.Model.Client client = new MainService.Model.Client();
             client.Name = "Client";
-            client.IP = CommonUtility.GetHostIP4vDotFormat();
+            client.IP = CommonUtility.GetHostIP4v();
             client.Time = DateTime.Now;
 
             return client;

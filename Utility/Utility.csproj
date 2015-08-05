@@ -71,6 +71,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Logging\LogLevel.cs" />
+    <Compile Include="ModuleCatalog2ConfigXAML.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="OperationResultType.cs" />
     <Compile Include="OperatorFile.cs" />
@@ -79,6 +80,12 @@
     <Compile Include="SortCondition.cs" />
     <Compile Include="StringHelper.cs" />
     <Compile Include="T4\T4ModelInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
+      <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
+      <Name>Prism.Desktop</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

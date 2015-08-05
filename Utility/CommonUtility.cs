@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 
 namespace Utility
 {
@@ -34,29 +35,19 @@ namespace Utility
             return sb.ToString();
         }
 
-        public static string GetHostIP4vDotFormat()
+        public static string GetHostIP4v()
         {
-            IPAddress address = GetHostIP();
-            Byte[] bytes = address.GetAddressBytes();
+            IPAddress[] addresses = GetHostIPs();
+            string[] ips = addresses.Select<IPAddress, string>(ip => ip.ToString()).ToArray<string>();
 
-            StringBuilder sb = new StringBuilder();
-            foreach (Byte b in bytes)
-            {
-                if (sb.Length > 0)
-                    sb.Append(".");
-
-                sb.Append(b);
-            }
-
-            return sb.ToString();
+            return ips[0];
         }
 
-        public static IPAddress GetHostIP()
+        public static IPAddress[] GetHostIPs()
         {
             IPHostEntry ipe = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ip = ipe.AddressList[0];
 
-            return ip;
+            return ipe.AddressList.Where<IPAddress>(ip => ip.AddressFamily == AddressFamily.InterNetwork).ToArray<IPAddress>();
         }
 
         public static string GetHostName()

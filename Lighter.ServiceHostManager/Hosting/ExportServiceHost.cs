@@ -66,7 +66,7 @@
             {
                 IEnumerable<ContractDescription> cds = GetContracts(Meta.ServiceType);
                 ServiceEndpoint se = this.Description.Endpoints.First<ServiceEndpoint>(e => cds.Count(cd => cd.ContractType == e.Contract.ContractType) > 0);
-                string IP4v = CommonUtility.GetHostIP4vDotFormat();
+                string IP4v = CommonUtility.GetHostIP4v();
                 var builder = new UriBuilder("net.tcp", IP4v, port, Meta.Name);
                 EndpointAddress addrNew = new EndpointAddress(builder.Uri);
                 se.Address = addrNew;

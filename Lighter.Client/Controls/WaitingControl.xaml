@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="25">
-    <Grid Width="25" Height="25">
+    <Grid>
         <Grid.Resources>
             <DrawingBrush x:Key="brush" Stretch="None" AlignmentX="Center" AlignmentY="Top">
                 <DrawingBrush.Drawing>

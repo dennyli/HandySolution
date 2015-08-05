@@ -12,7 +12,7 @@ namespace Lighter.Client.Infrastructure.Implement
         {
             ClientName = "订单管理系统(客户端)";
             ServerName = CommonUtility.GetHostName();
-            ServerIp = CommonUtility.GetHostIP4vDotFormat();
+            ServerIp = CommonUtility.GetHostIP4v();
             ServerPort = "50000";
         }
 

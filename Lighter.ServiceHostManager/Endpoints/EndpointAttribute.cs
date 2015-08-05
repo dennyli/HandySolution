@@ -55,7 +55,7 @@
         protected virtual Uri CreateUri(string scheme, IHostedServiceMetadata meta)
         {
             //string IP4v = "localhost";
-            string IP4v = CommonUtility.GetHostIP4vDotFormat();
+            string IP4v = CommonUtility.GetHostIP4v();
             var builder = new UriBuilder(scheme, IP4v, Port, Path ?? meta.Name);
             return builder.Uri;
         }

@@ -14,7 +14,7 @@ namespace Lighter.Client.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            LoginInfo info = new LoginInfo(values[0] as string, values[1] as string, CommonUtility.GetHostIP4vDotFormat());
+            LoginInfo info = new LoginInfo(values[0] as string, values[1] as string, CommonUtility.GetHostIP4v());
 
             return info;
         }

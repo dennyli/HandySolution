@@ -36,10 +36,14 @@ namespace Lighter.Client
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            string catConfigName = AppDomain.CurrentDomain.BaseDirectory + "ModuleConfig.xaml";
-            IModuleCatalog modCatalog = XamlServices.Load(catConfigName) as ModuleCatalog;
+            //string catConfigName = AppDomain.CurrentDomain.BaseDirectory + "ModuleConfig.xaml";
+            //IModuleCatalog modCatalog = XamlServices.Load(catConfigName) as ModuleCatalog;
 
-            return modCatalog;
+            DirectoryModuleCatalog catalog = new DirectoryModuleCatalog();
+            catalog.ModulePath = AppDomain.CurrentDomain.BaseDirectory;
+            catalog.Initialize();
+
+            return catalog;
         }
 
         protected override void ConfigureAggregateCatalog()
@@ -60,11 +64,26 @@ namespace Lighter.Client
 
         public void ComposeExternelParts(object[] parts)
         {
+            if (!_bInitialized)
+                Initialize();
+
             this.Container.ComposeParts(parts);
+        }
+
+        private bool _bInitialized = false;
+        public void Initialize()
+        {
+            if (!_bInitialized)
+                Run();
+
+            _bInitialized = true;
         }
 
         public void RunShell()
         {
+            if (!_bInitialized)
+                Initialize();
+
             this.InitializeModules();
 
             App.Current.MainWindow.Show();
