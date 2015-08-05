@@ -31,13 +31,15 @@ namespace Lighter.LoginService
         public void Login(LoginInfo info)
         {
             OperationResult or = _dataService.Login(info);
-            LoginCallback.LoginResult(or);
+            if(LoginCallback != null)
+                LoginCallback.LoginResult(or);
         }
 
         public void Logout(string userId)
         {
             OperationResult or = _dataService.Logout(userId);
-            LoginCallback.LogoutResult(or);
+            if (LoginCallback != null)
+                LoginCallback.LogoutResult(or);
         }
 
         //public string GetAllAccounts()

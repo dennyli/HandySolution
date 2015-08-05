@@ -37,7 +37,7 @@ namespace Lighter.Client.View
 
         private void InitializeEventAggregator()
         {
-            //EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
+            EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
         }
 
         [Import(AllowRecomposition = false)]
@@ -61,7 +61,13 @@ namespace Lighter.Client.View
             {
                 case LoginOperationKinds.Login:
                     if (args.OpResult.ResultType == OperationResultType.Success)
+                    {
                         ViewModel.SetLoginMessage("登录成功");
+
+                        this.DialogResult = true;
+
+                        this.Close();
+                    }
                     else
                         ViewModel.SetLoginMessage("登录失败");
                     break;
@@ -101,18 +107,9 @@ namespace Lighter.Client.View
             panelPort.Visibility = cbServerParam.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
 
             if (panelPort.Visibility == Visibility.Collapsed)
-            {
                 this.Height = 330;
-
-                ViewModel.SetWaitingVisibility(Visibility.Collapsed);
-            }
             else
-            { 
                 this.Height = 355;
-
-
-                ViewModel.SetWaitingVisibility(Visibility.Visible);
-            }
         }
 
         private void tips_close_MouseEnter(object sender, MouseEventArgs e)

@@ -32,32 +32,18 @@ namespace Lighter.Client.ViewModel
             SetLoginMessage("输入用户名和密码");
         }
 
+        #region Fields
         [Import]
         public ILighterClientContext _lighterContext { get; set; }
 
         [Import]
         public ILoginCallback _loginCallback { get; set; }
 
-        public string Title { get { return "订单系统登陆界面"; } }
+        public string Title { get { return _lighterContext.GetClientName() + " 登陆界面"; } }
 
         public string ServerIp { get { return _lighterContext.GetServerIp(); } set { _lighterContext.WriteServerIp(value); } }
 
         public string ServerPort { get { return _lighterContext.GetServerPort(); } set { _lighterContext.WriteServerPort(value); } }
-
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-        #endregion
-
-        #region Login command
-        public DelegateCommand<object> LoginCommand { get; private set; }
 
         public string LoginMessage { get; private set; }
         public void SetLoginMessage(string message)
@@ -74,12 +60,29 @@ namespace Lighter.Client.ViewModel
 
             NotifyPropertyChanged("WaitingVisibility");
         }
+        #endregion Fields
 
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        #endregion
+
+        #region Login command
+        public DelegateCommand<object> LoginCommand { get; private set; }
+        public string Password { get; set; }
         private void DoLogin(object commandArg)
         {
             SetWaitingVisibility(Visibility.Visible);
 
             LoginInfo info = commandArg as LoginInfo;
+            info.Password = Password;
 
             ILighterLoginService service = _lighterContext.FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
             if (service == null)

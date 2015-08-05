@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Data;
 using Lighter.LoginService.Model;
 using Utility;
+using System.Diagnostics;
+using System.Windows.Controls;
 
 namespace Lighter.Client.Converters
 {
@@ -14,6 +16,10 @@ namespace Lighter.Client.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            Debug.Assert(values.Count() == 2);
+            Debug.Assert(values[0].GetType() == typeof(string));
+            Debug.Assert(values[1].GetType() == typeof(string));
+
             LoginInfo info = new LoginInfo(values[0] as string, values[1] as string, CommonUtility.GetHostIP4v());
 
             return info;

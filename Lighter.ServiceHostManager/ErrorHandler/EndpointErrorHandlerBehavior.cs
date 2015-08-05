@@ -38,7 +38,6 @@ namespace Lighter.ServiceManager.ErrorHandler
 
         public void Validate(ServiceEndpoint endpoint)
         {
-            throw new NotImplementedException();
         }
 
         #endregion

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctls="clr-namespace:Lighter.Client.Controls" 
         xmlns:cvts="clr-namespace:Lighter.Client.Converters"
-        Title="{Binding Path=Title}" Height="330" Width="400" Background="#00000000" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="1">
+        Title="{Binding Path=Title}" Height="330" Width="400" Background="#00000000" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="1" FocusManager.FocusedElement="{Binding ElementName=txtAccount}">
     
     <Window.Resources>
         <cvts:LoginInfoConverter x:Key="LoginInfoConverter" />
@@ -72,8 +72,8 @@
                         <Label.Background>
                             <ImageBrush ImageSource="/Lighter.Client;component/Images/pwd_background.gif"></ImageBrush>
                         </Label.Background>
-                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword">
-
+                        <!--<PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword" PasswordChar="*">-->
+                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword" PasswordChar="*" ctls:PasswordBoxHelper.Attach="True" ctls:PasswordBoxHelper.Password="{Binding Path=Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
                             <!--textbox的样式-->
 
                             <!--textbox样式结束-->
@@ -126,10 +126,10 @@
                             </ControlTemplate>
                         </Button.Template>
                         <Button.CommandParameter>
-                            <MultiBinding Converter="{StaticResource ResourceKey=LoginInfoConverter}">
+                            <MultiBinding Converter="{StaticResource ResourceKey=LoginInfoConverter}" Mode="OneWay">
                                 <MultiBinding.Bindings>
-                                    <Binding ElementName="txtAccount" Path="Text" Mode="OneWayToSource" />
-                                    <Binding ElementName="txtPassword" Path="Text" Mode="OneWayToSource" />
+                                    <Binding ElementName="txtAccount" Path="Text" />
+                                    <Binding ElementName="txtPassword" Path="Password" />
                                 </MultiBinding.Bindings>
                             </MultiBinding>
                         </Button.CommandParameter>
