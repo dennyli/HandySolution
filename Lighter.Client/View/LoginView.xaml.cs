@@ -23,22 +23,19 @@ namespace Lighter.Client.View
     /// LoginWindow.xaml 的交互逻辑
     /// </summary>
     [Export]
-    public partial class LoginWindow : Window
+    public partial class LoginView : Window
     {
-        public LoginWindow()
+        public LoginView()
         {
             InitializeComponent();
 
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             InitializeImageBrushs();
-            InitializeEventAggregator();
+            //InitializeEventAggregator();
         }
 
-        private void InitializeEventAggregator()
-        {
-            EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
-        }
+        
 
         [Import(AllowRecomposition = false)]
         public LoginViewModel ViewModel
@@ -55,6 +52,11 @@ namespace Lighter.Client.View
 
 
         #region Login result event
+        public void InitializeEventAggregator()
+        {
+            EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
+        }
+
         private void DoLoginCallbackEvent(LoginCallbackEventArgs args)
         {
             switch (args.Kind)

@@ -19,11 +19,11 @@ namespace Lighter.Client
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
             var bootstrapper = new LighterBootstrapper();
-            bootstrapper.Initialize();
 
-            LoginWindow loginWindow = new LoginWindow();
-            bootstrapper.ComposeExternelParts(new object[] { loginWindow });
-            if (loginWindow.ShowDialog() == true)
+            LoginView loginView = bootstrapper.GetExportedValue<LoginView>();
+            loginView.InitializeEventAggregator();
+
+            if (loginView.ShowDialog() == true)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
 

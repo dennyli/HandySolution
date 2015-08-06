@@ -15,7 +15,9 @@ namespace Lighter.Client
     {
         protected override DependencyObject CreateShell()
         {
-            return new ShellView();
+            //return new ShellView();
+
+            return this.Container.GetExportedValue<ShellView>();
         }
 
         protected override void InitializeShell()
@@ -62,21 +64,33 @@ namespace Lighter.Client
             this.AggregateCatalog.Catalogs.Add(catalogExe);
         }
 
-        public void ComposeExternelParts(object[] parts)
-        {
-            if (!_bInitialized)
-                Initialize();
+        //public void ComposeExternelParts(object[] parts)
+        //{
+        //    if (!_bInitialized)
+        //        Initialize();
 
-            this.Container.ComposeParts(parts);
+        //    this.Container.ComposeParts(parts);
+        //}
+
+        public T GetExportedValue<T>()
+        {
+            Initialize();
+
+            T t = this.Container.GetExportedValue<T>();
+            this.Container.ComposeParts(t);
+
+            return t;
         }
 
         private bool _bInitialized = false;
         public void Initialize()
         {
             if (!_bInitialized)
+            {
                 Run();
 
-            _bInitialized = true;
+                _bInitialized = true;
+            }
         }
 
         public void RunShell()
