@@ -46,18 +46,31 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Lib\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\LighterMessageBox\LighterMessageBox.cs" />
+    <Compile Include="Controls\LighterMessageBox\RelayCommand.cs" />
+    <Compile Include="Controls\LighterMessageBox\WeakAction.cs" />
+    <Compile Include="Controls\LighterMessageBox\WeakFunc.cs" />
+    <Compile Include="Controls\Validators\NotNullorWhiteSpaceValidationRule.cs" />
+    <Compile Include="Controls\WaitingControl\WaitingControl.xaml.cs">
+      <DependentUpon>WaitingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="ClientHeader.cs" />
     <Compile Include="CombHelper.cs" />
@@ -66,6 +79,7 @@
     <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="ExceptionMessage.cs" />
+    <Compile Include="Exceptions\ServerNotFoundException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
@@ -87,6 +101,25 @@
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Controls\LighterMessageBox\GrayTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LighterMessageBox\MessageBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LighterMessageBox\MLWindowCtrlButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\WaitingControl\WaitingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

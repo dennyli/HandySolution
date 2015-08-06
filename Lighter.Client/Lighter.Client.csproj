@@ -61,10 +61,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\WaitingControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,14 +70,13 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Controls\PasswordBoxHelper.cs" />
-    <Compile Include="Controls\WaitingControl.xaml.cs">
-      <DependentUpon>WaitingControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Controls\Validators\AccountValidationRule.cs" />
+    <Compile Include="Controls\Validators\PasswordValidationRule.cs" />
     <Compile Include="Converters\LoginInfoConverter.cs" />
-    <Compile Include="Events\ILoginCallback.cs" />
-    <Compile Include="Events\LoginCallback.cs" />
-    <Compile Include="Events\LoginCallbackEvent.cs" />
-    <Compile Include="Events\LoginCallbackEventArgs.cs" />
+    <Compile Include="Events\LoginEvents\ILoginCallback.cs" />
+    <Compile Include="Events\LoginEvents\LoginCallback.cs" />
+    <Compile Include="Events\LoginEvents\LoginCallbackEvent.cs" />
+    <Compile Include="Events\LoginEvents\LoginCallbackEventArgs.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">

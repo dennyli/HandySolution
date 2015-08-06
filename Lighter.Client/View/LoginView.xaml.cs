@@ -16,6 +16,8 @@ using Lighter.Client.ViewModel;
 using Microsoft.Practices.Prism.Events;
 using Lighter.Client.Events;
 using Utility;
+using Utility.Controls;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
 
 namespace Lighter.Client.View
 {
@@ -35,7 +37,7 @@ namespace Lighter.Client.View
             //InitializeEventAggregator();
         }
 
-        
+        #region Property
 
         [Import(AllowRecomposition = false)]
         public LoginViewModel ViewModel
@@ -49,12 +51,26 @@ namespace Lighter.Client.View
 
         [Import]
         public ILoginCallback LoginCallback { get; set; }
-
+        #endregion
 
         #region Login result event
         public void InitializeEventAggregator()
         {
             EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
+            EventAggregator.GetEvent<ServiceEvent>().Subscribe(DoServiceEvent);
+        }
+
+        private void DoServiceEvent(ServiceEventArgs args)
+        {
+            switch (args.Kind)
+            {
+                case ServiceEventKind.TooBusy:
+                case ServiceEventKind.NotFound:
+                    LighterMessageBox.ShowMessageBox(this, args.Messsage, "提示");
+                    break;
+                case ServiceEventKind.Closed:
+                    break;
+            }
         }
 
         private void DoLoginCallbackEvent(LoginCallbackEventArgs args)
@@ -62,30 +78,50 @@ namespace Lighter.Client.View
             switch (args.Kind)
             {
                 case LoginOperationKinds.Login:
-                    if (args.OpResult.ResultType == OperationResultType.Success)
+                    switch(args.OpResult.ResultType)
                     {
-                        ViewModel.SetLoginMessage("登录成功");
+                        case OperationResultType.Success:
+                            ViewModel.SetLoginMessage("登录成功!");
+                            this.DialogResult = true;
+                            break;
+                        case OperationResultType.IsLogined:
+                            {
+                                string message = "账户" + txtAccount.Text + "已登录, 不能重复登录!";
 
-                        this.DialogResult = true;
+                                ViewModel.SetLoginMessage(message);
+                                LighterMessageBox.ShowMessageBox(this, message, "提示");
 
-                        this.Close();
+                                //this.DialogResult = false;
+                            }
+                            break;
+                        default:
+                            {
+                                string message = "账户" + txtAccount.Text + "登录失败!";
+
+                                ViewModel.SetLoginMessage(message);
+                                LighterMessageBox.ShowMessageBox(this, message, "提示");
+
+                                //this.DialogResult = false;
+                            }
+                            break;
                     }
-                    else
-                        ViewModel.SetLoginMessage("登录失败");
+
+                    
                     break;
-                case LoginOperationKinds.Logout:
-                    if (args.OpResult.ResultType == OperationResultType.Success)
-                        ViewModel.SetLoginMessage("退出成功");
-                    else
-                        ViewModel.SetLoginMessage("退出失败");
-                    break;
-                default:
-                    ViewModel.SetLoginMessage("未知信息");
-                    break;
+                //case LoginOperationKinds.Logout:
+                //    if (args.OpResult.ResultType == OperationResultType.Success)
+                //        ViewModel.SetLoginMessage("退出成功");
+                //    else
+                //        ViewModel.SetLoginMessage("退出失败");
+                //    break;
+                //default:
+                //    ViewModel.SetLoginMessage("未知信息");
+                //    break;
             }
         }
         #endregion
 
+        #region Initialize Image Brushs
         private ImageBrush ibCancelNormal, ibCancelFocus;
         private ImageBrush ibLoginNormal, ibLoginFocus;
         private void InitializeImageBrushs()
@@ -102,7 +138,9 @@ namespace Lighter.Client.View
             ibLoginFocus = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background_focus.gif")));
             ibLoginFocus.Stretch = Stretch.Fill;
         }
+        #endregion
 
+        #region Events
         private void cbServerParam_Click(object sender, RoutedEventArgs e)
         {
             panelIP.Visibility = cbServerParam.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
@@ -123,7 +161,7 @@ namespace Lighter.Client.View
             }
             catch (Exception ef)
             {
-                MessageBox.Show("出现错误！：" + ef.ToString());
+                LighterMessageBox.ShowMessageBox(this, "出现错误！：" + ef.ToString(), "提示");
             }
 
         }
@@ -137,7 +175,7 @@ namespace Lighter.Client.View
             }
             catch (Exception ef)
             {
-                MessageBox.Show("出现错误！：" + ef.ToString());
+                LighterMessageBox.ShowMessageBox(this, "出现错误！：" + ef.ToString(), "提示");
             }
         }
 
@@ -157,7 +195,7 @@ namespace Lighter.Client.View
             }
             catch (Exception ef)
             {
-                MessageBox.Show("出现错误！：" + ef.ToString());
+                LighterMessageBox.ShowMessageBox(this, "出现错误！：" + ef.ToString(), "提示");
             }
 
         }
@@ -171,9 +209,16 @@ namespace Lighter.Client.View
             }
             catch (Exception ef)
             {
-                MessageBox.Show("出现错误！：" + ef.ToString());
+                LighterMessageBox.ShowMessageBox(this, "出现错误！：" + ef.ToString(), "提示");
             }
 
         }
+
+        //private void btnTest_Click(object sender, RoutedEventArgs e)
+        //{
+        //    LighterMessageBox.ShowMessageBox(this, "托尔斯泰", "提示");
+        //}
+
+        #endregion
     }
 }

@@ -17,6 +17,7 @@ using Lighter.UserManagerService.Model;
 using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
 using System.ServiceModel.Channels;
+using Utility.Exceptions;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
@@ -143,25 +144,41 @@ namespace Lighter.Client.Infrastructure.Implement
             AddService(ServiceFactory.MAIN_SERVICE_NAME, mainService);
         }
 
+        /// <summary>
+        /// 通过主服务创建指定服务名的服务
+        /// </summary>
+        /// <typeparam name="T">服务类型</typeparam>
+        /// <param name="serviceName">服务名</param>
+        /// <param name="contextCallback">如服务支持回调，回调接口</param>
+        /// <param name="bTokenValidation">用户登陆验证</param>
+        /// <exception cref="ServerNotFoundException">服务端未开启</exception>
+        /// <returns>创建的服务类型T的实例</returns>
         public T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null, bool bTokenValidation = true)
         {
-            T service = (T)FindService(serviceName);
-            if (service != null)
-                return service;
-
-            ILighterMainService mainService = GetMainService();
-            bool bExist = mainService.ServiceIsExists(serviceName);
-            if (!bExist)
+            try
             {
-                throw new InvalidOperationException("服务端没有发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
+                T service = (T)FindService(serviceName);
+                if (service != null)
+                    return service;
+
+                ILighterMainService mainService = GetMainService();
+                bool bExist = mainService.ServiceIsExists(serviceName);
+                if (!bExist)
+                {
+                    throw new InvalidOperationException("服务端没有发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
+                }
+
+                Uri[] uris = mainService.GetServiceAddress(serviceName);
+                service = ServiceFactory.CreateService<T>(uris[0], contextCallback, bTokenValidation ? GetCurrentAccount() : null);
+
+                AddService(serviceName, service as ILighterService);
+
+                return service;
             }
-
-            Uri[] uris = mainService.GetServiceAddress(serviceName);
-            service = ServiceFactory.CreateService<T>(uris[0], contextCallback, bTokenValidation ? GetCurrentAccount() : null);
-
-            AddService(serviceName, service as ILighterService);
-
-            return service;
+            catch (EndpointNotFoundException ex)
+            {
+                throw new ServerNotFoundException("找不到服务端，创建命名服务" + serviceName + "失败!", ex);
+            }
         }
 
         private void CloseAllService()
@@ -275,18 +292,31 @@ namespace Lighter.Client.Infrastructure.Implement
             return (_account == null) ? false : _account.CheckHasCommandAuthority(commandId);
         }
 
+        /// <summary>
+        /// 账户登录
+        /// </summary>
+        /// <param name="info">登录信息 <see cref="LoginInfo"/></param>
+        /// <param name="contextCallback">登录服务支持回调，回调接口</param>
+        /// <exception cref="ServerNotFoundException">服务端未开启</exception>
         public void AccountLogin(LoginInfo info, InstanceContext contextCallback)
         {
             if (contextCallback == null)
                 throw new ArgumentNullException("contextCallback");
 
-            ILighterLoginService service = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-            if (service == null)
+            try
             {
-                service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
-            }
+                ILighterLoginService service = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
+                if (service == null)
+                {
+                    service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
+                }
 
-            service.Login(info);
+                service.Login(info);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                throw new ServerNotFoundException("找不到服务端，登录失败!", ex);
+            }
         }
 
         public void AccountLogout()
@@ -294,7 +324,8 @@ namespace Lighter.Client.Infrastructure.Implement
             if (_account != null)
             {
                 ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
-                loginService.Logout(_account.Id);
+                if (loginService != null)
+                    loginService.Logout(_account.Id);
             }
         }
         #endregion

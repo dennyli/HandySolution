@@ -9,6 +9,8 @@ using Lighter.LoginService.Model;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Utility;
+using Utility.Exceptions;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
 
 namespace Lighter.Client.ViewModel
 {
@@ -27,6 +29,7 @@ namespace Lighter.Client.ViewModel
 
             SetWaitingVisibility(Visibility.Collapsed);
             SetLoginMessage("输入用户名和密码");
+            SetEnabled(true);
         }
 
         #region Fields
@@ -43,10 +46,18 @@ namespace Lighter.Client.ViewModel
         public string ServerPort { get { return _lighterContext.GetServerPort(); } set { _lighterContext.WriteServerPort(value); } }
 
         public string LoginMessage { get; private set; }
+
         public void SetLoginMessage(string message)
         {
             LoginMessage = message;
             NotifyPropertyChanged("LoginMessage");
+        }
+
+        public bool IsEnabled { get; private set; }
+        private void SetEnabled(bool bEnabled)
+        {
+            IsEnabled = bEnabled;
+            NotifyPropertyChanged("IsEnabled");
         }
 
         public Visibility WaitingVisibility { get; private set; }
@@ -54,7 +65,6 @@ namespace Lighter.Client.ViewModel
         public void SetWaitingVisibility(Visibility visibility)
         {
             WaitingVisibility = visibility;
-
             NotifyPropertyChanged("WaitingVisibility");
         }
         #endregion Fields
@@ -74,21 +84,45 @@ namespace Lighter.Client.ViewModel
         #region Login command
         public DelegateCommand<object> LoginCommand { get; private set; }
         public string Password { get; set; }
+
+        private void SetLoginState(bool bLogin)
+        {
+            SetEnabled(!bLogin);
+            SetWaitingVisibility(bLogin ? Visibility.Visible : Visibility.Collapsed);
+        }
+
         private void DoLogin(object commandArg)
         {
-            SetWaitingVisibility(Visibility.Visible);
+            SetLoginState(true);
 
             LoginInfo info = commandArg as LoginInfo;
             info.Password = Password;
 
+            try
+            {
+                _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
+            }
+            catch (ServerNotFoundException ex)
+            {
+                SetLoginMessage(ex.Message);
 
-            _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
+                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.NotFound, ex.Message));
+            }
+            catch (ServerTooBusyException ex)
+            {
+                SetLoginMessage(ex.Message);
+                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.TooBusy, ex.Message));
+            }
+
+            SetLoginState(false);
         }
         #endregion
 
         #region Login result event
         private void DoLoginCallbackEvent(LoginCallbackEventArgs args)
         {
+            SetLoginState(false);
+
             if (args.OpResult.ResultType != OperationResultType.Success)
                 return;
 
@@ -103,8 +137,6 @@ namespace Lighter.Client.ViewModel
             }
 
             _lighterContext.SetCurrentAccount(account);
-
-            SetWaitingVisibility(Visibility.Collapsed);
         }
         #endregion
     }

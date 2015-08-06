@@ -18,6 +18,7 @@ using Lighter.BaseService.Interface;
 using System.ServiceModel;
 using Lighter.Client.Infrastructure.Interface;
 using Lighter.Client.Infrastructure.Implement;
+using Utility.Exceptions;
 
 namespace Client.Module.UserManager
 {
@@ -59,10 +60,21 @@ namespace Client.Module.UserManager
             //    _lighterContext.AddService(serviceName, service as ILighterService);
             //}
 
-            if (service == null)
-                service = _lighterContext.CreateServiceByMainService<ILighterUserManagerService>(serviceName);
+            try
+            {
+                if (service == null)
+                    service = _lighterContext.CreateServiceByMainService<ILighterUserManagerService>(serviceName);
 
-            return service as ILighterService;
+                return service as ILighterService;
+            }
+            catch (ServerNotFoundException ex)
+            {
+                throw ex;
+            }
+            catch (ServerTooBusyException ex)
+            {
+                throw ex;
+            }
         }
 
         public override IModuleResources CreateModuleResources()

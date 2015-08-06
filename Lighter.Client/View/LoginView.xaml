@@ -2,8 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ctls="clr-namespace:Lighter.Client.Controls" 
+        xmlns:rules="clr-namespace:Lighter.Client.Controls.Validators"
         xmlns:cvts="clr-namespace:Lighter.Client.Converters"
-        Title="{Binding Path=Title}" Height="330" Width="400" Background="#00000000" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" BorderThickness="1" FocusManager.FocusedElement="{Binding ElementName=txtAccount}">
+        xmlns:UIShell="clr-namespace:Utility.Controls;assembly=Utility"
+        Title="{Binding Path=Title}" Height="330" Width="400" Background="#00000000" 
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" 
+        BorderThickness="1" FocusManager.FocusedElement="{Binding ElementName=txtAccount}"
+        MouseLeftButtonDown="OnMouseLeftBtnDown" >
+    <x:Code>
+        <![CDATA[
+    		private void OnMouseLeftBtnDown( object sender, MouseButtonEventArgs e )
+		{
+			this.DragMove();
+		}
+    ]]>
+    </x:Code>
     
     <Window.Resources>
         <cvts:LoginInfoConverter x:Key="LoginInfoConverter" />
@@ -30,7 +43,7 @@
                         <ImageBrush ImageSource="/Lighter.Client;component/Images/login_title_bg.png"></ImageBrush>
                     </Grid.Background>
                     <Label Grid.Row="0" Grid.Column="0" Content="登录界面" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="20 0 0 0" FontSize="20" FontWeight="DemiBold"  Foreground="Black"></Label>
-                    <Button Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btn_close" Margin="5,13,0,13" Grid.Column="1" Click="btn_close_Click">
+                    <Button Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btn_close" Margin="5,13,0,13" Grid.Column="1" Click="btn_close_Click" Style="{x:Null}">
                         <Button.Template>
                             <ControlTemplate>
                                 <Label  Name="tips_close" Foreground="White" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Cursor="Hand" MouseEnter="tips_close_MouseEnter" MouseLeave="tips_close_MouseLeave">
@@ -60,11 +73,17 @@
                         <Label.Background>
                             <ImageBrush ImageSource="/Lighter.Client;component/Images/account_background.gif"></ImageBrush>
                         </Label.Background>
-                        <TextBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Text="" Name="txtAccount" >
+                        <TextBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtAccount" IsEnabled="{Binding Path=IsEnabled}" >
 
                             <!--textbox的样式-->
-
-                            <!--textbox样式结束-->
+                            <TextBox.Text>
+                                <Binding Path="Name" UpdateSourceTrigger="LostFocus">
+                                    <Binding.ValidationRules>
+                                        <rules:AccountValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                                <!--textbox样式结束-->
                         </TextBox>
 
                     </Label>
@@ -73,9 +92,15 @@
                             <ImageBrush ImageSource="/Lighter.Client;component/Images/pwd_background.gif"></ImageBrush>
                         </Label.Background>
                         <!--<PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword" PasswordChar="*">-->
-                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword" PasswordChar="*" ctls:PasswordBoxHelper.Attach="True" ctls:PasswordBoxHelper.Password="{Binding Path=Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                        <PasswordBox Margin="45 0 0 0" Width="280" Height="50" Padding="20 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left"  FontSize="24" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="0" Name="txtPassword" PasswordChar="*" ctls:PasswordBoxHelper.Attach="True" ctls:PasswordBoxHelper.Password="{Binding Path=Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsEnabled}" >
                             <!--textbox的样式-->
-
+                            <!--<PasswordBox.Password>
+                                <Binding Path="Name" UpdateSourceTrigger="LostFocus">
+                                    <Binding.ValidationRules>
+                                        <rules:PasswordValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </PasswordBox.Password>-->
                             <!--textbox样式结束-->
                         </PasswordBox>
                     </Label>
@@ -92,7 +117,8 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        <CheckBox Name="cbServerParam" Content="服务器参数" Margin="10,8,33,7" FontFamily="Times New Roman"  FontSize="13" Grid.Column="1" Width="134" Click="cbServerParam_Click" />
+                        <CheckBox Name="cbServerParam" Content="服务器参数" Margin="10,8,33,7" FontFamily="Times New Roman"  FontSize="13" Grid.Column="1" Width="134" Click="cbServerParam_Click" Grid.Row="0" />
+                        <!--<Button Content="test" Grid.Row="0" Grid.Column="3" Name="btnTest" Click="btnTest_Click" />-->
                         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Name="panelIP" Visibility="Collapsed" Margin="10,0,0,0">
                             <Label Content="IP:" FontFamily="Times New Roman" FontSize="16" VerticalAlignment="Center" Height="25" />
                             <TextBox Padding="5 0 0 0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" HorizontalContentAlignment="Left" FontFamily="Times New Roman" FontSize="16" VerticalContentAlignment="Center"  Background="{x:Null}" BorderThickness="1" Text="{Binding Path=ServerIp}" Name="txtServerIP" Width="140" Height="25">
@@ -113,7 +139,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <Button Cursor="Hand" Name="btn_login" Opacity="1" Grid.Row="6" Foreground="#FF7C7C03"  Height="50" Width="336" Margin="10,5,8,5" Command="{Binding Path=LoginCommand}" >
+                    <Button Cursor="Hand" Name="btn_login" Opacity="1" Grid.Row="6" Foreground="#FF7C7C03"  Height="50" Width="336" Margin="10,5,8,5" Command="{Binding Path=LoginCommand}" IsEnabled="{Binding Path=IsEnabled}" >
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border ClipToBounds="True"  CornerRadius="5">
@@ -137,7 +163,7 @@
 
                     <StackPanel Orientation="Horizontal"  Grid.Row="8" Margin="15,0,10,0" Width="330">
                         <Label Content="{Binding Path=LoginMessage, Mode=OneWay}" FontFamily="Times New Roman" FontSize="12" Width="300" />
-                        <ctls:WaitingControl x:Name="ctrlWaiting"  Height="25" Width="25" Visibility="{Binding Path=WaitingVisibility, Mode=OneWay}" />
+                        <UIShell:WaitingControl x:Name="ctrlWaiting"  Height="25" Width="25" Visibility="{Binding Path=WaitingVisibility, Mode=OneWay}" />
                     </StackPanel>
                     
                 </Grid>

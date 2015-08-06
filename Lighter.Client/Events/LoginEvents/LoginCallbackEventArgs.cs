@@ -8,7 +8,7 @@ namespace Lighter.Client.Events
 {
     internal enum LoginOperationKinds { Login, Logout };
 
-    internal class LoginCallbackEventArgs
+    internal class LoginCallbackEventArgs : EventArgs
     {
         public LoginOperationKinds Kind { get; private set; }
         public OperationResult OpResult { get; private set; }
