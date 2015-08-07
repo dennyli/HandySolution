@@ -27,8 +27,5 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
 $tf*/
-Database/LighterDB_2K8.mdf
-Database/LighterDB_2K8_log.ldf
-Database/script_LighterDB_0720.sql
-Database/LighterDB.mdf
-Database/LighterDB_log.ldf
+*.mdf
+*.ldf
