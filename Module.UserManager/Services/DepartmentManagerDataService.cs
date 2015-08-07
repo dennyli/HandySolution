@@ -24,7 +24,7 @@ namespace Client.Module.UserManager.Services
 
         public Departments GetDepartments()
         {
-            ILighterUserManagerService service = GetServerService(typeof(UserManagerModuleInit)) as ILighterUserManagerService;
+            ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
             Debug.Assert(service != null);
 
             List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(DepartmentDTO));

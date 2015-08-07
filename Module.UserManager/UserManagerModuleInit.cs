@@ -39,32 +39,32 @@ namespace Client.Module.UserManager
         {
             MenuItemAndToolbarInitialize(typeof(UserManagerModuleInit), CommandDefinitions.CU_TOPMENU_TEXT, CommandDefinitions.CU_TOPMENU_TEXT);
 
-            CreateService();
+            //CreateService();
         }
 
-        protected override ILighterService CreateService()
-        {
-            IModuleResources resources = GetModuleResources();
-            string serviceName = resources.GetServiceName();
+        //protected override ILighterService CreateService()
+        //{
+        //    IModuleResources resources = GetModuleResources();
+        //    string serviceName = resources.GetServiceName();
 
-            ILighterUserManagerService service = _lighterContext.FindService(serviceName) as ILighterUserManagerService;
+        //    ILighterUserManagerService service = _lighterContext.FindService(serviceName) as ILighterUserManagerService;
 
-            try
-            {
-                if (service == null)
-                    service = _lighterContext.CreateServiceByMainService<ILighterUserManagerService>(serviceName);
+        //    try
+        //    {
+        //        if (service == null)
+        //            service = _lighterContext.CreateServiceByMainService<ILighterUserManagerService>(serviceName);
 
-                return service as ILighterService;
-            }
-            catch (ServerNotFoundException ex)
-            {
-                throw ex;
-            }
-            catch (ServerTooBusyException ex)
-            {
-                throw ex;
-            }
-        }
+        //        return service as ILighterService;
+        //    }
+        //    catch (ServerNotFoundException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    catch (ServerTooBusyException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public override IModuleResources CreateModuleResources()
         {

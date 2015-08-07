@@ -8,9 +8,12 @@ namespace Client.Module.UserManager
 {
     public class UserManagerResources : ModuleResourcesBase
     {
+        internal static string SERVICE_NAME = "LighterUserManagerService";
+        internal static string MODULE_NAME = "UserManage";
+
         public override string GetModuleName()
         {
-            return "UserManage";
+            return MODULE_NAME;
         }
 
         /// <summary>
@@ -19,7 +22,7 @@ namespace Client.Module.UserManager
         /// <returns>服务端Service的名字</returns>
         public override string GetServiceName()
         {
-            return "LighterUserManagerService";
+            return SERVICE_NAME;
         }
 
         public override ObservableCollection<CommandInfo> GetCommandInfos(Type owner)

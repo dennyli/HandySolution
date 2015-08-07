@@ -150,29 +150,29 @@ namespace Client.ModuleBase
 
         #endregion MenuItem & Toolbar Initialize
 
-        #region Server Endpoints
-        protected virtual ILighterMainService GetMainService()
-        {
-            //if (_lighterContext != null)
-            //{
-            //    //IModuleResources resources = GetModuleResources();
-            //    ILighterService service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
-            //    if (service == null)
-            //    {
-            //        _lighterContext.CreateMainService();
-            //        service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
-            //    }
+        //#region Server Endpoints
+        //protected virtual ILighterMainService GetMainService()
+        //{
+        //    //if (_lighterContext != null)
+        //    //{
+        //    //    //IModuleResources resources = GetModuleResources();
+        //    //    ILighterService service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
+        //    //    if (service == null)
+        //    //    {
+        //    //        _lighterContext.CreateMainService();
+        //    //        service = _lighterContext.FindService(ServiceFactory.MAIN_SERVICE_NAME);
+        //    //    }
                 
-            //    return service as ILighterMainService;
-            //}
+        //    //    return service as ILighterMainService;
+        //    //}
 
-            if (_lighterContext != null)
-                return _lighterContext.GetMainService();
+        //    if (_lighterContext != null)
+        //        return _lighterContext.GetMainService();
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        protected virtual ILighterService CreateService() { return null; }
-        #endregion
+        //protected virtual ILighterService CreateService() { return null; }
+        //#endregion
     }
 }

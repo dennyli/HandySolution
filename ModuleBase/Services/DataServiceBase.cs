@@ -6,6 +6,9 @@ using Lighter.BaseService.Interface;
 using System.Diagnostics;
 using Microsoft.Practices.Prism.Modularity;
 using System.Collections.Generic;
+using Lighter.MainService.Interface;
+using System.ServiceModel;
+using Utility.Exceptions;
 
 namespace Client.ModuleBase.Services
 {
@@ -25,29 +28,19 @@ namespace Client.ModuleBase.Services
             _serviceLocator = serviceLocator;
         }
 
+        public virtual ILighterMainService GetMainService()
+        {
+            if (_lighterContext != null)
+                return _lighterContext.GetMainService();
 
-        public virtual ILighterService GetServerService(Type moduleInitType)
+            return null;
+        }
+
+        public virtual ILighterService GetServerService(string serviceKey)
         {
             try
             {
-                //IModuleInit moduleInit = _serviceLocator.GetInstance(moduleInitType, moduleInitType.FullName) as IModuleInit;
-                
-                IEnumerable<IModule> ms = _serviceLocator.GetAllInstances<IModule>();
-                IModuleInit moduleInit = null;
-                foreach (IModule m in ms)
-                {
-                    if (m.GetType() == moduleInitType)
-                    {
-                        moduleInit = m as IModuleInit;
-                        break;
-                    }
-                }
-                if (moduleInit == null)
-                    return null;
-
-                IModuleResources resource = moduleInit.GetModuleResources();
-
-                return _lighterContext.FindService(resource.GetServiceName());
+                return _lighterContext.FindService(serviceKey);
             }
             catch (Exception ex)
             {
@@ -55,6 +48,26 @@ namespace Client.ModuleBase.Services
             }
 
             return null;
+        }
+
+        public virtual T InitilizeServerService<T>(string serviceKey, InstanceContext contextCallback = null)
+        {
+            ILighterService service = GetServerService(serviceKey);
+            if (service != null)
+                return (T)service;
+
+            try
+            {
+                return _lighterContext.CreateServiceByMainService<T>(serviceKey, contextCallback);
+            }
+            catch (ServerNotFoundException ex)
+            {
+                throw ex;
+            }
+            catch (ServerTooBusyException ex)
+            {
+                throw ex;
+            }
         }
     }
 }

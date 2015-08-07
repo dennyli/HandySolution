@@ -136,6 +136,10 @@
       <Project>{B2139C11-8744-4AD8-8DF9-4D6997FBBE52}</Project>
       <Name>Lighter.MainService.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{691746dd-2ee5-4678-b001-275d84af8d10}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MenuView.xaml">

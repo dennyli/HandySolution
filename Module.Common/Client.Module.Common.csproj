@@ -62,6 +62,10 @@
     <Compile Include="Tools\StringToImage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
+      <Project>{8ab4e570-8b1a-4e5f-ace5-f13bfd83487c}</Project>
+      <Name>Lighter.ServiceManager.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
       <Project>{de856812-a32c-4866-801e-af396d711942}</Project>
       <Name>Prism.Interactivity</Name>
@@ -77,6 +81,10 @@
     <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
       <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
       <Name>Lighter.BaseService.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\MainService\Lighter.MainService.Interface\Lighter.MainService.Interface.csproj">
+      <Project>{b2139c11-8744-4ad8-8df9-4d6997fbbe52}</Project>
+      <Name>Lighter.MainService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>

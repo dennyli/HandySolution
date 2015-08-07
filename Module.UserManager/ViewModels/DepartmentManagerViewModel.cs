@@ -3,6 +3,7 @@ using Client.Module.UserManager.Interface.Services;
 using Client.Module.UserManager.Interface.ViewModels;
 using Client.Module.UserManager.Models;
 using Client.ModuleBase.ViewModels;
+using Lighter.UserManagerService.Interface;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 
@@ -34,6 +35,8 @@ namespace Client.Module.UserManager.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
+            if (null == _dataService.GetServerService(UserManagerResources.SERVICE_NAME))
+                _dataService.InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
         }
         #endregion
 

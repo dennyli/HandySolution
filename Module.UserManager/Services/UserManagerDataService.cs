@@ -33,7 +33,7 @@ namespace Client.Module.UserManager.Services
 
         public Accounts GetAccounts()
         {
-            ILighterUserManagerService service = GetServerService(typeof(UserManagerModuleInit)) as ILighterUserManagerService;
+            ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
             Debug.Assert(service != null);
 
             try
