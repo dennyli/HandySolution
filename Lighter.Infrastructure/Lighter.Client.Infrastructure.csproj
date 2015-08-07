@@ -50,6 +50,7 @@
     <Compile Include="Accounts\IAcount.cs" />
     <Compile Include="Events\ServiceEvents\ServiceEvent.cs" />
     <Compile Include="Events\ServiceEvents\ServiceEventArgs.cs" />
+    <Compile Include="Events\SimpleMessageEventArgs.cs" />
     <Compile Include="Implement\ConfigInfo.cs" />
     <Compile Include="Implement\ServiceFactory.cs" />
     <Compile Include="Interface\IAccountContext.cs" />

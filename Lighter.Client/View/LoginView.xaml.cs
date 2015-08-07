@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Drawing;
-using System.ComponentModel.Composition;
+using Lighter.Client.Events.LoginEvents;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
 using Lighter.Client.ViewModel;
 using Microsoft.Practices.Prism.Events;
-using Lighter.Client.Events;
 using Utility;
 using Utility.Controls;
-using Lighter.Client.Infrastructure.Events.ServiceEvents;
+using Lighter.Client.Events.InputEvents;
 
 namespace Lighter.Client.View
 {
@@ -58,6 +52,13 @@ namespace Lighter.Client.View
         {
             EventAggregator.GetEvent<LoginCallbackEvent>().Subscribe(DoLoginCallbackEvent);
             EventAggregator.GetEvent<ServiceEvent>().Subscribe(DoServiceEvent);
+            EventAggregator.GetEvent<InputErrorEvent>().Subscribe(DoInputErrorEvent);
+        }
+
+        private void DoInputErrorEvent(InputErrorEventArgs args)
+        {
+            ViewModel.SetLoginMessage(args.Message);
+            LighterMessageBox.ShowMessageBox(this, args.Message, "提示");
         }
 
         private void DoServiceEvent(ServiceEventArgs args)
@@ -66,7 +67,8 @@ namespace Lighter.Client.View
             {
                 case ServiceEventKind.TooBusy:
                 case ServiceEventKind.NotFound:
-                    LighterMessageBox.ShowMessageBox(this, args.Messsage, "提示");
+                    ViewModel.SetLoginMessage(args.Message);
+                    LighterMessageBox.ShowMessageBox(this, args.Message, "提示");
                     break;
                 case ServiceEventKind.Closed:
                     break;

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Windows.Controls;
-using System.Globalization;
 using Utility.Controls.Validators;
 
 namespace Lighter.Client.Controls.Validators
 {
-    public class PasswordValidationRule : NotNullorWhiteSpaceValidationRule
+    internal class PasswordValidationRule : NotNullorWhiteSpaceValidationRule
     {
+        public static bool Validate(string value)
+        {
+            PasswordValidationRule rule = new PasswordValidationRule();
+            return rule.Validate(value, CultureInfo.CurrentCulture).IsValid;
+        }
+
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             ValidationResult vr = base.Validate(value, cultureInfo);

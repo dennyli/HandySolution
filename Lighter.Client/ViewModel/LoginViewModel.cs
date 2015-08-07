@@ -2,15 +2,17 @@
 using System.ComponentModel.Composition;
 using System.ServiceModel;
 using System.Windows;
-using Lighter.Client.Events;
+using Lighter.Client.Controls.Validators;
+using Lighter.Client.Events.InputEvents;
+using Lighter.Client.Events.LoginEvents;
 using Lighter.Client.Infrastructure.Accounts;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
 using Lighter.Client.Infrastructure.Interface;
 using Lighter.LoginService.Model;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Prism.Events;
 using Utility;
 using Utility.Exceptions;
-using Lighter.Client.Infrastructure.Events.ServiceEvents;
 
 namespace Lighter.Client.ViewModel
 {
@@ -83,7 +85,7 @@ namespace Lighter.Client.ViewModel
 
         #region Login command
         public DelegateCommand<object> LoginCommand { get; private set; }
-        public string Password { get; set; }
+        //public string Password { get; set; }
 
         private void SetLoginState(bool bLogin)
         {
@@ -95,23 +97,47 @@ namespace Lighter.Client.ViewModel
         {
             SetLoginState(true);
 
-            LoginInfo info = commandArg as LoginInfo;
-            info.Password = Password;
+            LoginInfoArgs infoArgs = commandArg as LoginInfoArgs;
 
-            try
+            bool bValidated = true;
+            if (!AccountValidationRule.Validate(infoArgs.AccountControl.Text))
             {
-                _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
+                _eventAggregator.GetEvent<InputErrorEvent>().Publish(new InputErrorEventArgs(InputErrorKinds.Account));
+                bValidated = false;
             }
-            catch (ServerNotFoundException ex)
-            {
-                SetLoginMessage(ex.Message);
 
-                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.NotFound, ex.Message));
-            }
-            catch (ServerTooBusyException ex)
+#if DEBUG
+            if (!PasswordValidationRule.Validate(infoArgs.PasswordControl.Password))
+#else
+            if (!PasswordValidationRule.Validate(infoArgs.PasswordControl.SecurePassword))
+#endif
             {
-                SetLoginMessage(ex.Message);
-                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.TooBusy, ex.Message));
+                _eventAggregator.GetEvent<InputErrorEvent>().Publish(new InputErrorEventArgs(InputErrorKinds.Password));
+                bValidated = false;
+            }
+
+            if (bValidated)
+            {
+                try
+                {
+#if DEBUG
+                    LoginInfo info = new LoginInfo(infoArgs.AccountControl.Text, infoArgs.PasswordControl.Password, infoArgs.IP);
+#else
+                    LoginInfo info = new LoginInfo(infoArgs.AccountControl.Text, infoArgs.PasswordControl.SecurePassword, infoArgs.IP);
+#endif
+                    _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
+                }
+                catch (ServerNotFoundException ex)
+                {
+                    SetLoginMessage(ex.Message);
+
+                    _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.NotFound, ex.Message));
+                }
+                catch (ServerTooBusyException ex)
+                {
+                    SetLoginMessage(ex.Message);
+                    _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.TooBusy, ex.Message));
+                }
             }
 
             SetLoginState(false);

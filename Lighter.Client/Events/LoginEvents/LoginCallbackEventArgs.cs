@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Utility;
+using System.ComponentModel;
 
-namespace Lighter.Client.Events
+namespace Lighter.Client.Events.LoginEvents
 {
-    internal enum LoginOperationKinds { Login, Logout };
+    internal enum LoginOperationKinds { 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        [Description("登录")]
+        Login, 
+        /// <summary>
+        /// 登出
+        /// </summary>
+        [Description("登出")]
+        Logout };
 
     internal class LoginCallbackEventArgs : EventArgs
     {

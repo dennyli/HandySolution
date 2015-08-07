@@ -1,6 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:UIShell="clr-namespace:Utility.Controls">
+    
+    <ResourceDictionary x:Key="commonResources">
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/MLWindowCtrlButtonStyles.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/GrayTheme.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
 
     <ControlTemplate x:Key="{ComponentResourceKey ResourceId=MessageBoxCT, TypeInTargetAssembly={x:Type UIShell:MessageBoxModule}}"
                      TargetType="{x:Type UIShell:MessageBoxModule}">

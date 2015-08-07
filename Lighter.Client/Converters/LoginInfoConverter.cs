@@ -7,6 +7,7 @@ using Lighter.LoginService.Model;
 using Utility;
 using System.Diagnostics;
 using System.Windows.Controls;
+using Lighter.Client.ViewModel;
 
 namespace Lighter.Client.Converters
 {
@@ -17,10 +18,20 @@ namespace Lighter.Client.Converters
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Debug.Assert(values.Count() == 2);
-            Debug.Assert(values[0].GetType() == typeof(string));
-            Debug.Assert(values[1].GetType() == typeof(string));
+            Debug.Assert(values[0] is TextBox);
+            Debug.Assert(values[1] is PasswordBox);
+            if (!(values[0] is TextBox) || !(values[1] is PasswordBox))
+                return null;
 
-            LoginInfo info = new LoginInfo(values[0] as string, values[1] as string, CommonUtility.GetHostIP4v());
+//            string account = (values[0] as TextBox).Text;
+//#if DEBUG
+//            string pwd = (values[1] as PasswordBox).Password;
+//#else
+//            string pwd = (values[1] as PasswordBox).SecurePassword;
+//#endif
+//            LoginInfo info = new LoginInfo(account, pwd, CommonUtility.GetHostIP4v());
+
+            LoginInfoArgs info = new LoginInfoArgs(values[0] as TextBox, values[1] as PasswordBox, CommonUtility.GetHostIP4v());
 
             return info;
         }

@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Practices.Prism.Events;
 using Utility;
 
-namespace Lighter.Client.Events
+namespace Lighter.Client.Events.LoginEvents
 {
     internal class LoginCallbackEvent : CompositePresentationEvent<LoginCallbackEventArgs>
     {

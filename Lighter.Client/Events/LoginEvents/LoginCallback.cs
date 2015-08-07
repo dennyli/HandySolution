@@ -6,7 +6,7 @@ using Utility;
 using Microsoft.Practices.Prism.Events;
 using System.ComponentModel.Composition;
 
-namespace Lighter.Client.Events
+namespace Lighter.Client.Events.LoginEvents
 {
     [Export(typeof(ILoginCallback))]
     public class LoginCallback : ILoginCallback

@@ -101,20 +101,16 @@
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ResourceDictionaries\ResourceDictionaries.csproj">
+      <Project>{957445BA-1EA8-4C2A-A36C-935F2419889B}</Project>
+      <Name>ResourceDictionaries</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Controls\LighterMessageBox\GrayTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\LighterMessageBox\MessageBoxStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\LighterMessageBox\MLWindowCtrlButtonStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\WaitingControl\WaitingControl.xaml">
       <Generator>MSBuild:Compile</Generator>

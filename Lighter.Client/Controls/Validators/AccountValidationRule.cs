@@ -8,8 +8,14 @@ using Utility.Controls.Validators;
 
 namespace Lighter.Client.Controls.Validators
 {
-    public class AccountValidationRule : NotNullorWhiteSpaceValidationRule
+    internal class AccountValidationRule : NotNullorWhiteSpaceValidationRule
     {
+        public static bool Validate(string value)
+        {
+            AccountValidationRule rule = new AccountValidationRule();
+            return rule.Validate(value, CultureInfo.CurrentCulture).IsValid;
+        }
+
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             return base.Validate(value, cultureInfo);

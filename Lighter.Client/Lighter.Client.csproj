@@ -44,6 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,11 +73,16 @@
     <Compile Include="Controls\PasswordBoxHelper.cs" />
     <Compile Include="Controls\Validators\AccountValidationRule.cs" />
     <Compile Include="Controls\Validators\PasswordValidationRule.cs" />
+    <Compile Include="Controls\Validators\ServcerIPValidationRule.cs" />
+    <Compile Include="Controls\Validators\ServcerPortValidationRule.cs" />
     <Compile Include="Converters\LoginInfoConverter.cs" />
+    <Compile Include="Events\InputEvents\InputErrorEvent.cs" />
+    <Compile Include="Events\InputEvents\InputErrorEventArgs.cs" />
     <Compile Include="Events\LoginEvents\ILoginCallback.cs" />
     <Compile Include="Events\LoginEvents\LoginCallback.cs" />
     <Compile Include="Events\LoginEvents\LoginCallbackEvent.cs" />
     <Compile Include="Events\LoginEvents\LoginCallbackEventArgs.cs" />
+    <Compile Include="ViewModel\LoginInfoArgs.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -153,6 +159,10 @@
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1d13-4e22-aee0-5d0dd046ca34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceDictionaries\ResourceDictionaries.csproj">
+      <Project>{957445BA-1EA8-4C2A-A36C-935F2419889B}</Project>
+      <Name>ResourceDictionaries</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server.Services\BaseService\Lighter.BaseService.Interface\Lighter.BaseService.Interface.csproj">
       <Project>{1EDC39F5-2612-4AD2-A7A6-2828B621E523}</Project>
