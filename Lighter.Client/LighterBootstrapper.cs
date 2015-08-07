@@ -36,16 +36,22 @@ namespace Lighter.Client
                 base.InitializeModules();
         }
 
+        protected override void ConfigureModuleCatalog()
+        {
+            base.ConfigureModuleCatalog();
+
+            DirectoryModuleCatalog _directoyCatalog = this.ModuleCatalog as DirectoryModuleCatalog;
+
+            _directoyCatalog.ModulePath = AppDomain.CurrentDomain.BaseDirectory;
+            _directoyCatalog.Initialize();
+        }
+
         protected override IModuleCatalog CreateModuleCatalog()
         {
             //string catConfigName = AppDomain.CurrentDomain.BaseDirectory + "ModuleConfig.xaml";
             //IModuleCatalog modCatalog = XamlServices.Load(catConfigName) as ModuleCatalog;
 
-            DirectoryModuleCatalog catalog = new DirectoryModuleCatalog();
-            catalog.ModulePath = AppDomain.CurrentDomain.BaseDirectory;
-            catalog.Initialize();
-
-            return catalog;
+            return new DirectoryModuleCatalog();
         }
 
         protected override void ConfigureAggregateCatalog()

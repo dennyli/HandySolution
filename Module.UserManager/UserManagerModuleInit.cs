@@ -22,6 +22,8 @@ using Utility.Exceptions;
 
 namespace Client.Module.UserManager
 {
+    [Module(ModuleName = "Client.Module.UserManager.UserManagerModuleInit")]
+    [ModuleDependency("Client.ModuleBase.ModuleBaseInit")]
     [ModuleExport("Client.Module.UserManager.UserManagerModuleInit", typeof(IModule))]
     public class UserManagerModuleInit : ModuleBaseInit
     {
@@ -46,19 +48,6 @@ namespace Client.Module.UserManager
             string serviceName = resources.GetServiceName();
 
             ILighterUserManagerService service = _lighterContext.FindService(serviceName) as ILighterUserManagerService;
-            //if (service == null)
-            //{
-            //    ILighterMainService mainService = GetMainService();
-
-            //    bool bExist = mainService.ServiceIsExists(serviceName);
-            //    if (!bExist)
-            //        throw new InvalidOperationException("服务端未发现" + serviceName + "服务，无法创建" + serviceName + "服务!");
-
-            //    Uri[] uris = mainService.GetServiceAddress(serviceName);
-            //    service = ServiceFactory.CreateService<ILighterUserManagerService>(uris[0], _lighterContext.GetCurrentAccount());
-
-            //    _lighterContext.AddService(serviceName, service as ILighterService);
-            //}
 
             try
             {

@@ -21,6 +21,7 @@ using Lighter.Client.Infrastructure.Implement;
 
 namespace Client.ModuleBase
 {
+    [Module(ModuleName="Client.ModuleBase.ModuleBaseInit")]
     [ModuleExport("Client.ModuleBase.ModuleBaseInit", typeof(IModule))]
     public class ModuleBaseInit : IModule, IModuleInit
     {
