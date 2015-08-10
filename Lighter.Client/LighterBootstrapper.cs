@@ -11,7 +11,7 @@ using Microsoft.Practices.Prism.Modularity;
 
 namespace Lighter.Client
 {
-    public class LighterBootstrapper : MefBootstrapper
+    public class LighterBootstrapper : MefBootstrapper, IDisposable
     {
         protected override DependencyObject CreateShell()
         {
@@ -107,6 +107,15 @@ namespace Lighter.Client
             this.InitializeModules();
 
             App.Current.MainWindow.Show();
+        }
+
+        public void Dispose()
+        {
+            if (this.Container != null)
+            {
+                this.Container.Dispose();
+                this.Container = null; 
+            }
         }
     }
 }

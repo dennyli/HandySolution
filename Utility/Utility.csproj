@@ -79,6 +79,7 @@
     <Compile Include="Exceptions\DataAccessException.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="ExceptionMessage.cs" />
+    <Compile Include="Exceptions\ServerClosedException.cs" />
     <Compile Include="Exceptions\ServerNotFoundException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

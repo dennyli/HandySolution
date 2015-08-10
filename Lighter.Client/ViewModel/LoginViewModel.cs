@@ -127,6 +127,11 @@ namespace Lighter.Client.ViewModel
 #endif
                     _lighterContext.AccountLogin(info, new InstanceContext(_loginCallback));
                 }
+                catch (ServerClosedException ex)
+                {
+                    SetLoginMessage(ex.Message);
+                    _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.Closed, ex.Message));
+                }
                 catch (ServerNotFoundException ex)
                 {
                     SetLoginMessage(ex.Message);

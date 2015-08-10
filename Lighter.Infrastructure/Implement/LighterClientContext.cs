@@ -196,7 +196,8 @@ namespace Lighter.Client.Infrastructure.Implement
             Lighter.MainService.Model.Client client = GetCurrentClient();
 
             ILighterMainService mainService = FindService(ServiceFactory.MAIN_SERVICE_NAME) as ILighterMainService;
-            mainService.Disconnect(client);
+            if (mainService != null)
+                mainService.Disconnect(client);
         }
         #endregion
 
@@ -333,7 +334,7 @@ namespace Lighter.Client.Infrastructure.Implement
         #region IDisposable
         public void Dispose()
         {
-            if (_configInfo == null)
+            if (_configInfo != null)
                 _configInfo.SaveToFile(iniName);
 
             // Logout

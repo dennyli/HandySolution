@@ -52,10 +52,6 @@ namespace Client.ModuleBase.Services
 
         public virtual T InitilizeServerService<T>(string serviceKey, InstanceContext contextCallback = null)
         {
-            ILighterService service = GetServerService(serviceKey);
-            if (service != null)
-                return (T)service;
-
             try
             {
                 return _lighterContext.CreateServiceByMainService<T>(serviceKey, contextCallback);

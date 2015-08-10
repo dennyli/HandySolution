@@ -29,6 +29,8 @@ namespace Lighter.LoginService.LoginData
             PublicHelper.CheckArgument(info.Account, "User Name");
             PublicHelper.CheckArgument(info.Password, "User Password");
 
+            _accountRepository.Refresh(Accounts);
+
             Account account = Accounts.SingleOrDefault<Account>(a => a.Name == info.Account);
             if (account == null)
                 return new OperationResult(OperationResultType.ParamError, "指定账号的用户不存在。");

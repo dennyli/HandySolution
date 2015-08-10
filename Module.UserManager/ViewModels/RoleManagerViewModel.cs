@@ -20,7 +20,7 @@ namespace Client.Module.UserManager.ViewModels
         public RoleManagerViewModel(IRoleManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            RolesModel = (_dataService as IRoleManagerDataService).GetRoles();
+            //RolesModel = (_dataService as IRoleManagerDataService).GetRoles();
         }
 
         #region INavigationAware Members
@@ -35,8 +35,8 @@ namespace Client.Module.UserManager.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (null == _dataService.GetServerService(UserManagerResources.SERVICE_NAME))
-                _dataService.InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            RolesModel = (_dataService as IRoleManagerDataService).GetRoles();
         }
         #endregion
 

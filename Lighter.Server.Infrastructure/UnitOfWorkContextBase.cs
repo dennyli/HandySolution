@@ -21,6 +21,8 @@ using System.Text;
 
 using Lighter.Server.Infrastructure.Extensions;
 using Utility;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
 
 
 namespace Lighter.Server.Infrastructure
@@ -58,6 +60,10 @@ namespace Lighter.Server.Infrastructure
                 int result = Context.SaveChanges(validateOnSaveEnabled);
                 IsCommitted = true;
                 return result;
+            }
+            catch (OptimisticConcurrencyException)
+            {
+                throw PublicHelper.ThrowDataAccessException("提交数据更新时发现数据已更新,刷新后在进行操作!");
             }
             catch (DbUpdateException e)
             {
@@ -194,6 +200,28 @@ namespace Lighter.Server.Infrastructure
             {
                 Context.Configuration.AutoDetectChangesEnabled = true;
             }
+        }
+
+        /// <summary>
+        /// 从数据库中刷新一条记录，放弃更改
+        /// </summary>
+        /// <typeparam name="TEntity"> 要注册的类型 </typeparam>
+        /// <typeparam name="TKey">实体主键类型</typeparam>
+        /// <param name="entity">要刷新的对象 </param>
+        public void Refresh<TEntity, TKey>(TEntity entity) where TEntity : EntityBase<TKey>
+        {
+            ((IObjectContextAdapter)Context).ObjectContext.Refresh(RefreshMode.StoreWins, entity);
+        }
+
+        /// <summary>
+        ///   从数据库中批量刷新记录，放弃更改
+        /// </summary>
+        /// <typeparam name="TEntity"> 要注册的类型 </typeparam>
+        /// <typeparam name="TKey">实体主键类型</typeparam>
+        /// <param name="entities">要刷新的对象集合 </param>
+        public void Refresh<TEntity, TKey>(IEnumerable<TEntity> entities) where TEntity : EntityBase<TKey>
+        {
+            ((IObjectContextAdapter)Context).ObjectContext.Refresh(RefreshMode.StoreWins, entities);
         }
     }
 }

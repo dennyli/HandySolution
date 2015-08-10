@@ -13,24 +13,37 @@ namespace Lighter.Client
     /// </summary>
     public partial class App : Application
     {
+        private LighterBootstrapper _bootstrapper = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            var bootstrapper = new LighterBootstrapper();
+            if (_bootstrapper == null)
+                _bootstrapper = new LighterBootstrapper();
 
-            LoginView loginView = bootstrapper.GetExportedValue<LoginView>();
+            LoginView loginView = _bootstrapper.GetExportedValue<LoginView>();
             loginView.InitializeEventAggregator();
 
             if (loginView.ShowDialog() == true)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-                bootstrapper.RunShell();
+                _bootstrapper.RunShell();
             }
             else
                 Shutdown();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            if (_bootstrapper != null)
+            {
+                _bootstrapper.Dispose();
+                _bootstrapper = null;
+            }
+
+            base.OnExit(e);
         }
     }
 }

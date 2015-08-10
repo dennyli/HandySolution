@@ -13,6 +13,7 @@ using System;
 using Utility;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using Utility.Exceptions;
 
 namespace Client.Module.UserManager.Services
 {
@@ -43,22 +44,29 @@ namespace Client.Module.UserManager.Services
                 //    MessageHeader header = MessageHeader.CreateHeader("userName", "http://www.codestar.com", _lighterContext.GetCurrentAccountName());
                 //    OperationContext.Current.OutgoingMessageHeaders.Add(header);
 
-                    //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
-                    Accounts accounts = new Accounts();
-                    //foreach (DTOEntityBase<string> dto in dtos)
-                    //    accounts.Add(dto as AccountDTO);
+                //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
+                Accounts accounts = new Accounts();
+                //foreach (DTOEntityBase<string> dto in dtos)
+                //    accounts.Add(dto as AccountDTO);
 
-                    List<AccountDTO> dtos = service.GetAccounts();
-                    foreach (AccountDTO dto in dtos)
-                        accounts.Add(dto);
+                List<AccountDTO> dtos = service.GetAccounts();
+                foreach (AccountDTO dto in dtos)
+                    accounts.Add(dto);
 
-                    return accounts;
+                return accounts;
                 //}
             }
             catch (ProtocolException ex)
             {
                 Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
-                // Todo
+
+                throw new ServerClosedException();
+            }
+            catch (CommunicationException ex)
+            {
+                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
+
+                throw ex;
             }
             catch (Exception ex)
             {

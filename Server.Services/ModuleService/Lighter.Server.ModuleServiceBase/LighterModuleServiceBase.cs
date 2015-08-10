@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ServiceModel;
-using AutoMapper;
 using Lighter.BaseService;
 using Lighter.Data;
 using Lighter.ModuleServiceBase.Interface;

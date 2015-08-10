@@ -17,7 +17,7 @@ namespace Client.Module.UserManager.ViewModels
         public DepartmentManagerViewModel(IDepartmentManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
+            //DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
         }
 
 
@@ -35,8 +35,8 @@ namespace Client.Module.UserManager.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (null == _dataService.GetServerService(UserManagerResources.SERVICE_NAME))
-                _dataService.InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
         }
         #endregion
 

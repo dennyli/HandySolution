@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using AutoMapper;
 using Lighter.BaseService;
 using Lighter.Data;
 using Lighter.Data.Repositories;
@@ -24,23 +23,23 @@ namespace Lighter.ModuleServiceBase.Data
 
         protected List<DTOEntityBase<string>> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources) where DestinationT : class where SourceT : class
         {
-            try
-            {
-                List<DTOEntityBase<string>> dtos = new List<DTOEntityBase<string>>();
+            //try
+            //{
+            //    List<DTOEntityBase<string>> dtos = new List<DTOEntityBase<string>>();
 
-                List<SourceT> accounts = sources.ToList<SourceT>();
-                foreach (SourceT acc in sources)
-                {
-                    DestinationT dto = Mapper.DynamicMap<SourceT, DestinationT>(acc);
-                    dtos.Add(dto as DTOEntityBase<string>);
-                }
+            //    List<SourceT> accounts = sources.ToList<SourceT>();
+            //    foreach (SourceT acc in sources)
+            //    {
+            //        DestinationT dto = Mapper.DynamicMap<SourceT, DestinationT>(acc);
+            //        dtos.Add(dto as DTOEntityBase<string>);
+            //    }
 
-                return dtos;
-            }
-            catch (Exception ex)
-            {
-                this.Logger.Log(CommonUtility.GetErrorMessageFromException(ex), Category.Exception, Priority.High);
-            }
+            //    return dtos;
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.Logger.Log(CommonUtility.GetErrorMessageFromException(ex), Category.Exception, Priority.High);
+            //}
 
             return null;
         }

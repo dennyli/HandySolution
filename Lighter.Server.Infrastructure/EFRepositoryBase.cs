@@ -180,6 +180,26 @@ namespace Lighter.Server.Infrastructure
         }
 
         /// <summary>
+        /// 从数据库中刷新一条记录，放弃更改
+        /// </summary>
+        /// <param name="entity">要刷新的对象</param>
+        public void Refresh(TEntity entity)
+        {
+            PublicHelper.CheckArgument(entity, "entity");
+            EFContext.Refresh<TEntity, TKey>(entity);
+        }
+
+        /// <summary>
+        /// 从数据库中批量刷新记录，放弃更改
+        /// </summary>
+        /// <param name="entities">要刷新的对象集合</param>
+        public void Refresh(IEnumerable<TEntity> entities)
+        {
+            PublicHelper.CheckArgument(entities, "entities");
+            EFContext.Refresh<TEntity, TKey>(entities);
+        }
+
+        /// <summary>
         ///     查找指定主键的实体记录
         /// </summary>
         /// <param name="key"> 指定主键 </param>

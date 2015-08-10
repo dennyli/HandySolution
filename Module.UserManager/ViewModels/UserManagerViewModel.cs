@@ -20,7 +20,7 @@ namespace Client.Module.UserManager.ViewModels
         public UserManagerViewModel(IUserManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
+            //AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
         }
 
         #region INavigationAware Members
@@ -35,8 +35,8 @@ namespace Client.Module.UserManager.ViewModels
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (null == _dataService.GetServerService(UserManagerResources.SERVICE_NAME))
-                _dataService.InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
+            AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
         }
         #endregion
 

@@ -3,6 +3,7 @@ using Client.Module.Common.Interface;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Prism.ViewModel;
+using System.ServiceModel;
 
 namespace Client.ModuleBase.ViewModels
 {
@@ -31,6 +32,11 @@ namespace Client.ModuleBase.ViewModels
         public abstract void OnNavigatedFrom(NavigationContext navigationContext);
 
         public abstract void OnNavigatedTo(NavigationContext navigationContext);
+
+        public virtual void InitilizeServerService<T>(string serviceName, InstanceContext callback)
+        {
+            _dataService.InitilizeServerService<T>(serviceName, callback);
+        }
         #endregion
     }
 }

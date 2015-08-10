@@ -137,7 +137,7 @@ namespace Lighter.Client.View
             ibLoginNormal = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background.gif")));
             ibLoginNormal.Stretch = Stretch.Fill;
 
-            ibLoginFocus = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background_focus.gif")));
+            ibLoginFocus = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background_focus.png")));
             ibLoginFocus.Stretch = Stretch.Fill;
         }
         #endregion

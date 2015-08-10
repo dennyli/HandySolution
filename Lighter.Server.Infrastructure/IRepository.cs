@@ -104,6 +104,18 @@ namespace Lighter.Server.Infrastructure
         int Update(Expression<Func<TEntity, object>> propertyExpression, TEntity entity, bool isSave = true);
 
         /// <summary>
+        /// 从数据库中刷新一条记录，放弃更改
+        /// </summary>
+        /// <param name="entity">要刷新的对象</param>
+        void Refresh(TEntity entity);
+
+        /// <summary>
+        /// 从数据库中批量刷新记录，放弃更改
+        /// </summary>
+        /// <param name="entities">要刷新的对象集合</param>
+        void Refresh(IEnumerable<TEntity> entities);
+
+        /// <summary>
         ///     查找指定主键的实体记录
         /// </summary>
         /// <param name="key"> 指定主键 </param>

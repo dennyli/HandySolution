@@ -121,9 +121,9 @@
       <Project>{8936CFBB-3B0C-48A2-8AFA-6F80D0181CE0}</Project>
       <Name>Lighter.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.Home_MsSqlEFDbContextProvider\Lighter.Home_MsSqlEFDbContextProvider.csproj">
-      <Project>{17fee353-dea7-47d5-af8e-80e57806d65e}</Project>
-      <Name>Lighter.Home_MsSqlEFDbContextProvider</Name>
+    <ProjectReference Include="..\Lighter.EFDbContextProvider\Lighter.MsSqlEFDbContextProvider\Lighter.MsSqlEFDbContextProvider.csproj">
+      <Project>{4024DBCB-AD5E-42DD-BA2C-5ADD791C95F7}</Project>
+      <Name>Lighter.MsSqlEFDbContextProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Common\Lighter.Server.Common.csproj">
       <Project>{F217FB06-ECFC-499A-B34C-1E288BDD1E0F}</Project>

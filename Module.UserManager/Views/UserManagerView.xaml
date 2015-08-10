@@ -20,7 +20,7 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <Label Content="{Binding Title}" Grid.Row="1" Grid.Column="1" Margin="2,2" />
-        <DataGrid AutoGenerateColumns="False" Margin="2,2" Name="gridAccounts" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding AccountsModel}" />
+        <DataGrid AutoGenerateColumns="true" Margin="2,2" Name="gridAccounts" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding AccountsModel}" />
     </Grid>
 
 </UserControl>

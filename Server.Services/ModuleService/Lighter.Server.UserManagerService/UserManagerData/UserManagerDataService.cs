@@ -48,11 +48,42 @@ namespace Lighter.UserManagerService.UserManagerData
         #region Explict Declare
         public List<AccountDTO> GetAccounts()
         {
-            List<DTOEntityBase<string>> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
+            //List<DTOEntityBase<string>> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
 
             List<AccountDTO> accountDTOs = new List<AccountDTO>();
-            foreach (DTOEntityBase<string> dto in dtos)
-                accountDTOs.Add(dto as AccountDTO);
+            //foreach (DTOEntityBase<string> dto in dtos)
+            //    accountDTOs.Add(dto as AccountDTO);
+
+            foreach (Account a in Accounts.ToList < Account>())
+            {
+                AccountDTO dto = new AccountDTO();
+                dto.Authority = a.Authority;
+                dto.Id = a.Id;
+                dto.Name = a.Name;
+                dto.Password = a.Password;
+                dto.ShortName = a.ShortName;
+
+                //if (a.Department != null)
+                //{
+                //    dto.Department = new DepartmentDTO();
+                //    dto.Department.Id = a.Department.Id;
+                //    dto.Department.Name = a.Department.Name;
+                //    dto.Department.Description = a.Department.Description;
+                //    dto.Department.Accounts.Add(dto);
+                //}
+
+                //if (a.Role != null)
+                //{
+                //    dto.Role = new RoleDTO();
+                //    dto.Role.Id = a.Role.Id;
+                //    dto.Role.Name = a.Role.Name;
+                //    dto.Role.Authority = a.Role.Authority;
+                //    dto.Role.Description = a.Role.Description;
+                //    dto.Role.Accounts.Add(dto);
+                //}
+
+                accountDTOs.Add(dto);
+            }
 
             return accountDTOs;
         }
