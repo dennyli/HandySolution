@@ -16,27 +16,13 @@ using Lighter.ModuleServiceBase.Model;
 namespace Client.Module.UserManager.Services
 {
     [Export(typeof(IRoleManagerDataService))]
-    public class RoleManagerDataService : DataServiceBase, IRoleManagerDataService
+    public class RoleManagerDataService : UMDataService, IRoleManagerDataService
     {
         [ImportingConstructor]
         public RoleManagerDataService(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
             : base(serviceLocator, lighterContext)
         {
             
-        }
-
-        public Roles GetRoles()
-        {
-            ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
-
-            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(RoleDTO));
-
-            Roles roles = new Roles();
-            foreach (DTOEntityBase<string> dto in dtos)
-                roles.Add(dto as RoleDTO);
-
-            return roles;
         }
     }
 }

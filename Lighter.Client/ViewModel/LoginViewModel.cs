@@ -106,11 +106,11 @@ namespace Lighter.Client.ViewModel
                 bValidated = false;
             }
 
-#if DEBUG
+//#if DEBUG
             if (!PasswordValidationRule.Validate(infoArgs.PasswordControl.Password))
-#else
-            if (!PasswordValidationRule.Validate(infoArgs.PasswordControl.SecurePassword))
-#endif
+//#else
+//            if (!PasswordValidationRule.Validate(infoArgs.PasswordControl.SecurePassword))
+//#endif
             {
                 _eventAggregator.GetEvent<InputErrorEvent>().Publish(new InputErrorEventArgs(InputErrorKinds.Password));
                 bValidated = false;

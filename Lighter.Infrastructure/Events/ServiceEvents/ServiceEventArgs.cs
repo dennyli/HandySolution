@@ -23,7 +23,12 @@ namespace Lighter.Client.Infrastructure.Events.ServiceEvents
         /// 服务端已关闭
         /// </summary>
         [Description("服务端已关闭")]
-        Closed
+        Closed,
+        /// <summary>
+        /// 通信错误
+        /// </summary>
+        [Description("通信错误")]
+        CommunicationError
     }
 
     public class ServiceEventArgs : SimpleMessageEventArgs

@@ -7,8 +7,10 @@ using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.Interface.Services
 {
-    public interface IRoleManagerDataService : IUMDataService
+    public interface IUMDataService : IDataService
     {
-        
+        Accounts GetAccounts();
+        Roles GetRoles();
+        Departments GetDepartments();
     }
 }

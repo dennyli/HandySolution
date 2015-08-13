@@ -6,7 +6,7 @@ using Client.Module.Common.Interface;
 
 namespace Client.Module.UserManager.Interface.ViewModels
 {
-    public interface IRoleManagerViewModel : IUMViewMode
+    public interface IUMViewMode : IViewModel
     {
     }
 }

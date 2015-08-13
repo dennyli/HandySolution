@@ -14,34 +14,16 @@ namespace Client.Module.UserManager.ViewModels
     /// </summary>
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class UserManagerViewModel : ViewModelBase, INavigationAware, IUserManagerViewModel
+    public class UserManagerViewModel : UMViewModeBase, IUserManagerViewModel
     {
         [ImportingConstructor]
         public UserManagerViewModel(IUserManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            //AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
         }
-
-        #region INavigationAware Members
-        public override bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return true;
-        }
-
-        public override void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
-
-        public override void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
-            AccountsModel = (_dataService as IUserManagerDataService).GetAccounts();
-        }
-        #endregion
-
         #region Fields
-        public Accounts AccountsModel { get; private set; }
+
+        public Accounts Accounts { get { return this.GetAccounts(); } }
 
         public string Title
         {

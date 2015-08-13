@@ -7,8 +7,8 @@ using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.Interface.Services
 {
-    public interface IDepartmentManagerDataService : IDataService
+    public interface IDepartmentManagerDataService : IUMDataService
     {
-        Departments GetDepartments();
+        
     }
 }

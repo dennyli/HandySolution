@@ -2,7 +2,7 @@
 
 namespace Client.Module.UserManager.Interface.ViewModels
 {
-    public interface IUserManagerViewModel : IViewModel
+    public interface IUserManagerViewModel : IUMViewMode
     {
     }
 }

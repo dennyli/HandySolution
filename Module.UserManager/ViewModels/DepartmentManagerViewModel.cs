@@ -9,39 +9,18 @@ using Microsoft.Practices.Prism.Regions;
 
 namespace Client.Module.UserManager.ViewModels
 {
-    [Export(typeof(DepartmentManagerViewModel))]
+    [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class DepartmentManagerViewModel : ViewModelBase, INavigationAware, IDepartmentManagerViewModel
+    public class DepartmentManagerViewModel : UMViewModeBase, IDepartmentManagerViewModel
     {
         [ImportingConstructor]
         public DepartmentManagerViewModel(IDepartmentManagerDataService dataService, IEventAggregator eventAggregator, IRegionManager regionManager)
             : base(dataService, eventAggregator, regionManager)
         {
-            //DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
+
         }
-
-
-        
-
-        #region INavigationAware Members
-        public override bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return true;
-        }
-
-        public override void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
-
-        public override void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            InitilizeServerService<ILighterUserManagerService>(UserManagerResources.SERVICE_NAME, null);
-            DepartmentsModel = (_dataService as IDepartmentManagerDataService).GetDepartments();
-        }
-        #endregion
 
         #region Fields
-        public Departments DepartmentsModel { get; private set; }
         public string Title
         {
             get { return CommandDefinitions.CT_DEPART_MANAGE; }

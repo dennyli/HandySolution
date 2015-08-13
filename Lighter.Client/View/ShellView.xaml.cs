@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.ComponentModel.Composition;
 using Lighter.Client.Events;
 using Lighter.Client.ViewModel;
+using Microsoft.Practices.Prism.Events;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
+using Utility.Controls;
 
 namespace Lighter.Client.View
 {
@@ -28,12 +31,40 @@ namespace Lighter.Client.View
             InitializeComponent();
         }
 
+        #region Fields
         [Import(AllowRecomposition = false)]
         public ShellViewModel ViewModel
         {
             get { return this.DataContext as ShellViewModel; }
             set { this.DataContext = value; }
         }
+
+        [Import]
+        public IEventAggregator EventAggregator { get; set; }
+
+        #endregion
+
+        #region Login result event
+        public void InitializeEventAggregator()
+        {
+            EventAggregator.GetEvent<ServiceEvent>().Subscribe(DoServiceEvent);
+        }
+
+        private void DoServiceEvent(ServiceEventArgs args)
+        {
+            switch (args.Kind)
+            {
+                case ServiceEventKind.TooBusy:
+                case ServiceEventKind.NotFound:
+                case ServiceEventKind.CommunicationError:
+                    LighterMessageBox.ShowMessageBox(this, args.Message, "提示");
+                    break;
+                case ServiceEventKind.Closed:
+                    break;
+            }
+        }
+
+        #endregion
 
         protected override void OnClosed(EventArgs e)
         {

@@ -64,6 +64,9 @@ using Lighter.ServiceManager.TokenValidation;
         /// </summary>
         public int Order { get; private set; }
 
+        /// <summary>
+        /// Check user or not
+        /// </summary>
         public TokenValidationMode TokenValidationMode { get; private set; }
         #endregion
     }

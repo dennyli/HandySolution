@@ -8,6 +8,7 @@ using Lighter.Data.Repositories;
 using Lighter.ModuleServiceBase.Model;
 using Microsoft.Practices.Prism.Logging;
 using Utility;
+using AutoMapper;
 
 namespace Lighter.ModuleServiceBase.Data
 {
@@ -21,25 +22,40 @@ namespace Lighter.ModuleServiceBase.Data
             get { return AccountRepository.Entities; }
         }
 
-        protected List<DTOEntityBase<string>> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources) where DestinationT : class where SourceT : class
+        public ModuleDataServiceBase()
         {
-            //try
-            //{
-            //    List<DTOEntityBase<string>> dtos = new List<DTOEntityBase<string>>();
+            Mapper.Initialize(cfg =>
+              {
+                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
+                      .Include<Module, ModuleDTO>();
 
-            //    List<SourceT> accounts = sources.ToList<SourceT>();
-            //    foreach (SourceT acc in sources)
-            //    {
-            //        DestinationT dto = Mapper.DynamicMap<SourceT, DestinationT>(acc);
-            //        dtos.Add(dto as DTOEntityBase<string>);
-            //    }
+                  cfg.CreateMap<Module, ModuleDTO>();
+              });
+        }
 
-            //    return dtos;
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.Logger.Log(CommonUtility.GetErrorMessageFromException(ex), Category.Exception, Priority.High);
-            //}
+        protected IQueryable<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)
+            where DestinationT : class
+            where SourceT : class
+        {
+            try
+            {
+                //List<DestinationT> dtos = new List<DestinationT>();
+
+                //List<SourceT> accounts = sources.ToList<SourceT>();
+                //foreach (SourceT acc in sources)
+                //{
+                //    DestinationT dto = Mapper.Map<SourceT, DestinationT>(acc);
+                //    dtos.Add(dto as DTOEntityBase<string>);
+                //}
+
+                //return dtos;
+
+                return Mapper.Map<IQueryable<DestinationT>>(sources);
+            }
+            catch (Exception ex)
+            {
+                this.Logger.Log(CommonUtility.GetErrorMessageFromException(ex), Category.Exception, Priority.High);
+            }
 
             return null;
         }

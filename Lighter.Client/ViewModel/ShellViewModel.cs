@@ -2,16 +2,22 @@
 using System.ComponentModel.Composition;
 using Microsoft.Practices.Prism.Commands;
 using Lighter.Client.Infrastructure.Interface;
+using Microsoft.Practices.Prism.Events;
 
 namespace Lighter.Client.ViewModel
 {
     [Export]
     public class ShellViewModel : INotifyPropertyChanged
     {
-        public ShellViewModel()
+        private readonly IEventAggregator _eventAggregator;
+
+        [ImportingConstructor]
+        public ShellViewModel(IEventAggregator eventAggregator)
         {
             // Initialize this ViewModel's commands.
             ExitCommand = new DelegateCommand<object>(AppExit, CanAppExit);
+
+            _eventAggregator = eventAggregator;
         }
 
         [Import]

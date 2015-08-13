@@ -72,15 +72,18 @@
     <Compile Include="CommandDefinitions.cs" />
     <Compile Include="Interface\Services\IDepartmentManagerDataService.cs" />
     <Compile Include="Interface\Services\IRoleManagerDataService.cs" />
+    <Compile Include="Interface\Services\IUMDataService.cs" />
     <Compile Include="Interface\ViewModels\IDepartmentManagerViewModel.cs" />
     <Compile Include="Interface\Services\IUserManagerDataService.cs" />
     <Compile Include="Interface\ViewModels\IRoleManagerViewModel.cs" />
+    <Compile Include="Interface\ViewModels\IUMViewMode.cs" />
     <Compile Include="Interface\ViewModels\IUserManagerViewModel.cs" />
     <Compile Include="Models\Accounts.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Services\DepartmentManagerDataService.cs" />
     <Compile Include="Services\RoleManagerDataService.cs" />
+    <Compile Include="Services\UMDataService.cs" />
     <Compile Include="UserManagerModuleInit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -99,6 +102,7 @@
     <Compile Include="UserManagerResources.cs" />
     <Compile Include="ViewModels\DepartmentManagerViewModel.cs" />
     <Compile Include="ViewModels\RoleManagerViewModel.cs" />
+    <Compile Include="ViewModels\UMViewModeBase.cs" />
     <Compile Include="ViewModels\UserManagerViewModel.cs">
       <SubType>Code</SubType>
     </Compile>

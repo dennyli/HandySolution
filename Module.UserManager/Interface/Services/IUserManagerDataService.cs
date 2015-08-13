@@ -5,8 +5,8 @@ using Client.Module.UserManager.Models;
 
 namespace Client.Module.UserManager.Interface.Services
 {
-    public interface IUserManagerDataService : IDataService
+    public interface IUserManagerDataService : IUMDataService
     {
-        Accounts GetAccounts();
+
     }
 }

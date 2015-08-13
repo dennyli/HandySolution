@@ -45,46 +45,34 @@ namespace Lighter.UserManagerService.UserManagerData
             get { return DepartmentRepository.Entities; }
         }
 
+        public UserManagerDataService()
+            : base()
+        {
+            Mapper.Initialize(cfg =>
+              {
+                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
+                      .Include<Account, AccountDTO>()
+                      .Include<Department, DepartmentDTO>()
+                      .Include<Role, RoleDTO>();
+
+                  cfg.CreateMap<Account, AccountDTO>();
+                  cfg.CreateMap<Department, DepartmentDTO>();
+                  cfg.CreateMap<Role, RoleDTO>();
+              });
+        }
+
         #region Explict Declare
         public List<AccountDTO> GetAccounts()
         {
-            //List<DTOEntityBase<string>> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
+            IQueryable<AccountDTO> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
 
-            List<AccountDTO> accountDTOs = new List<AccountDTO>();
+            //List<AccountDTO> accountDTOs = new List<AccountDTO>();
             //foreach (DTOEntityBase<string> dto in dtos)
             //    accountDTOs.Add(dto as AccountDTO);
 
-            foreach (Account a in Accounts.ToList < Account>())
-            {
-                AccountDTO dto = new AccountDTO();
-                dto.Authority = a.Authority;
-                dto.Id = a.Id;
-                dto.Name = a.Name;
-                dto.Password = a.Password;
-                dto.ShortName = a.ShortName;
+            //return accountDTOs;
 
-                //if (a.Department != null)
-                //{
-                //    dto.Department = new DepartmentDTO();
-                //    dto.Department.Id = a.Department.Id;
-                //    dto.Department.Name = a.Department.Name;
-                //    dto.Department.Description = a.Department.Description;
-                //    dto.Department.Accounts.Add(dto);
-                //}
-
-                //if (a.Role != null)
-                //{
-                //    dto.Role = new RoleDTO();
-                //    dto.Role.Id = a.Role.Id;
-                //    dto.Role.Name = a.Role.Name;
-                //    dto.Role.Authority = a.Role.Authority;
-                //    dto.Role.Description = a.Role.Description;
-                //    dto.Role.Accounts.Add(dto);
-                //}
-
-                accountDTOs.Add(dto);
-            }
-
+            List<AccountDTO> accountDTOs = dtos.ToList<AccountDTO>();
             return accountDTOs;
         }
 
@@ -212,12 +200,9 @@ namespace Lighter.UserManagerService.UserManagerData
         List<ModuleDTO> IUserManagerDataService.GetSupportedModules()
         {
             IQueryable<Module> modules = Modules.Where<Module>(m => m.Catalog == UserManagerDefination.ServiceId);
-            List<DTOEntityBase<string>> dtos = Convert2DTO<Module, ModuleDTO>(modules);
+            IQueryable<ModuleDTO> dtos = Convert2DTO<Module, ModuleDTO>(modules);
 
-            List<ModuleDTO> moduleDTOs = new List<ModuleDTO>();
-            foreach (DTOEntityBase<string> dto in dtos)
-                moduleDTOs.Add(dto as ModuleDTO);
-
+            List<ModuleDTO> moduleDTOs = dtos.ToList<ModuleDTO>();
             return moduleDTOs;
         }
 
@@ -229,23 +214,23 @@ namespace Lighter.UserManagerService.UserManagerData
 
         List<DTOEntityBase<string>> IUserManagerDataService.GetDTOEntities(Type type)
         {
-            if (type == typeof(AccountDTO))
-            {
-                return Convert2DTO<Account, AccountDTO>(Accounts);
-            }
-            else if (type == typeof(RoleDTO))
-            {
-                return Convert2DTO<Role, RoleDTO>(Roles);
-            }
-            else if (type == typeof(DepartmentDTO))
-            {
-                return Convert2DTO<Department, DepartmentDTO>(Departments);
-            }
-            else if (type == typeof(ModuleDTO))
-            {
-                return Convert2DTO<Module, ModuleDTO>(Modules);
-            }
-            else
+            //if (type == typeof(AccountDTO))
+            //{
+            //    return Convert2DTO<Account, AccountDTO>(Accounts);
+            //}
+            //else if (type == typeof(RoleDTO))
+            //{
+            //    return Convert2DTO<Role, RoleDTO>(Roles);
+            //}
+            //else if (type == typeof(DepartmentDTO))
+            //{
+            //    return Convert2DTO<Department, DepartmentDTO>(Departments);
+            //}
+            //else if (type == typeof(ModuleDTO))
+            //{
+            //    return Convert2DTO<Module, ModuleDTO>(Modules);
+            //}
+            //else
                 return null;
         }
 

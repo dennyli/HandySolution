@@ -67,6 +67,7 @@ namespace Lighter.Client.View
             {
                 case ServiceEventKind.TooBusy:
                 case ServiceEventKind.NotFound:
+                case ServiceEventKind.CommunicationError:
                     ViewModel.SetLoginMessage(args.Message);
                     LighterMessageBox.ShowMessageBox(this, args.Message, "提示");
                     break;
@@ -125,7 +126,7 @@ namespace Lighter.Client.View
 
         #region Initialize Image Brushs
         private ImageBrush ibCancelNormal, ibCancelFocus;
-        private ImageBrush ibLoginNormal, ibLoginFocus;
+        private ImageBrush ibLoginNormal, ibLoginFocus, ibLoginDisenable;
         private void InitializeImageBrushs()
         {
             ibCancelNormal = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/cancel.png")));
@@ -139,6 +140,9 @@ namespace Lighter.Client.View
 
             ibLoginFocus = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background_focus.png")));
             ibLoginFocus.Stretch = Stretch.Fill;
+
+            ibLoginDisenable = new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/Lighter.Client;component/Images/btn_background_focus.png")));
+            ibLoginDisenable.Stretch = Stretch.Fill;
         }
         #endregion
 
@@ -193,7 +197,10 @@ namespace Lighter.Client.View
             Label tipsLabel = (Label)sender;
             try
             {
-                tipsLabel.Background = ibLoginFocus;
+                if (tipsLabel.IsEnabled)
+                    tipsLabel.Background = ibLoginFocus;
+                else
+                    tipsLabel.Background = ibLoginDisenable;
             }
             catch (Exception ef)
             {
@@ -207,7 +214,10 @@ namespace Lighter.Client.View
             Label tipsLabel = (Label)sender;
             try
             {
-                tipsLabel.Background = ibLoginNormal;
+                if (tipsLabel.IsEnabled)
+                    tipsLabel.Background = ibLoginNormal;
+                else
+                    tipsLabel.Background = ibLoginDisenable;
             }
             catch (Exception ef)
             {

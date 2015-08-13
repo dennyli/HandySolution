@@ -18,6 +18,8 @@ using Lighter.LoginService.Interface;
 using Lighter.LoginService.Model;
 using System.ServiceModel.Channels;
 using Utility.Exceptions;
+using Microsoft.Practices.Prism.Events;
+using Lighter.Client.Infrastructure.Events.ServiceEvents;
 
 namespace Lighter.Client.Infrastructure.Implement
 {
@@ -27,6 +29,9 @@ namespace Lighter.Client.Infrastructure.Implement
         private LighterClientContext()
         {
         }
+
+        [Import]
+        public IEventAggregator _eventAggregator { get; set; }
 
         #region ICommandContext Command infos
         /// <summary>
@@ -177,18 +182,27 @@ namespace Lighter.Client.Infrastructure.Implement
             }
             catch (EndpointNotFoundException ex)
             {
-                throw new ServerNotFoundException("找不到服务端，创建命名服务" + serviceName + "失败!", ex);
+                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.NotFound, ex.Message));
             }
+
+            return default(T);
         }
 
         private void CloseAllService()
         {
-            foreach(ILighterService service in _services.Values)
+            try
             {
-                ((IChannel)service).Close();
-            }
+                foreach (ILighterService service in _services.Values)
+                {
+                    ((IChannel)service).Close();
+                }
 
-            _services.Clear();
+                _services.Clear();
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.CommunicationError, ex.Message));
+            }
         }
 
         private void DisconnectServer()
@@ -312,7 +326,8 @@ namespace Lighter.Client.Infrastructure.Implement
                     service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
                 }
 
-                service.Login(info);
+                if (service != null)
+                    service.Login(info);
             }
             catch (EndpointNotFoundException ex)
             {

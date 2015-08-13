@@ -22,7 +22,7 @@ namespace Client.Module.UserManager.Services
     /// Replace with your real data model and/or data service proxy.
     /// </summary>
     [Export(typeof(IUserManagerDataService))] // Export the DataService concrete type. By default, this will be a singleton (shared).
-    public class UserManagerDataService : DataServiceBase, IUserManagerDataService
+    public class UserManagerDataService : UMDataService, IUserManagerDataService
     {
         
         [ImportingConstructor]
@@ -32,48 +32,5 @@ namespace Client.Module.UserManager.Services
             
         }
 
-        public Accounts GetAccounts()
-        {
-            ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
-
-            try
-            {
-                //using (OperationContextScope scope = new OperationContextScope(service as IContextChannel))
-                //{
-                //    MessageHeader header = MessageHeader.CreateHeader("userName", "http://www.codestar.com", _lighterContext.GetCurrentAccountName());
-                //    OperationContext.Current.OutgoingMessageHeaders.Add(header);
-
-                //List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(AccountDTO));
-                Accounts accounts = new Accounts();
-                //foreach (DTOEntityBase<string> dto in dtos)
-                //    accounts.Add(dto as AccountDTO);
-
-                List<AccountDTO> dtos = service.GetAccounts();
-                foreach (AccountDTO dto in dtos)
-                    accounts.Add(dto);
-
-                return accounts;
-                //}
-            }
-            catch (ProtocolException ex)
-            {
-                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
-
-                throw new ServerClosedException();
-            }
-            catch (CommunicationException ex)
-            {
-                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
-
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(CommonUtility.GetErrorMessageFromException(ex));
-            }
-
-            return null;
-        }
     }
 }

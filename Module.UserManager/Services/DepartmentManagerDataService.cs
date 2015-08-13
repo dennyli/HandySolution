@@ -13,7 +13,7 @@ using Microsoft.Practices.ServiceLocation;
 namespace Client.Module.UserManager.Services
 {
     [Export(typeof(IDepartmentManagerDataService))]
-    public class DepartmentManagerDataService : DataServiceBase, IDepartmentManagerDataService
+    public class DepartmentManagerDataService : UMDataService, IDepartmentManagerDataService
     {
         [ImportingConstructor]
         public DepartmentManagerDataService(IServiceLocator serviceLocator, ILighterClientContext lighterContext)
@@ -22,18 +22,5 @@ namespace Client.Module.UserManager.Services
             
         }
 
-        public Departments GetDepartments()
-        {
-            ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
-
-            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(DepartmentDTO));
-
-            Departments departments = new Departments();
-            foreach (DTOEntityBase<string> dto in dtos)
-                departments.Add(dto as DepartmentDTO);
-
-            return departments;
-        }
     }
 }

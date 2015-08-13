@@ -157,7 +157,7 @@
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border ClipToBounds="True"  CornerRadius="5">
-                                    <Label Name="tips_for_login" Content="登  录" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="White" MouseLeave="tips_login_MouseLeave" MouseEnter="tips_login_MouseEnter" >
+                                    <Label Name="tips_for_login" Content="登  录" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="White" MouseLeave="tips_login_MouseLeave" MouseEnter="tips_login_MouseEnter" IsEnabled="{Binding Path=IsEnabled}"  >
                                         <Label.Background>
                                             <ImageBrush ImageSource="/Lighter.Client;component/Images/btn_background.gif"></ImageBrush>
                                         </Label.Background>

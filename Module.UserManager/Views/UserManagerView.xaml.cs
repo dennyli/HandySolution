@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
-
 using Client.Module.UserManager.ViewModels;
+using Client.Module.Common.Tools;
 
 namespace Client.Module.UserManager.Views
 {
@@ -20,6 +20,14 @@ namespace Client.Module.UserManager.Views
         {
             get { return this.DataContext as UserManagerViewModel; }
             set { this.DataContext = value; }
+        }
+
+        private void gridAccounts_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+
+            //DataGridCell cell = e.Row.GetCell(0);
+            //cell.Content = e.Row.GetIndex() + 1;
         }
     }
 }
