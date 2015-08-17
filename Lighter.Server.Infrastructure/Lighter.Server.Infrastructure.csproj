@@ -70,6 +70,10 @@
     <Compile Include="UnitOfWorkContextBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>
       <Name>Utility</Name>

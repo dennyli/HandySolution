@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
-using Utility;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.Server.Infrastructure
 {

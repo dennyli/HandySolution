@@ -23,6 +23,7 @@ using Lighter.Server.Infrastructure.Extensions;
 using Utility;
 using System.Data.Entity.Core;
 using System.Data.Entity.Core.Objects;
+using Lighter.Data.Dto2Entity;
 
 
 namespace Lighter.Server.Infrastructure

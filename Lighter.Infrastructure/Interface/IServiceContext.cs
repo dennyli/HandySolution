@@ -20,7 +20,11 @@ namespace Lighter.Client.Infrastructure.Interface
 
         ILighterMainService GetMainService();
 
-        T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null, bool bTokenValidation = true);
+        T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null
+#if WITH_TOKEN
+            , bool bTokenValidation = true
+#endif
+            );
 
         #endregion // Services
     }

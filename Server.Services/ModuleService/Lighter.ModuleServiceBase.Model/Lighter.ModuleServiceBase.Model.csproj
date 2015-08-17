@@ -43,9 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOEntityBase.cs" />
     <Compile Include="ModuleDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

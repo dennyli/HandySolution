@@ -81,6 +81,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lighter.Server.Infrastructure\Lighter.Server.Infrastructure.csproj">
       <Project>{3A10BDA4-D0BB-46E1-B560-35443D863E7B}</Project>
       <Name>Lighter.Server.Infrastructure</Name>
@@ -100,6 +104,14 @@
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\ModuleService\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
+      <Project>{3D9CDCE1-69CB-460B-A4E1-4C024BCB2A20}</Project>
+      <Name>Lighter.ModuleServiceBase.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server.Services\ModuleService\Lighter.UserManagerService.Model\Lighter.UserManagerService.Model.csproj">
+      <Project>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</Project>
+      <Name>Lighter.UserManagerService.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{691746DD-2EE5-4678-B001-275D84AF8D10}</Project>

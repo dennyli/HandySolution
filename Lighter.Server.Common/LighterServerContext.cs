@@ -62,9 +62,13 @@ namespace Lighter.Server.Common
                 return _loginedAccounts.First<UserInfo>(u => u.Id == userId);
             }
             catch (InvalidOperationException ex)
-            { }
+            {
+                // Todo: InvalidOperationException
+            }
             catch (ArgumentNullException ex)
-            { }
+            {
+                // Todo: InvalidOperationException
+            }
 
             return null;
         }

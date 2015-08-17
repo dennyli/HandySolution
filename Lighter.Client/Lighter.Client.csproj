@@ -33,7 +33,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;WITH_LOGIN</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -124,6 +124,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Client.Infrastructure.csproj">
       <Project>{534D59E2-CBE6-413E-BD58-51C9EC814C24}</Project>
       <Name>Lighter.Client.Infrastructure</Name>

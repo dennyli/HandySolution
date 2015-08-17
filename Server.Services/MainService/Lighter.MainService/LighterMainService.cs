@@ -74,7 +74,7 @@ namespace Lighter.MainService
                     }
                     catch (InvalidOperationException)
                     {
-                        
+                        // Todo: InvalidOperationException
                     }
                 }
             }
@@ -92,12 +92,14 @@ namespace Lighter.MainService
             }
             catch(ArgumentNullException)
             {
-                return false;
+                // Todo: ArgumentNullException
             }
             catch(InvalidOperationException)
             {
-                return false;
+                // Todo: InvalidOperationException
             }
+
+            return false;
         }
 
         //[OperationContract]
@@ -110,12 +112,14 @@ namespace Lighter.MainService
             }
             catch (ArgumentNullException)
             {
-                return null;
+                // Todo: ArgumentNullException
             }
             catch (InvalidOperationException)
             {
-                return null;
+                // Todo: InvalidOperationException
             }
+
+            return null;
         }
 
 

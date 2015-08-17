@@ -12,13 +12,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
 
 
-namespace Utility
+namespace Lighter.Data.Dto2Entity
 {
     /// <summary>
     ///     可持久到数据库的领域模型的基类。

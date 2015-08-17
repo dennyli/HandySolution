@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Utility;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.Data
 {

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FC03D1FC-01B8-47BF-BB7B-66168880B415}</ProjectGuid>
+    <ProjectGuid>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.UserManagerService.Model</RootNamespace>
-    <AssemblyName>Lighter.UserManagerService.Model</AssemblyName>
+    <RootNamespace>Lighter.Data.Dto2Entity</RootNamespace>
+    <AssemblyName>Lighter.Data.Dto2Entity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,25 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDTO.cs" />
-    <Compile Include="DepartmentDTO.cs" />
+    <Compile Include="DTOEntityBase.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="IDTO2Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleDTO.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
-      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
-      <Name>Lighter.Data.Dto2Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lighter.ModuleServiceBase.Model\Lighter.ModuleServiceBase.Model.csproj">
-      <Project>{3D9CDCE1-69CB-460B-A4E1-4C024BCB2A20}</Project>
-      <Name>Lighter.ModuleServiceBase.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
-xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

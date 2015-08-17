@@ -129,6 +129,10 @@
     <None Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lighter.Infrastructure\Lighter.Client.Infrastructure.csproj">
       <Project>{534d59e2-cbe6-413e-bd58-51c9ec814c24}</Project>
       <Name>Lighter.Client.Infrastructure</Name>

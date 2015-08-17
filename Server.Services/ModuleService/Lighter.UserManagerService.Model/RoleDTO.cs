@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Model;
 using System.ServiceModel;
 using System.Text;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.UserManagerService.Model
 {

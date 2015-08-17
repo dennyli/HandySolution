@@ -6,6 +6,7 @@ using Lighter.ModuleServiceBase.Interface;
 using Lighter.ModuleServiceBase.Model;
 using Lighter.UserManagerService.Model;
 using Utility;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.UserManagerService.Interface
 {

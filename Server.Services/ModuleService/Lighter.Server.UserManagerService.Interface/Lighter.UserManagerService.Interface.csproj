@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.ServiceManager.Interface\Lighter.ServiceManager.Interface.csproj">
       <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
       <Name>Lighter.ServiceManager.Interface</Name>

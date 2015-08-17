@@ -36,17 +36,18 @@ namespace Client.Module.UserManager.ViewModels
         #endregion
 
         #region Methods
-        public Accounts GetAccounts()
+        protected Accounts GetAccounts()
         {
-            return (_dataService as IUMDataService).GetAccounts();
+            Accounts accounts = (_dataService as IUMDataService).GetAccounts();
+            return accounts;
         }
 
-        public Roles GetRoles()
+        protected Roles GetRoles()
         {
             return (_dataService as IUMDataService).GetRoles();
         }
 
-        public Departments GetDepartments()
+        protected Departments GetDepartments()
         {
             return (_dataService as IUMDataService).GetDepartments();
         }

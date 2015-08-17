@@ -56,6 +56,16 @@ namespace Utility
             }
         }
 
+        public static void CheckArgumentIsType(object arg, string argName, Type type)
+        {
+            CheckArgument(arg, argName);
+
+            if (!arg.GetType().IsAssignableFrom(type))
+            {
+                throw new IllegalArgumentException(argName, type);
+            }
+        }
+
         /// <summary>
         ///     向调用层抛出组件异常
         /// </summary>

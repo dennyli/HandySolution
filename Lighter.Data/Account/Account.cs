@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Utility;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using Lighter.ModuleServiceBase.Model;
+using Lighter.UserManagerService.Model;
+using Lighter.Data.Dto2Entity;
+using Utility;
 
 namespace Lighter.Data
 {
     [Description("账户信息")]
     [DataContract]
-    public class Account : EntityBase<string>
+    public class Account : EntityBase<string>, IDTO2EntityConvertor<string>
     {
         /// <summary>
         /// 账户名称
@@ -83,5 +86,43 @@ namespace Lighter.Data
 
             return sb.ToString();
         }
+
+        #region IDTO2EntityConvertor<string> 成员
+
+        public void FromDto(DTOEntityBase<string> entity)
+        {
+            //PublicHelper.CheckArgumentIsType(entity, "entity", typeof(AccountDTO));
+
+            //this.Id = entity.Id;
+
+            //AccountDTO dto = entity as AccountDTO;
+            //this.Name = dto.Name;
+            //this.Authority = dto.Authority;
+
+            //if (dto.Department != null)
+            //{
+            //    this.DepartId = dto.Department.Id;
+            //    this.Department = new Department();
+            //    this.Department.FromDto(dto.Department);
+            //}
+
+            //this.Password = dto.Password;
+
+            //if (dto.Role != null)
+            //{
+            //    this.RoleId = dto.Role.Id;
+            //    this.Role = new Role();
+            //    this.Role.FromDto(dto.Role);
+            //}
+
+            //this.ShortName = dto.ShortName;
+        }
+
+        public DTOEntityBase<string> ToDto()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

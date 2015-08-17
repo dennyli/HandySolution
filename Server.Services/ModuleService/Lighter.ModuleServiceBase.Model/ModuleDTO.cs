@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.ModuleServiceBase.Model
 {

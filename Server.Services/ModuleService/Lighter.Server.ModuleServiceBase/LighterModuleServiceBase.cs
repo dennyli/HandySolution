@@ -44,34 +44,8 @@ namespace Lighter.ModuleServiceBase
         /// </summary>
         public override void Initialize()
         {
-            //TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            //if (baseMap == null)
-            //{
-            //    IMappingExpression<DTOEntityBase<string>, EntityBase<string>> pp = Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
-            //    baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            //}
-
-            //if (!baseMap.TypeHasBeenIncluded(typeof(ModuleDTO), typeof(Module)))
-            //    baseMap.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
-
-            //if (null == Mapper.FindTypeMapFor<ModuleDTO, Module>())
-            //    Mapper.CreateMap<ModuleDTO, Module>()
-            //        .ForAllMembers(opt => opt.NullSubstitute(""));
+            bInitialized = true;
         }
-
-        //public virtual OperationResult CheckSession()
-        //{
-        //    SessionState state = OperationContext.Current.InstanceContext.Extensions.Find<SessionState>();
-        //    if (state == null)
-        //        return new OperationResult(OperationResultType.IllegalOperation);
-
-        //    SessionState stateChecked = null;
-        //    LighterSessionStateManager manager = LighterSessionContext.GetInstance().SessionManager;
-        //    if (!manager.TryGetValue(state.Account, out stateChecked))
-        //        return new OperationResult(OperationResultType.IllegalOperation);
-
-        //    return new OperationResult(OperationResultType.Success);
-        //}
 
         #region IDisposable 成员
 

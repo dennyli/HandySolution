@@ -13,6 +13,7 @@ using Lighter.UserManagerService.Model;
 using Utility;
 using Utility.Exceptions;
 using System.ServiceModel;
+using Lighter.Data.Dto2Entity;
 
 namespace Client.Module.UserManager.Services
 {
@@ -38,6 +39,10 @@ namespace Client.Module.UserManager.Services
 
                 return accounts;
                 //}
+            }
+            catch (ServerClosedException ex)
+            {
+                throw ex;
             }
             catch (ProtocolException ex)
             {

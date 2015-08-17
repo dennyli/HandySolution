@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Data;
 using Lighter.ModuleServiceBase.Model;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.UserManagerService.UserManagerData
 {

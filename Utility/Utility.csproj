@@ -77,8 +77,8 @@
     <Compile Include="CommonUtility.cs" />
     <Compile Include="Exceptions\ComponentException.cs" />
     <Compile Include="Exceptions\DataAccessException.cs" />
-    <Compile Include="EntityBase.cs" />
     <Compile Include="ExceptionMessage.cs" />
+    <Compile Include="Exceptions\IllegalArgumentException.cs" />
     <Compile Include="Exceptions\ServerClosedException.cs" />
     <Compile Include="Exceptions\ServerNotFoundException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -98,6 +98,10 @@
     <Compile Include="T4\T4ModelInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
+      <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
+      <Name>Lighter.Data.Dto2Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>

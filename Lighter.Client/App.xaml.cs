@@ -17,22 +17,25 @@ namespace Lighter.Client
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
             if (_bootstrapper == null)
                 _bootstrapper = new LighterBootstrapper();
 
+#if WITH_LOGIN
             LoginView loginView = _bootstrapper.GetExportedValue<LoginView>();
             loginView.InitializeEventAggregator();
 
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             if (loginView.ShowDialog() == true)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
+#endif
                 _bootstrapper.RunShell();
+#if WITH_LOGIN
             }
             else
                 Shutdown();
+#endif
         }
 
         protected override void OnExit(ExitEventArgs e)

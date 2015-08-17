@@ -158,7 +158,11 @@ namespace Lighter.Client.Infrastructure.Implement
         /// <param name="bTokenValidation">用户登陆验证</param>
         /// <exception cref="ServerNotFoundException">服务端未开启</exception>
         /// <returns>创建的服务类型T的实例</returns>
-        public T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null, bool bTokenValidation = true)
+        public T CreateServiceByMainService<T>(string serviceName, InstanceContext contextCallback = null
+#if WITH_TOKEN
+            , bool bTokenValidation = true
+#endif
+            )
         {
             try
             {
@@ -174,7 +178,11 @@ namespace Lighter.Client.Infrastructure.Implement
                 }
 
                 Uri[] uris = mainService.GetServiceAddress(serviceName);
-                service = ServiceFactory.CreateService<T>(uris[0], contextCallback, bTokenValidation ? GetCurrentAccount() : null);
+                service = ServiceFactory.CreateService<T>(uris[0], contextCallback
+#if WITH_TOKEN
+                    , bTokenValidation ? GetCurrentAccount() : null
+#endif
+                    );
 
                 AddService(serviceName, service as ILighterService);
 
@@ -323,7 +331,11 @@ namespace Lighter.Client.Infrastructure.Implement
                 ILighterLoginService service = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
                 if (service == null)
                 {
-                    service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback, false);
+                    service = CreateServiceByMainService<ILighterLoginService>(ServiceFactory.LOGIN_SERVICE_NAME, contextCallback
+#if WITH_TOKEN
+                        , false
+#endif
+                        );
                 }
 
                 if (service != null)
@@ -341,7 +353,16 @@ namespace Lighter.Client.Infrastructure.Implement
             {
                 ILighterLoginService loginService = FindService(ServiceFactory.LOGIN_SERVICE_NAME) as ILighterLoginService;
                 if (loginService != null)
-                    loginService.Logout(_account.Id);
+                {
+                    try
+                    {
+                        loginService.Logout(_account.Id);
+                    }
+                    catch (CommunicationObjectFaultedException ex)
+                    {
+                        _eventAggregator.GetEvent<ServiceEvent>().Publish(new ServiceEventArgs(ServiceEventKind.CommunicationError, ex.Message));
+                    }
+                }
             }
         }
         #endregion

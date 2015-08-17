@@ -24,13 +24,13 @@ namespace Lighter.ModuleServiceBase.Data
 
         public ModuleDataServiceBase()
         {
-            Mapper.Initialize(cfg =>
-              {
-                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-                      .Include<Module, ModuleDTO>();
+            //Mapper.Initialize(cfg =>
+            //  {
+            //      cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
+            //          .Include<Module, ModuleDTO>();
 
-                  cfg.CreateMap<Module, ModuleDTO>();
-              });
+            //      cfg.CreateMap<Module, ModuleDTO>();
+            //  });
         }
 
         protected IQueryable<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)
@@ -50,7 +50,10 @@ namespace Lighter.ModuleServiceBase.Data
 
                 //return dtos;
 
-                return Mapper.Map<IQueryable<DestinationT>>(sources);
+                List<SourceT> srcs = sources.ToList<SourceT>();
+                List<DestinationT> dests = Mapper.Map<List<DestinationT>>(srcs);
+
+                return dests.AsQueryable<DestinationT>();
             }
             catch (Exception ex)
             {

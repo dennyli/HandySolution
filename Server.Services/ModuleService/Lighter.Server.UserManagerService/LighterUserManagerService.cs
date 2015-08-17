@@ -11,6 +11,7 @@ using Lighter.UserManagerService.Interface;
 using Lighter.UserManagerService.Model;
 using Lighter.UserManagerService.UserManagerData;
 using Utility;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.UserManagerService
 {
@@ -41,34 +42,6 @@ namespace Lighter.UserManagerService
         public override void Initialize()
         {
             base.Initialize();
-
-            //TypeMap baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            //if (baseMap == null)
-            //{
-            //    IMappingExpression<DTOEntityBase<string>, EntityBase<string>> pp = Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>();
-            //    baseMap = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
-            //}
-                
-            //if (!baseMap.TypeHasBeenIncluded(typeof(AccountDTO), typeof(Account)))
-            //    baseMap.IncludeDerivedTypes(typeof(AccountDTO), typeof(Account));
-            //if (!baseMap.TypeHasBeenIncluded(typeof(DepartmentDTO), typeof(Department)))
-            //    baseMap.IncludeDerivedTypes(typeof(DepartmentDTO), typeof(Department));
-            //if (!baseMap.TypeHasBeenIncluded(typeof(RoleDTO), typeof(Role)))
-            //    baseMap.IncludeDerivedTypes(typeof(RoleDTO), typeof(Role));
-
-            //if (null == Mapper.FindTypeMapFor<AccountDTO, Account>())
-            //    Mapper.CreateMap<AccountDTO, Account>()
-            //        .ForAllMembers(opt => opt.NullSubstitute(""));
-
-            //if (null == Mapper.FindTypeMapFor<DepartmentDTO, Department>())
-            //    Mapper.CreateMap<DepartmentDTO, Department>()
-            //        .ForAllMembers(opt => opt.NullSubstitute(""));
-
-            //if (null == Mapper.FindTypeMapFor<RoleDTO, Role>())
-            //    Mapper.CreateMap<RoleDTO, Role>()
-            //        .ForAllMembers(opt => opt.NullSubstitute(""));
-
-            IsInitialized = true;
         }
 
         #region  Explict Declare

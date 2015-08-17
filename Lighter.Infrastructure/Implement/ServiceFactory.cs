@@ -16,7 +16,11 @@ namespace Lighter.Client.Infrastructure.Implement
         public static string MAIN_SERVICE_NAME = "LighterMainService";
         public static string LOGIN_SERVICE_NAME = "LighterLoginService";
 
-        public static T CreateService<T>(Uri uri, InstanceContext contextCallback = null, Account accountToken = null)
+        public static T CreateService<T>(Uri uri, InstanceContext contextCallback = null
+#if WITH_TOKEN
+            , Account accountToken = null
+#endif
+            )
         {
             EndpointAddress address = new EndpointAddress(uri);
             NetTcpBinding binding = new NetTcpBinding();
@@ -32,9 +36,10 @@ namespace Lighter.Client.Infrastructure.Implement
                 factory = new ChannelFactory<T>(binding, address);
             else
                 factory = new DuplexChannelFactory<T>(contextCallback, binding, address);
+#if WITH_TOKEN
             if (accountToken != null)
                 factory.Endpoint.Behaviors.Add(new TokenValidationBehavior(accountToken));
-
+#endif
             T service = factory.CreateChannel();
             
 #if DEBUG

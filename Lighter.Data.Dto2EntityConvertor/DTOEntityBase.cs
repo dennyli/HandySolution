@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Lighter.ModuleServiceBase.Model
+namespace Lighter.Data.Dto2Entity
 {
     [DataContract]
     public abstract class DTOEntityBase<TKey>
