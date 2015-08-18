@@ -49,19 +49,19 @@ namespace Lighter.UserManagerService.UserManagerData
         public UserManagerDataService()
             : base()
         {
-            //Mapper.Initialize(cfg =>
-            //  {
-            //      cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-            //          .Include<Account, AccountDTO>()
-            //          .Include<Department, DepartmentDTO>()
-            //          .Include<Role, RoleDTO>();
+            Mapper.Initialize(cfg =>
+              {
+                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
+                      .Include<Account, AccountDTO>()
+                      .Include<Department, DepartmentDTO>()
+                      .Include<Role, RoleDTO>();
 
-            //      cfg.CreateMap<Account, AccountDTO>();
-            //      cfg.CreateMap<Department, DepartmentDTO>();
-            //      cfg.CreateMap<Role, RoleDTO>();
-            //  });
+                  cfg.CreateMap<Account, AccountDTO>();
+                  cfg.CreateMap<Department, DepartmentDTO>();
+                  cfg.CreateMap<Role, RoleDTO>();
+              });
 
-            //Mapper.AssertConfigurationIsValid();
+            Mapper.AssertConfigurationIsValid();
         }
 
         #region Explict Declare

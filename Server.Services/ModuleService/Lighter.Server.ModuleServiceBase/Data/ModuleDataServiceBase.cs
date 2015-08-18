@@ -9,6 +9,7 @@ using Lighter.ModuleServiceBase.Model;
 using Microsoft.Practices.Prism.Logging;
 using Utility;
 using AutoMapper;
+using Lighter.Data.Dto2Entity;
 
 namespace Lighter.ModuleServiceBase.Data
 {
@@ -24,13 +25,13 @@ namespace Lighter.ModuleServiceBase.Data
 
         public ModuleDataServiceBase()
         {
-            //Mapper.Initialize(cfg =>
-            //  {
-            //      cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-            //          .Include<Module, ModuleDTO>();
+            Mapper.Initialize(cfg =>
+              {
+                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
+                      .Include<Module, ModuleDTO>();
 
-            //      cfg.CreateMap<Module, ModuleDTO>();
-            //  });
+                  cfg.CreateMap<Module, ModuleDTO>();
+              });
         }
 
         protected IQueryable<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)

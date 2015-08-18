@@ -21,7 +21,7 @@ namespace Lighter.Client
             if (_bootstrapper == null)
                 _bootstrapper = new LighterBootstrapper();
 
-#if WITH_LOGIN
+#if WITH_TOKEN
             LoginView loginView = _bootstrapper.GetExportedValue<LoginView>();
             loginView.InitializeEventAggregator();
 
@@ -30,8 +30,8 @@ namespace Lighter.Client
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
 #endif
-                _bootstrapper.RunShell();
-#if WITH_LOGIN
+            _bootstrapper.RunShell();
+#if WITH_TOKEN
             }
             else
                 Shutdown();

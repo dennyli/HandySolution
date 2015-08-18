@@ -42,12 +42,12 @@ namespace Lighter.UserManagerService.Model
             sb.Append(base.ToString());
             sb.Append("\nName: " + Name);
             sb.Append("\nDescription: " + Description ?? "<null>");
-            if (Accounts ==null)
+            if (Accounts == null)
                 sb.Append("\nAccounts: <null>");
             else
             {
                 sb.Append("\nAccounts: " + Accounts.Count.ToString() + " account");
-                foreach(AccountDTO dto in Accounts)
+                foreach (AccountDTO dto in Accounts)
                     sb.Append("\n\n\t" + dto.ToString());
             }
 
