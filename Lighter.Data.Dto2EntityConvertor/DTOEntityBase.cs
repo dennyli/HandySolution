@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using AutoMapper;
 
 namespace Lighter.Data.Dto2Entity
 {
@@ -28,6 +29,26 @@ namespace Lighter.Data.Dto2Entity
             sb.Append("\nType: " + this.GetType().ToString());
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// 从实体中取得属性值
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        public virtual void FetchValuesFromEntity<TEntity>(TEntity entity)
+        {
+            Mapper.Map(entity, this, entity.GetType(), this.GetType());
+        }
+
+        /// <summary>
+        /// 将DTO中的属性值赋值到实体对象中
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        public virtual void AssignValuesToEntity<TEntity>(TEntity entity)
+        {
+            Mapper.Map(this, entity, this.GetType(), entity.GetType());
         }
     }
 }

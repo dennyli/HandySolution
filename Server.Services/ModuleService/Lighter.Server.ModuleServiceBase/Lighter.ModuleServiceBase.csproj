@@ -59,6 +59,10 @@
   <ItemGroup>
     <Compile Include="Data\IModuleDataServiceBase.cs" />
     <Compile Include="Data\ModuleDataServiceBase.cs" />
+    <Compile Include="DtoMapping\DtoMappingBase.cs" />
+    <Compile Include="DtoMapping\IDtoMapping.cs" />
+    <Compile Include="DtoMapping\IModuleServiceBaseDtoMapping.cs" />
+    <Compile Include="DtoMapping\ModuleServiceBaseDtoMapping.cs" />
     <Compile Include="LighterModuleServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

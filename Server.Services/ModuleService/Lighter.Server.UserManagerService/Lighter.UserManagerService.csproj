@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Configuration\UserManagerConfiguration.cs" />
     <Compile Include="Defination\UserManagerDefination.cs" />
+    <Compile Include="DtoMapping\IUserMangerServiceDtoMapping.cs" />
+    <Compile Include="DtoMapping\UserMangerServiceDtoMapping.cs" />
     <Compile Include="LighterUserManagerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManagerData\IUserManagerDataService.cs" />

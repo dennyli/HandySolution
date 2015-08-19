@@ -10,6 +10,7 @@ using Microsoft.Practices.Prism.Logging;
 using Utility;
 using AutoMapper;
 using Lighter.Data.Dto2Entity;
+using Lighter.ModuleServiceBase.DtoMapping;
 
 namespace Lighter.ModuleServiceBase.Data
 {
@@ -18,6 +19,9 @@ namespace Lighter.ModuleServiceBase.Data
         [Import]
         protected IAccountRepository AccountRepository { get; set; }
 
+        [Import]
+        protected IModuleServiceBaseDtoMapping _dtoMapping { get; set; }
+
         public IQueryable<Account> Accounts
         {
             get { return AccountRepository.Entities; }
@@ -25,16 +29,10 @@ namespace Lighter.ModuleServiceBase.Data
 
         public ModuleDataServiceBase()
         {
-            Mapper.Initialize(cfg =>
-              {
-                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-                      .Include<Module, ModuleDTO>();
-
-                  cfg.CreateMap<Module, ModuleDTO>();
-              });
+            _dtoMapping.InitializeMapping<string>();
         }
 
-        protected IQueryable<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)
+        protected IList<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)
             where DestinationT : class
             where SourceT : class
         {
@@ -51,10 +49,10 @@ namespace Lighter.ModuleServiceBase.Data
 
                 //return dtos;
 
-                List<SourceT> srcs = sources.ToList<SourceT>();
-                List<DestinationT> dests = Mapper.Map<List<DestinationT>>(srcs);
+                IList<SourceT> srcs = sources.ToList<SourceT>();
+                IList<DestinationT> dests = srcs.ToDtoList<SourceT, DestinationT>();
 
-                return dests.AsQueryable<DestinationT>();
+                return dests;
             }
             catch (Exception ex)
             {

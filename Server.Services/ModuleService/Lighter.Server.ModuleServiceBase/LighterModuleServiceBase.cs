@@ -8,6 +8,7 @@ using Lighter.ModuleServiceBase.Interface;
 using Lighter.ModuleServiceBase.Model;
 using Lighter.Server.Common;
 using Utility;
+using Lighter.ModuleServiceBase.DtoMapping;
 
 namespace Lighter.ModuleServiceBase
 {

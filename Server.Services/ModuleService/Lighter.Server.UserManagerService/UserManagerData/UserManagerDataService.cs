@@ -12,6 +12,7 @@ using Utility;
 using AutoMapper;
 using Lighter.UserManagerService.Defination;
 using Lighter.Data.Dto2Entity;
+using Lighter.UserManagerService.DtoMapping;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
@@ -41,6 +42,9 @@ namespace Lighter.UserManagerService.UserManagerData
         [Import]
         protected IDepartmentRepository DepartmentRepository { get; set; }
 
+        [Import]
+        protected IUserMangerServiceDtoMapping _umdtoMapping { get; set; }
+
         public IQueryable<Department> Departments
         {
             get { return DepartmentRepository.Entities; }
@@ -49,25 +53,13 @@ namespace Lighter.UserManagerService.UserManagerData
         public UserManagerDataService()
             : base()
         {
-            Mapper.Initialize(cfg =>
-              {
-                  cfg.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-                      .Include<Account, AccountDTO>()
-                      .Include<Department, DepartmentDTO>()
-                      .Include<Role, RoleDTO>();
-
-                  cfg.CreateMap<Account, AccountDTO>();
-                  cfg.CreateMap<Department, DepartmentDTO>();
-                  cfg.CreateMap<Role, RoleDTO>();
-              });
-
-            Mapper.AssertConfigurationIsValid();
+            _umdtoMapping.InitializeMapping<string>();
         }
 
         #region Explict Declare
         public List<AccountDTO> GetAccounts()
         {
-            IQueryable<AccountDTO> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
+            IList<AccountDTO> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
 
             //List<AccountDTO> accountDTOs = new List<AccountDTO>();
             //foreach (DTOEntityBase<string> dto in dtos)
@@ -203,7 +195,7 @@ namespace Lighter.UserManagerService.UserManagerData
         List<ModuleDTO> IUserManagerDataService.GetSupportedModules()
         {
             IQueryable<Module> modules = Modules.Where<Module>(m => m.Catalog == UserManagerDefination.ServiceId);
-            IQueryable<ModuleDTO> dtos = Convert2DTO<Module, ModuleDTO>(modules);
+            IList<ModuleDTO> dtos = Convert2DTO<Module, ModuleDTO>(modules);
 
             List<ModuleDTO> moduleDTOs = dtos.ToList<ModuleDTO>();
             return moduleDTOs;
