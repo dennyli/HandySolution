@@ -41,17 +41,41 @@ namespace Lighter.UserManagerService.Model
         [DataMember]
         public string ShortName { get; set; }
 
-        /// <summary>
-        /// 账户角色
-        /// </summary>
-        [DataMember]
-        public virtual RoleDTO Role { get; set; }
+        ///// <summary>
+        ///// 账户角色
+        ///// </summary>
+        //[DataMember]
+        //public virtual RoleDTO Role { get; set; }
 
         /// <summary>
-        /// 账户所属部门
+        /// 账户角色Id
         /// </summary>
         [DataMember]
-        public virtual DepartmentDTO Department { get; set; }
+        public string RoleId { get; set; }
+
+        /// <summary>
+        /// 账户角色名字
+        /// </summary>
+        [DataMember]
+        public string RoleName { get; set; }
+
+        ///// <summary>
+        ///// 账户所属部门
+        ///// </summary>
+        //[DataMember]
+        //public virtual DepartmentDTO Department { get; set; }
+
+        /// <summary>
+        /// 账户所属部门Id
+        /// </summary>
+        [DataMember]
+        public string DepartmentId { get; set; }
+
+        /// <summary>
+        /// 账户所属部门名字
+        /// </summary>
+        [DataMember]
+        public string DepartmentName { get; set; }
 
         public override string ToString()
         {
@@ -61,8 +85,13 @@ namespace Lighter.UserManagerService.Model
             sb.Append("\nPassword: " + Password ?? "<null>");
             sb.Append("\nAuthority: " + (Authority == null ? "<null>" : Authority));
             sb.Append("\nShortName: " + ShortName ?? "<null>");
-            sb.Append("\nRole: " + (Role == null ? "<null>" : Role.ToString()));
-            sb.Append("\nDepartment: " + (Department == null ? "<null>" : Department.ToString()));
+            //sb.Append("\nRole: " + (Role == null ? "<null>" : Role.ToString()));
+            //sb.Append("\nDepartment: " + (Department == null ? "<null>" : Department.ToString()));
+
+            sb.Append("\nRoleId: " + (RoleId == null ? "<null>" : RoleId));
+            sb.Append("\nRoleName: " + (RoleName == null ? "<null>" : RoleName));
+            sb.Append("\nDepartmentId: " + (DepartmentId == null ? "<null>" : DepartmentId));
+            sb.Append("\nDepartmentName: " + (DepartmentName == null ? "<null>" : DepartmentName));
 
             return sb.ToString();
         }

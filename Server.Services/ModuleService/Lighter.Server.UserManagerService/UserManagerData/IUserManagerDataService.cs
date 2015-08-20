@@ -7,12 +7,18 @@ using System.Runtime.Serialization;
 using Lighter.ModuleServiceBase.Data;
 using Lighter.ModuleServiceBase.Model;
 using Lighter.Data.Dto2Entity;
+using Lighter.Data;
 
 namespace Lighter.UserManagerService.UserManagerData
 {
     public interface IUserManagerDataService : IModuleDataServiceBase
     {
         List<ModuleDTO> GetSupportedModules();
+
+        Role GetRoleById(string id);
+        Department GetDepartmentById(string id);
+        ICollection<Account> GetAccountsByRoleId(string id);
+        ICollection<Account> GetAccountsByDepartmentId(string id);
 
         #region Generic
         DTOEntityBase<string> GetDTOEntity(string key, Type type);

@@ -5,6 +5,7 @@ using Lighter.ModuleServiceBase.Model;
 using System.ServiceModel;
 using System.Text;
 using Lighter.Data.Dto2Entity;
+using System.Collections.Generic;
 
 namespace Lighter.UserManagerService.Model
 {
@@ -15,7 +16,9 @@ namespace Lighter.UserManagerService.Model
     {
         public RoleDTO()
         {
-            Accounts = new ObservableCollection<AccountDTO>();
+            //Accounts = new ObservableCollection<AccountDTO>();
+
+            Accounts = new ObservableCollection<string>();
         }
 
         /// <summary>
@@ -35,11 +38,18 @@ namespace Lighter.UserManagerService.Model
         /// </summary>
         [DataMember]
         public string Description { get; set; }
+
+        ///// <summary>
+        ///// 拥有此角色的账户列表
+        ///// </summary>
+        //[DataMember]
+        //public virtual Collection<AccountDTO> Accounts { get; set; }
+
         /// <summary>
-        /// 拥有此角色的账户列表
+        /// 拥有此角色的账户Id列表
         /// </summary>
         [DataMember]
-        public virtual Collection<AccountDTO> Accounts { get; set; }
+        public virtual ICollection<string> Accounts { get; set; }
 
         public override string ToString()
         {
@@ -53,8 +63,11 @@ namespace Lighter.UserManagerService.Model
             else
             {
                 sb.Append("\nAccounts: " + Accounts.Count.ToString() + " account");
-                foreach (AccountDTO dto in Accounts)
-                    sb.Append("\n\n\t" + dto.ToString());
+                //foreach (AccountDTO dto in Accounts)
+                //    sb.Append("\n\n\t" + dto.ToString());
+
+                foreach (string id in Accounts)
+                    sb.Append("\n\n\t" + id);
             }
 
             return sb.ToString();

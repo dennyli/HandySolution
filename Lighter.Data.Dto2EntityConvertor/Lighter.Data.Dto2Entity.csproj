@@ -34,6 +34,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -53,7 +56,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
+xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

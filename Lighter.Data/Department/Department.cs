@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Text;
 using Lighter.Data.Dto2Entity;
 
 namespace Lighter.Data
@@ -46,6 +42,7 @@ namespace Lighter.Data
             sb.Append(base.ToString());
             sb.Append("\nName:" + Name);
             sb.Append("\nDescription:" + Description);
+
 
             return sb.ToString();
         }

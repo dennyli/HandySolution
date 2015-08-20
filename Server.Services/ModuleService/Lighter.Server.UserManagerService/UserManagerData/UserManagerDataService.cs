@@ -42,18 +42,38 @@ namespace Lighter.UserManagerService.UserManagerData
         [Import]
         protected IDepartmentRepository DepartmentRepository { get; set; }
 
-        [Import]
-        protected IUserMangerServiceDtoMapping _umdtoMapping { get; set; }
-
         public IQueryable<Department> Departments
         {
             get { return DepartmentRepository.Entities; }
         }
 
+        [Import]
+        protected IUserMangerServiceDtoMapping _umdtoMapping { get; set; }
+
         public UserManagerDataService()
             : base()
         {
             _umdtoMapping.InitializeMapping<string>();
+        }
+
+        public Role GetRoleById(string id)
+        {
+            return Roles.SingleOrDefault<Role>(r => r.Id == id);
+        }
+
+        public Department GetDepartmentById(string id)
+        {
+            return Departments.SingleOrDefault<Department>(d => d.Id == id);
+        }
+
+        public ICollection<Account> GetAccountsByRoleId(string id)
+        {
+            return Accounts.Where<Account>(acc => acc.RoleId == id).ToList<Account>();
+        }
+
+        public ICollection<Account> GetAccountsByDepartmentId(string id)
+        {
+            return Accounts.Where<Account>(acc => acc.DepartId == id).ToList<Account>();
         }
 
         #region Explict Declare
