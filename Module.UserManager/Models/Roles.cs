@@ -9,5 +9,9 @@ namespace Client.Module.UserManager.Models
 {
     public class Roles : ObservableCollection<RoleDTO>
     {
+        public Roles(IList<RoleDTO> dtos)
+            : base(dtos)
+        {
+        }
     }
 }

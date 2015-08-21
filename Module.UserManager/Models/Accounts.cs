@@ -9,5 +9,9 @@ namespace Client.Module.UserManager.Models
 {
     public class Accounts : ObservableCollection<AccountDTO>
     {
+        public Accounts(IList<AccountDTO> dtos)
+            : base(dtos)
+        {
+        }
     }
 }

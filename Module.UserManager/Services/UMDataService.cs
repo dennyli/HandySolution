@@ -27,18 +27,13 @@ namespace Client.Module.UserManager.Services
         public Accounts GetAccounts()
         {
             ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
+            if (service == null)
+                throw new ServerNotFoundException();
 
             try
             {
-                Accounts accounts = new Accounts();
-
-                List<AccountDTO> dtos = service.GetAccounts();
-                foreach (AccountDTO dto in dtos)
-                    accounts.Add(dto);
-
-                return accounts;
-                //}
+                IList<AccountDTO> dtos = service.GetAccounts();
+                return new Accounts(dtos);
             }
             catch (ServerClosedException ex)
             {
@@ -67,29 +62,23 @@ namespace Client.Module.UserManager.Services
         public Roles GetRoles()
         {
             ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
+            if (service == null)
+                throw new ServerNotFoundException();
 
-            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(RoleDTO));
+            IList<RoleDTO> dtos = service.GetRoles();
 
-            Roles roles = new Roles();
-            foreach (DTOEntityBase<string> dto in dtos)
-                roles.Add(dto as RoleDTO);
-
-            return roles;
+            return new Roles(dtos);
         }
 
         public Departments GetDepartments()
         {
             ILighterUserManagerService service = GetServerService(UserManagerResources.SERVICE_NAME) as ILighterUserManagerService;
-            Debug.Assert(service != null);
+            if (service == null)
+                throw new ServerNotFoundException();
 
-            List<DTOEntityBase<string>> dtos = service.GetDTOEntities(typeof(DepartmentDTO));
+            IList<DepartmentDTO> dtos = service.GetDepartments();
 
-            Departments departments = new Departments();
-            foreach (DTOEntityBase<string> dto in dtos)
-                departments.Add(dto as DepartmentDTO);
-
-            return departments;
+            return new Departments(dtos);
         }
     }
 }

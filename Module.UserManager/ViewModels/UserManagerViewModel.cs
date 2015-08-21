@@ -25,6 +25,10 @@ namespace Client.Module.UserManager.ViewModels
 
         public Accounts Accounts { get { return this.GetAccounts(); } }
 
+        public Roles Roles { get { return this.GetRoles(); } }
+
+        public Departments Departments { get { return this.GetDepartments(); } }
+
         public string Title
         {
             get { return CommandDefinitions.CT_USER_MANAGE; }

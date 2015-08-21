@@ -52,7 +52,7 @@ namespace Lighter.Data
         /// </summary>
         [DataMember]
         [ForeignKey("Department")]
-        public string DepartId { get; set; }
+        public string DepartmentId { get; set; }
 
         /// <summary>
         /// 账户所属部门

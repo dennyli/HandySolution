@@ -47,13 +47,12 @@ namespace Lighter.UserManagerService.UserManagerData
             get { return DepartmentRepository.Entities; }
         }
 
-        [Import]
-        protected IUserMangerServiceDtoMapping _umdtoMapping { get; set; }
+        
 
         public UserManagerDataService()
             : base()
         {
-            _umdtoMapping.InitializeMapping<string>();
+            
         }
 
         public Role GetRoleById(string id)
@@ -73,22 +72,18 @@ namespace Lighter.UserManagerService.UserManagerData
 
         public ICollection<Account> GetAccountsByDepartmentId(string id)
         {
-            return Accounts.Where<Account>(acc => acc.DepartId == id).ToList<Account>();
+            return Accounts.Where<Account>(acc => acc.DepartmentId == id).ToList<Account>();
         }
 
         #region Explict Declare
-        public List<AccountDTO> GetAccounts()
+        public IList<AccountDTO> GetAccounts()
         {
-            IList<AccountDTO> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
+            //IList<AccountDTO> dtos = Convert2DTO<Account, AccountDTO>(Accounts);
 
-            //List<AccountDTO> accountDTOs = new List<AccountDTO>();
-            //foreach (DTOEntityBase<string> dto in dtos)
-            //    accountDTOs.Add(dto as AccountDTO);
-
+            //List<AccountDTO> accountDTOs = dtos.ToList<AccountDTO>();
             //return accountDTOs;
 
-            List<AccountDTO> accountDTOs = dtos.ToList<AccountDTO>();
-            return accountDTOs;
+            return Convert2DTO<Account, AccountDTO>(Accounts);
         }
 
         //public List<AccountDTO> GetAccountsByDepartment(string departmentCode)
@@ -131,10 +126,10 @@ namespace Lighter.UserManagerService.UserManagerData
         //    throw new NotImplementedException();
         //}
 
-        //public List<RoleDTO> GetRoles()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IList<RoleDTO> GetRoles()
+        {
+            return Convert2DTO<Role, RoleDTO>(Roles);
+        }
 
         //public RoleDTO GetRole(string roleCode)
         //{
@@ -171,10 +166,10 @@ namespace Lighter.UserManagerService.UserManagerData
         //    throw new NotImplementedException();
         //}
 
-        //public List<DepartmentDTO> GetDepartments()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IList<DepartmentDTO> GetDepartments()
+        {
+            return Convert2DTO<Department, DepartmentDTO>(Departments);
+        }
 
         //public DepartmentDTO GetDepartment(string departmentCode)
         //{
@@ -221,63 +216,63 @@ namespace Lighter.UserManagerService.UserManagerData
             return moduleDTOs;
         }
 
-        #region Generic
-        DTOEntityBase<string> IUserManagerDataService.GetDTOEntity(string key, Type type)
-        {
-            return null;
-        }
+        //#region Generic
+        //DTOEntityBase<string> IUserManagerDataService.GetDTOEntity(string key, Type type)
+        //{
+        //    return null;
+        //}
 
-        List<DTOEntityBase<string>> IUserManagerDataService.GetDTOEntities(Type type)
-        {
-            //if (type == typeof(AccountDTO))
-            //{
-            //    return Convert2DTO<Account, AccountDTO>(Accounts);
-            //}
-            //else if (type == typeof(RoleDTO))
-            //{
-            //    return Convert2DTO<Role, RoleDTO>(Roles);
-            //}
-            //else if (type == typeof(DepartmentDTO))
-            //{
-            //    return Convert2DTO<Department, DepartmentDTO>(Departments);
-            //}
-            //else if (type == typeof(ModuleDTO))
-            //{
-            //    return Convert2DTO<Module, ModuleDTO>(Modules);
-            //}
-            //else
-                return null;
-        }
+        //List<DTOEntityBase<string>> IUserManagerDataService.GetDTOEntities(Type type)
+        //{
+        //    //if (type == typeof(AccountDTO))
+        //    //{
+        //    //    return Convert2DTO<Account, AccountDTO>(Accounts);
+        //    //}
+        //    //else if (type == typeof(RoleDTO))
+        //    //{
+        //    //    return Convert2DTO<Role, RoleDTO>(Roles);
+        //    //}
+        //    //else if (type == typeof(DepartmentDTO))
+        //    //{
+        //    //    return Convert2DTO<Department, DepartmentDTO>(Departments);
+        //    //}
+        //    //else if (type == typeof(ModuleDTO))
+        //    //{
+        //    //    return Convert2DTO<Module, ModuleDTO>(Modules);
+        //    //}
+        //    //else
+        //        return null;
+        //}
 
-        OperationResult IUserManagerDataService.AddEntity(DTOEntityBase<string> entity)
-        {
-            throw new NotImplementedException();
-        }
+        //OperationResult IUserManagerDataService.AddEntity(DTOEntityBase<string> entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        OperationResult IUserManagerDataService.AddEntities(List<DTOEntityBase<string>> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //OperationResult IUserManagerDataService.AddEntities(List<DTOEntityBase<string>> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        OperationResult IUserManagerDataService.UpdateEntity(DTOEntityBase<string> entity)
-        {
-            throw new NotImplementedException();
-        }
+        //OperationResult IUserManagerDataService.UpdateEntity(DTOEntityBase<string> entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        OperationResult IUserManagerDataService.UpdateEntities(List<DTOEntityBase<string>> entities)
-        {
-            throw new NotImplementedException();
-        }
+        //OperationResult IUserManagerDataService.UpdateEntities(List<DTOEntityBase<string>> entities)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        OperationResult IUserManagerDataService.DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord)
-        {
-            throw new NotImplementedException();
-        }
+        //OperationResult IUserManagerDataService.DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        OperationResult IUserManagerDataService.DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord)
-        {
-            throw new NotImplementedException();
-        }
-        #endregion Generic
+        //OperationResult IUserManagerDataService.DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        //#endregion Generic
     }
 }

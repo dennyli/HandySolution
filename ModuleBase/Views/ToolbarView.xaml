@@ -9,12 +9,13 @@
              d:DesignHeight="64" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate x:Key="ToolbarButtonTemplate" DataType="{x:Type cmd:ToolbarCommand}">
-            <Button Command="{Binding Path=Command}" Background="{Binding Path=BackBrush}"
-                    Style="{DynamicResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Height="58">
-                <StackPanel Orientation="Vertical">
-                    <ContentPresenter Content="{Binding Path=Icon, Converter={x:Static common:StringToImage.Default}}" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-                </StackPanel>
+            <Button Command="{Binding Path=Command}" Background="{Binding Path=BackBrush}" Style="{DynamicResource ResourceKey={x:Static ToolBar.ButtonStyleKey}}" Height="58" Width="58">
+                <ContentControl>
+                    <StackPanel Orientation="Vertical">
+                        <ContentPresenter Content="{Binding Path=Icon, Converter={x:Static common:StringToImage.Default}}" HorizontalAlignment="Center" VerticalAlignment="Top" Height="38" Width="38" />
+                        <TextBlock Text="{Binding Path=Title}" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="12" />
+                    </StackPanel>
+                </ContentControl>
             </Button>
         </DataTemplate>
     </UserControl.Resources>

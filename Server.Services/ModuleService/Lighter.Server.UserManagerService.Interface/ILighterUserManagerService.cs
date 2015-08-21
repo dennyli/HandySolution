@@ -20,7 +20,7 @@ namespace Lighter.UserManagerService.Interface
         #region  Explict Declare
         //#region Account
         [OperationContract]
-        List<AccountDTO> GetAccounts();
+        IList<AccountDTO> GetAccounts();
         //Collection<AccountDTO> GetAccountsByDepartment(string departmentCode);
         //Collection<AccountDTO> GetAccountsByRole(string roleCode);
 
@@ -35,7 +35,8 @@ namespace Lighter.UserManagerService.Interface
         //#endregion
 
         //#region Role
-        //Collection<RoleDTO> GetRoles();
+        [OperationContract]
+        IList<RoleDTO> GetRoles();
         //RoleDTO GetRole(string roleCode);
 
         //OperationResult AddRole(RoleDTO role);
@@ -49,7 +50,8 @@ namespace Lighter.UserManagerService.Interface
         //#endregion
 
         //#region Department
-        //Collection<DepartmentDTO> GetDepartments();
+        [OperationContract]
+        IList<DepartmentDTO> GetDepartments();
         //DepartmentDTO GetDepartment(string departmentCode);
 
         //OperationResult AddDepartment(DepartmentDTO department);
@@ -62,31 +64,5 @@ namespace Lighter.UserManagerService.Interface
         //OperationResult DeleteDepartments(Collection<string> departmentCodes, bool bRemoveRecord);
         //#endregion
         #endregion  Explict Declare
-
-        #region Generic
-        [OperationContract]
-        DTOEntityBase<string> GetDTOEntity(string key, Type type);
-
-        [OperationContract]
-        List<DTOEntityBase<string>> GetDTOEntities(Type type);
-
-        [OperationContract]
-        OperationResult AddEntity(DTOEntityBase<string> entity);
-
-        [OperationContract]
-        OperationResult AddEntities(List<DTOEntityBase<string>> entities);
-
-        [OperationContract]
-        OperationResult UpdateEntity(DTOEntityBase<string> entity);
-
-        [OperationContract]
-        OperationResult UpdateEntities(List<DTOEntityBase<string>> entities);
-
-        [OperationContract]
-        OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord);
-
-        [OperationContract]
-        OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord);
-        #endregion 
     }
 }

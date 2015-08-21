@@ -19,8 +19,8 @@ namespace Lighter.ModuleServiceBase.Data
         [Import]
         protected IAccountRepository AccountRepository { get; set; }
 
-        [Import]
-        protected IModuleServiceBaseDtoMapping _dtoMapping { get; set; }
+        //[Import]
+        //protected IModuleServiceBaseDtoMapping _dtoMapping { get; set; }
 
         public IQueryable<Account> Accounts
         {
@@ -29,7 +29,7 @@ namespace Lighter.ModuleServiceBase.Data
 
         public ModuleDataServiceBase()
         {
-            _dtoMapping.InitializeMapping<string>();
+            //_dtoMapping.InitializeMapping<string>();
         }
 
         protected IList<DestinationT> Convert2DTO<SourceT, DestinationT>(IQueryable<SourceT> sources)

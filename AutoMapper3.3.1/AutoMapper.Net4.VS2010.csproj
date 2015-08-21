@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</ProjectGuid>
+    <ProjectGuid>{6ADFB7E4-A171-422B-A4CF-CDD749058695}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lighter.Data.Dto2Entity</RootNamespace>
-    <AssemblyName>Lighter.Data.Dto2Entity</AssemblyName>
+    <RootNamespace>AutoMapper</RootNamespace>
+    <AssemblyName>AutoMapper.Net4</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AutoMapper.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,27 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperCollectionExtension.cs" />
-    <Compile Include="DTOEntityBase.cs" />
-    <Compile Include="EntityBase.cs" />
-    <Compile Include="IDTO2Entity.cs" />
+    <Compile Include="CommonAssemblyInfo.cs" />
+    <Compile Include="Internal\ConcurrentDictionaryFactory.cs" />
+    <Compile Include="Internal\EnumNameValueMapperFactory.cs" />
+    <Compile Include="Internal\ExpressionOnlyDelegateFactory.cs" />
+    <Compile Include="Internal\NullableConverterFactory.cs" />
+    <Compile Include="Internal\PropertyEmitter.cs" />
+    <Compile Include="Internal\ProxyGenerator.cs" />
+    <Compile Include="Internal\ProxyGeneratorFactory.cs" />
+    <Compile Include="Internal\RealReaderWriterLockSlimFactory.cs" />
+    <Compile Include="Mappers\DataReaderMapper.cs" />
+    <Compile Include="Mappers\HashSetMapper.cs" />
+    <Compile Include="Mappers\ListSourceMapper.cs" />
+    <Compile Include="Mappers\PlatformSpecificMapperRegistryOverride.cs" />
+    <Compile Include="Mappers\NameValueCollectionMapper.cs" />
+    <Compile Include="Mappers\TypeConverterMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoMapper3.3.1\AutoMapper.Net4.VS2010.csproj">
-      <Project>{6ADFB7E4-A171-422B-A4CF-CDD749058695}</Project>
-      <Name>AutoMapper.Net4.VS2010</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AutoMapper3.3.1\AutoMapper.VS2010.csproj">
+    <ProjectReference Include="AutoMapper.VS2010.csproj">
       <Project>{C498444A-7CA9-406D-8826-C9604DDF15E2}</Project>
       <Name>AutoMapper.VS2010</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="AutoMapper.snk" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Server\"
-xcopy /Y /I "$(TargetPath)" "$(SolutionDir)$(SolutionName)\Shell\$(OutDir)Client\"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

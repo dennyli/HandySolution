@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\..\..\Lib\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
@@ -63,6 +57,14 @@
     <Compile Include="UserManagerData\UserManagerDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\AutoMapper3.3.1\AutoMapper.Net4.VS2010.csproj">
+      <Project>{6ADFB7E4-A171-422B-A4CF-CDD749058695}</Project>
+      <Name>AutoMapper.Net4.VS2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\AutoMapper3.3.1\AutoMapper.VS2010.csproj">
+      <Project>{C498444A-7CA9-406D-8826-C9604DDF15E2}</Project>
+      <Name>AutoMapper.VS2010</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Lighter.Data.Dto2EntityConvertor\Lighter.Data.Dto2Entity.csproj">
       <Project>{0667E8B1-FB0D-44ED-A5FA-1DA90C875766}</Project>
       <Name>Lighter.Data.Dto2Entity</Name>

@@ -12,6 +12,7 @@ using Lighter.UserManagerService.Model;
 using Lighter.UserManagerService.UserManagerData;
 using Utility;
 using Lighter.Data.Dto2Entity;
+using Lighter.UserManagerService.DtoMapping;
 
 namespace Lighter.UserManagerService
 {
@@ -29,6 +30,9 @@ namespace Lighter.UserManagerService
         [Import]
         protected IUserManagerDataService _dataService;
 
+        [Import]
+        protected IUserMangerServiceDtoMapping _umdtoMapping { get; set; }
+
         public override string GetServiceId()
         {
             return UserManagerDefination.ServiceId;
@@ -42,10 +46,12 @@ namespace Lighter.UserManagerService
         public override void Initialize()
         {
             base.Initialize();
+
+            _umdtoMapping.InitializeMapping<string>();
         }
 
         #region  Explict Declare
-        public List<AccountDTO> GetAccounts()
+        public IList<AccountDTO> GetAccounts()
         {
             return _dataService.GetAccounts();
         }
@@ -90,10 +96,10 @@ namespace Lighter.UserManagerService
         //    return _dataService.DeleteAccounts(accountCodes, bRemoveRecord);
         //}
 
-        //public Collection<RoleDTO> GetRoles()
-        //{
-        //    return _dataService.GetRoles();
-        //}
+        public IList<RoleDTO> GetRoles()
+        {
+            return _dataService.GetRoles();
+        }
 
         //public RoleDTO GetRole(string roleCode)
         //{
@@ -130,10 +136,10 @@ namespace Lighter.UserManagerService
         //    return _dataService.DeleteRoles();
         //}
 
-        //public Collection<DepartmentDTO> GetDepartments()
-        //{
-        //    return _dataService.GetDepartments();
-        //}
+        public IList<DepartmentDTO> GetDepartments()
+        {
+            return _dataService.GetDepartments();
+        }
 
         //public DepartmentDTO GetDepartment(string departmentCode)
         //{
@@ -171,54 +177,6 @@ namespace Lighter.UserManagerService
         //}
         #endregion  Explict Declare
 
-        #region Generic
-        public DTOEntityBase<string> GetDTOEntity(string key, Type type)
-        {
-            return _dataService.GetDTOEntity(key, type);
-        }
-
-        public List<DTOEntityBase<string>> GetDTOEntities(Type type)
-        {
-            try
-            {
-                return _dataService.GetDTOEntities(type);
-            }
-            catch (Exception ex)
-            {
-                throw new FaultException<Exception>(ex);
-            }
-        }
-
-        public OperationResult AddEntity(DTOEntityBase<string> entity)
-        {
-            return _dataService.AddEntity(entity);
-        }
-        public OperationResult AddEntities(List<DTOEntityBase<string>> entities)
-        {
-            return _dataService.AddEntities(entities);
-        }
-
-        public OperationResult UpdateEntity(DTOEntityBase<string> entity)
-        {
-            return _dataService.UpdateEntity(entity);
-        }
-
-        public OperationResult UpdateEntities(List<DTOEntityBase<string>> entities)
-        {
-            return _dataService.UpdateEntities(entities);
-        }
-
-        public OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord)
-        {
-            return _dataService.DeleteEntity(entity, bRemoveRecord);
-        }
-
-        public OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord)
-        {
-            return _dataService.DeleteEntities(entities, bRemoveRecord);
-        }
-        #endregion 
-    
         #region IDisposable 成员
 
         public override void Dispose()

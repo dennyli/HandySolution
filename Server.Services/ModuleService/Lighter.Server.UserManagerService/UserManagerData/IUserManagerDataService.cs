@@ -20,23 +20,23 @@ namespace Lighter.UserManagerService.UserManagerData
         ICollection<Account> GetAccountsByRoleId(string id);
         ICollection<Account> GetAccountsByDepartmentId(string id);
 
-        #region Generic
-        DTOEntityBase<string> GetDTOEntity(string key, Type type);
-        List<DTOEntityBase<string>> GetDTOEntities(Type type);
+        //#region Generic
+        //DTOEntityBase<string> GetDTOEntity(string key, Type type);
+        //List<DTOEntityBase<string>> GetDTOEntities(Type type);
 
-        OperationResult AddEntity(DTOEntityBase<string> entity);
-        OperationResult AddEntities(List<DTOEntityBase<string>> entities);
+        //OperationResult AddEntity(DTOEntityBase<string> entity);
+        //OperationResult AddEntities(List<DTOEntityBase<string>> entities);
 
-        OperationResult UpdateEntity(DTOEntityBase<string> entity);
-        OperationResult UpdateEntities(List<DTOEntityBase<string>> entities);
+        //OperationResult UpdateEntity(DTOEntityBase<string> entity);
+        //OperationResult UpdateEntities(List<DTOEntityBase<string>> entities);
 
-        OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord);
-        OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord);
-        #endregion 
+        //OperationResult DeleteEntity(DTOEntityBase<string> entity, bool bRemoveRecord);
+        //OperationResult DeleteEntities(List<DTOEntityBase<string>> entities, bool bRemoveRecord);
+        //#endregion 
 
         #region  Explict Declare
         //#region Account
-        List<AccountDTO> GetAccounts();
+        IList<AccountDTO> GetAccounts();
         //List<AccountDTO> GetAccountsByDepartment(string departmentCode);
         //List<AccountDTO> GetAccountsByRole(string roleCode);
 
@@ -51,7 +51,7 @@ namespace Lighter.UserManagerService.UserManagerData
         //#endregion
 
         //#region Role
-        //List<RoleDTO> GetRoles();
+        IList<RoleDTO> GetRoles();
         //RoleDTO GetRole(string roleCode);
 
         //OperationResult AddRole(RoleDTO role);
@@ -65,7 +65,7 @@ namespace Lighter.UserManagerService.UserManagerData
         //#endregion
 
         //#region Department
-        //List<DepartmentDTO> GetDepartments();
+        IList<DepartmentDTO> GetDepartments();
         //DepartmentDTO GetDepartment(string departmentCode);
 
         //OperationResult AddDepartment(DepartmentDTO department);

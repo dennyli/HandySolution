@@ -7,6 +7,7 @@ using AutoMapper;
 using Lighter.Data.Dto2Entity;
 using Lighter.Data;
 using Lighter.ModuleServiceBase.Model;
+using AutoMapper.Impl;
 
 namespace Lighter.ModuleServiceBase.DtoMapping
 {
@@ -20,7 +21,10 @@ namespace Lighter.ModuleServiceBase.DtoMapping
             // Entity to DTO
             TypeMap tm = Mapper.FindTypeMapFor<EntityBase<string>, DTOEntityBase<string>>();
             if (tm != null)
-                tm.IncludeDerivedTypes(typeof(Module), typeof(ModuleDTO));
+            {
+                if (!tm.IncludedDerivedTypes.Contains<TypePair>(new TypePair(typeof(Module), typeof(ModuleDTO))))
+                    tm.IncludeDerivedTypes(typeof(Module), typeof(ModuleDTO));
+            }
             else
             {
                 Mapper.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
@@ -34,11 +38,15 @@ namespace Lighter.ModuleServiceBase.DtoMapping
             // DTO to Entity
             tm = Mapper.FindTypeMapFor<DTOEntityBase<string>, EntityBase<string>>();
             if (tm != null)
-                tm.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
+            {
+                if (!tm.IncludedDerivedTypes.Contains<TypePair>(new TypePair(typeof(ModuleDTO), typeof(Module))))
+                    tm.IncludeDerivedTypes(typeof(ModuleDTO), typeof(Module));
+            }
             else
             {
                 Mapper.CreateMap<DTOEntityBase<string>, EntityBase<string>>()
-                    .Include<ModuleDTO, Module>();
+                    .Include<ModuleDTO, Module>()
+                    .ForMember(entity => entity.LastDate, opt => opt.Ignore());
             }
 
             tm = Mapper.FindTypeMapFor<ModuleDTO, Module>();

@@ -18,11 +18,10 @@ namespace Client.Module.Common.Tools
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             string path = (string)value;
-      
+
             Image im = new Image();
-            im.Source = new BitmapImage(new Uri(path, UriKind.Relative));
-            im.Height = 28;
-            im.Width = 28;
+            im.Source = new BitmapImage(new Uri(path, UriKind.RelativeOrAbsolute));
+            im.Stretch = System.Windows.Media.Stretch.UniformToFill;
             return im;
         }
 

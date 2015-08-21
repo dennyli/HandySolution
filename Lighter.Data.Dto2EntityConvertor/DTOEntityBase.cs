@@ -22,6 +22,11 @@ namespace Lighter.Data.Dto2Entity
         [DataMember]
         public TKey Id { get; set; }
 
+        /// <summary>
+        ///     获取或设置 获取或设置是否禁用，逻辑上的删除，非物理删除
+        /// </summary>
+        public bool IsDeleted { get; set; }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
