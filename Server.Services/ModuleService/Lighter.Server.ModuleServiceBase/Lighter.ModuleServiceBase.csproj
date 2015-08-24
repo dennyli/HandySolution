@@ -61,11 +61,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AutoMapper3.3.1\AutoMapper.Net4.VS2010.csproj">
+    <ProjectReference Include="..\..\..\Tools\AutoMapper3.3.1\AutoMapper.Net4.VS2010.csproj">
       <Project>{6ADFB7E4-A171-422B-A4CF-CDD749058695}</Project>
       <Name>AutoMapper.Net4.VS2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\AutoMapper3.3.1\AutoMapper.VS2010.csproj">
+    <ProjectReference Include="..\..\..\Tools\AutoMapper3.3.1\AutoMapper.VS2010.csproj">
       <Project>{C498444A-7CA9-406D-8826-C9604DDF15E2}</Project>
       <Name>AutoMapper.VS2010</Name>
     </ProjectReference>
@@ -93,7 +93,7 @@
       <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
       <Name>Lighter.ServiceManager.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Prism4.1\Prism\Prism.Desktop.csproj">
+    <ProjectReference Include="..\..\..\Tools\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>

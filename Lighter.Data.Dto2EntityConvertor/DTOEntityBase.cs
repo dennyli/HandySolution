@@ -5,11 +5,12 @@ using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using AutoMapper;
+using Microsoft.Practices.Prism.ViewModel;
 
 namespace Lighter.Data.Dto2Entity
 {
     [DataContract]
-    public abstract class DTOEntityBase<TKey>
+    public abstract class DTOEntityBase<TKey> : NotificationObject
     {
         public DTOEntityBase()
         {
@@ -55,5 +56,6 @@ namespace Lighter.Data.Dto2Entity
         {
             Mapper.Map(this, entity, this.GetType(), entity.GetType());
         }
+
     }
 }

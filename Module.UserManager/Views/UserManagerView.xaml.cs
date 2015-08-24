@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using Client.Module.UserManager.ViewModels;
 using Client.Module.Common.Tools;
+using System.Diagnostics;
 
 namespace Client.Module.UserManager.Views
 {
@@ -29,5 +30,6 @@ namespace Client.Module.UserManager.Views
             //DataGridCell cell = e.Row.GetCell(0);
             //cell.Content = e.Row.GetIndex() + 1;
         }
+
     }
 }

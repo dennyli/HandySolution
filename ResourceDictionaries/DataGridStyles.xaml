@@ -52,7 +52,7 @@
     <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
     <Style  TargetType="DataGridRow">
         <Setter Property="Background" Value="#F2F2F2" />
-        <Setter Property="Height" Value="25"/>
+        <!--<Setter Property="Height" Value="25"/>-->
         <Setter Property="Foreground" Value="Black" />
         <Style.Triggers>
             <!--隔行换色-->

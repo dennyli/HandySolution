@@ -73,19 +73,19 @@
       <Project>{8AB4E570-8B1A-4E5F-ACE5-F13BFD83487C}</Project>
       <Name>Lighter.ServiceManager.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Prism4.1\Microsoft.Practices.ServiceLocation\Microsoft.Practices.ServiceLocation.csproj">
+    <ProjectReference Include="..\..\..\Tools\Prism4.1\Microsoft.Practices.ServiceLocation\Microsoft.Practices.ServiceLocation.csproj">
       <Project>{faf6d6b2-1ec9-4a1b-83bb-48f772e948cf}</Project>
       <Name>Microsoft.Practices.ServiceLocation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
+    <ProjectReference Include="..\..\..\Tools\Prism4.1\Prism.Interactivity\Prism.Interactivity.csproj">
       <Project>{DE856812-A32C-4866-801E-AF396D711942}</Project>
       <Name>Prism.Interactivity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Prism4.1\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
+    <ProjectReference Include="..\..\..\Tools\Prism4.1\Prism.MefExtensions\Prism.MefExtensions.Desktop.csproj">
       <Project>{6ED61550-8E7A-42C6-9B30-380C6F97ED55}</Project>
       <Name>Prism.MefExtensions.Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Prism4.1\Prism\Prism.Desktop.csproj">
+    <ProjectReference Include="..\..\..\Tools\Prism4.1\Prism\Prism.Desktop.csproj">
       <Project>{77138947-1D13-4E22-AEE0-5D0DD046CA34}</Project>
       <Name>Prism.Desktop</Name>
     </ProjectReference>

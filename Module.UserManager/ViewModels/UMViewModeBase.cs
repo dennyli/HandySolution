@@ -9,6 +9,8 @@ using Microsoft.Practices.Prism.Events;
 using Lighter.UserManagerService.Interface;
 using Client.Module.UserManager.Models;
 using Client.Module.UserManager.Interface.Services;
+using Lighter.UserManagerService.Model;
+using System.ComponentModel;
 
 namespace Client.Module.UserManager.ViewModels
 {
@@ -39,7 +41,19 @@ namespace Client.Module.UserManager.ViewModels
         protected Accounts GetAccounts()
         {
             Accounts accounts = (_dataService as IUMDataService).GetAccounts();
+            foreach(AccountDTO acc in accounts)
+                acc.PropertyChanged += new PropertyChangedEventHandler(acc_PropertyChanged);
+
             return accounts;
+        }
+
+        void acc_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "DepartmentName")
+            {
+                AccountDTO acc = sender as AccountDTO;
+                acc.DepartmentId = GetDepartments().Single<DepartmentDTO>(dto => dto.Name == acc.DepartmentName).Id;
+            }
         }
 
         protected Roles GetRoles()
