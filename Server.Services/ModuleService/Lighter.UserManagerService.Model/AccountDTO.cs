@@ -53,11 +53,11 @@ namespace Lighter.UserManagerService.Model
         [DataMember]
         public string RoleId { get; set; }
 
-        /// <summary>
-        /// 账户角色名字
-        /// </summary>
-        [DataMember]
-        public string RoleName { get; set; }
+        ///// <summary>
+        ///// 账户角色名字
+        ///// </summary>
+        //[DataMember]
+        //public string RoleName { get; set; }
 
         ///// <summary>
         ///// 账户所属部门
@@ -71,11 +71,11 @@ namespace Lighter.UserManagerService.Model
         [DataMember]
         public string DepartmentId { get; set; }
 
-        /// <summary>
-        /// 账户所属部门名字
-        /// </summary>
-        [DataMember]
-        public string DepartmentName { get; set; }
+        ///// <summary>
+        ///// 账户所属部门名字
+        ///// </summary>
+        //[DataMember]
+        //public string DepartmentName { get; set; }
 
         public override string ToString()
         {
@@ -89,9 +89,9 @@ namespace Lighter.UserManagerService.Model
             //sb.Append("\nDepartment: " + (Department == null ? "<null>" : Department.ToString()));
 
             sb.Append("\nRoleId: " + (RoleId == null ? "<null>" : RoleId));
-            sb.Append("\nRoleName: " + (RoleName == null ? "<null>" : RoleName));
+            //sb.Append("\nRoleName: " + (RoleName == null ? "<null>" : RoleName));
             sb.Append("\nDepartmentId: " + (DepartmentId == null ? "<null>" : DepartmentId));
-            sb.Append("\nDepartmentName: " + (DepartmentName == null ? "<null>" : DepartmentName));
+            //sb.Append("\nDepartmentName: " + (DepartmentName == null ? "<null>" : DepartmentName));
 
             return sb.ToString();
         }

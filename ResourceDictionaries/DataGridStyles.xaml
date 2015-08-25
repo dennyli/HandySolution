@@ -75,7 +75,7 @@
     </Style>
 
     <!--单元格样式触发-->
-    <Style TargetType="DataGridCell">
+    <!--<Style TargetType="DataGridCell">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
@@ -86,11 +86,11 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
+            <Trigger Property="IsSelected" Value="True">-->
                 <!--<Setter Property="Background" Value="White"/>
                 <Setter Property="BorderThickness" Value="0"/>-->
-                <Setter Property="Foreground" Value="Black"/>
+                <!--<Setter Property="Foreground" Value="Black"/>
             </Trigger>
         </Style.Triggers>
-    </Style>
+    </Style>-->
 </ResourceDictionary>

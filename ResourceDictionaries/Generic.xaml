@@ -5,6 +5,6 @@
         <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/MLWindowCtrlButtonStyles.xaml" />
         <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/GrayTheme.xaml" />
         <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/ValidationStyles.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/DataGridStyles.xaml" />
+        <!--<ResourceDictionary Source="pack://application:,,,/ResourceDictionaries;component/DataGridStyles.xaml" />-->
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

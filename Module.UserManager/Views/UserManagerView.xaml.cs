@@ -4,6 +4,10 @@ using System.Windows.Controls;
 using Client.Module.UserManager.ViewModels;
 using Client.Module.Common.Tools;
 using System.Diagnostics;
+using Lighter.UserManagerService.Model;
+using Utility;
+using Utility.Controls;
+using System.Windows;
 
 namespace Client.Module.UserManager.Views
 {
@@ -29,6 +33,12 @@ namespace Client.Module.UserManager.Views
 
             //DataGridCell cell = e.Row.GetCell(0);
             //cell.Content = e.Row.GetIndex() + 1;
+        }
+
+        private void button1_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AccountDTO dto = gridAccounts.SelectedItem as AccountDTO;
+            MessageBox.Show(dto.ToString());
         }
 
     }

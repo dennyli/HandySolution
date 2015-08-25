@@ -44,16 +44,16 @@ namespace Lighter.UserManagerService.DtoMapping
             tm = Mapper.FindTypeMapFor<Account, AccountDTO>();
             if (tm == null)
             {
-                Mapper.CreateMap<Account, AccountDTO>()
+                Mapper.CreateMap<Account, AccountDTO>();
                     //.ForMember(dto => dto.RoleName, opt => opt.MapFrom<string>(src => (src.Role == null ? null : src.Role.Name)))
                     //.ForMember(dto => dto.DepartmentName, opt => opt.MapFrom<string>(src => (src.Department == null ? null : src.Department.Name)));
-                    .AfterMap((acc, dto) =>
-                    {
-                        if (acc.Role != null)
-                            dto.RoleName = acc.Role.Name;
-                        if (acc.Department != null)
-                            dto.DepartmentName = acc.Department.Name;
-                    });
+                    //.AfterMap((acc, dto) =>
+                    //{
+                    //    if (acc.Role != null)
+                    //        dto.RoleName = acc.Role.Name;
+                    //    if (acc.Department != null)
+                    //        dto.DepartmentName = acc.Department.Name;
+                    //});
             }
 
             tm = Mapper.FindTypeMapFor<Department, DepartmentDTO>();
