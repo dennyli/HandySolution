@@ -16,40 +16,89 @@ namespace Lighter.UserManagerService.Model
     {
         public RoleDTO()
         {
-            //Accounts = new ObservableCollection<AccountDTO>();
-
-            Accounts = new ObservableCollection<string>();
+            //Accounts = new ObservableCollection<string>();
         }
 
         /// <summary>
         /// 角色名称
         /// </summary>
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return GetPropertyValue<string>(
+                #if NET45
+#else
+                    "Name"
+#endif
+                    ); }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "Name"
+#endif
+);
+            }
+        }
 
         /// <summary>
         /// 角色权限
         /// </summary>
         [DataMember]
-        public string Authority { get; set; }
+        public string Authority
+        {
+            get { return GetPropertyValue<string>(
+                                #if NET45
+#else
+"Authority"
+#endif
+); }
+            set { SetPropertyValue<string>(value
+                #if NET45
+#else
+, "Authority"
+#endif
+); }
+        }
 
         /// <summary>
         /// 角色描述
         /// </summary>
         [DataMember]
-        public string Description { get; set; }
-
-        ///// <summary>
-        ///// 拥有此角色的账户列表
-        ///// </summary>
-        //[DataMember]
-        //public virtual Collection<AccountDTO> Accounts { get; set; }
+        public string Description
+        {
+            get { return GetPropertyValue<string>(
+                #if NET45
+#else
+"Description"
+#endif
+); }
+            set { SetPropertyValue<string>(value
+                #if NET45
+#else
+, "Description"
+#endif
+); }
+        }
 
         /// <summary>
         /// 拥有此角色的账户Id列表
         /// </summary>
         [DataMember]
-        public virtual ICollection<string> Accounts { get; set; }
+        public virtual ICollection<string> Accounts
+        {
+            get { return GetPropertyValue<ICollection<string>>(
+                                #if NET45
+#else
+"Accounts"
+#endif
+); }
+            set { SetPropertyValue<ICollection<string>>(value
+                                #if NET45
+#else
+, "Accounts"
+#endif
+); }
+        }
 
         public override string ToString()
         {
@@ -63,8 +112,6 @@ namespace Lighter.UserManagerService.Model
             else
             {
                 sb.Append("\nAccounts: " + Accounts.Count.ToString() + " account");
-                //foreach (AccountDTO dto in Accounts)
-                //    sb.Append("\n\n\t" + dto.ToString());
 
                 foreach (string id in Accounts)
                     sb.Append("\n\n\t" + id);

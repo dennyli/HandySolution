@@ -4,6 +4,7 @@ using Lighter.ModuleServiceBase.Model;
 using System.ServiceModel;
 using System.Text;
 using Lighter.Data.Dto2Entity;
+using System;
 
 namespace Lighter.UserManagerService.Model
 {
@@ -21,25 +22,86 @@ namespace Lighter.UserManagerService.Model
         /// 账户名称
         /// </summary>
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return GetPropertyValue<string>(
+#if NET45
+#else
+                    "Name"
+#endif
+                    ); }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "Name"
+#endif
+);
+            }
+        }
 
         /// <summary>
         /// 账户密码
         /// </summary>
         [DataMember]
-        public string Password { get; set; }
+        public string Password
+        {
+            get { return GetPropertyValue<string>(
+#if NET45
+#else
+            "Password"
+#endif
+);
+            }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "Password"
+#endif
+);
+            }
+        }
 
         /// <summary>
         /// 账户权限
         /// </summary>
         [DataMember]
-        public string Authority { get; set; }
+        public string Authority
+        {
+            get { return GetPropertyValue<string>(
+                #if NET45
+#else
+"Authority"
+#endif
+            ); }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "Authority"
+#endif
+);
+            }
+        }
 
         /// <summary>
         /// 账户名称缩写
         /// </summary>
         [DataMember]
-        public string ShortName { get; set; }
+        public string ShortName
+        {
+            get { return GetPropertyValue<string>(
+#if NET45
+#else
+"ShortName"
+#endif
+            ); }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "ShortName"
+#endif
+);
+            }
+        }
 
         ///// <summary>
         ///// 账户角色
@@ -51,7 +113,23 @@ namespace Lighter.UserManagerService.Model
         /// 账户角色Id
         /// </summary>
         [DataMember]
-        public string RoleId { get; set; }
+        public string RoleId
+        {
+            get { return GetPropertyValue<string>(
+#if NET45
+#else
+"RoleId"
+#endif
+);
+            }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "RoleId"
+#endif
+);
+            }
+        }
 
         ///// <summary>
         ///// 账户角色名字
@@ -69,7 +147,23 @@ namespace Lighter.UserManagerService.Model
         /// 账户所属部门Id
         /// </summary>
         [DataMember]
-        public string DepartmentId { get; set; }
+        public string DepartmentId
+        {
+            get { return GetPropertyValue<string>(
+#if NET45
+#else
+"DepartmentId"
+#endif
+);
+            }
+            set { SetPropertyValue<string>(value
+#if NET45
+#else
+, "DepartmentId"
+#endif
+);
+            }
+        }
 
         ///// <summary>
         ///// 账户所属部门名字

@@ -45,6 +45,7 @@
     <Compile Include="ILighterServerContext.cs" />
     <Compile Include="ILoginedAccountContext.cs" />
     <Compile Include="LighterServerContext.cs" />
+    <Compile Include="ModuleCatalog2ConfigXAML.cs" />
     <Compile Include="Obsoleted\LighterSessionContext.cs" />
     <Compile Include="Obsoleted\LighterServiceExtension.cs" />
     <Compile Include="Obsoleted\LighterSessionManager.cs" />

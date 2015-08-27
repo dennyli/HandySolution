@@ -28,7 +28,8 @@ namespace Lighter.ModuleServiceBase.DtoMapping
             else
             {
                 Mapper.CreateMap<EntityBase<string>, DTOEntityBase<string>>()
-                    .Include<Module, ModuleDTO>();
+                    .Include<Module, ModuleDTO>()
+                    .ForMember(dto => dto._values, opt => opt.Ignore());
             }
 
             tm = Mapper.FindTypeMapFor<Module, ModuleDTO>();

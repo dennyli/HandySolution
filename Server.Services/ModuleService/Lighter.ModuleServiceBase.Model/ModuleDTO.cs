@@ -23,13 +23,41 @@ namespace Lighter.ModuleServiceBase.Model
         /// 模块名称
         /// </summary>
         [DataMember]
-        public string Name { get; set; }
+        public string Name
+        {
+            get { return GetPropertyValue<string>(
+                #if NET45
+#else
+"Name"
+#endif
+); }
+            set { SetPropertyValue<string>(value
+                 #if NET45
+#else
+, "Name"
+#endif
+); }
+        }
 
         /// <summary>
         /// 模块类别
         /// </summary>
         [DataMember]
-        public string Catalog { get; set; }
+        public string Catalog
+        {
+            get { return GetPropertyValue<string>(
+                #if NET45
+#else
+"Catalog"
+#endif
+); }
+            set { SetPropertyValue<string>(value
+                 #if NET45
+#else
+, "Catalog"
+#endif
+); }
+        }
 
         public override string ToString()
         {

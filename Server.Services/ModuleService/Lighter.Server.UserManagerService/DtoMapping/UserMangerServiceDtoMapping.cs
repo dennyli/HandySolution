@@ -44,7 +44,8 @@ namespace Lighter.UserManagerService.DtoMapping
             tm = Mapper.FindTypeMapFor<Account, AccountDTO>();
             if (tm == null)
             {
-                Mapper.CreateMap<Account, AccountDTO>();
+                Mapper.CreateMap<Account, AccountDTO>()
+                    .ForMember(dto => dto._values, opt => opt.Ignore());
                     //.ForMember(dto => dto.RoleName, opt => opt.MapFrom<string>(src => (src.Role == null ? null : src.Role.Name)))
                     //.ForMember(dto => dto.DepartmentName, opt => opt.MapFrom<string>(src => (src.Department == null ? null : src.Department.Name)));
                     //.AfterMap((acc, dto) =>
@@ -62,7 +63,8 @@ namespace Lighter.UserManagerService.DtoMapping
                 Mapper.CreateMap<Department, DepartmentDTO>()
                    .ForMember(dto => dto.Accounts, opt => opt.MapFrom<ICollection<string>>(
                        src => (src.Accounts == null ? default(ICollection<string>)
-                           : src.Accounts.Select<Account, string>(acc => acc.Id).ToList<string>())));
+                           : src.Accounts.Select<Account, string>(acc => acc.Id).ToList<string>())))
+                           .ForMember(dto => dto._values, opt => opt.Ignore());
             }
 
             tm = Mapper.FindTypeMapFor<Role, RoleDTO>();
@@ -71,7 +73,8 @@ namespace Lighter.UserManagerService.DtoMapping
                 Mapper.CreateMap<Role, RoleDTO>()
                    .ForMember(dto => dto.Accounts, opt => opt.MapFrom<ICollection<string>>(
                        src => (src.Accounts == null ? default(ICollection<string>)
-                           : src.Accounts.Select<Account, string>(acc => acc.Id).ToList<string>())));
+                           : src.Accounts.Select<Account, string>(acc => acc.Id).ToList<string>())))
+                           .ForMember(dto => dto._values, opt => opt.Ignore());
             }
 
             // DTO to Entity

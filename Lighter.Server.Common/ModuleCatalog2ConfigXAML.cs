@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Practices.Prism.Modularity;
 using System.IO;
 
-namespace Utility
+namespace Lighter.Server.Common
 {
     public class ModuleCatalog2ConfigXAML
     {

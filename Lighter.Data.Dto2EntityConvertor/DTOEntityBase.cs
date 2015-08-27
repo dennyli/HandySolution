@@ -10,7 +10,7 @@ using Microsoft.Practices.Prism.ViewModel;
 namespace Lighter.Data.Dto2Entity
 {
     [DataContract]
-    public abstract class DTOEntityBase<TKey> : NotificationObject
+    public abstract class DTOEntityBase<TKey> : DTONotificationObject
     {
         public DTOEntityBase()
         {
@@ -21,12 +21,41 @@ namespace Lighter.Data.Dto2Entity
         /// </summary>
         [Key]
         [DataMember]
-        public TKey Id { get; set; }
+        public TKey Id
+        {
+            get { return GetPropertyValue<TKey>(
+#if NET45
+#else
+"Id"
+#endif
+                ); }
+            set { SetPropertyValue<TKey>(value
+#if NET45
+#else
+, "Id"
+#endif                
+                ); }
+        }
 
         /// <summary>
         ///     获取或设置 获取或设置是否禁用，逻辑上的删除，非物理删除
         /// </summary>
-        public bool IsDeleted { get; set; }
+        [DataMember]
+        public bool IsDeleted
+        {
+            get { return GetPropertyValue<bool>(
+#if NET45
+#else
+"IsDeleted"
+#endif
+                ); }
+            set { SetPropertyValue<bool>(value
+#if NET45
+#else
+, "IsDeleted"
+#endif                
+                    ); }
+        }
 
         public override string ToString()
         {
