@@ -87,13 +87,13 @@ namespace Lighter.UserManagerService.Model
         public virtual ICollection<string> Accounts
         {
             get { return GetPropertyValue<ICollection<string>>(
-                                #if NET45
+#if NET45
 #else
 "Accounts"
 #endif
 ); }
             set { SetPropertyValue<ICollection<string>>(value
-                                #if NET45
+#if NET45
 #else
 , "Accounts"
 #endif
