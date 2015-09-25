@@ -10,7 +10,7 @@ using Lighter.Data.Dto2Entity;
 namespace Lighter.ModuleServiceBase.Model
 {
     [Description("模块信息")]
-    [DataContract]
+    [DataContract(Namespace = "http://www.codestar.com/")]
     [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class ModuleDTO : DTOEntityBase<string>
     {

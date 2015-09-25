@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Lighter.LoginService.Model
 {
-    [DataContract]
+    [DataContract(Namespace = "http://www.codestar.com/")]
     public class LoginInfo
     {
         public LoginInfo(string account, string password, string ipaddress)

@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace Lighter.UserManagerService.Model
 {
     [Description("角色信息")]
-    [DataContract]
+    [DataContract(Namespace = "http://www.codestar.com/")]
     [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class RoleDTO : DTOEntityBase<string>
     {

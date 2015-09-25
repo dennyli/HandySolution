@@ -9,7 +9,7 @@ using System;
 namespace Lighter.UserManagerService.Model
 {
     [Description("账户信息")]
-    [DataContract]
+    [DataContract(Namespace = "http://www.codestar.com/")]
     [ServiceKnownType(typeof(DTOEntityBase<string>))]
     public class AccountDTO : DTOEntityBase<string>
     {
